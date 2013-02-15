@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: matchalabs
 Tags: flexslider,flex,nivoslider,nivo,responsive,slider,slideshow,carousel,coinslider,coin
-Requires at least: 3.3
+Requires at least: 3.5
 Tested up to: 3.5
 Stable tag: 1.0
 License: GPLv2 or later
