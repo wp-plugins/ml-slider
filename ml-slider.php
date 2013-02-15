@@ -3,7 +3,7 @@
  * Plugin Name: ML Slider
  * Plugin URI: http://www.ml-slider.com
  * Description: Responsive Slider
- * Version: 1.0
+ * Version: 1.0.1
  * Author: Matcha Labs
  * Author URI: http://www.matchalabs.com
  * License: GPL
@@ -14,7 +14,7 @@
  * GNU General Public License for more details.
 */
 
-define( 'MLSLIDER_VERSION', '1.0' );
+define( 'MLSLIDER_VERSION', '1.0.1' );
 define( 'MLSLIDER_BASE_URL', plugin_dir_url( __FILE__ ) );
 define( 'MLSLIDER_ASSETS_URL', MLSLIDER_BASE_URL . 'assets/' );
 
