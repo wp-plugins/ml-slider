@@ -44,7 +44,12 @@ Features:
 
 == Screenshots ==
 
-1. Administration panel
+1. Administration panel - overview
+2. Nivo Slider example
+3. Coin Slider example
+4. Flex Slider example
+5. Responsive Slides example
+6. Administration panel - selecting slides
 
 == Changelog ==
 

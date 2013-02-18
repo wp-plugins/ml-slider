@@ -2,7 +2,7 @@
 /*
  * Plugin Name: ML Slider
  * Plugin URI: http://www.ml-slider.com
- * Description: Responsive Slider
+ * Description: 4 sliders in 1! Choose from NivoSlider, FlexSlider, CoinSlider or Responsive Slides.
  * Version: 1.0.1
  * Author: Matcha Labs
  * Author URI: http://www.matchalabs.com
