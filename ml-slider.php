@@ -20,7 +20,7 @@ define( 'MLSLIDER_ASSETS_URL', MLSLIDER_BASE_URL . 'assets/' );
 
 class MLSlider {
 
-	var $slider = 0;
+    var $slider = 0;
     var $slides = array();
     var $settings = array();
 
@@ -30,18 +30,18 @@ class MLSlider {
      * /////////////////////////////////////////////////////////////////
      */
 
-	/**
-	 * Constructor
-	 */
-	public function __construct() {
-		add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
-		add_action('admin_menu', array($this, 'register_admin_menu'), 10001);
-		add_action('admin_menu', array($this, 'admin_process'), 10002);
-		add_action('init', array($this, 'register_post_type' ));
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
+        add_action('admin_menu', array($this, 'register_admin_menu'), 10001);
+        add_action('admin_menu', array($this, 'admin_process'), 10002);
+        add_action('init', array($this, 'register_post_type' ));
         add_action('init', array($this, 'register_taxonomy' ));
-		add_action('admin_print_styles', array( $this, 'register_admin_styles'));
-		add_shortcode('ml-slider', array($this, 'register_shortcode'));
-	}
+        add_action('admin_print_styles', array( $this, 'register_admin_styles'));
+        add_shortcode('ml-slider', array($this, 'register_shortcode'));
+    }
 
     /**
      * Registers and enqueues admin-specific styles.
@@ -126,23 +126,23 @@ class MLSlider {
      * /////////////////////////////////////////////////////////////////
      */
 
-	/**
-	 * Current slide ID
-	 */
-	private function set_slider($id) {
-		$this->slider = $id;
+    /**
+     * Current slide ID
+     */
+    private function set_slider($id) {
+        $this->slider = $id;
         $this->settings = $this->get_settings();
         $this->slides = $this->get_slides();
-	}
+    }
 
-	/**
-	 * Get slide ID
+    /**
+     * Get slide ID
      *
      * @return int the current slider ID
-	 */
-	private function get_slider() {
-		return $this->slider;
-	}
+     */
+    private function get_slider() {
+        return $this->slider;
+    }
 
     /**
      * Get settings for the current slider
@@ -663,12 +663,12 @@ class MLSlider {
 
         // coinslider
         if ($this->get_setting('type') == 'coin') {
-        	if ($this->get_setting('printJs') == 'true') {
-            	wp_enqueue_script('ml-slider_coin_slider', MLSLIDER_ASSETS_URL . 'coinslider/coin-slider.min.js', array('jquery'), MLSLIDER_VERSION);
+            if ($this->get_setting('printJs') == 'true') {
+                wp_enqueue_script('ml-slider_coin_slider', MLSLIDER_ASSETS_URL . 'coinslider/coin-slider.min.js', array('jquery'), MLSLIDER_VERSION);
             }
 
-        	if ($this->get_setting('printCss') == 'true') {
-				wp_enqueue_style('ml-slider_coin_slider_css', plugins_url('ml-slider/assets/coinslider/coin-slider-styles.css'));
+            if ($this->get_setting('printCss') == 'true') {
+                wp_enqueue_style('ml-slider_coin_slider_css', plugins_url('ml-slider/assets/coinslider/coin-slider-styles.css'));
             }
 
             $retVal = $this->get_coin_slider();
@@ -676,12 +676,12 @@ class MLSlider {
 
         // flex
         if ($this->get_setting('type') == 'flex') {
-        	if ($this->get_setting('printJs') == 'true') {
-            	wp_enqueue_script('ml-slider_flex_slider', MLSLIDER_ASSETS_URL . 'flexslider/jquery.flexslider-min.js', array('jquery'), MLSLIDER_VERSION);
+            if ($this->get_setting('printJs') == 'true') {
+                wp_enqueue_script('ml-slider_flex_slider', MLSLIDER_ASSETS_URL . 'flexslider/jquery.flexslider-min.js', array('jquery'), MLSLIDER_VERSION);
             }
 
-        	if ($this->get_setting('printCss') == 'true') {
-				wp_enqueue_style('ml-slider_flex_slider_css', plugins_url('ml-slider/assets/flexslider/flexslider.css'));
+            if ($this->get_setting('printCss') == 'true') {
+                wp_enqueue_style('ml-slider_flex_slider_css', plugins_url('ml-slider/assets/flexslider/flexslider.css'));
             }
 
             $retVal = $this->get_flex_slider();
@@ -689,12 +689,12 @@ class MLSlider {
         
         // responsive
         if ($this->get_setting('type') == 'responsive') {
-        	if ($this->get_setting('printJs') == 'true') {
-            	wp_enqueue_script('ml-slider_responsive_slides', MLSLIDER_ASSETS_URL . 'responsiveslides/responsiveslides.min.js', array('jquery'), MLSLIDER_VERSION);
+            if ($this->get_setting('printJs') == 'true') {
+                wp_enqueue_script('ml-slider_responsive_slides', MLSLIDER_ASSETS_URL . 'responsiveslides/responsiveslides.min.js', array('jquery'), MLSLIDER_VERSION);
             }
 
-        	if ($this->get_setting('printCss') == 'true') {
-				wp_enqueue_style('ml-slider_responsive_slides_css', plugins_url('ml-slider/assets/responsiveslides/responsiveslides.css'));
+            if ($this->get_setting('printCss') == 'true') {
+                wp_enqueue_style('ml-slider_responsive_slides_css', plugins_url('ml-slider/assets/responsiveslides/responsiveslides.css'));
             }
 
             $retVal = $this->get_responsive_slider();
@@ -702,16 +702,16 @@ class MLSlider {
         
         // nivo
         if ($this->get_setting('type') == 'nivo') {
-        	if ($this->get_setting('printJs') == 'true') {
-        		wp_enqueue_script('ml-slider_nivo_slider', MLSLIDER_ASSETS_URL . 'nivoslider/jquery.nivo.slider.pack.js', array('jquery'), MLSLIDER_VERSION);
-        	}
+            if ($this->get_setting('printJs') == 'true') {
+                wp_enqueue_script('ml-slider_nivo_slider', MLSLIDER_ASSETS_URL . 'nivoslider/jquery.nivo.slider.pack.js', array('jquery'), MLSLIDER_VERSION);
+            }
 
-        	if ($this->get_setting('printCss') == 'true') {
-				wp_enqueue_style('ml-slider_nivo_slider_css', plugins_url('ml-slider/assets/nivoslider/nivo-slider.css'));
-            	wp_enqueue_style('ml-slider_nivo_slider_theme_' . $this->get_setting('theme'), plugins_url('ml-slider/assets/nivoslider/themes/' . $this->get_setting('theme') . '/' . $this->get_setting('theme') . '.css'));
-        	}
-           	
-           	$retVal = $this->get_nivo_slider();
+            if ($this->get_setting('printCss') == 'true') {
+                wp_enqueue_style('ml-slider_nivo_slider_css', plugins_url('ml-slider/assets/nivoslider/nivo-slider.css'));
+                wp_enqueue_style('ml-slider_nivo_slider_theme_' . $this->get_setting('theme'), plugins_url('ml-slider/assets/nivoslider/themes/' . $this->get_setting('theme') . '/' . $this->get_setting('theme') . '.css'));
+            }
+            
+            $retVal = $this->get_nivo_slider();
         }
         
         return "<div class='ml-slider ml-slider-{$this->get_setting('type')} {$this->get_setting('cssClass')}'>" . $retVal . "</div>";
@@ -723,282 +723,282 @@ class MLSlider {
      * /////////////////////////////////////////////////////////////////
      */
 
-	/**
-	 * Render the admin page (tabs, slides, settings)
-	 */
-	public function render_admin_page() {
-		?>
+    /**
+     * Render the admin page (tabs, slides, settings)
+     */
+    public function render_admin_page() {
+        ?>
 
-		<div class="wrap ml-slider">
-			<form enctype="multipart/form-data" action="?page=ml-slider&id=<?php echo $this->get_slider() ?>" method="post">
+        <div class="wrap ml-slider">
+            <form enctype="multipart/form-data" action="?page=ml-slider&id=<?php echo $this->get_slider() ?>" method="post">
 
-				<h2 class="nav-tab-wrapper" style="font-size: 13px;">
-					<?php
-						if ($tabs = $this->get_sliders()) {
-							foreach ($tabs as $tab) {
-								if ($tab['active']) {
-									echo "<div class='nav-tab nav-tab-active' style='font-size: 13px;'><input type='text' name='title' 	value='" . $tab['title'] . "' style='padding: 0; margin: 0; border: 0; width: 100px; font-size: 14px' onkeypress='this.style.width = ((this.value.length + 1) * 9) + \"px\"' /></div>";
-								} else {
-									echo "<a href='?page=ml-slider&id={$tab['id']}' class='nav-tab' style='font-size: 13px;'>" . $tab['title'] . "</a>";
-								}
-							}							
-						}
-					?>
-					
-					<a href="?page=ml-slider&add=true" id="create_new_tab" class="nav-tab">+</a>
-				</h2>
+                <h2 class="nav-tab-wrapper" style="font-size: 13px;">
+                    <?php
+                        if ($tabs = $this->get_sliders()) {
+                            foreach ($tabs as $tab) {
+                                if ($tab['active']) {
+                                    echo "<div class='nav-tab nav-tab-active' style='font-size: 13px;'><input type='text' name='title'  value='" . $tab['title'] . "' style='padding: 0; margin: 0; border: 0; width: 100px; font-size: 14px' onkeypress='this.style.width = ((this.value.length + 1) * 9) + \"px\"' /></div>";
+                                } else {
+                                    echo "<a href='?page=ml-slider&id={$tab['id']}' class='nav-tab' style='font-size: 13px;'>" . $tab['title'] . "</a>";
+                                }
+                            }                           
+                        }
+                    ?>
+                    
+                    <a href="?page=ml-slider&add=true" id="create_new_tab" class="nav-tab">+</a>
+                </h2>
 
-				<?php
-					if (!$this->get_slider()) {
-						return;
-					}
-				?>
+                <?php
+                    if (!$this->get_slider()) {
+                        return;
+                    }
+                ?>
 
-				<div class="left" style='width: 68%; margin-top: 20px; float: left; clear: none;'>
-					<table class="widefat sortable slides">
-						<thead>
-							<tr>
-								<th style="width: 100px;">Slides</th>
-								<th><input class='upload_image_button alignright button-secondary' type='button' value='Add Slide' data-uploader_title='Select Slide' data-uploader_button_text='Add to slider' /></th>
-							</tr>
-						</thead>
+                <div class="left" style='width: 68%; margin-top: 20px; float: left; clear: none;'>
+                    <table class="widefat sortable slides">
+                        <thead>
+                            <tr>
+                                <th style="width: 100px;">Slides</th>
+                                <th><input class='upload_image_button alignright button-secondary' type='button' value='Add Slide' data-uploader_title='Select Slide' data-uploader_button_text='Add to slider' /></th>
+                            </tr>
+                        </thead>
 
-						<tbody>
-							<?php
+                        <tbody>
+                            <?php
                                 $slides = $this->get_slides();
 
-					            foreach($slides as $slide) {
-					                $image_attributes = wp_get_attachment_image_src($slide['id']); // returns an array
-					                $url = get_post_meta($slide['id'], 'ml-slider_url', true);
-					                echo "<tr class='slide'>";
-					                echo "<td>";
-					                echo "<div style='position: absolute'><a class='delete-slide confirm' href='?page=ml-slider&id={$this->get_slider()}&deleteSlide={$slide['id']}'>x</a></div>";
-					                echo "<img src='{$image_attributes[0]}' width='150px'></td>";
-									echo "<td>";
-									echo "<textarea name='attachment[{$slide['id']}][post_excerpt]' placeholder='Caption'>{$slide['caption']}</textarea>";
-									echo "<input type='text' name='attachment[{$slide['id']}][url]' placeholder='URL' value='{$url}' />";
-									echo "<input type='hidden' class='menu_order' name='attachment[{$slide['id']}][menu_order]' value={$slide['menu_order']} />";
-									echo "</td>";
-					                echo "</tr>";
-					            }
-					        ?>
-						</tbody>
-					</table>
-				</div>
+                                foreach($slides as $slide) {
+                                    $image_attributes = wp_get_attachment_image_src($slide['id']); // returns an array
+                                    $url = get_post_meta($slide['id'], 'ml-slider_url', true);
+                                    echo "<tr class='slide'>";
+                                    echo "<td>";
+                                    echo "<div style='position: absolute'><a class='delete-slide confirm' href='?page=ml-slider&id={$this->get_slider()}&deleteSlide={$slide['id']}'>x</a></div>";
+                                    echo "<img src='{$image_attributes[0]}' width='150px'></td>";
+                                    echo "<td>";
+                                    echo "<textarea name='attachment[{$slide['id']}][post_excerpt]' placeholder='Caption'>{$slide['caption']}</textarea>";
+                                    echo "<input type='text' name='attachment[{$slide['id']}][url]' placeholder='URL' value='{$url}' />";
+                                    echo "<input type='hidden' class='menu_order' name='attachment[{$slide['id']}][menu_order]' value={$slide['menu_order']} />";
+                                    echo "</td>";
+                                    echo "</tr>";
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
 
-				<div class='right' style="width: 30%; float: right; margin-top: 20px; clear: none;">
-					<table class="widefat settings">
-						<thead>
-							<tr>
+                <div class='right' style="width: 30%; float: right; margin-top: 20px; clear: none;">
+                    <table class="widefat settings">
+                        <thead>
+                            <tr>
                                 <th colspan="2">Settings</th>
-								<th><input type='submit' value='Save' class='alignright button-primary' /></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td colspan='3'>
+                                <th><input type='submit' value='Save' class='alignright button-primary' /></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan='3'>
                                     <div class='slider-lib nivo'>
                                         <label for='nivo' title='Version: 3.2<br />Responsive: Yes<br />Effects: 14<br />Size: 12kb<br />Mobile Friendly: Yes<br />Themes: 4' class='tooltiptop'>NivoSlider</label>
                                         <input class="select-slider" id='nivo' rel='nivo' type='radio' name="settings[type]" <?php if ($this->get_setting('type') == 'nivo') echo 'checked=checked' ?> value='nivo' />
                                     </div>
-									<div class='slider-lib coin'>
-										<label for='coin' title='Version: 1.0<br />Responsive: No<br />Effects: 4<br />Size: 8kb<br />Mobile Friendly: Yes' class='tooltiptop'>CoinSlider</label>
-										<input class="select-slider" id='coin' rel='coin' type='radio' name="settings[type]" <?php if ($this->get_setting('type') == 'coin') echo 'checked=checked' ?> value='coin' />
-									</div>
-									<div class='slider-lib flex'>
-										<label for='flex' title='Version: 2.1<br />Responsive: Yes<br />Effects: 2<br />Size: 17kb<br />Mobile Friendly: Yes' class='tooltiptop'>FlexSlider</label>
-										<input class="select-slider" id='flex' rel='flex' type='radio' name="settings[type]" <?php if ($this->get_setting('type') == 'flex') echo 'checked=checked' ?> value='flex' />
-									</div>
-									<div class='slider-lib responsive'>
-										<label for='responsive' title='Version: 1.53<br />Responsive: Yes<br />Effects: 1<br />Size: 3kb<br />Mobile Friendly: Yes' class='tooltiptop'>Responsive</label>
-										<input class="select-slider" id='responsive' rel='responsive' type='radio' name="settings[type]" <?php if ($this->get_setting('type') == 'responsive') echo 'checked=checked' ?> value='responsive' />
-									</div>
-								</td>
-							</tr>
-							<tr>
+                                    <div class='slider-lib coin'>
+                                        <label for='coin' title='Version: 1.0<br />Responsive: No<br />Effects: 4<br />Size: 8kb<br />Mobile Friendly: Yes' class='tooltiptop'>CoinSlider</label>
+                                        <input class="select-slider" id='coin' rel='coin' type='radio' name="settings[type]" <?php if ($this->get_setting('type') == 'coin') echo 'checked=checked' ?> value='coin' />
+                                    </div>
+                                    <div class='slider-lib flex'>
+                                        <label for='flex' title='Version: 2.1<br />Responsive: Yes<br />Effects: 2<br />Size: 17kb<br />Mobile Friendly: Yes' class='tooltiptop'>FlexSlider</label>
+                                        <input class="select-slider" id='flex' rel='flex' type='radio' name="settings[type]" <?php if ($this->get_setting('type') == 'flex') echo 'checked=checked' ?> value='flex' />
+                                    </div>
+                                    <div class='slider-lib responsive'>
+                                        <label for='responsive' title='Version: 1.53<br />Responsive: Yes<br />Effects: 1<br />Size: 3kb<br />Mobile Friendly: Yes' class='tooltiptop'>Responsive</label>
+                                        <input class="select-slider" id='responsive' rel='responsive' type='radio' name="settings[type]" <?php if ($this->get_setting('type') == 'responsive') echo 'checked=checked' ?> value='responsive' />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Set the initial size for the slides (width x height)">?</a></td>
-								<td>Size</td>
-								<td>
-									<input type='text' size='3' name="settings[width]" value='<?php echo $this->get_setting('width') ?>' />px X
-									<input type='text' size='3' name="settings[height]" value='<?php echo $this->get_setting('height') ?>' />px
-								</td>
-							</tr>
-							<tr>
+                                <td>Size</td>
+                                <td>
+                                    <input type='text' size='3' name="settings[width]" value='<?php echo $this->get_setting('width') ?>' />px X
+                                    <input type='text' size='3' name="settings[height]" value='<?php echo $this->get_setting('height') ?>' />px
+                                </td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Slide transition effect">?</a></td>
-								<td>Effect</td>
-								<td>
-									<select name="settings[effect]" class='effect option coin nivo flex'>
-										<option class='option coin nivo' value='random' <?php if ($this->get_setting('effect') == 'random') echo 'selected=selected' ?>>Random</option>
-										<option class='option coin' value='swirl' <?php if ($this->get_setting('effect') == 'swirl') echo 'selected=selected' ?>>Swirl</option>
-										<option class='option coin' value='rain' <?php if ($this->get_setting('effect') == 'rain') echo 'selected=selected' ?>>Rain</option>
-										<option class='option coin' value='straight' <?php if ($this->get_setting('effect') == 'straight') echo 'selected=selected' ?>>Straight</option>
-										<option class='option nivo' value='sliceDown' <?php if ($this->get_setting('effect') == 'sliceDown') echo 'selected=selected' ?>>Slice Down</option>
-										<option class='option nivo' value='sliceUp' <?php if ($this->get_setting('effect') == 'sliceUp') echo 'selected=selected' ?>>Slice Up</option>
-										<option class='option nivo' value='sliceUpLeft' <?php if ($this->get_setting('effect') == 'sliceUpLeft') echo 'selected=selected' ?>>Slice Up Left</option>
-										<option class='option nivo' value='sliceUpDown' <?php if ($this->get_setting('effect') == 'sliceUpDown') echo 'selected=selected' ?>>Slice Up Down</option>
-										<option class='option nivo' value='sliceUpDownLeft' <?php if ($this->get_setting('effect') == 'sliceUpDownLeft') echo 'selected=selected' ?>>Slice Up Down Left</option>
-										<option class='option nivo' value='fold' <?php if ($this->get_setting('effect') == 'fold') echo 'selected=selected' ?>>Fold</option>
-										<option class='option nivo flex' value='fade' <?php if ($this->get_setting('effect') == 'fade') echo 'selected=selected' ?>>Fade</option>
-										<option class='option nivo' value='slideInRight' <?php if ($this->get_setting('effect') == 'slideInRight') echo 'selected=selected' ?>>Slide In Right</option>
-										<option class='option nivo' value='slideInLeft' <?php if ($this->get_setting('effect') == 'slideInLeft') echo 'selected=selected' ?>>Slide In Left</option>
-										<option class='option nivo' value='boxRandom' <?php if ($this->get_setting('effect') == 'boxRandom') echo 'selected=selected' ?>>Box Random</option>
-										<option class='option nivo' value='boxRain' <?php if ($this->get_setting('effect') == 'boxRain') echo 'selected=selected' ?>>Box Rain</option>
-										<option class='option nivo' value='boxRainReverse' <?php if ($this->get_setting('effect') == 'boxRainReverse') echo 'selected=selected' ?>>Box Rain Reverse</option>
-										<option class='option nivo' value='boxRainGrowReverse' <?php if ($this->get_setting('effect') == 'boxRainGrowReverse') echo 'selected=selected' ?>>Box Rain Grow Reverse</option>
-										<option class='option flex' value='slide' <?php if ($this->get_setting('effect') == 'slide') echo 'selected=selected' ?>>Slide</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
+                                <td>Effect</td>
+                                <td>
+                                    <select name="settings[effect]" class='effect option coin nivo flex'>
+                                        <option class='option coin nivo' value='random' <?php if ($this->get_setting('effect') == 'random') echo 'selected=selected' ?>>Random</option>
+                                        <option class='option coin' value='swirl' <?php if ($this->get_setting('effect') == 'swirl') echo 'selected=selected' ?>>Swirl</option>
+                                        <option class='option coin' value='rain' <?php if ($this->get_setting('effect') == 'rain') echo 'selected=selected' ?>>Rain</option>
+                                        <option class='option coin' value='straight' <?php if ($this->get_setting('effect') == 'straight') echo 'selected=selected' ?>>Straight</option>
+                                        <option class='option nivo' value='sliceDown' <?php if ($this->get_setting('effect') == 'sliceDown') echo 'selected=selected' ?>>Slice Down</option>
+                                        <option class='option nivo' value='sliceUp' <?php if ($this->get_setting('effect') == 'sliceUp') echo 'selected=selected' ?>>Slice Up</option>
+                                        <option class='option nivo' value='sliceUpLeft' <?php if ($this->get_setting('effect') == 'sliceUpLeft') echo 'selected=selected' ?>>Slice Up Left</option>
+                                        <option class='option nivo' value='sliceUpDown' <?php if ($this->get_setting('effect') == 'sliceUpDown') echo 'selected=selected' ?>>Slice Up Down</option>
+                                        <option class='option nivo' value='sliceUpDownLeft' <?php if ($this->get_setting('effect') == 'sliceUpDownLeft') echo 'selected=selected' ?>>Slice Up Down Left</option>
+                                        <option class='option nivo' value='fold' <?php if ($this->get_setting('effect') == 'fold') echo 'selected=selected' ?>>Fold</option>
+                                        <option class='option nivo flex' value='fade' <?php if ($this->get_setting('effect') == 'fade') echo 'selected=selected' ?>>Fade</option>
+                                        <option class='option nivo' value='slideInRight' <?php if ($this->get_setting('effect') == 'slideInRight') echo 'selected=selected' ?>>Slide In Right</option>
+                                        <option class='option nivo' value='slideInLeft' <?php if ($this->get_setting('effect') == 'slideInLeft') echo 'selected=selected' ?>>Slide In Left</option>
+                                        <option class='option nivo' value='boxRandom' <?php if ($this->get_setting('effect') == 'boxRandom') echo 'selected=selected' ?>>Box Random</option>
+                                        <option class='option nivo' value='boxRain' <?php if ($this->get_setting('effect') == 'boxRain') echo 'selected=selected' ?>>Box Rain</option>
+                                        <option class='option nivo' value='boxRainReverse' <?php if ($this->get_setting('effect') == 'boxRainReverse') echo 'selected=selected' ?>>Box Rain Reverse</option>
+                                        <option class='option nivo' value='boxRainGrowReverse' <?php if ($this->get_setting('effect') == 'boxRainGrowReverse') echo 'selected=selected' ?>>Box Rain Grow Reverse</option>
+                                        <option class='option flex' value='slide' <?php if ($this->get_setting('effect') == 'slide') echo 'selected=selected' ?>>Slide</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Change the slider style">?</a></td>
-								<td>Theme</td>
-								<td>
-									<select class='option nivo' name="settings[theme]">
-										<option value='default' <?php if ($this->get_setting('theme') == 'default') echo 'selected=selected' ?>>Default</option>
-										<option value='dark' <?php if ($this->get_setting('theme') == 'dark') echo 'selected=selected' ?>>Dark</option>
-										<option value='light' <?php if ($this->get_setting('theme') == 'light') echo 'selected=selected' ?>>Light</option>
-										<option value='bar' <?php if ($this->get_setting('theme') == 'bar') echo 'selected=selected' ?>>Bar</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
+                                <td>Theme</td>
+                                <td>
+                                    <select class='option nivo' name="settings[theme]">
+                                        <option value='default' <?php if ($this->get_setting('theme') == 'default') echo 'selected=selected' ?>>Default</option>
+                                        <option value='dark' <?php if ($this->get_setting('theme') == 'dark') echo 'selected=selected' ?>>Dark</option>
+                                        <option value='light' <?php if ($this->get_setting('theme') == 'light') echo 'selected=selected' ?>>Light</option>
+                                        <option value='bar' <?php if ($this->get_setting('theme') == 'bar') echo 'selected=selected' ?>>Bar</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Number of squares (width x height)">?</a></td>
-								<td>Number of squares</td>
-								<td>
-									<input class='option coin nivo' type='text' size='2' name="settings[spw]" value='<?php echo $this->get_setting('spw') ?>' /> x 
-								    <input class='option coin nivo' type='text' size='2' name="settings[sph]" value='<?php echo $this->get_setting('sph') ?>' />
-								</td>
-							</tr>
-							<tr>
+                                <td>Number of squares</td>
+                                <td>
+                                    <input class='option coin nivo' type='text' size='2' name="settings[spw]" value='<?php echo $this->get_setting('spw') ?>' /> x 
+                                    <input class='option coin nivo' type='text' size='2' name="settings[sph]" value='<?php echo $this->get_setting('sph') ?>' />
+                                </td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Number of slices">?</a></td>
-								<td>Number of slices</td>
-								<td>
-									<input class='option nivo' type='text' size='2' name="settings[slices]" value='<?php echo $this->get_setting('slices') ?>' />
-								</td>
-							</tr>
-							<tr>
+                                <td>Number of slices</td>
+                                <td>
+                                    <input class='option nivo' type='text' size='2' name="settings[slices]" value='<?php echo $this->get_setting('slices') ?>' />
+                                </td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="How long to display each slide, in milliseconds">?</a></td>
-								<td>Slide delay</td>
-								<td><input class='option coin flex responsive nivo' type='text' size='5' name="settings[delay]" value='<?php echo $this->get_setting('delay') ?>' />ms</td>
-							</tr>
-							<tr>
+                                <td>Slide delay</td>
+                                <td><input class='option coin flex responsive nivo' type='text' size='5' name="settings[delay]" value='<?php echo $this->get_setting('delay') ?>' />ms</td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Delay beetwen squares in ms">?</a></td>
-								<td>Square delay</td>
-								<td><input class='option coin' type='text' size='5' name="settings[sDelay]" value='<?php echo $this->get_setting('sDelay') ?>' />ms</td>
-							</tr>
-							<tr>
+                                <td>Square delay</td>
+                                <td><input class='option coin' type='text' size='5' name="settings[sDelay]" value='<?php echo $this->get_setting('sDelay') ?>' />ms</td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Opacity of title and navigation">?</a></td>
-								<td>Opacity</td>
-								<td><input class='option coin' type='text' size='5' name="settings[opacity]" value='<?php echo $this->get_setting('opacity') ?>' /></td>
-							</tr>
-							<tr>
+                                <td>Opacity</td>
+                                <td><input class='option coin' type='text' size='5' name="settings[opacity]" value='<?php echo $this->get_setting('opacity') ?>' /></td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Set the fade in speef of the caption">?</a></td>
-								<td>Caption speed</td>
-								<td><input class='option coin' type='text' size='5' name="settings[titleSpeed]" value='<?php echo $this->get_setting('titleSpeed') ?>' />ms</td>
-							</tr>
-							<tr>
+                                <td>Caption speed</td>
+                                <td><input class='option coin' type='text' size='5' name="settings[titleSpeed]" value='<?php echo $this->get_setting('titleSpeed') ?>' />ms</td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Set the speed of animations, in milliseconds">?</a></td>
-								<td>Animation speed</td>
-								<td><input class='option flex responsive nivo' type='text' size='5' name="settings[animationSpeed]" value='<?php echo $this->get_setting('animationSpeed') ?>' />ms</td>
-							</tr>
-							<tr>
+                                <td>Animation speed</td>
+                                <td><input class='option flex responsive nivo' type='text' size='5' name="settings[animationSpeed]" value='<?php echo $this->get_setting('animationSpeed') ?>' />ms</td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Show slide navigation row">?</a></td>
-								<td>Navigation</td>
-								<td>
-									<input class='option coin responsive nivo flex' type='checkbox' name="settings[navigation]" <?php if ($this->get_setting('navigation') == 'true') echo 'checked=checked' ?> />
-								</td>
-							</tr>
-							<tr>
+                                <td>Navigation</td>
+                                <td>
+                                    <input class='option coin responsive nivo flex' type='checkbox' name="settings[navigation]" <?php if ($this->get_setting('navigation') == 'true') echo 'checked=checked' ?> />
+                                </td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Show previous and next links">?</a></td>
-								<td>Links</td>
-								<td>
-									<input class='option responsive nivo flex' type='checkbox' name="settings[links]" <?php if ($this->get_setting('links') == 'true') echo 'checked=checked' ?> />
-								</td>
-							</tr>
-							<tr>
+                                <td>Links</td>
+                                <td>
+                                    <input class='option responsive nivo flex' type='checkbox' name="settings[links]" <?php if ($this->get_setting('links') == 'true') echo 'checked=checked' ?> />
+                                </td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Pause the slideshow when hovering over slider, then resume when no longer hovering">?</a></td>
-								<td>Hover pause</td>
-								<td>
-									<input class='option coin flex responsive nivo' type='checkbox' name="settings[hoverPause]" <?php if ($this->get_setting('hoverPause') == 'true') echo 'checked=checked' ?> />
-								</td>
-							</tr>
-							<tr>
+                                <td>Hover pause</td>
+                                <td>
+                                    <input class='option coin flex responsive nivo' type='checkbox' name="settings[hoverPause]" <?php if ($this->get_setting('hoverPause') == 'true') echo 'checked=checked' ?> />
+                                </td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Reverse the animation direction">?</a></td>
-								<td>Reverse</td>
-								<td>
-									<input class='option flex' type='checkbox' name="settings[reverse]" <?php if ($this->get_setting('reverse') == 'true') echo 'checked=checked' ?> />
-								</td>
-							</tr>
-							<tr>
+                                <td>Reverse</td>
+                                <td>
+                                    <input class='option flex' type='checkbox' name="settings[reverse]" <?php if ($this->get_setting('reverse') == 'true') echo 'checked=checked' ?> />
+                                </td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Randomise the order of the slides">?</a></td>
-								<td>Random</td>
-								<td>
-									<input type='checkbox' name="settings[random]" <?php if ($this->get_setting('random') == 'true') echo 'checked=checked' ?> />
-								</td>
-							</tr>
-							<tr>
+                                <td>Random</td>
+                                <td>
+                                    <input type='checkbox' name="settings[random]" <?php if ($this->get_setting('random') == 'true') echo 'checked=checked' ?> />
+                                </td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Uncheck this is you would like to include your own CSS">?</a></td>
-								<td>Print CSS</td>
-								<td>
-									<input type='checkbox' name="settings[printCss]" <?php if ($this->get_setting('printCss') == 'true') echo 'checked=checked' ?> />
-								</td>
-							</tr>
-							<tr>
+                                <td>Print CSS</td>
+                                <td>
+                                    <input type='checkbox' name="settings[printCss]" <?php if ($this->get_setting('printCss') == 'true') echo 'checked=checked' ?> />
+                                </td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Uncheck this is you would like to include your own Javascript">?</a></td>
-								<td>Print JS</td>
-								<td>
-									<input type='checkbox' name="settings[printJs]" <?php if ($this->get_setting('printJs') == 'true') echo 'checked=checked' ?> />
-								</td>
-							</tr>
-							<tr>
+                                <td>Print JS</td>
+                                <td>
+                                    <input type='checkbox' name="settings[printJs]" <?php if ($this->get_setting('printJs') == 'true') echo 'checked=checked' ?> />
+                                </td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Select the sliding direction">?</a></td>
-								<td>Direction</td>
-								<td>
-									<select class='option flex' name="settings[direction]">
-										<option value='horizontal' <?php if ($this->get_setting('direction') == 'horizontal') echo 'selected=selected' ?>>Horizontal</option>
-										<option value='vertical' <?php if ($this->get_setting('direction') == 'vertical') echo 'selected=selected' ?>>Vertical</option>
-									</select>						
-								</td>
-							</tr>
-							<tr>
+                                <td>Direction</td>
+                                <td>
+                                    <select class='option flex' name="settings[direction]">
+                                        <option value='horizontal' <?php if ($this->get_setting('direction') == 'horizontal') echo 'selected=selected' ?>>Horizontal</option>
+                                        <option value='vertical' <?php if ($this->get_setting('direction') == 'vertical') echo 'selected=selected' ?>>Vertical</option>
+                                    </select>                       
+                                </td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Set the text for the 'previous' direction item">?</a></td>
-								<td>Previous text</td>
-								<td><input class='option flex responsive nivo' type='text' name="settings[prevText]" value='<?php if ($this->get_setting('prevText') != 'false') echo $this->get_setting('prevText') ?>' /></td>
-							</tr>
-							<tr>
+                                <td>Previous text</td>
+                                <td><input class='option flex responsive nivo' type='text' name="settings[prevText]" value='<?php if ($this->get_setting('prevText') != 'false') echo $this->get_setting('prevText') ?>' /></td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Set the text for the 'next' direction item">?</a></td>
-								<td>Next text</td>
-								<td><input class='option flex responsive nivo' type='text' name="settings[nextText]" value='<?php if ($this->get_setting('nextText') != 'false') echo $this->get_setting('nextText') ?>' /></td>
-							</tr>
-							<tr>
+                                <td>Next text</td>
+                                <td><input class='option flex responsive nivo' type='text' name="settings[nextText]" value='<?php if ($this->get_setting('nextText') != 'false') echo $this->get_setting('nextText') ?>' /></td>
+                            </tr>
+                            <tr>
                                 <td><a href="#" class="tooltip" title="Specify any custom CSS Classes you would like to be added to the slider wrapper">?</a></td>
-								<td>CSS classes</td>
-								<td><input type='text' name="settings[cssClass]" value='<?php if ($this->get_setting('cssClass') != 'false') echo $this->get_setting('cssClass') ?>' /></td>
-							</tr>
-						</tbody>
-					</table>
+                                <td>CSS classes</td>
+                                <td><input type='text' name="settings[cssClass]" value='<?php if ($this->get_setting('cssClass') != 'false') echo $this->get_setting('cssClass') ?>' /></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-					<table class="widefat" style="width: 100%; margin-top: 20px;">
-						<thead>
-							<tr>
-								<th>Shortcode</th>
-							</tr>
-						</thead>
+                    <table class="widefat" style="width: 100%; margin-top: 20px;">
+                        <thead>
+                            <tr>
+                                <th>Shortcode</th>
+                            </tr>
+                        </thead>
 
-						<tbody>
-							<tr>
-								<td><textarea style="width: 100%">[ml-slider id=<?php echo $this->get_slider() ?>]</textarea></td>
-							</tr>
-						</tbody>
-					</table>
+                        <tbody>
+                            <tr>
+                                <td><textarea style="width: 100%">[ml-slider id=<?php echo $this->get_slider() ?>]</textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-					<br />
+                    <br />
                     <a class='alignright button-secondary confirm' href="?page=ml-slider&delete=<?php echo $this->get_slider() ?>">Delete Slider</a>
                 </div>
-			</form>
-		</div>
-		<?php
-	}
+            </form>
+        </div>
+        <?php
+    }
 }
 $mlslider = new MLSlider();
 ?>
