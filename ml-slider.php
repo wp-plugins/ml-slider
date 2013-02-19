@@ -3,7 +3,7 @@
  * Plugin Name: ML Slider
  * Plugin URI: http://www.ml-slider.com
  * Description: 4 sliders in 1! Choose from Nivo Slider, Flex Slider, Coin Slider or Responsive Slides.
- * Version: 1.1
+ * Version: 1.2
  * Author: Matcha Labs
  * Author URI: http://www.matchalabs.com
  * License: GPL
@@ -14,7 +14,7 @@
  * GNU General Public License for more details.
 */
 
-define( 'MLSLIDER_VERSION', '1.1' );
+define( 'MLSLIDER_VERSION', '1.2' );
 define( 'MLSLIDER_BASE_URL', plugin_dir_url( __FILE__ ) );
 define( 'MLSLIDER_ASSETS_URL', MLSLIDER_BASE_URL . 'assets/' );
 
@@ -254,9 +254,9 @@ class MLSlider {
                 'id' => $query->post->ID,
                 'type' => 'image',
                 'url' => get_post_meta($query->post->ID, 'ml-slider_url', true),
-                'caption' => $query->post->post_excerpt,
+                'caption' => htmlentities($query->post->post_excerpt, ENT_QUOTES),
                 'src' => $image_attributes[0],
-                'alt' => get_post_meta($query->post->ID, '_wp_attachment_image_alt', true),
+                'alt' => htmlentities(get_post_meta($query->post->ID, '_wp_attachment_image_alt', true),ENT_QUOTES),
                 'menu_order' => $query->post->menu_order
             );
         }
@@ -325,7 +325,6 @@ class MLSlider {
      * Update slider settings
      */
     private function handle_update_slider_settings() {
-        // update options
         if (isset($_POST['settings'])) {
             $old_settings = get_post_meta($this->get_slider(), 'ml-slider_settings', true);
             $new_settings = $_POST['settings'];
@@ -353,7 +352,6 @@ class MLSlider {
      * Update slider title
      */
     private function handle_update_slider_title() {
-        // update title
         if (isset($_POST['title'])) {
             $slide = array(
                 'ID' => $this->get_slider(),
@@ -371,7 +369,6 @@ class MLSlider {
      * @return bool true if the slide was untagged
      */
     private function handle_delete_slide() {
-        // delete slide
         if (isset($_GET['deleteSlide'])) {
             $slideToUntagFromCurrentSlider = $_GET['deleteSlide'];
 
@@ -402,7 +399,7 @@ class MLSlider {
                 $term = get_term_by('name', $this->get_slider(), 'ml-slider');
 
                 // tag this slide to the taxonomy term
-                wp_set_post_terms($id, $term->term_id, 'ml-slider', false);
+                wp_set_post_terms($id, $term->term_id, 'ml-slider', true);
 
                 // update the slide
                 wp_update_post(array(
@@ -435,7 +432,6 @@ class MLSlider {
      * Delete a slider
      */
     private function handle_delete_slider() {
-        // delete slider
         if (isset($_GET['delete'])) {
             $slide = array(
                 'ID' => intVal($_GET['delete']),
@@ -476,14 +472,198 @@ class MLSlider {
     }
 
     
+
+    /**
+     * Get the slider libary parameters
+     *
+     * @return string javascript options
+     */
+    private function get_params() {
+        $params = array(
+            'width' => array(
+                'map' => array(
+                    'coin' => 'width'
+                ),
+                'default' => 565
+            ),
+            'height' => array(
+                'map' => array(
+                    'coin' => 'height'
+                ),
+                'default' => 290
+            ),
+            'spw' => array(
+                'map' => array(
+                    'coin' => 'spw', 
+                    'nivo' => 'boxCols'
+                ),
+                'default' => 7
+            ),
+            'sph' => array(
+                'map' => array(
+                    'coin' => 'sph', 
+                    'nivo' => 'boxRows'
+                ),
+                'default' => 5
+            ),
+            'delay' => array(
+                'map' => array(
+                    'coin' => 'delay', 
+                    'nivo' => 'pauseTime', 
+                    'flex' => 'slideshowSpeed', 
+                    'responsive' => 'timeout'
+                ),
+                'default' => 3000
+            ),
+            'sDelay' => array(
+                'map' => array(
+                    'coin' => 'sDelay'
+                ),
+                'default' => 30
+            ),
+            'opacity' => array(
+                'map' => array(
+                    'coin' => 'opacity'
+                ),
+                'default' => 0.7
+            ),
+            'effect' => array(
+                'map' => array(
+                    'coin' => 'effect', 
+                    'nivo' => 'effect', 
+                    'flex' => 'animation'
+                ),
+                'default' => 'random'
+            ),
+            'navigation' => array(
+                'map' => array(
+                    'coin' => 'navigation', 
+                    'nivo' => 'controlNav', 
+                    'flex' => 'controlNav', 
+                    'responsive' => 'pager'
+                ),
+                'default' => true
+            ),
+            'links' => array(
+                'map' => array(
+                    'nivo' => 'directionNav', 
+                    'flex' => 'directionNav', 
+                    'responsive' => 'nav'
+                ),
+                'default' => true
+            ),
+            'hoverPause' => array(
+                'map' => array(
+                    'coin' => 'hoverPause', 
+                    'nivo' => 'pauseOnHover', 
+                    'flex' => 'pauseOnHover', 
+                    'responsive' => 'pause'
+                ),
+                'default' => true
+            ),
+            'theme' => array(
+                'map' => array(
+                    'nivo' => 'theme'
+                ),
+                'default' => 'dark'
+            ),
+            'direction' => array(
+                'map' => array(
+                    'flex' => 'direction'
+                ),
+                'default' => 'horizontal'
+            ),
+            'reverse' => array(
+                'map' => array(
+                    'flex' => 'reverse'
+                ),
+                'default' => false,
+            ),
+            'animationSpeed' => array(
+                'map' => array(
+                    'nivo' => 'animSpeed', 
+                    'flex' => 'animationSpeed', 
+                    'responsive' => 'speed'
+                ),
+                'default' => 600
+            ),
+            'prevText' => array(
+                'map' => array(
+                    'nivo' => 'prevText', 
+                    'flex' => 'prevText', 
+                    'responsive' => 'prevText'
+                ),
+                'default' => 'Previous'
+            ),
+            'nextText' => array(
+                'map' => array(
+                    'nivo' => 'nextText', 
+                    'flex' => 'nextText', 
+                    'responsive' => 'nextText'
+                ),
+                'default' => 'Next'
+            ),
+            'slices' => array(
+                'map' => array(
+                    'nivo' => 'slices'
+                ),
+                'default' => 15
+            )
+        );
+
+        $options = array();
+
+        foreach ($params as $setting => $map) {
+            if (isset($map['map'][$this->get_setting('type')])) {
+                $optionName = $map['map'][$this->get_setting('type')];
+
+                if (!$optionVal = $this->get_setting($setting)) {
+                    $optionVal = $map['default'];
+                }
+
+                if (gettype($map['default']) == 'string') {
+                    $options[] = $optionName . ": '" . $optionVal . "'";
+                } else {
+                    $options[] = $optionName . ": " . $optionVal;
+                }
+            }
+        }
+
+        return implode(",\n            ", $options);;
+    }
+
+    /**
+     * Return the Javascript to kick off the slider. Code is wrapped in a timer
+     * to allow for themes that load jQuery at the bottom of the page.
+     *
+     * @return string javascript
+     */
+    private function get_inline_javascript($type, $identifier) {
+        $retVal  = "\n<script type='text/javascript'>";
+        $retVal .= "\n    var " . $identifier . " = function($) {";
+        $retVal .= "\n        $('#" . $identifier . "')." . $type . "({ ";
+        $retVal .= "\n            " . $this->get_params();
+        $retVal .= "\n        });";
+        $retVal .= "\n    };";
+        $retVal .= "\n    var timer_" . $identifier . " = function() {";
+        $retVal .= "\n        if (window.jQuery && jQuery.isReady) {";
+        $retVal .= "\n            " . $identifier . "(window.jQuery);";
+        $retVal .= "\n        } else {";
+        $retVal .= "\n            window.setTimeout(timer_" . $identifier . ", 100);";
+        $retVal .= "\n        }";
+        $retVal .= "\n    };";
+        $retVal .= "\n    timer_" . $identifier . "();";
+        $retVal .= "\n</script>";
+
+        return $retVal;
+    }
+    
     /**
      * Return coin slider markup
      *
      * @return string coin slider markup.
      */
-    public function get_coin_slider() {
-        $identifier = 'ml-slider-' . rand();
-
+    private function get_coin_slider($identifier) {
         $retVal = "<div id='" . $identifier . "' class='coin-slider'>";
         
         foreach ($this->get_slides() as $slide) {
@@ -496,35 +676,15 @@ class MLSlider {
         
         $retVal .= "</div>";
         
-        $retVal .= "<script type='text/javascript'>";
-        $retVal .= "\njQuery(document).ready(function($) {";
-        $retVal .= "\n  $('#" . $identifier . "').coinslider({";
-        $retVal .= "\n        effect: '{$this->get_setting('effect')}',";
-        $retVal .= "\n        width: '{$this->get_setting('width')}',";
-        $retVal .= "\n        height: '{$this->get_setting('height')}',";
-        $retVal .= "\n        spw: '{$this->get_setting('spw')}',";
-        $retVal .= "\n        sph: '{$this->get_setting('sph')}',";
-        $retVal .= "\n        delay: '{$this->get_setting('delay')}',";
-        $retVal .= "\n        sDelay: '{$this->get_setting('sDelay')}',";
-        $retVal .= "\n        opacity: '{$this->get_setting('opacity')}',";
-        $retVal .= "\n        titleSpeed: '{$this->get_setting('titleSpeed')}',";
-        $retVal .= "\n        navigation: {$this->get_setting('navigation')},";
-        $retVal .= "\n        hoverPause: {$this->get_setting('hoverPause')}";
-        $retVal .= "\n  });";
-        $retVal .= "\n});";
-        $retVal .= "</script>";
-        
         return $retVal;
     }
-    
+
     /**
      * Return flexslider markup
      *
      * @return string flex slider markup.
      */
-    public function get_flex_slider() {
-        $identifier = 'ml-slider-' . rand();
-
+    private function get_flex_slider($identifier) {
         $retVal = "<div id='" . $identifier . "' class='flexslider'><ul class='slides'>";
         
         foreach ($this->get_slides() as $slide) {
@@ -537,24 +697,7 @@ class MLSlider {
         }
         
         $retVal .= "</ul></div>";
-        
-        $retVal .= "<script type='text/javascript'>";
-        $retVal .= "\njQuery(document).ready(function($) {";
-        $retVal .= "\n  $('#" . $identifier . "').flexslider({";
-        $retVal .= "\n        animation: '{$this->get_setting('effect')}',";
-        $retVal .= "\n        direction: '{$this->get_setting('direction')}',";
-        $retVal .= "\n        reverse: {$this->get_setting('reverse')},";
-        $retVal .= "\n        slideshowSpeed: {$this->get_setting('delay')},";
-        $retVal .= "\n        pauseOnHover: {$this->get_setting('hoverPause')},";
-        $retVal .= "\n        animationSpeed: {$this->get_setting('animationSpeed')},";
-        $retVal .= "\n        controlNav: {$this->get_setting('navigation')},";
-        $retVal .= "\n        directionNav: {$this->get_setting('links')},";
-        $retVal .= "\n        prevText: '{$this->get_setting('prevText')}',";
-        $retVal .= "\n        nextText: '{$this->get_setting('nextText')}',";
-        $retVal .= "\n  });";
-        $retVal .= "\n});";
-        $retVal .= "</script>";
-        
+
         return $retVal;
     }
     
@@ -563,9 +706,7 @@ class MLSlider {
      *
      * @return string responsive slider markup.
      */
-    public function get_responsive_slider() {
-        $identifier = 'ml-slider-' . rand();
-
+    private function get_responsive_slider($identifier) {
         $retVal = "<ul id='" . $identifier . "' class='rslides'>";
         
         foreach ($this->get_slides() as $slide) {
@@ -578,21 +719,6 @@ class MLSlider {
         
         $retVal .= "</ul>";
         
-        $retVal .= "<script type='text/javascript'>";
-        $retVal .= "\njQuery(document).ready(function($) {";
-        $retVal .= "\n  $('#" . $identifier . "').responsiveSlides({";
-        $retVal .= "\n        timeout: {$this->get_setting('delay')},";
-        $retVal .= "\n        pause: {$this->get_setting('hoverPause')},";
-        $retVal .= "\n        pauseControls: {$this->get_setting('hoverPause')},";
-        $retVal .= "\n        speed: {$this->get_setting('animationSpeed')},";
-        $retVal .= "\n        pager: {$this->get_setting('navigation')},";
-        $retVal .= "\n        nav: {$this->get_setting('links')},";
-        $retVal .= "\n        prevText: '{$this->get_setting('prevText')}',";
-        $retVal .= "\n        nextText: '{$this->get_setting('nextText')}',";
-        $retVal .= "\n  });";
-        $retVal .= "\n});";
-        $retVal .= "</script>";
-        
         return $retVal;
     }
     
@@ -601,9 +727,7 @@ class MLSlider {
      *
      * @return string nivo slider markup.
      */
-    public function get_nivo_slider() {
-        $identifier = 'ml-slider-' . rand();
-
+    private function get_nivo_slider($identifier) {
         $retVal  = "<div class='slider-wrapper theme-{$this->get_setting('theme')}'>";
         $retVal .= "<div class='ribbon'></div>";
         $retVal .= "<div id='" . $identifier . "' class='nivoSlider'>";
@@ -615,24 +739,6 @@ class MLSlider {
         }
         
         $retVal .= "</div></div>";
-        
-        $retVal .= "<script type='text/javascript'>";
-        $retVal .= "\njQuery(document).ready(function($) {";
-        $retVal .= "\n  $('#" . $identifier . "').nivoSlider({";
-        $retVal .= "\n        effect: '{$this->get_setting('effect')}',";
-        $retVal .= "\n        slices: {$this->get_setting('slices')},";
-        $retVal .= "\n        pauseTime: {$this->get_setting('delay')},";
-        $retVal .= "\n        animSpeed: {$this->get_setting('animationSpeed')},";
-        $retVal .= "\n        pauseOnHover: {$this->get_setting('hoverPause')},";
-        $retVal .= "\n        boxCols: {$this->get_setting('spw')},";
-        $retVal .= "\n        boxRows: {$this->get_setting('sph')},";
-        $retVal .= "\n        controlNav: {$this->get_setting('navigation')},";
-        $retVal .= "\n        directionNav: {$this->get_setting('links')},";
-        $retVal .= "\n        prevText: '{$this->get_setting('prevText')}',";
-        $retVal .= "\n        nextText: '{$this->get_setting('nextText')}',";
-        $retVal .= "\n  });";
-        $retVal .= "\n});";
-        $retVal .= "</script>";
         
         return $retVal;
     }
@@ -661,6 +767,8 @@ class MLSlider {
 
         $this->set_slider($id);
 
+        $identifier = 'ml_slider_' . rand();
+
         // coinslider
         if ($this->get_setting('type') == 'coin') {
             if ($this->get_setting('printJs') == 'true') {
@@ -671,7 +779,8 @@ class MLSlider {
                 wp_enqueue_style('ml-slider_coin_slider_css', plugins_url('ml-slider/assets/coinslider/coin-slider-styles.css'));
             }
 
-            $retVal = $this->get_coin_slider();
+            $retVal = $this->get_coin_slider($identifier);
+            $retVal .= $this->get_inline_javascript('coinslider', $identifier);
         }
 
         // flex
@@ -684,7 +793,8 @@ class MLSlider {
                 wp_enqueue_style('ml-slider_flex_slider_css', plugins_url('ml-slider/assets/flexslider/flexslider.css'));
             }
 
-            $retVal = $this->get_flex_slider();
+            $retVal = $this->get_flex_slider($identifier);
+            $retVal .= $this->get_inline_javascript('flexslider', $identifier);
         }
         
         // responsive
@@ -697,7 +807,8 @@ class MLSlider {
                 wp_enqueue_style('ml-slider_responsive_slides_css', plugins_url('ml-slider/assets/responsiveslides/responsiveslides.css'));
             }
 
-            $retVal = $this->get_responsive_slider();
+            $retVal = $this->get_responsive_slider($identifier);
+            $retVal .= $this->get_inline_javascript('responsiveSlides', $identifier);
         }
         
         // nivo
@@ -711,7 +822,8 @@ class MLSlider {
                 wp_enqueue_style('ml-slider_nivo_slider_theme_' . $this->get_setting('theme'), plugins_url('ml-slider/assets/nivoslider/themes/' . $this->get_setting('theme') . '/' . $this->get_setting('theme') . '.css'));
             }
             
-            $retVal = $this->get_nivo_slider();
+            $retVal = $this->get_nivo_slider($identifier);
+            $retVal .= $this->get_inline_javascript('nivoSlider', $identifier);
         }
         
         return "<div class='ml-slider ml-slider-{$this->get_setting('type')} {$this->get_setting('cssClass')}'>" . $retVal . "</div>";
@@ -745,7 +857,7 @@ class MLSlider {
                         }
                     ?>
                     
-                    <a href="?page=ml-slider&add=true" id="create_new_tab" class="nav-tab">+</a>
+                    <a href="?page=ml-slider&add=true" id="create_new_tab" class="nav-tab" style='font-size: 13px;'>+</a>
                 </h2>
 
                 <?php
@@ -791,7 +903,10 @@ class MLSlider {
                         <thead>
                             <tr>
                                 <th colspan="2">Settings</th>
-                                <th><input type='submit' value='Save' class='alignright button-primary' /></th>
+                                <th>
+                                    <input type='submit' value='Save' class='alignright button-primary' />
+                                    <div class='unsaved tooltip' style='display: none;' title='Unsaved Changes'>!</div>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>

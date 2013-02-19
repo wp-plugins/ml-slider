@@ -54,6 +54,14 @@ Features:
 
 == Changelog ==
 
+= 1.2 =
+* Improvement: Code refactored
+* Fix: Unable to assign the same image to more than one slider
+* Fix: JavaScript error when jQuery is loaded in page footer
+* Improvement: Warning notice when the slider has unsaved changes
+* Fix: Captions not being escaped (reported by and thanks to: papabeers)
+* Improvement: Add multiple files to slider from Media Browser
+
 = 1.1 =
 * Improvement: Code refactored
 * Fix: hitting [enter] brings up Media Library
