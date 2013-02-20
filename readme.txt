@@ -12,6 +12,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 == Description ==
 ML Slider is a clean slideshow management plugin that leaves the heavy lifting to a selection of popular jQuery slider plugins - the choice is yours. ML Slider builds upon standard WordPress functionality wherever possible; slideshows are stored as a custom post type, slides are stored as media files and the relation between the two is stored as taxonomy data.
 
+http://www.youtube.com/watch?v=SdPKN7rTfM8
+
 ML Slider Features:
 * Intuitive administration panel
 * Create unlimited slideshows with unlimited number of slides
