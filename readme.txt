@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: matchalabs
-Tags: flexslider,flex,flex slider,nivoslider,nivo,nivo slider,responsiveslides,responsive,responsive slides,slider,coinslider,coin,coin slider,slideshow,carousel,wordpress slider,responsive slider,slider plugin,photos,picture,vertical slides,ml slider,image rotator,wordpress slideshow,image slider
+Tags: wordpress slider,slider,slides,slideshow,wordpress slideshow,image slider,flexslider,flex,flex slider,nivoslider,nivo,nivo slider,responsiveslides,responsive,responsive slides,coinslider,coin,coin slider,slideshow,carousel,responsive slider,slider plugin,vertical slides,ml slider,image rotator
 Requires at least: 3.5
 Tested up to: 3.5
 Stable tag: 1.2
@@ -10,30 +10,32 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 4 image sliders in 1! Choose from Nivo Slider, Flex Slider, Coin Slider or Responsive Slides.
 
 == Description ==
-ML Slider is a clean slideshow management plugin that leaves the heavy lifting to a selection of popular jQuery slider plugins - the choice is yours. ML Slider builds upon standard WordPress functionality wherever possible; slideshows are stored as a custom post type, slides are stored as media attachments.
+ML Slider is a clean slideshow management plugin that leaves the heavy lifting to a selection of popular jQuery slider plugins - the choice is yours. ML Slider builds upon standard WordPress functionality wherever possible; slideshows are stored as a custom post type, slides are stored as media files and the relation between the two is stored as taxonomy data.
 
-Use the intuitive administration panel to manage your slideshows.
-
-Add multiple slideshows to pages, posts and templates using the built in shortcode.
-
-Features:
-
-* Create unlimited slideshows with unlimited number of slides
+ML Slider Features:
 * Intuitive administration panel
-* Choose slider library from Nivo Slider, Flex Slider, Coin Slider or Responsive Slides (per slideshow)
+* Create unlimited slideshows with unlimited number of slides
+* Choose slider library from Nivo Slider, Flex Slider 2, Coin Slider or Responsive Slides (per slideshow)
 * Add captions to slides
 * Add URLs to slides
-* 18 transition effects
-* 4 themes (Nivo Slider)
 * Reorder slides with drag and drop
-* Integrated with WordPress media manager
 * Create new slides from your Media Library, or upload new images
-* Responsive (Nivo Slider, Flex Slider, Responsive Slides)
 * Mix & Match! Include as many slideshows on the same page as you want
-* Configure each slideshow with the chosen slider library options
-* Adjust slider libary options such as: speed, theme, hover pause, width, height
 * Option to include your own CSS
 * Lightweight, only the bare minimum in terms of JavaScript and CSS is outputted to your website
+* Built in shortcode
+
+Slider Features:
+* 18 transition effects
+* 4 themes (Nivo Slider)
+* Responsive (Nivo Slider, Flex Slider 2, Responsive Slides)
+* Adjust slider libary options such as: speed, theme, hover pause, width, height
+
+Read more and thanks to:
+* [http://flexslider.woothemes.com/](http://flexslider.woothemes.com/)
+* [http://responsive-slides.viljamis.com/](http://responsive-slides.viljamis.com/)
+* [http://workshop.rs/projects/coin-slider/](http://workshop.rs/projects/coin-slider/)
+* [http://dev7studios.com/nivo-slider/](http://dev7studios.com/nivo-slider/)
 
 == Installation ==
 
@@ -42,6 +44,16 @@ Features:
 1. Manage your slideshows using the 'ML Slider' menu option
 
 == Frequently Asked Questions ==
+
+= How do I include a slideshow directly in my templates? =
+
+`<?php echo do_shortcode("[ml-slider id=#]") ?>`
+
+= Why are some effects/options greyed out? =
+
+The effects are enabled/disabled depending on which library you have selected.
+
+For example, flex slider supports the 'Fade' and 'Slide' effect whereas coin slider supports 'Random', 'Swirl', 'Straight' and 'Rain'. Unavailable options are greyed out.
 
 == Screenshots ==
 
@@ -56,6 +68,8 @@ Features:
 
 = 1.2.1 =
 * Fix: Number of slides per slideshow limited to WordPress 'blog pages show at most' setting (reported by and thanks to: Kenny)
+* Fix: Add warning when BMP file is added to slider (reported by and thanks to MadBong)
+* Fix: Allow images smaller than default thumbnail size to be added to slider (reported by and thanks to: MadBong)
 
 = 1.2 =
 * Improvement: Code refactored

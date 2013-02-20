@@ -76,7 +76,7 @@
 				button: {
 					text: jQuery( this ).data( 'uploader_button_text' ),
 				},
-				multiple: 'add'  
+				multiple: 'add'
 			});
 
 			// When an image is selected, run a callback.
@@ -87,11 +87,22 @@
 
 					attachment = attachment.toJSON();
 
+					if (attachment.subtype == 'bmp') {
+						alert('Warning: BML images not allowed');
+						return;
+					}
+
+					var url = attachment.url;
+
+					if (typeof(attachment.sizes.thumbnail) != 'undefined') {
+						url = attachment.sizes.thumbnail.url;
+					}
+
 					var tableRow = "<tr class='slide'><td>" +
 									"<div style='position: absolute'>" + 
 									"<a class='delete-slide remove-slide' href='#'>x</a> " + 
 									"</div>" +
-									"<img src='" + attachment.sizes.thumbnail.url + "' width='150px'></td><td> " + 
+									"<img src='" + url + "' width='150px'></td><td> " + 
 									"<textarea name='attachment[" + attachment.id + "][post_excerpt]' placeholder='Caption'>" + attachment.caption + "</textarea>" +
 									"<input type='text' name='attachment[" + attachment.id + "][url]' placeholder='URL'>" + 
 									"<input type='hidden' class='menu_order' name='attachment[" + attachment.id + "][menu_order]' value='100'>" + 
@@ -99,6 +110,9 @@
 
 					// add slide to existing slides table
 					jQuery(".ml-slider .slides tbody").append(tableRow);
+
+					// display the unsaved changes warning
+					$('.ml-slider .unsaved').show();
 				});
 
 				// the slides haven't been assigned to the slider yet, so just remove the row if the delete
@@ -110,9 +124,6 @@
 
 				// reindex the slides
 				updateSlideOrder();
-
-				// display the unsaved changes warning
-				$('.ml-slider .unsaved').show();
 
 				// ensure the rows are sortable
 				$(".ml-slider table.sortable").tableDnD({
