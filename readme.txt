@@ -54,6 +54,9 @@ Features:
 
 == Changelog ==
 
+= 1.2.1 =
+* Fix: Number of slides per slideshow limited to WordPress 'blog pages show at most' setting (reported by and thanks to: Kenny)
+
 = 1.2 =
 * Improvement: Code refactored
 * Fix: Unable to assign the same image to more than one slider

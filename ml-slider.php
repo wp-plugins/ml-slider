@@ -3,7 +3,7 @@
  * Plugin Name: ML Slider
  * Plugin URI: http://www.ml-slider.com
  * Description: 4 sliders in 1! Choose from Nivo Slider, Flex Slider, Coin Slider or Responsive Slides.
- * Version: 1.2
+ * Version: 1.2.1
  * Author: Matcha Labs
  * Author URI: http://www.matchalabs.com
  * License: GPL
@@ -14,7 +14,7 @@
  * GNU General Public License for more details.
 */
 
-define( 'MLSLIDER_VERSION', '1.2' );
+define( 'MLSLIDER_VERSION', '1.2.1' );
 define( 'MLSLIDER_BASE_URL', plugin_dir_url( __FILE__ ) );
 define( 'MLSLIDER_ASSETS_URL', MLSLIDER_BASE_URL . 'assets/' );
 
@@ -234,6 +234,7 @@ class MLSlider {
             'order' => 'ASC',
             'post_type' => 'attachment',
             'post_status' => 'inherit',
+            'posts_per_page' => -1,
             'tax_query' => array(
                 array(
                     'taxonomy' => 'ml-slider',
