@@ -71,6 +71,9 @@ For example, flex slider supports the 'Fade' and 'Slide' effect whereas coin sli
 
 == Changelog ==
 
+= Next =
+* Improvement: Slide reordering now uses jQuery UI Sortable
+
 = 1.2.1 =
 * Fix: Number of slides per slideshow limited to WordPress 'blog pages show at most' setting (reported by and thanks to: Kenny)
 * Fix: Add warning when BMP file is added to slider (reported by and thanks to MadBong)

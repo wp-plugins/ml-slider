@@ -56,9 +56,10 @@ class MLSlider {
      */
     public function register_admin_scripts() {
         wp_enqueue_media();
+        wp_enqueue_script('jquery-ui-core', array('jquery'));
+        wp_enqueue_script('jquery-ui-sortable', array('jquery', 'jquery-ui-core'));
         wp_enqueue_script('ml-slider-tipsy', plugins_url('ml-slider/assets/tipsy/jquery.tipsy.js'), array('jquery'));
-        wp_enqueue_script('jquery-tablednd', plugins_url('ml-slider/assets/jquery.tablednd.js'), array('jquery'));
-        wp_enqueue_script('ml-slider-admin-script', plugins_url('ml-slider/assets/ml-slider.js'), array('jquery', 'ml-slider-tipsy', 'jquery-tablednd', 'media-upload'));
+        wp_enqueue_script('ml-slider-admin-script', plugins_url('ml-slider/assets/ml-slider.js'), array('jquery', 'ml-slider-tipsy', 'media-upload'));
     }
     
     /**
@@ -872,7 +873,7 @@ class MLSlider {
                         <thead>
                             <tr>
                                 <th style="width: 100px;">Slides</th>
-                                <th><input class='upload_image_button alignright button-secondary' type='button' value='Add Slide' data-uploader_title='Select Slide' data-uploader_button_text='Add to slider' /></th>
+                                <th><input class='upload_image_button alignright button-secondary' type='button' value='Add Slides' data-uploader_title='Select Slides' data-uploader_button_text='Add to slider' /></th>
                             </tr>
                         </thead>
 

@@ -1,3 +1,9 @@
+.ml-slider table.slides td {
+	border-bottom: 0;
+	border-top: 0;
+	background: #f9f9f9;
+	cursor: move;
+}
 .ml-slider .unsaved {
 	float: right;
 	background: #ff3019; /* Old browsers */
