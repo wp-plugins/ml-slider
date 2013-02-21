@@ -3,7 +3,7 @@
  * Plugin Name: ML Slider
  * Plugin URI: http://www.ml-slider.com
  * Description: 4 sliders in 1! Choose from Nivo Slider, Flex Slider, Coin Slider or Responsive Slides.
- * Version: 1.2.1
+ * Version: 1.3
  * Author: Matcha Labs
  * Author URI: http://www.matchalabs.com
  * License: GPL
@@ -12,17 +12,23 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
-*/
+ */
 
-define( 'MLSLIDER_VERSION', '1.2.1' );
-define( 'MLSLIDER_BASE_URL', plugin_dir_url( __FILE__ ) );
-define( 'MLSLIDER_ASSETS_URL', MLSLIDER_BASE_URL . 'assets/' );
+define('MLSLIDER_VERSION', '1.3');
+define('MLSLIDER_BASE_URL', plugin_dir_url(__FILE__));
+define('MLSLIDER_ASSETS_URL', MLSLIDER_BASE_URL . 'assets/');
+define('MLSLIDER_BASE_DIR_LONG', dirname(__FILE__));
+define('MLSLIDER_INC_DIR', MLSLIDER_BASE_DIR_LONG . '/inc/');
 
-class MLSlider {
+require_once( MLSLIDER_INC_DIR . 'ml-slider.class.php' );
+require_once( MLSLIDER_INC_DIR . 'ml-slider.coin.class.php' );
+require_once( MLSLIDER_INC_DIR . 'ml-slider.flex.class.php' );
+require_once( MLSLIDER_INC_DIR . 'ml-slider.nivo.class.php' );
+require_once( MLSLIDER_INC_DIR . 'ml-slider.responsive.class.php' );
 
-    var $slider = 0;
-    var $slides = array();
-    var $settings = array();
+class MLSliderPlugin {
+
+    var $slider = 0; // current slider
 
     /**
      * /////////////////////////////////////////////////////////////////
@@ -130,9 +136,7 @@ class MLSlider {
      * Current slide ID
      */
     private function set_slider($id) {
-        $this->slider = $id;
-        $this->settings = $this->get_settings();
-        $this->slides = $this->get_slides();
+        $this->slider = new MLSlider($id);
     }
 
     /**
@@ -204,12 +208,12 @@ class MLSlider {
         $the_query = new WP_Query($args);
         
         while ($the_query->have_posts()) {
-            if (!$this->get_slider()) {
+            if (!$this->get_slider()->id) {
                 $this->set_slider($the_query->post->ID);
             }
             
             $the_query->the_post();
-            $active = $this->get_slider() == $the_query->post->ID ? true : false;
+            $active = $this->get_slider()->id == $the_query->post->ID ? true : false;
             
             $sliders[] = array(
                 'active' => $active,
@@ -239,7 +243,7 @@ class MLSlider {
                 array(
                     'taxonomy' => 'ml-slider',
                     'field' => 'slug',
-                    'terms' => $this->get_slider()
+                    'terms' => $this->get_slider()->id
                 )
             )
         );
@@ -471,278 +475,7 @@ class MLSlider {
 
         return false;
     }
-
     
-
-    /**
-     * Get the slider libary parameters
-     *
-     * @return string javascript options
-     */
-    private function get_params() {
-        $params = array(
-            'width' => array(
-                'map' => array(
-                    'coin' => 'width'
-                ),
-                'default' => 565
-            ),
-            'height' => array(
-                'map' => array(
-                    'coin' => 'height'
-                ),
-                'default' => 290
-            ),
-            'spw' => array(
-                'map' => array(
-                    'coin' => 'spw', 
-                    'nivo' => 'boxCols'
-                ),
-                'default' => 7
-            ),
-            'sph' => array(
-                'map' => array(
-                    'coin' => 'sph', 
-                    'nivo' => 'boxRows'
-                ),
-                'default' => 5
-            ),
-            'delay' => array(
-                'map' => array(
-                    'coin' => 'delay', 
-                    'nivo' => 'pauseTime', 
-                    'flex' => 'slideshowSpeed', 
-                    'responsive' => 'timeout'
-                ),
-                'default' => 3000
-            ),
-            'sDelay' => array(
-                'map' => array(
-                    'coin' => 'sDelay'
-                ),
-                'default' => 30
-            ),
-            'opacity' => array(
-                'map' => array(
-                    'coin' => 'opacity'
-                ),
-                'default' => 0.7
-            ),
-            'effect' => array(
-                'map' => array(
-                    'coin' => 'effect', 
-                    'nivo' => 'effect', 
-                    'flex' => 'animation'
-                ),
-                'default' => 'random'
-            ),
-            'navigation' => array(
-                'map' => array(
-                    'coin' => 'navigation', 
-                    'nivo' => 'controlNav', 
-                    'flex' => 'controlNav', 
-                    'responsive' => 'pager'
-                ),
-                'default' => true
-            ),
-            'links' => array(
-                'map' => array(
-                    'nivo' => 'directionNav', 
-                    'flex' => 'directionNav', 
-                    'responsive' => 'nav'
-                ),
-                'default' => true
-            ),
-            'hoverPause' => array(
-                'map' => array(
-                    'coin' => 'hoverPause', 
-                    'nivo' => 'pauseOnHover', 
-                    'flex' => 'pauseOnHover', 
-                    'responsive' => 'pause'
-                ),
-                'default' => true
-            ),
-            'theme' => array(
-                'map' => array(
-                    'nivo' => 'theme'
-                ),
-                'default' => 'dark'
-            ),
-            'direction' => array(
-                'map' => array(
-                    'flex' => 'direction'
-                ),
-                'default' => 'horizontal'
-            ),
-            'reverse' => array(
-                'map' => array(
-                    'flex' => 'reverse'
-                ),
-                'default' => false,
-            ),
-            'animationSpeed' => array(
-                'map' => array(
-                    'nivo' => 'animSpeed', 
-                    'flex' => 'animationSpeed', 
-                    'responsive' => 'speed'
-                ),
-                'default' => 600
-            ),
-            'prevText' => array(
-                'map' => array(
-                    'nivo' => 'prevText', 
-                    'flex' => 'prevText', 
-                    'responsive' => 'prevText'
-                ),
-                'default' => 'Previous'
-            ),
-            'nextText' => array(
-                'map' => array(
-                    'nivo' => 'nextText', 
-                    'flex' => 'nextText', 
-                    'responsive' => 'nextText'
-                ),
-                'default' => 'Next'
-            ),
-            'slices' => array(
-                'map' => array(
-                    'nivo' => 'slices'
-                ),
-                'default' => 15
-            )
-        );
-
-        $options = array();
-
-        foreach ($params as $setting => $map) {
-            if (isset($map['map'][$this->get_setting('type')])) {
-                $optionName = $map['map'][$this->get_setting('type')];
-
-                if (!$optionVal = $this->get_setting($setting)) {
-                    $optionVal = $map['default'];
-                }
-
-                if (gettype($map['default']) == 'string') {
-                    $options[] = $optionName . ": '" . $optionVal . "'";
-                } else {
-                    $options[] = $optionName . ": " . $optionVal;
-                }
-            }
-        }
-
-        return implode(",\n            ", $options);;
-    }
-
-    /**
-     * Return the Javascript to kick off the slider. Code is wrapped in a timer
-     * to allow for themes that load jQuery at the bottom of the page.
-     *
-     * @return string javascript
-     */
-    private function get_inline_javascript($type, $identifier) {
-        $retVal  = "\n<script type='text/javascript'>";
-        $retVal .= "\n    var " . $identifier . " = function($) {";
-        $retVal .= "\n        $('#" . $identifier . "')." . $type . "({ ";
-        $retVal .= "\n            " . $this->get_params();
-        $retVal .= "\n        });";
-        $retVal .= "\n    };";
-        $retVal .= "\n    var timer_" . $identifier . " = function() {";
-        $retVal .= "\n        if (window.jQuery && jQuery.isReady) {";
-        $retVal .= "\n            " . $identifier . "(window.jQuery);";
-        $retVal .= "\n        } else {";
-        $retVal .= "\n            window.setTimeout(timer_" . $identifier . ", 100);";
-        $retVal .= "\n        }";
-        $retVal .= "\n    };";
-        $retVal .= "\n    timer_" . $identifier . "();";
-        $retVal .= "\n</script>";
-
-        return $retVal;
-    }
-    
-    /**
-     * Return coin slider markup
-     *
-     * @return string coin slider markup.
-     */
-    private function get_coin_slider($identifier) {
-        $retVal = "<div id='" . $identifier . "' class='coin-slider'>";
-        
-        foreach ($this->get_slides() as $slide) {
-            $url = strlen($slide['url']) ? $slide['url'] : "javascript:void(0)"; // coinslider always wants a URL
-            $retVal .= "<a href='{$url}'>";
-            $retVal .= "<img src='{$slide['src']}' alt='{$slide['alt']}'>";
-            $retVal .= "<span>{$slide['caption']}</span>";
-            $retVal .= "</a>";
-        }
-        
-        $retVal .= "</div>";
-        
-        return $retVal;
-    }
-
-    /**
-     * Return flexslider markup
-     *
-     * @return string flex slider markup.
-     */
-    private function get_flex_slider($identifier) {
-        $retVal = "<div id='" . $identifier . "' class='flexslider'><ul class='slides'>";
-        
-        foreach ($this->get_slides() as $slide) {
-            $retVal .= "<li>";
-            if (strlen($slide['url'])) $retVal .= "<a href='{$slide['url']}'>";
-            $retVal .= "<img src='{$slide['src']}' alt='{$slide['alt']}'>";
-            if (strlen($slide['caption'])) $retVal .= "<p class='flex-caption'>{$slide['caption']}</p>";
-            if (strlen($slide['url'])) $retVal .= "</a>";
-            $retVal .= "</li>";
-        }
-        
-        $retVal .= "</ul></div>";
-
-        return $retVal;
-    }
-    
-    /**
-     * Return responsive slides markup
-     *
-     * @return string responsive slider markup.
-     */
-    private function get_responsive_slider($identifier) {
-        $retVal = "<ul id='" . $identifier . "' class='rslides'>";
-        
-        foreach ($this->get_slides() as $slide) {
-            $retVal .= "<li>";
-            if (strlen($slide['url'])) $retVal .= "<a href='{$slide['url']}'>";
-            $retVal .= "<img src='{$slide['src']}' alt='{$slide['alt']}'>";
-            if (strlen($slide['url'])) $retVal .= "</a>";
-            $retVal .= "</li>";
-        }
-        
-        $retVal .= "</ul>";
-        
-        return $retVal;
-    }
-    
-    /**
-     * Return nivoslider markup
-     *
-     * @return string nivo slider markup.
-     */
-    private function get_nivo_slider($identifier) {
-        $retVal  = "<div class='slider-wrapper theme-{$this->get_setting('theme')}'>";
-        $retVal .= "<div class='ribbon'></div>";
-        $retVal .= "<div id='" . $identifier . "' class='nivoSlider'>";
-        
-        foreach ($this->get_slides() as $slide) {
-            if (strlen($slide['url'])) $retVal .= "<a href='{$slide['url']}'>";
-            $retVal .= "<img src='{$slide['src']}' title='{$slide['caption']}' alt='{$slide['alt']}'>";
-            if (strlen($slide['url'])) $retVal .= "</a>";
-        }
-        
-        $retVal .= "</div></div>";
-        
-        return $retVal;
-    }
     
     /**
      * Shortcode used to display slideshow
@@ -766,68 +499,26 @@ class MLSlider {
             return false;
         }
 
+        // good to go
         $this->set_slider($id);
 
-        $identifier = 'ml_slider_' . rand();
-
-        // coinslider
-        if ($this->get_setting('type') == 'coin') {
-            if ($this->get_setting('printJs') == 'true') {
-                wp_enqueue_script('ml-slider_coin_slider', MLSLIDER_ASSETS_URL . 'coinslider/coin-slider.min.js', array('jquery'), MLSLIDER_VERSION);
-            }
-
-            if ($this->get_setting('printCss') == 'true') {
-                wp_enqueue_style('ml-slider_coin_slider_css', plugins_url('ml-slider/assets/coinslider/coin-slider-styles.css'));
-            }
-
-            $retVal = $this->get_coin_slider($identifier);
-            $retVal .= $this->get_inline_javascript('coinslider', $identifier);
+        switch ($this->get_setting('type')) {
+            case('coin') :
+                $slider = new MLCoinSlider($id);
+                break;
+            case('flex') :
+                $slider = new MLFlexSlider($id);
+                break;
+            case('nivo') :
+                $slider = new MLNivoSlider($id);
+                break;
+            case('responsive') :
+                $slider = new MLResponsiveSlider($id);
+                break;
         }
 
-        // flex
-        if ($this->get_setting('type') == 'flex') {
-            if ($this->get_setting('printJs') == 'true') {
-                wp_enqueue_script('ml-slider_flex_slider', MLSLIDER_ASSETS_URL . 'flexslider/jquery.flexslider-min.js', array('jquery'), MLSLIDER_VERSION);
-            }
-
-            if ($this->get_setting('printCss') == 'true') {
-                wp_enqueue_style('ml-slider_flex_slider_css', plugins_url('ml-slider/assets/flexslider/flexslider.css'));
-            }
-
-            $retVal = $this->get_flex_slider($identifier);
-            $retVal .= $this->get_inline_javascript('flexslider', $identifier);
-        }
+        return $slider->output();
         
-        // responsive
-        if ($this->get_setting('type') == 'responsive') {
-            if ($this->get_setting('printJs') == 'true') {
-                wp_enqueue_script('ml-slider_responsive_slides', MLSLIDER_ASSETS_URL . 'responsiveslides/responsiveslides.min.js', array('jquery'), MLSLIDER_VERSION);
-            }
-
-            if ($this->get_setting('printCss') == 'true') {
-                wp_enqueue_style('ml-slider_responsive_slides_css', plugins_url('ml-slider/assets/responsiveslides/responsiveslides.css'));
-            }
-
-            $retVal = $this->get_responsive_slider($identifier);
-            $retVal .= $this->get_inline_javascript('responsiveSlides', $identifier);
-        }
-        
-        // nivo
-        if ($this->get_setting('type') == 'nivo') {
-            if ($this->get_setting('printJs') == 'true') {
-                wp_enqueue_script('ml-slider_nivo_slider', MLSLIDER_ASSETS_URL . 'nivoslider/jquery.nivo.slider.pack.js', array('jquery'), MLSLIDER_VERSION);
-            }
-
-            if ($this->get_setting('printCss') == 'true') {
-                wp_enqueue_style('ml-slider_nivo_slider_css', plugins_url('ml-slider/assets/nivoslider/nivo-slider.css'));
-                wp_enqueue_style('ml-slider_nivo_slider_theme_' . $this->get_setting('theme'), plugins_url('ml-slider/assets/nivoslider/themes/' . $this->get_setting('theme') . '/' . $this->get_setting('theme') . '.css'));
-            }
-            
-            $retVal = $this->get_nivo_slider($identifier);
-            $retVal .= $this->get_inline_javascript('nivoSlider', $identifier);
-        }
-        
-        return "<div class='ml-slider ml-slider-{$this->get_setting('type')} {$this->get_setting('cssClass')}'>" . $retVal . "</div>";
     }
 
     /**
@@ -843,7 +534,7 @@ class MLSlider {
         ?>
 
         <div class="wrap ml-slider">
-            <form enctype="multipart/form-data" action="?page=ml-slider&id=<?php echo $this->get_slider() ?>" method="post">
+            <form enctype="multipart/form-data" action="?page=ml-slider&id=<?php echo $this->get_slider()->id ?>" method="post">
 
                 <h2 class="nav-tab-wrapper" style="font-size: 13px;">
                     <?php
@@ -862,7 +553,7 @@ class MLSlider {
                 </h2>
 
                 <?php
-                    if (!$this->get_slider()) {
+                    if (!$this->get_slider()->id) {
                         return;
                     }
                 ?>
@@ -878,14 +569,14 @@ class MLSlider {
 
                         <tbody>
                             <?php
-                                $slides = $this->get_slides();
+                                $slides = $this->get_slider()->slides;
 
                                 foreach($slides as $slide) {
                                     $image_attributes = wp_get_attachment_image_src($slide['id']); // returns an array
                                     $url = get_post_meta($slide['id'], 'ml-slider_url', true);
                                     echo "<tr class='slide'>";
                                     echo "<td>";
-                                    echo "<div style='position: absolute'><a class='delete-slide confirm' href='?page=ml-slider&id={$this->get_slider()}&deleteSlide={$slide['id']}'>x</a></div>";
+                                    echo "<div style='position: absolute'><a class='delete-slide confirm' href='?page=ml-slider&id={$this->get_slider()->id}&deleteSlide={$slide['id']}'>x</a></div>";
                                     echo "<img src='{$image_attributes[0]}' width='150px'></td>";
                                     echo "<td>";
                                     echo "<textarea name='attachment[{$slide['id']}][post_excerpt]' placeholder='Caption'>{$slide['caption']}</textarea>";
@@ -1116,5 +807,6 @@ class MLSlider {
         <?php
     }
 }
-$mlslider = new MLSlider();
+
+$mlslider = new MLSliderPlugin();
 ?>
