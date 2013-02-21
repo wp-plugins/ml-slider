@@ -23,7 +23,6 @@ class MLSlider {
         $this->slides = $this->get_slides();
         $this->settings = $this->get_settings();
         $this->identifier = 'ml_slider_' . rand();
-        $this->enqueue_scripts();
     }
 
 
@@ -82,13 +81,6 @@ class MLSlider {
     }
 
     /**
-     * Include the default CSS
-     */
-    private function enqueue_scripts() {
-        wp_enqueue_style('ml-slider_display_css', plugins_url('ml-slider/assets/ml-slider-display.css'));
-    }
-
-    /**
      * Get settings for the current slider
      *
      * @return array slider settings
@@ -103,7 +95,7 @@ class MLSlider {
      * @param string $name Name of the setting
      * @return string | bool setting value or fase
      */
-    protected function get_setting($name) {
+    public function get_setting($name) {
         return isset($this->settings[$name]) && strlen($this->settings[$name]) > 0 ? $this->settings[$name] : "false";
     }
 

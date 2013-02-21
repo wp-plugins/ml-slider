@@ -65,8 +65,7 @@ class MLSliderPlugin {
         wp_enqueue_script('jquery-ui-core', array('jquery'));
         wp_enqueue_script('jquery-ui-sortable', array('jquery', 'jquery-ui-core'));
         wp_enqueue_script('ml-slider-tipsy', plugins_url('ml-slider/assets/tipsy/jquery.tipsy.js'), array('jquery'));
-        wp_enqueue_script('ml-slider-admin-script', plugins_url('ml-slider/assets/ml-slider.js'), array('jquery', 'jquery-ui-sortable', 'media-upload'));
-        
+        wp_enqueue_script('ml-slider-admin-script', plugins_url('ml-slider/assets/ml-slider.js'), array('jquery', 'ml-slider-tipsy', 'media-upload'));
     }
     
     /**
@@ -85,7 +84,7 @@ class MLSliderPlugin {
             'render_admin_page'
         ), MLSLIDER_ASSETS_URL . 'matchalabs.png', 99999);
 
-        add_action('admin_print_scripts-' . $page, array( $this, 'register_admin_scripts' ), 99999 );
+        add_action('admin_print_scripts-' . $page, array( $this, 'register_admin_scripts' ) );
     }
     
     /**
@@ -142,21 +141,12 @@ class MLSliderPlugin {
     }
 
     /**
-     * Get slide ID
-     *
-     * @return int the current slider ID
-     */
-    private function get_slider() {
-        return $this->slider;
-    }
-
-    /**
      * Get settings for the current slider
      *
      * @return array slider settings
      */
     private function get_settings() {
-        return get_post_meta($this->get_slider(), 'ml-slider_settings', true);
+        return get_post_meta($this->slider->id, 'ml-slider_settings', true);
     }
 
     /**
@@ -210,12 +200,12 @@ class MLSliderPlugin {
         $the_query = new WP_Query($args);
         
         while ($the_query->have_posts()) {
-            if (!$this->get_slider()->id) {
+            if (!$this->slider->id) {
                 $this->set_slider($the_query->post->ID);
             }
             
             $the_query->the_post();
-            $active = $this->get_slider()->id == $the_query->post->ID ? true : false;
+            $active = $this->slider->id == $the_query->post->ID ? true : false;
             
             $sliders[] = array(
                 'active' => $active,
@@ -236,7 +226,7 @@ class MLSliderPlugin {
         $retVal = array();
 
         $args = array(
-            'orderby' => $this->get_setting('random') == 'true' && !is_admin() ? 'rand' : 'menu_order',
+            'orderby' => $this->slider->get_setting('random') == 'true' && !is_admin() ? 'rand' : 'menu_order',
             'order' => 'ASC',
             'post_type' => 'attachment',
             'post_status' => 'inherit',
@@ -245,7 +235,7 @@ class MLSliderPlugin {
                 array(
                     'taxonomy' => 'ml-slider',
                     'field' => 'slug',
-                    'terms' => $this->get_slider()->id
+                    'terms' => $this->slider->id
                 )
             )
         );
@@ -333,7 +323,7 @@ class MLSliderPlugin {
      */
     private function handle_update_slider_settings() {
         if (isset($_POST['settings'])) {
-            $old_settings = get_post_meta($this->get_slider(), 'ml-slider_settings', true);
+            $old_settings = get_post_meta($this->slider->id, 'ml-slider_settings', true);
             $new_settings = $_POST['settings'];
             
             // convert submitted checkbox values from 'on' or 'off' to boolean values
@@ -348,10 +338,10 @@ class MLSliderPlugin {
             }
             
             // update the slider settings
-            update_post_meta($this->get_slider(), 'ml-slider_settings', array_merge($old_settings, $new_settings));
+            update_post_meta($this->slider->id, 'ml-slider_settings', array_merge($old_settings, $new_settings));
 
             // update settings
-            $this->settings = get_post_meta($this->get_slider(), 'ml-slider_settings', true);
+            $this->settings = get_post_meta($this->slider->id, 'ml-slider_settings', true);
         }
     }
 
@@ -361,7 +351,7 @@ class MLSliderPlugin {
     private function handle_update_slider_title() {
         if (isset($_POST['title'])) {
             $slide = array(
-                'ID' => $this->get_slider(),
+                'ID' => $this->slider->id,
                 'post_title' => $_POST['title']
             );
             
@@ -382,7 +372,7 @@ class MLSliderPlugin {
             // Get the existing terms and only keep the ones we don't want removed
             $new_terms = array();
             $current_terms = wp_get_object_terms($slideToUntagFromCurrentSlider, 'ml-slider', array('fields' => 'ids'));
-            $term = get_term_by('name', $this->get_slider(), 'ml-slider');
+            $term = get_term_by('name', $this->slider->id, 'ml-slider');
 
             foreach ($current_terms as $current_term) {
                 if ($current_term != $term->term_id) {
@@ -403,7 +393,7 @@ class MLSliderPlugin {
         if (isset($_POST['attachment'])) {
             foreach ($_POST['attachment'] as $id => $fields) {
                 // get the term thats name is the same as the ID of the slider
-                $term = get_term_by('name', $this->get_slider(), 'ml-slider');
+                $term = get_term_by('name', $this->slider->id, 'ml-slider');
 
                 // tag this slide to the taxonomy term
                 wp_set_post_terms($id, $term->term_id, 'ml-slider', true);
@@ -427,7 +417,7 @@ class MLSliderPlugin {
                 }
 
                 // add a new image size for the current slider
-                add_image_size('ml-slider-slide', $this->get_setting('width'), $this->get_setting('height'), true);
+                add_image_size('ml-slider-slide', $this->slider->get_setting('width'), $this->slider->get_setting('height'), true);
                 $file = get_attached_file($id);
                 // ask WordPress to resize our slides for us
                 wp_update_attachment_metadata($id, wp_generate_attachment_metadata($id, $file));
@@ -504,7 +494,7 @@ class MLSliderPlugin {
         // good to go
         $this->set_slider($id);
 
-        switch ($this->get_setting('type')) {
+        switch ($this->slider->get_setting('type')) {
             case('coin') :
                 $slider = new MLCoinSlider($id);
                 break;
@@ -536,7 +526,7 @@ class MLSliderPlugin {
         ?>
 
         <div class="wrap ml-slider">
-            <form enctype="multipart/form-data" action="?page=ml-slider&id=<?php echo $this->get_slider()->id ?>" method="post">
+            <form enctype="multipart/form-data" action="?page=ml-slider&id=<?php echo $this->slider->id ?>" method="post">
 
                 <h2 class="nav-tab-wrapper" style="font-size: 13px;">
                     <?php
@@ -555,7 +545,7 @@ class MLSliderPlugin {
                 </h2>
 
                 <?php
-                    if (!$this->get_slider()->id) {
+                    if (!$this->slider->id) {
                         return;
                     }
                 ?>
@@ -571,14 +561,14 @@ class MLSliderPlugin {
 
                         <tbody>
                             <?php
-                                $slides = $this->get_slider()->slides;
+                                $slides = $this->slider->slides;
 
                                 foreach($slides as $slide) {
                                     $image_attributes = wp_get_attachment_image_src($slide['id']); // returns an array
                                     $url = get_post_meta($slide['id'], 'ml-slider_url', true);
                                     echo "<tr class='slide'>";
                                     echo "<td>";
-                                    echo "<div style='position: absolute'><a class='delete-slide confirm' href='?page=ml-slider&id={$this->get_slider()->id}&deleteSlide={$slide['id']}'>x</a></div>";
+                                    echo "<div style='position: absolute'><a class='delete-slide confirm' href='?page=ml-slider&id={$this->slider->id}&deleteSlide={$slide['id']}'>x</a></div>";
                                     echo "<img src='{$image_attributes[0]}' width='150px'></td>";
                                     echo "<td>";
                                     echo "<textarea name='attachment[{$slide['id']}][post_excerpt]' placeholder='Caption'>{$slide['caption']}</textarea>";
@@ -608,19 +598,19 @@ class MLSliderPlugin {
                                 <td colspan='3'>
                                     <div class='slider-lib nivo'>
                                         <label for='nivo' title='Version: 3.2<br />Responsive: Yes<br />Effects: 14<br />Size: 12kb<br />Mobile Friendly: Yes<br />Themes: 4' class='tooltiptop'>NivoSlider</label>
-                                        <input class="select-slider" id='nivo' rel='nivo' type='radio' name="settings[type]" <?php if ($this->get_setting('type') == 'nivo') echo 'checked=checked' ?> value='nivo' />
+                                        <input class="select-slider" id='nivo' rel='nivo' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'nivo') echo 'checked=checked' ?> value='nivo' />
                                     </div>
                                     <div class='slider-lib coin'>
                                         <label for='coin' title='Version: 1.0<br />Responsive: No<br />Effects: 4<br />Size: 8kb<br />Mobile Friendly: Yes' class='tooltiptop'>CoinSlider</label>
-                                        <input class="select-slider" id='coin' rel='coin' type='radio' name="settings[type]" <?php if ($this->get_setting('type') == 'coin') echo 'checked=checked' ?> value='coin' />
+                                        <input class="select-slider" id='coin' rel='coin' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'coin') echo 'checked=checked' ?> value='coin' />
                                     </div>
                                     <div class='slider-lib flex'>
                                         <label for='flex' title='Version: 2.1<br />Responsive: Yes<br />Effects: 2<br />Size: 17kb<br />Mobile Friendly: Yes' class='tooltiptop'>FlexSlider</label>
-                                        <input class="select-slider" id='flex' rel='flex' type='radio' name="settings[type]" <?php if ($this->get_setting('type') == 'flex') echo 'checked=checked' ?> value='flex' />
+                                        <input class="select-slider" id='flex' rel='flex' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'flex') echo 'checked=checked' ?> value='flex' />
                                     </div>
                                     <div class='slider-lib responsive'>
                                         <label for='responsive' title='Version: 1.53<br />Responsive: Yes<br />Effects: 1<br />Size: 3kb<br />Mobile Friendly: Yes' class='tooltiptop'>Responsive</label>
-                                        <input class="select-slider" id='responsive' rel='responsive' type='radio' name="settings[type]" <?php if ($this->get_setting('type') == 'responsive') echo 'checked=checked' ?> value='responsive' />
+                                        <input class="select-slider" id='responsive' rel='responsive' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'responsive') echo 'checked=checked' ?> value='responsive' />
                                     </div>
                                 </td>
                             </tr>
@@ -628,8 +618,8 @@ class MLSliderPlugin {
                                 <td><a href="#" class="tooltip" title="Set the initial size for the slides (width x height)">?</a></td>
                                 <td>Size</td>
                                 <td>
-                                    <input type='text' size='3' name="settings[width]" value='<?php echo $this->get_setting('width') ?>' />px X
-                                    <input type='text' size='3' name="settings[height]" value='<?php echo $this->get_setting('height') ?>' />px
+                                    <input type='text' size='3' name="settings[width]" value='<?php echo $this->slider->get_setting('width') ?>' />px X
+                                    <input type='text' size='3' name="settings[height]" value='<?php echo $this->slider->get_setting('height') ?>' />px
                                 </td>
                             </tr>
                             <tr>
@@ -637,24 +627,24 @@ class MLSliderPlugin {
                                 <td>Effect</td>
                                 <td>
                                     <select name="settings[effect]" class='effect option coin nivo flex'>
-                                        <option class='option coin nivo' value='random' <?php if ($this->get_setting('effect') == 'random') echo 'selected=selected' ?>>Random</option>
-                                        <option class='option coin' value='swirl' <?php if ($this->get_setting('effect') == 'swirl') echo 'selected=selected' ?>>Swirl</option>
-                                        <option class='option coin' value='rain' <?php if ($this->get_setting('effect') == 'rain') echo 'selected=selected' ?>>Rain</option>
-                                        <option class='option coin' value='straight' <?php if ($this->get_setting('effect') == 'straight') echo 'selected=selected' ?>>Straight</option>
-                                        <option class='option nivo' value='sliceDown' <?php if ($this->get_setting('effect') == 'sliceDown') echo 'selected=selected' ?>>Slice Down</option>
-                                        <option class='option nivo' value='sliceUp' <?php if ($this->get_setting('effect') == 'sliceUp') echo 'selected=selected' ?>>Slice Up</option>
-                                        <option class='option nivo' value='sliceUpLeft' <?php if ($this->get_setting('effect') == 'sliceUpLeft') echo 'selected=selected' ?>>Slice Up Left</option>
-                                        <option class='option nivo' value='sliceUpDown' <?php if ($this->get_setting('effect') == 'sliceUpDown') echo 'selected=selected' ?>>Slice Up Down</option>
-                                        <option class='option nivo' value='sliceUpDownLeft' <?php if ($this->get_setting('effect') == 'sliceUpDownLeft') echo 'selected=selected' ?>>Slice Up Down Left</option>
-                                        <option class='option nivo' value='fold' <?php if ($this->get_setting('effect') == 'fold') echo 'selected=selected' ?>>Fold</option>
-                                        <option class='option nivo flex' value='fade' <?php if ($this->get_setting('effect') == 'fade') echo 'selected=selected' ?>>Fade</option>
-                                        <option class='option nivo' value='slideInRight' <?php if ($this->get_setting('effect') == 'slideInRight') echo 'selected=selected' ?>>Slide In Right</option>
-                                        <option class='option nivo' value='slideInLeft' <?php if ($this->get_setting('effect') == 'slideInLeft') echo 'selected=selected' ?>>Slide In Left</option>
-                                        <option class='option nivo' value='boxRandom' <?php if ($this->get_setting('effect') == 'boxRandom') echo 'selected=selected' ?>>Box Random</option>
-                                        <option class='option nivo' value='boxRain' <?php if ($this->get_setting('effect') == 'boxRain') echo 'selected=selected' ?>>Box Rain</option>
-                                        <option class='option nivo' value='boxRainReverse' <?php if ($this->get_setting('effect') == 'boxRainReverse') echo 'selected=selected' ?>>Box Rain Reverse</option>
-                                        <option class='option nivo' value='boxRainGrowReverse' <?php if ($this->get_setting('effect') == 'boxRainGrowReverse') echo 'selected=selected' ?>>Box Rain Grow Reverse</option>
-                                        <option class='option flex' value='slide' <?php if ($this->get_setting('effect') == 'slide') echo 'selected=selected' ?>>Slide</option>
+                                        <option class='option coin nivo' value='random' <?php if ($this->slider->get_setting('effect') == 'random') echo 'selected=selected' ?>>Random</option>
+                                        <option class='option coin' value='swirl' <?php if ($this->slider->get_setting('effect') == 'swirl') echo 'selected=selected' ?>>Swirl</option>
+                                        <option class='option coin' value='rain' <?php if ($this->slider->get_setting('effect') == 'rain') echo 'selected=selected' ?>>Rain</option>
+                                        <option class='option coin' value='straight' <?php if ($this->slider->get_setting('effect') == 'straight') echo 'selected=selected' ?>>Straight</option>
+                                        <option class='option nivo' value='sliceDown' <?php if ($this->slider->get_setting('effect') == 'sliceDown') echo 'selected=selected' ?>>Slice Down</option>
+                                        <option class='option nivo' value='sliceUp' <?php if ($this->slider->get_setting('effect') == 'sliceUp') echo 'selected=selected' ?>>Slice Up</option>
+                                        <option class='option nivo' value='sliceUpLeft' <?php if ($this->slider->get_setting('effect') == 'sliceUpLeft') echo 'selected=selected' ?>>Slice Up Left</option>
+                                        <option class='option nivo' value='sliceUpDown' <?php if ($this->slider->get_setting('effect') == 'sliceUpDown') echo 'selected=selected' ?>>Slice Up Down</option>
+                                        <option class='option nivo' value='sliceUpDownLeft' <?php if ($this->slider->get_setting('effect') == 'sliceUpDownLeft') echo 'selected=selected' ?>>Slice Up Down Left</option>
+                                        <option class='option nivo' value='fold' <?php if ($this->slider->get_setting('effect') == 'fold') echo 'selected=selected' ?>>Fold</option>
+                                        <option class='option nivo flex' value='fade' <?php if ($this->slider->get_setting('effect') == 'fade') echo 'selected=selected' ?>>Fade</option>
+                                        <option class='option nivo' value='slideInRight' <?php if ($this->slider->get_setting('effect') == 'slideInRight') echo 'selected=selected' ?>>Slide In Right</option>
+                                        <option class='option nivo' value='slideInLeft' <?php if ($this->slider->get_setting('effect') == 'slideInLeft') echo 'selected=selected' ?>>Slide In Left</option>
+                                        <option class='option nivo' value='boxRandom' <?php if ($this->slider->get_setting('effect') == 'boxRandom') echo 'selected=selected' ?>>Box Random</option>
+                                        <option class='option nivo' value='boxRain' <?php if ($this->slider->get_setting('effect') == 'boxRain') echo 'selected=selected' ?>>Box Rain</option>
+                                        <option class='option nivo' value='boxRainReverse' <?php if ($this->slider->get_setting('effect') == 'boxRainReverse') echo 'selected=selected' ?>>Box Rain Reverse</option>
+                                        <option class='option nivo' value='boxRainGrowReverse' <?php if ($this->slider->get_setting('effect') == 'boxRainGrowReverse') echo 'selected=selected' ?>>Box Rain Grow Reverse</option>
+                                        <option class='option flex' value='slide' <?php if ($this->slider->get_setting('effect') == 'slide') echo 'selected=selected' ?>>Slide</option>
                                     </select>
                                 </td>
                             </tr>
@@ -663,10 +653,10 @@ class MLSliderPlugin {
                                 <td>Theme</td>
                                 <td>
                                     <select class='option nivo' name="settings[theme]">
-                                        <option value='default' <?php if ($this->get_setting('theme') == 'default') echo 'selected=selected' ?>>Default</option>
-                                        <option value='dark' <?php if ($this->get_setting('theme') == 'dark') echo 'selected=selected' ?>>Dark</option>
-                                        <option value='light' <?php if ($this->get_setting('theme') == 'light') echo 'selected=selected' ?>>Light</option>
-                                        <option value='bar' <?php if ($this->get_setting('theme') == 'bar') echo 'selected=selected' ?>>Bar</option>
+                                        <option value='default' <?php if ($this->slider->get_setting('theme') == 'default') echo 'selected=selected' ?>>Default</option>
+                                        <option value='dark' <?php if ($this->slider->get_setting('theme') == 'dark') echo 'selected=selected' ?>>Dark</option>
+                                        <option value='light' <?php if ($this->slider->get_setting('theme') == 'light') echo 'selected=selected' ?>>Light</option>
+                                        <option value='bar' <?php if ($this->slider->get_setting('theme') == 'bar') echo 'selected=selected' ?>>Bar</option>
                                     </select>
                                 </td>
                             </tr>
@@ -674,89 +664,89 @@ class MLSliderPlugin {
                                 <td><a href="#" class="tooltip" title="Number of squares (width x height)">?</a></td>
                                 <td>Number of squares</td>
                                 <td>
-                                    <input class='option coin nivo' type='text' size='2' name="settings[spw]" value='<?php echo $this->get_setting('spw') ?>' /> x 
-                                    <input class='option coin nivo' type='text' size='2' name="settings[sph]" value='<?php echo $this->get_setting('sph') ?>' />
+                                    <input class='option coin nivo' type='text' size='2' name="settings[spw]" value='<?php echo $this->slider->get_setting('spw') ?>' /> x 
+                                    <input class='option coin nivo' type='text' size='2' name="settings[sph]" value='<?php echo $this->slider->get_setting('sph') ?>' />
                                 </td>
                             </tr>
                             <tr>
                                 <td><a href="#" class="tooltip" title="Number of slices">?</a></td>
                                 <td>Number of slices</td>
                                 <td>
-                                    <input class='option nivo' type='text' size='2' name="settings[slices]" value='<?php echo $this->get_setting('slices') ?>' />
+                                    <input class='option nivo' type='text' size='2' name="settings[slices]" value='<?php echo $this->slider->get_setting('slices') ?>' />
                                 </td>
                             </tr>
                             <tr>
                                 <td><a href="#" class="tooltip" title="How long to display each slide, in milliseconds">?</a></td>
                                 <td>Slide delay</td>
-                                <td><input class='option coin flex responsive nivo' type='text' size='5' name="settings[delay]" value='<?php echo $this->get_setting('delay') ?>' />ms</td>
+                                <td><input class='option coin flex responsive nivo' type='text' size='5' name="settings[delay]" value='<?php echo $this->slider->get_setting('delay') ?>' />ms</td>
                             </tr>
                             <tr>
                                 <td><a href="#" class="tooltip" title="Delay beetwen squares in ms">?</a></td>
                                 <td>Square delay</td>
-                                <td><input class='option coin' type='text' size='5' name="settings[sDelay]" value='<?php echo $this->get_setting('sDelay') ?>' />ms</td>
+                                <td><input class='option coin' type='text' size='5' name="settings[sDelay]" value='<?php echo $this->slider->get_setting('sDelay') ?>' />ms</td>
                             </tr>
                             <tr>
                                 <td><a href="#" class="tooltip" title="Opacity of title and navigation">?</a></td>
                                 <td>Opacity</td>
-                                <td><input class='option coin' type='text' size='5' name="settings[opacity]" value='<?php echo $this->get_setting('opacity') ?>' /></td>
+                                <td><input class='option coin' type='text' size='5' name="settings[opacity]" value='<?php echo $this->slider->get_setting('opacity') ?>' /></td>
                             </tr>
                             <tr>
                                 <td><a href="#" class="tooltip" title="Set the fade in speef of the caption">?</a></td>
                                 <td>Caption speed</td>
-                                <td><input class='option coin' type='text' size='5' name="settings[titleSpeed]" value='<?php echo $this->get_setting('titleSpeed') ?>' />ms</td>
+                                <td><input class='option coin' type='text' size='5' name="settings[titleSpeed]" value='<?php echo $this->slider->get_setting('titleSpeed') ?>' />ms</td>
                             </tr>
                             <tr>
                                 <td><a href="#" class="tooltip" title="Set the speed of animations, in milliseconds">?</a></td>
                                 <td>Animation speed</td>
-                                <td><input class='option flex responsive nivo' type='text' size='5' name="settings[animationSpeed]" value='<?php echo $this->get_setting('animationSpeed') ?>' />ms</td>
+                                <td><input class='option flex responsive nivo' type='text' size='5' name="settings[animationSpeed]" value='<?php echo $this->slider->get_setting('animationSpeed') ?>' />ms</td>
                             </tr>
                             <tr>
                                 <td><a href="#" class="tooltip" title="Show slide navigation row">?</a></td>
                                 <td>Navigation</td>
                                 <td>
-                                    <input class='option coin responsive nivo flex' type='checkbox' name="settings[navigation]" <?php if ($this->get_setting('navigation') == 'true') echo 'checked=checked' ?> />
+                                    <input class='option coin responsive nivo flex' type='checkbox' name="settings[navigation]" <?php if ($this->slider->get_setting('navigation') == 'true') echo 'checked=checked' ?> />
                                 </td>
                             </tr>
                             <tr>
                                 <td><a href="#" class="tooltip" title="Show previous and next links">?</a></td>
                                 <td>Links</td>
                                 <td>
-                                    <input class='option responsive nivo flex' type='checkbox' name="settings[links]" <?php if ($this->get_setting('links') == 'true') echo 'checked=checked' ?> />
+                                    <input class='option responsive nivo flex' type='checkbox' name="settings[links]" <?php if ($this->slider->get_setting('links') == 'true') echo 'checked=checked' ?> />
                                 </td>
                             </tr>
                             <tr>
                                 <td><a href="#" class="tooltip" title="Pause the slideshow when hovering over slider, then resume when no longer hovering">?</a></td>
                                 <td>Hover pause</td>
                                 <td>
-                                    <input class='option coin flex responsive nivo' type='checkbox' name="settings[hoverPause]" <?php if ($this->get_setting('hoverPause') == 'true') echo 'checked=checked' ?> />
+                                    <input class='option coin flex responsive nivo' type='checkbox' name="settings[hoverPause]" <?php if ($this->slider->get_setting('hoverPause') == 'true') echo 'checked=checked' ?> />
                                 </td>
                             </tr>
                             <tr>
                                 <td><a href="#" class="tooltip" title="Reverse the animation direction">?</a></td>
                                 <td>Reverse</td>
                                 <td>
-                                    <input class='option flex' type='checkbox' name="settings[reverse]" <?php if ($this->get_setting('reverse') == 'true') echo 'checked=checked' ?> />
+                                    <input class='option flex' type='checkbox' name="settings[reverse]" <?php if ($this->slider->get_setting('reverse') == 'true') echo 'checked=checked' ?> />
                                 </td>
                             </tr>
                             <tr>
                                 <td><a href="#" class="tooltip" title="Randomise the order of the slides">?</a></td>
                                 <td>Random</td>
                                 <td>
-                                    <input type='checkbox' name="settings[random]" <?php if ($this->get_setting('random') == 'true') echo 'checked=checked' ?> />
+                                    <input type='checkbox' name="settings[random]" <?php if ($this->slider->get_setting('random') == 'true') echo 'checked=checked' ?> />
                                 </td>
                             </tr>
                             <tr>
                                 <td><a href="#" class="tooltip" title="Uncheck this is you would like to include your own CSS">?</a></td>
                                 <td>Print CSS</td>
                                 <td>
-                                    <input type='checkbox' name="settings[printCss]" <?php if ($this->get_setting('printCss') == 'true') echo 'checked=checked' ?> />
+                                    <input type='checkbox' name="settings[printCss]" <?php if ($this->slider->get_setting('printCss') == 'true') echo 'checked=checked' ?> />
                                 </td>
                             </tr>
                             <tr>
                                 <td><a href="#" class="tooltip" title="Uncheck this is you would like to include your own Javascript">?</a></td>
                                 <td>Print JS</td>
                                 <td>
-                                    <input type='checkbox' name="settings[printJs]" <?php if ($this->get_setting('printJs') == 'true') echo 'checked=checked' ?> />
+                                    <input type='checkbox' name="settings[printJs]" <?php if ($this->slider->get_setting('printJs') == 'true') echo 'checked=checked' ?> />
                                 </td>
                             </tr>
                             <tr>
@@ -764,25 +754,25 @@ class MLSliderPlugin {
                                 <td>Direction</td>
                                 <td>
                                     <select class='option flex' name="settings[direction]">
-                                        <option value='horizontal' <?php if ($this->get_setting('direction') == 'horizontal') echo 'selected=selected' ?>>Horizontal</option>
-                                        <option value='vertical' <?php if ($this->get_setting('direction') == 'vertical') echo 'selected=selected' ?>>Vertical</option>
+                                        <option value='horizontal' <?php if ($this->slider->get_setting('direction') == 'horizontal') echo 'selected=selected' ?>>Horizontal</option>
+                                        <option value='vertical' <?php if ($this->slider->get_setting('direction') == 'vertical') echo 'selected=selected' ?>>Vertical</option>
                                     </select>                       
                                 </td>
                             </tr>
                             <tr>
                                 <td><a href="#" class="tooltip" title="Set the text for the 'previous' direction item">?</a></td>
                                 <td>Previous text</td>
-                                <td><input class='option flex responsive nivo' type='text' name="settings[prevText]" value='<?php if ($this->get_setting('prevText') != 'false') echo $this->get_setting('prevText') ?>' /></td>
+                                <td><input class='option flex responsive nivo' type='text' name="settings[prevText]" value='<?php if ($this->slider->get_setting('prevText') != 'false') echo $this->slider->get_setting('prevText') ?>' /></td>
                             </tr>
                             <tr>
                                 <td><a href="#" class="tooltip" title="Set the text for the 'next' direction item">?</a></td>
                                 <td>Next text</td>
-                                <td><input class='option flex responsive nivo' type='text' name="settings[nextText]" value='<?php if ($this->get_setting('nextText') != 'false') echo $this->get_setting('nextText') ?>' /></td>
+                                <td><input class='option flex responsive nivo' type='text' name="settings[nextText]" value='<?php if ($this->slider->get_setting('nextText') != 'false') echo $this->slider->get_setting('nextText') ?>' /></td>
                             </tr>
                             <tr>
                                 <td><a href="#" class="tooltip" title="Specify any custom CSS Classes you would like to be added to the slider wrapper">?</a></td>
                                 <td>CSS classes</td>
-                                <td><input type='text' name="settings[cssClass]" value='<?php if ($this->get_setting('cssClass') != 'false') echo $this->get_setting('cssClass') ?>' /></td>
+                                <td><input type='text' name="settings[cssClass]" value='<?php if ($this->slider->get_setting('cssClass') != 'false') echo $this->slider->get_setting('cssClass') ?>' /></td>
                             </tr>
                         </tbody>
                     </table>
@@ -796,13 +786,13 @@ class MLSliderPlugin {
 
                         <tbody>
                             <tr>
-                                <td><textarea style="width: 100%">[ml-slider id=<?php echo $this->get_slider() ?>]</textarea></td>
+                                <td><textarea style="width: 100%">[ml-slider id=<?php echo $this->slider->id ?>]</textarea></td>
                             </tr>
                         </tbody>
                     </table>
 
                     <br />
-                    <a class='alignright button-secondary confirm' href="?page=ml-slider&delete=<?php echo $this->get_slider() ?>">Delete Slider</a>
+                    <a class='alignright button-secondary confirm' href="?page=ml-slider&delete=<?php echo $this->slider->id ?>">Delete Slider</a>
                 </div>
             </form>
         </div>

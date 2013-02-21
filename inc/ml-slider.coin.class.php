@@ -11,6 +11,9 @@ class MLCoinSlider extends MLSlider {
         $this->enqueue_scripts();
     }
 
+    /**
+     *
+     */
     public function output() {
         return parent::wrap_html($this->get_html()) . parent::get_javascript('coinSlider');
     }
@@ -24,6 +27,7 @@ class MLCoinSlider extends MLSlider {
         }
 
         if (parent::get_setting('printCss') == 'true') {
+            wp_enqueue_style('ml-slider_display_css', plugins_url('ml-slider/assets/ml-slider-display.css'));
             wp_enqueue_style('ml-slider_coin_slider_css', plugins_url('ml-slider/assets/coinslider/coin-slider-styles.css'));
         }
     }
@@ -50,8 +54,5 @@ class MLCoinSlider extends MLSlider {
         
         return $retVal;
     }
-
-
-    
 }
 ?>

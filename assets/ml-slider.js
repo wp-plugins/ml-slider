@@ -51,6 +51,7 @@
 			}
 		});
 
+
 		$(".confirm").click(function() {
 			return confirm("Are you sure?");
 		});
@@ -133,7 +134,7 @@
 				// ensure the rows are sortable
 				$(".ml-slider table.sortable").tableDnD({
 					onDrop: function() {
-						updateSlideOrder()
+						updateSlideOrder();
 					}
 				});
 			});

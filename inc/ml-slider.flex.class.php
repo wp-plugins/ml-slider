@@ -11,6 +11,9 @@ class MLFlexSlider extends MLSlider {
         $this->enqueue_scripts();
     }
 
+    /**
+     *
+     */
     public function output() {
         return parent::wrap_html($this->get_html()) . parent::get_javascript('flexSlider');
     }
@@ -24,6 +27,7 @@ class MLFlexSlider extends MLSlider {
         }
 
         if (parent::get_setting('printCss') == 'true') {
+            wp_enqueue_style('ml-slider_display_css', plugins_url('ml-slider/assets/ml-slider-display.css'));
             wp_enqueue_style('ml-slider_flex_slider_css', plugins_url('ml-slider/assets/flexslider/flexslider.css'));
         }
     }
@@ -51,8 +55,5 @@ class MLFlexSlider extends MLSlider {
 
         return $retVal;
     }
-
-
-    
 }
 ?>

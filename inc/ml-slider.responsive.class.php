@@ -11,6 +11,9 @@ class MLResponsiveSlider extends MLSlider {
         $this->enqueue_scripts();
     }
 
+    /**
+     *
+     */
     public function output() {
         return parent::wrap_html($this->get_html()) . parent::get_javascript('responsiveSlides');
     }
@@ -24,6 +27,7 @@ class MLResponsiveSlider extends MLSlider {
         }
 
         if (parent::get_setting('printCss') == 'true') {
+            wp_enqueue_style('ml-slider_display_css', plugins_url('ml-slider/assets/ml-slider-display.css'));
             wp_enqueue_style('ml-slider_responsive_slides_css', plugins_url('ml-slider/assets/responsiveslides/responsiveslides.css'));
         }
     }

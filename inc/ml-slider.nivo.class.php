@@ -11,6 +11,9 @@ class MLNivoSlider extends MLSlider {
         $this->enqueue_scripts();
     }
 
+    /**
+     *
+     */
     public function output() {
         return parent::wrap_html($this->get_html()) . parent::get_javascript('nivoSlider');
     }
@@ -24,8 +27,9 @@ class MLNivoSlider extends MLSlider {
         }
 
         if (parent::get_setting('printCss') == 'true') {
+            wp_enqueue_style('ml-slider_display_css', plugins_url('ml-slider/assets/ml-slider-display.css'));
             wp_enqueue_style('ml-slider_nivo_slider_css', plugins_url('ml-slider/assets/nivoslider/nivo-slider.css'));
-            wp_enqueue_style('ml-slider_nivo_slider_theme_' . $this->get_setting('theme'), plugins_url('ml-slider/assets/nivoslider/themes/' . $this->get_setting('theme') . '/' . $this->get_setting('theme') . '.css'));
+            wp_enqueue_style('ml-slider_nivo_slider_theme_' . $parent::get_setting('theme'), plugins_url('ml-slider/assets/nivoslider/themes/' . $parent::get_setting('theme') . '/' . $parent::get_setting('theme') . '.css'));
         }
     }
 
@@ -51,6 +55,5 @@ class MLNivoSlider extends MLSlider {
         
         return $retVal;
     }
-    
 }
 ?>
