@@ -36,13 +36,18 @@
 			enableOptions($(this).attr('rel'));
 		});
 
-		/**
-		 * Enable drag and drop table rows for slides
-		 */
-		$(".ml-slider table.sortable").tableDnD({
-			onDrop: function() {
-				updateSlideOrder();
-				$('.ml-slider .unsaved').fadeIn();
+		// Return a helper with preserved width of cells
+		var helper = function(e, ui) {
+		    ui.children().each(function() {
+		        $(this).width($(this).width());
+		    });
+		    return ui;
+		};
+
+		$(".ml-slider table.sortable tbody").sortable({
+		    helper: helper,
+			stop: function() {
+				updateSlideOrder()
 			}
 		});
 

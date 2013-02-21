@@ -62,9 +62,11 @@ class MLSliderPlugin {
      */
     public function register_admin_scripts() {
         wp_enqueue_media();
+        wp_enqueue_script('jquery-ui-core', array('jquery'));
+        wp_enqueue_script('jquery-ui-sortable', array('jquery', 'jquery-ui-core'));
         wp_enqueue_script('ml-slider-tipsy', plugins_url('ml-slider/assets/tipsy/jquery.tipsy.js'), array('jquery'));
-        wp_enqueue_script('jquery-tablednd', plugins_url('ml-slider/assets/jquery.tablednd.js'), array('jquery'));
-        wp_enqueue_script('ml-slider-admin-script', plugins_url('ml-slider/assets/ml-slider.js'), array('jquery', 'ml-slider-tipsy', 'jquery-tablednd', 'media-upload'));
+        wp_enqueue_script('ml-slider-admin-script', plugins_url('ml-slider/assets/ml-slider.js'), array('jquery', 'jquery-ui-sortable', 'media-upload'));
+        
     }
     
     /**
@@ -83,7 +85,7 @@ class MLSliderPlugin {
             'render_admin_page'
         ), MLSLIDER_ASSETS_URL . 'matchalabs.png', 99999);
 
-        add_action('admin_print_scripts-' . $page, array( $this, 'register_admin_scripts' ) );
+        add_action('admin_print_scripts-' . $page, array( $this, 'register_admin_scripts' ), 99999 );
     }
     
     /**
