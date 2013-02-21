@@ -3,7 +3,7 @@ Contributors: matchalabs
 Tags: wordpress slider,slider,slides,slideshow,wordpress slideshow,image slider,flexslider,flex,flex slider,nivoslider,nivo,nivo slider,responsiveslides,responsive,responsive slides,coinslider,coin,coin slider,slideshow,carousel,responsive slider,slider plugin,vertical slides,ml slider,image rotator
 Requires at least: 3.5
 Tested up to: 3.5
-Stable tag: 1.2
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 == Description ==
 ML Slider is a clean slideshow management plugin that leaves the heavy lifting to a selection of popular jQuery slider plugins - the choice is yours. ML Slider builds upon standard WordPress functionality wherever possible; slideshows are stored as a custom post type, slides are stored as media files and the relation between the two is stored as taxonomy data.
 
+http://www.youtube.com/watch?v=SdPKN7rTfM8
+
 ML Slider Features:
+
 * Intuitive administration panel
 * Create unlimited slideshows with unlimited number of slides
 * Choose slider library from Nivo Slider, Flex Slider 2, Coin Slider or Responsive Slides (per slideshow)
@@ -26,12 +29,14 @@ ML Slider Features:
 * Built in shortcode
 
 Slider Features:
+
 * 18 transition effects
 * 4 themes (Nivo Slider)
 * Responsive (Nivo Slider, Flex Slider 2, Responsive Slides)
 * Adjust slider libary options such as: speed, theme, hover pause, width, height
 
 Read more and thanks to:
+
 * [http://flexslider.woothemes.com/](http://flexslider.woothemes.com/)
 * [http://responsive-slides.viljamis.com/](http://responsive-slides.viljamis.com/)
 * [http://workshop.rs/projects/coin-slider/](http://workshop.rs/projects/coin-slider/)
