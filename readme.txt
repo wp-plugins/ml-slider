@@ -19,7 +19,7 @@ Meta Slider is a flexible, intuitive slideshow administration plugin with that l
 
 The plugin builds upon standard WordPress functionality wherever possible; slideshows are stored as a custom post type, slides are stored as media files and the relation between the two is stored as taxonomy data.
 
-http://www.youtube.com/watch?v=SdPKN7rTfM8
+http://www.youtube.com/watch?v=uGSEc8dfiPA
 
 Meta Slider Features:
 
