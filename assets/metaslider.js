@@ -3,11 +3,12 @@
  */
 (function ($) {
 	$(function () {
+
 		/**
 		 * Reindex the slides after they have been dragged/dropped
 		 */
 		var updateSlideOrder = function() {
-			$('.ml-slider table.sortable tr').each(function() {
+			$('.metaslider table.sortable tr').each(function() {
 				$('input.menu_order', $(this)).val($(this).index());
 			});
 		}
@@ -16,8 +17,8 @@
 		 * Enable the correct options for this slider type
 		 */
 		var enableOptions = function(slider) {
-			$('.ml-slider .option:not(.' + slider + ')').attr('disabled', 'disabled').css('color','#ccc').parents('tr').hide();
-			$('.ml-slider .option.' + slider).removeAttr('disabled').css('color','').parents('tr').show();
+			$('.metaslider .option:not(.' + slider + ')').attr('disabled', 'disabled').css('color','#ccc').parents('tr').hide();
+			$('.metaslider .option.' + slider).removeAttr('disabled').css('color','').parents('tr').show();
 
 			if ($('.effect option:selected').attr('disabled') == 'disabled') {
 				$('.effect option:enabled:first').attr('selected', 'selected');
@@ -27,12 +28,12 @@
 		/**
 		 * Enable the correct options on page load
 		 */
-		enableOptions($('.ml-slider .select-slider:checked').attr('rel'));
+		enableOptions($('.metaslider .select-slider:checked').attr('rel'));
 
 		/**
 		 * Handle slide libary switching
 		 */
-		$('.ml-slider .select-slider').click(function() {
+		$('.metaslider .select-slider').click(function() {
 			enableOptions($(this).attr('rel'));
 		});
 
@@ -44,7 +45,7 @@
 		    return ui;
 		};
 
-		$(".ml-slider table.sortable tbody").sortable({
+		$(".metaslider table.sortable tbody").sortable({
 		    helper: helper,
 			stop: function() {
 				updateSlideOrder()
@@ -53,14 +54,14 @@
 
 
 		$(".confirm").click(function() {
-			return confirm("Are you sure?");
+			return confirm(metaslider.confirm);
 		});
 
 		/**
 		 * Helptext tooltips
 		 */
-		$(".ml-slider .tooltip").tipsy({html: true, fade: true, gravity: 'e'});
-		$(".ml-slider .tooltiptop").tipsy({html: true, fade: true, gravity: 'se'});
+		$(".metaslider .tooltip").tipsy({className: 'msTipsy', live: true, delayIn: 200, html: true, fade: true, gravity: 'e'});
+		$(".metaslider .tooltiptop").tipsy({live: true, delayIn: 500, html: true, fade: true, gravity: 'se'});
 
 		/**
 		 * Image uploader
@@ -104,21 +105,22 @@
 						url = attachment.sizes.thumbnail.url;
 					}
 
-					var tableRow = "<tr class='slide'><td>" +
-									"<div style='position: absolute'>" + 
-									"<a class='delete-slide remove-slide' href='#'>x</a> " + 
+					var tableRow = "<tr class='slide'><td class='col-1'>" +
+									"<div style='position: absolute'><a class='delete-slide remove-slide' href='#'>x</a></div>" +
+									"<img src='" + url + "' width='150px'></td>" +
+									"<td class='col-2'><textarea name='attachment[" + attachment.id + "][post_excerpt]' placeholder='" + metaslider.caption + "'>" + attachment.caption + "</textarea>" +
+									"<input class='url' type='text' name='attachment[" + attachment.id + "][url]' placeholder='" + metaslider.url + "' value=''>" +
+									"<div class='new_window'>" +
+									"<label>" + metaslider.new_window + "<input type='checkbox' name='attachment[" + attachment.id + "][new_window]'></label>" +
 									"</div>" +
-									"<img src='" + url + "' width='150px'></td><td> " + 
-									"<textarea name='attachment[" + attachment.id + "][post_excerpt]' placeholder='Caption'>" + attachment.caption + "</textarea>" +
-									"<input type='text' name='attachment[" + attachment.id + "][url]' placeholder='URL'>" + 
-									"<input type='hidden' class='menu_order' name='attachment[" + attachment.id + "][menu_order]' value='100'>" + 
+									"<input type='hidden' class='menu_order' name='attachment[" + attachment.id + "][menu_order]'>" +
 									"</td></tr>";
 
 					// add slide to existing slides table
-					jQuery(".ml-slider .slides tbody").append(tableRow);
+					jQuery(".metaslider .slides tbody").append(tableRow);
 
 					// display the unsaved changes warning
-					$('.ml-slider .unsaved').show();
+					$('.metaslider .unsaved').show();
 				});
 
 				// the slides haven't been assigned to the slider yet, so just remove the row if the delete
@@ -131,20 +133,19 @@
 				// reindex the slides
 				updateSlideOrder();
 
-				// ensure the rows are sortable
-				$(".ml-slider table.sortable").tableDnD({
-					onDrop: function() {
-						updateSlideOrder();
-					}
-				});
 			});
 
 			file_frame.open();
 		});
 
 		// show the unsaved changes when the form is changed
-		$('.ml-slider form').live('change', function() { 
-			$('.ml-slider .unsaved').fadeIn();
+		$('.metaslider form').live('change', function() { 
+			$('.metaslider .unsaved').fadeIn();
+		});
+
+		$(".metaslider .shortcode input").click(function(){
+		    // Select input field contents
+		    this.select();
 		});
 	});
 }(jQuery));
