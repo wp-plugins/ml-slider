@@ -1,23 +1,23 @@
-.ml-slider .flexslider,
-.ml-slider .flexslider ul,
-.ml-slider .flexslider .slides li,
-.ml-slider .flexslider .slides ul,
-.ml-slider .flexslider .slides ol,
-.ml-slider .flexslider .flex-direction-nav,
-.ml-slider .rslides li,
-.ml-slider .rslides .rslides_tabs {
+.metaslider .flexslider,
+.metaslider .flexslider ul,
+.metaslider .flexslider .slides li,
+.metaslider .flexslider .slides ul,
+.metaslider .flexslider .slides ol,
+.metaslider .flexslider .flex-direction-nav,
+.metaslider .rslides li,
+.metaslider .rslides .rslides_tabs {
   border: 0;
 	margin: 0;
 	list-style-type: none;
 }
-.ml-slider .flexslider .slides p {
+.metaslider .flexslider .slides p {
 	margin: 0;
 }
-.ml-slider .flexslider .flex-control-nav {
+.metaslider .flexslider .flex-control-nav {
   position: inherit;
   bottom: auto;
 }
-.ml-slider .rslides_tabs {
+.metaslider .rslides_tabs {
   margin: 0;
   padding: 7px 0 !important;
   background: #333;
@@ -31,7 +31,7 @@
   text-align: center;
   width: 100%;
 }
-.ml-slider .rslides_tabs li {
+.metaslider .rslides_tabs li {
   margin: 0;
   padding: 0;
   display: inline;
@@ -39,7 +39,7 @@
   margin-right: 1px;
   list-style-type: none;
 }
-.ml-slider .rslides_tabs a {
+.metaslider .rslides_tabs a {
   text-decoration: none;
   width: auto;
   line-height: 20px;
@@ -48,23 +48,23 @@
   background: transparent;
   display: inline;
 }
-.ml-slider .rslides_tabs a:hover {
+.metaslider .rslides_tabs a:hover {
   border: 0;
   color: white;
 }
 
-.ml-slider .rslides_tabs li:first-child {
+.metaslider .rslides_tabs li:first-child {
   margin-left: 0;
 }
-.ml-slider .rslides_tabs .rslides_here a {
+.metaslider .rslides_tabs .rslides_here a {
   background: rgba(255,255,255,.1);
   color: #fff;
   font-weight: bold;
 }
-.ml-slider-responsive {
+.metaslider-responsive {
 	position: relative;
 }
-.ml-slider .rslides_nav {
+.metaslider .rslides_nav {
 	background-color: #000000; 
 	color: #FFFFFF; 
 	padding: 0px 10px; 
@@ -73,9 +73,9 @@
 	z-index:9;
 	cursor:pointer;
 }
-.ml-slider .rslides_nav.prev {
+.metaslider .rslides_nav.prev {
 	left:0px;
 }
-.ml-slider .rslides_nav.next {
+.metaslider .rslides_nav.next {
 	right:0px;
 }

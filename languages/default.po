@@ -1,0 +1,272 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: metaslider\n"
+"POT-Creation-Date: 2013-02-28 14:38-0000\n"
+"PO-Revision-Date: 2013-02-28 14:39-0000\n"
+"Last-Translator: \n"
+"Language-Team: Matcha Labs <hello@matchalabs.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: metaslider.php:65 metaslider.php:494 ../ml-slider/metaslider.php:65
+#: ../ml-slider/metaslider.php:494
+msgid "URL"
+msgstr ""
+
+#: metaslider.php:66 metaslider.php:492 ../ml-slider/metaslider.php:66
+#: ../ml-slider/metaslider.php:492
+msgid "Caption"
+msgstr ""
+
+#: metaslider.php:67 metaslider.php:493 ../ml-slider/metaslider.php:67
+#: ../ml-slider/metaslider.php:493
+msgid "New Window"
+msgstr ""
+
+#: metaslider.php:68 ../ml-slider/metaslider.php:68
+msgid "Are you sure?"
+msgstr ""
+
+#: metaslider.php:95 metaslider.php:115 ../ml-slider/metaslider.php:95
+#: ../ml-slider/metaslider.php:115
+msgid "Slider"
+msgstr ""
+
+#: metaslider.php:483 ../ml-slider/metaslider.php:483
+msgid "Slides"
+msgstr ""
+
+#: metaslider.php:484 ../ml-slider/metaslider.php:484
+msgid "Add Slide"
+msgstr ""
+
+#: metaslider.php:484 ../ml-slider/metaslider.php:484
+msgid "Select Slide"
+msgstr ""
+
+#: metaslider.php:484 ../ml-slider/metaslider.php:484
+msgid "Add to slider"
+msgstr ""
+
+#: metaslider.php:519 ../ml-slider/metaslider.php:519
+msgid "Configuration"
+msgstr ""
+
+#: metaslider.php:521 ../ml-slider/metaslider.php:521
+msgid "Save"
+msgstr ""
+
+#: metaslider.php:522 ../ml-slider/metaslider.php:522
+msgid "Unsaved Changes"
+msgstr ""
+
+#: metaslider.php:548 ../ml-slider/metaslider.php:548
+msgid "Set the initial size for the slides (width x height)"
+msgstr ""
+
+#: metaslider.php:549 ../ml-slider/metaslider.php:549
+msgid "Size"
+msgstr ""
+
+#: metaslider.php:557 ../ml-slider/metaslider.php:557
+msgid "Slide transition effect"
+msgstr ""
+
+#: metaslider.php:558 ../ml-slider/metaslider.php:558
+msgid "Effect"
+msgstr ""
+
+#: metaslider.php:584 ../ml-slider/metaslider.php:584
+msgid "Change the slider style"
+msgstr ""
+
+#: metaslider.php:585 ../ml-slider/metaslider.php:585
+msgid "Theme"
+msgstr ""
+
+#: metaslider.php:597 ../ml-slider/metaslider.php:597
+msgid "Show slide navigation row"
+msgstr ""
+
+#: metaslider.php:598 ../ml-slider/metaslider.php:598
+msgid "Show Navigation"
+msgstr ""
+
+#: metaslider.php:605 ../ml-slider/metaslider.php:605
+msgid "Show previous and next links"
+msgstr ""
+
+#: metaslider.php:606 ../ml-slider/metaslider.php:606
+msgid "Show Links"
+msgstr ""
+
+#: metaslider.php:613 ../ml-slider/metaslider.php:613
+msgid ""
+"Pause the slideshow when hovering over slider, then resume when no longer "
+"hovering"
+msgstr ""
+
+#: metaslider.php:614 ../ml-slider/metaslider.php:614
+msgid "Hover pause"
+msgstr ""
+
+#: metaslider.php:621 ../ml-slider/metaslider.php:621
+msgid "How long to display each slide, in milliseconds"
+msgstr ""
+
+#: metaslider.php:622 ../ml-slider/metaslider.php:622
+msgid "Slide delay"
+msgstr ""
+
+#: metaslider.php:629 ../ml-slider/metaslider.php:629
+msgid "Randomise the order of the slides"
+msgstr ""
+
+#: metaslider.php:630 ../ml-slider/metaslider.php:630
+msgid "Random"
+msgstr ""
+
+#: metaslider.php:637 ../ml-slider/metaslider.php:637
+msgid "Select the sliding direction"
+msgstr ""
+
+#: metaslider.php:637 ../ml-slider/metaslider.php:637
+msgid "Direction"
+msgstr ""
+
+#: metaslider.php:646 ../ml-slider/metaslider.php:646
+msgid "Set the text for the 'previous' direction item"
+msgstr ""
+
+#: metaslider.php:647 ../ml-slider/metaslider.php:647
+msgid "Previous text"
+msgstr ""
+
+#: metaslider.php:654 ../ml-slider/metaslider.php:654
+msgid "Set the text for the 'next' direction item"
+msgstr ""
+
+#: metaslider.php:655 ../ml-slider/metaslider.php:655
+msgid "Next text"
+msgstr ""
+
+#: metaslider.php:662 ../ml-slider/metaslider.php:662
+msgid "Advanced Settings"
+msgstr ""
+
+#: metaslider.php:665 ../ml-slider/metaslider.php:665
+msgid "Reverse the animation direction"
+msgstr ""
+
+#: metaslider.php:666 ../ml-slider/metaslider.php:666
+msgid "Reverse"
+msgstr ""
+
+#: metaslider.php:673 ../ml-slider/metaslider.php:673
+msgid "Number of squares (width x height)"
+msgstr ""
+
+#: metaslider.php:674 ../ml-slider/metaslider.php:674
+msgid "Number of squares"
+msgstr ""
+
+#: metaslider.php:682 metaslider.php:683 ../ml-slider/metaslider.php:682
+#: ../ml-slider/metaslider.php:683
+msgid "Number of slices"
+msgstr ""
+
+#: metaslider.php:690 ../ml-slider/metaslider.php:690
+msgid "Delay beetwen squares in ms"
+msgstr ""
+
+#: metaslider.php:691 ../ml-slider/metaslider.php:691
+msgid "Square delay"
+msgstr ""
+
+#: metaslider.php:698 ../ml-slider/metaslider.php:698
+msgid "Opacity of title and navigation"
+msgstr ""
+
+#: metaslider.php:699 ../ml-slider/metaslider.php:699
+msgid "Opacity"
+msgstr ""
+
+#: metaslider.php:706 ../ml-slider/metaslider.php:706
+msgid "Set the fade in speef of the caption"
+msgstr ""
+
+#: metaslider.php:707 ../ml-slider/metaslider.php:707
+msgid "Caption speed"
+msgstr ""
+
+#: metaslider.php:714 ../ml-slider/metaslider.php:714
+msgid "Set the speed of animations, in milliseconds"
+msgstr ""
+
+#: metaslider.php:715 ../ml-slider/metaslider.php:715
+msgid "Animation speed"
+msgstr ""
+
+#: metaslider.php:722 ../ml-slider/metaslider.php:722
+msgid "Developer Options"
+msgstr ""
+
+#: metaslider.php:725 ../ml-slider/metaslider.php:725
+msgid ""
+"Specify any custom CSS Classes you would like to be added to the slider "
+"wrapper"
+msgstr ""
+
+#: metaslider.php:726 ../ml-slider/metaslider.php:726
+msgid "CSS classes"
+msgstr ""
+
+#: metaslider.php:733 ../ml-slider/metaslider.php:733
+msgid "Uncheck this is you would like to include your own CSS"
+msgstr ""
+
+#: metaslider.php:734 ../ml-slider/metaslider.php:734
+msgid "Print CSS"
+msgstr ""
+
+#: metaslider.php:741 ../ml-slider/metaslider.php:741
+msgid "Uncheck this is you would like to include your own Javascript"
+msgstr ""
+
+#: metaslider.php:742 ../ml-slider/metaslider.php:742
+msgid "Print JS"
+msgstr ""
+
+#: metaslider.php:754 ../ml-slider/metaslider.php:754
+msgid "Usage"
+msgstr ""
+
+#: metaslider.php:760 ../ml-slider/metaslider.php:760
+msgid "Shortcode"
+msgstr ""
+
+#: metaslider.php:766 ../ml-slider/metaslider.php:766
+msgid "Template Include"
+msgstr ""
+
+#: metaslider.php:776 ../ml-slider/metaslider.php:776
+msgid "Delete Slider"
+msgstr ""
+
+#: ../ml-post-slider/ml-post-slider.php:71
+msgid "Title"
+msgstr ""
+
+#: ../ml-post-slider/ml-post-slider.php:72
+msgid "Slider category"
+msgstr ""
+
+#: ../ml-post-slider/ml-post-slider.php:73
+msgid "Date"
+msgstr ""
