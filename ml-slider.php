@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: MetaSlider
+ * Plugin Name: Meta Slider
  * Plugin URI: http://www.metaslider.com
  * Description: 4 sliders in 1! Choose from Nivo Slider, Flex Slider, Coin Slider or Responsive Slides.
  * Version: 1.3

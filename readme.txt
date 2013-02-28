@@ -1,16 +1,16 @@
 === Plugin Name ===
 Contributors: matchalabs
-Tags: wordpress slider,slider,slides,slideshow,wordpress slideshow,image slider,flexslider,flex,flex slider,nivoslider,nivo,nivo slider,responsiveslides,responsive,responsive slides,coinslider,coin,coin slider,slideshow,carousel,responsive slider,slider plugin,vertical slides,ml slider,image rotator,metaslider
+Tags: wordpress slider,slider,slides,slideshow,wordpress slideshow,image slider,flexslider,flex,flex slider,nivoslider,nivo,nivo slider,responsiveslides,responsive,responsive slides,coinslider,coin,coin slider,slideshow,carousel,responsive slider,slider plugin,vertical slides,ml slider,image rotator,metaslider, meta
 Requires at least: 3.5
 Tested up to: 3.5
-Stable tag: 1.2.1
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 4 image sliders in 1! Choose from Nivo Slider, Flex Slider, Coin Slider or Responsive Slides.
 
 == Description ==
-MetaSlider is a flexible, intuitive slideshow administration plugin with that leaves the heavy lifting to a selection of open source jQuery libraries. The choice is yours:
+Meta Slider is a flexible, intuitive slideshow administration plugin with that leaves the heavy lifting to a selection of open source jQuery libraries. The choice is yours:
 
 * Nivo Slider (Responsive, 16 transition effects, 4 themes)
 * Flex Slider 2 (Responsive, 2 transition effects)
@@ -21,7 +21,7 @@ The plugin builds upon standard WordPress functionality wherever possible; slide
 
 http://www.youtube.com/watch?v=SdPKN7rTfM8
 
-MetaSlider Features:
+Meta Slider Features:
 
 * Intuitive administration panel
 * Create unlimited slideshows with unlimited number of slides
@@ -52,7 +52,7 @@ Read more and thanks to:
 
 == Installation ==
 
-1. Upload the `metaslider` folder to the `/wp-content/plugins/` directory
+1. Upload the `ml-slider` folder to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Manage your slideshows using the 'MetaSlider' menu option
 
@@ -80,7 +80,7 @@ For example, flex slider supports the 'Fade' and 'Slide' effect whereas coin sli
 == Changelog ==
 
 = 1.3 =
-* Renamed to MetaSlider (previously ML Slider)
+* Renamed to Meta Slider (previously ML Slider)
 * Improvement: Admin styling cleaned up
 * Improvement: Code refactored
 * Improvement: Plugin localised
