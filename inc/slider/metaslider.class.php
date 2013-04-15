@@ -270,7 +270,7 @@ class MetaSlider {
     private function get_inline_javascript() {
         $identifier = $this->identifier;
         $type = $this->get_setting('type');
-
+        $javascript = "";
         $javascript = apply_filters("metaslider_{$type}_slider_javascript", $javascript, $this->id);
 
         $return_value  = "\n<script type='text/javascript'>";
