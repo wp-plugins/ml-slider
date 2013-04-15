@@ -63,8 +63,6 @@ class MetaSliderPlugin {
         add_filter('media_upload_tabs', array($this,'custom_media_upload_tab_name'), 998);
         add_filter('media_view_strings', array($this, 'custom_media_uploader_tabs'), 5);
         add_action('media_upload_metaslider_pro', array($this, 'metaslider_pro_tab'));
-
-        add_filter('no_texturize_shortcodes', array($this, 'no_texturize_metaslider_shortcode'));
         
         $plugin = plugin_basename(__FILE__);
         add_filter("plugin_action_links_{$plugin}", array($this,'upgrade_to_pro') );
@@ -103,15 +101,6 @@ class MetaSliderPlugin {
      */
     private function register_slide_types() {
         $image = new MetaImageSlide();
-    }
-
-    /**
-     * Attempt to stop WordPress from messing up our output
-     */
-    public function no_texturize_metaslider_shortcode($excluded_shortcodes) {
-        $excluded_shortcodes[] = 'metaslider';
-        $excluded_shortcodes[] = 'ml-slider';
-        return $excluded_shortcodes;
     }
 
     /**
@@ -175,7 +164,6 @@ class MetaSliderPlugin {
     public function register_admin_scripts() {
         // media library dependencies
         wp_enqueue_media();
-
         // meta slider checks for active AJAX requests in order to show the spinner
         // .. but the auth-check runs an AJAX request every 15 seconds
         // deregister the script that displays the login panel if the user becomes logged

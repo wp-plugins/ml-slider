@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-
+    
     // Enable the correct options for this slider type
     var switchType = function(slider) {
         jQuery('.metaslider .option:not(.' + slider + ')').attr('disabled', 'disabled').parents('tr').hide();
