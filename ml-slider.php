@@ -656,7 +656,7 @@ class MetaSliderPlugin {
                                     <?php _e("Smart crop", 'metaslider') ?>
                                 </td>
                                 <td>
-                                    <input class='option coin responsive nivo flex' type='checkbox' name="settings[smartCrop]" <?php if ($this->slider->get_setting('smartCrop') != 'false') echo 'checked=checked' ?> />
+                                    <input class='option coin responsive nivo flex' type='checkbox' name="settings[smartCrop]" <?php if ($this->slider->get_setting('smartCrop') !== 'false') echo 'checked=checked' ?> />
                                 </td>
                             </tr>
                             <tr>
