@@ -1,31 +1,12 @@
 <?php
-/*
- *
+/**
+ * Responsive Slider specific markup, javascript, css and settings.
  */
 class MetaResponsiveSlider extends MetaSlider {
 
-    public $js_function = 'responsiveSlides';
-
-    /**
-     * Constructor
-     */
-    public function __construct($id) {
-        parent::__construct($id);
-    }
-
-    /**
-     * Return the file path to the Javascript for this slider
-     */
-    public function get_js_path() {
-        return 'responsiveslides/responsiveslides.min.js';
-    }
-
-    /**
-     * Return the file path to the CSS for this slider
-     */
-    public function get_css_path() {
-        return 'responsiveslides/responsiveslides.css';
-    }
+    protected $js_function = 'responsiveSlides';
+    protected $js_path = 'sliders/responsiveslides/responsiveslides.min.js';
+    protected $css_path = 'sliders/responsiveslides/responsiveslides.css';
 
     /**
      * Detect whether thie slide supports the requested setting,
@@ -41,7 +22,8 @@ class MetaResponsiveSlider extends MetaSlider {
             'animationSpeed' => 'speed',
             'hoverPause' => 'pause',
             'navigation' => 'pager',
-            'links' =>'nav'
+            'links' =>'nav',
+            'autoPlay' => 'auto'
         );
 
         if (isset($params[$param])) {
@@ -59,12 +41,8 @@ class MetaResponsiveSlider extends MetaSlider {
     protected function get_html() {
         $return_value = "<ul id='" . $this->get_identifier() . "' class='rslides'>";
         
-        foreach ($this->get_slides() as $slide) {
-            $return_value .= "<li>";
-            if (strlen($slide['url'])) $return_value .= "<a href='{$slide['url']}' target='{$slide['target']}'>";
-            $return_value .= "<img src='{$slide['src']}' alt='{$slide['alt']}'>";
-            if (strlen($slide['url'])) $return_value .= "</a>";
-            $return_value .= "</li>";
+        foreach ($this->slides as $slide) {
+            $return_value .= "<li style='display: none'>" . $slide . "</li>";
         }
         
         $return_value .= "</ul>";

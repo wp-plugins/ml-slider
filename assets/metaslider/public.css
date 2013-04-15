@@ -1,3 +1,23 @@
+.metaslider .flexslider .slides li,
+.metaslider ul.rslides li  {
+  position: relative;
+}
+.metaslider .caption-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: black;
+  color: white;
+  line-height: 30px;
+  opacity: 0.7;
+  margin: 0;
+  display: block;
+  width: 100%;
+}
+.metaslider .caption {
+  padding: 5px 10px;
+}
+.metaslider img,
 .metaslider .flexslider,
 .metaslider .flexslider ul,
 .metaslider .flexslider .slides li,
@@ -7,26 +27,36 @@
 .metaslider .rslides li,
 .metaslider .rslides .rslides_tabs {
   border: 0;
-	margin: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 0;
+  margin: 0;
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
 	list-style-type: none;
+}
+.metaslider li:before,
+.metaslider li:after {
+  content: "" !important;
 }
 .metaslider .flexslider .slides p {
 	margin: 0;
 }
-.metaslider .flexslider .flex-control-nav {
-  position: inherit;
-  bottom: auto;
+.metaslider .flexslider {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -o-box-shadow: none;
 }
 .metaslider .rslides_tabs {
   margin: 0;
   padding: 7px 0 !important;
   background: #333;
-  box-shadow: 0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);
-  -moz-box-shadow: 0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);
-  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);
   font-size: 18px;
   list-style: none;
-  margin: 0 auto 50px;
   padding: 10px 0;
   text-align: center;
   width: 100%;
@@ -47,12 +77,12 @@
   height: auto;
   background: transparent;
   display: inline;
+  color: white;
 }
 .metaslider .rslides_tabs a:hover {
   border: 0;
   color: white;
 }
-
 .metaslider .rslides_tabs li:first-child {
   margin-left: 0;
 }
@@ -61,21 +91,26 @@
   color: #fff;
   font-weight: bold;
 }
-.metaslider-responsive {
-	position: relative;
-}
 .metaslider .rslides_nav {
-	background-color: #000000; 
-	color: #FFFFFF; 
-	padding: 0px 10px; 
-	position:absolute;
-	top:45%;
-	z-index:9;
-	cursor:pointer;
+  background-color: #000000;
+  color: #FFFFFF;
+  padding: 10px;
+  position: absolute;
+  top: 40%;
+  z-index: 9;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: -15px;
+  opacity: 0.7;
 }
 .metaslider .rslides_nav.prev {
 	left:0px;
+  text-decoration: none;
 }
 .metaslider .rslides_nav.next {
 	right:0px;
+  text-decoration: none;
+}
+.metaslider iframe {
+  display: block;
 }

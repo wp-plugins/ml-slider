@@ -1,31 +1,13 @@
 <?php
-/*
- *
+/**
+ * Override parent 'MetaSlider' class with CoinSlider specific markup,
+ * javascript, css and settings.
  */
 class MetaCoinSlider extends MetaSlider {
 
     protected $js_function = 'coinslider';
-
-    /**
-     * Constructor
-     */
-    public function __construct($id) {
-        parent::__construct($id);
-    }
-
-    /**
-     * Return the file path to the Javascript for this slider
-     */
-    public function get_js_path() {
-        return 'coinslider/coin-slider.min.js';
-    }
-
-    /**
-     * Return the file path to the CSS for this slider
-     */
-    public function get_css_path() {
-        return 'coinslider/coin-slider-styles.css';
-    }
+    protected $js_path = 'sliders/coinslider/coin-slider.min.js';
+    protected $css_path = 'sliders/coinslider/coin-slider-styles.css';
 
     /**
      * Enable the parameters that are accepted by the slider
@@ -44,7 +26,10 @@ class MetaCoinSlider extends MetaSlider {
             'opacity' => 'opacity',
             'titleSpeed' => 'titleSpeed',
             'hoverPause' => 'hoverPause',
-            'navigation' => 'navigation'
+            'navigation' => 'showNavigationButtons',
+            'links' => 'showNavigationPrevNext',
+            'prevText' => 'prevText',
+            'nextText' => 'nextText'
         );
 
         if (isset($params[$param])) {
@@ -62,12 +47,8 @@ class MetaCoinSlider extends MetaSlider {
     protected function get_html() {
         $retVal = "<div id='" . $this->get_identifier() . "' class='coin-slider'>";
         
-        foreach ($this->get_slides() as $slide) {
-            $url = strlen($slide['url']) ? $slide['url'] : "javascript:void(0)"; // coinslider always wants a URL
-            $retVal .= "<a href='{$url}'>";
-            $retVal .= "<img src='{$slide['src']}' alt='{$slide['alt']}' target='{$slide['target']}'>";
-            $retVal .= "<span>{$slide['caption']}</span>";
-            $retVal .= "</a>";
+        foreach ($this->slides as $slide) {
+            $retVal .= $slide;
         }
         
         $retVal .= "</div>";
