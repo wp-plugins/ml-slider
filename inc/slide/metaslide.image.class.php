@@ -110,6 +110,8 @@ class MetaImageSlide extends MetaSlide {
                 return $this->get_nivo_slider_markup($slide);
             case "responsive":
                 return $this->get_responsive_slides_markup($slide);
+            default:
+                return $this->get_flex_slider_markup($slide);
         }
     }
 

@@ -72,7 +72,7 @@ class MetaSlider {
      */
     public function get_default_parameters() {
         $params = array(
-            'type' => 'nivo',
+            'type' => 'flex',
             'random' => false,
             'cssClass' => '',
             'printCss' => true,
