@@ -53,7 +53,7 @@ class MetaSliderImageHelper {
 
         $container_width = $this->container_width;
         $container_height = $this->container_height;
-
+        
         /**
          * Slideshow Width == Slide Width
          */
@@ -81,13 +81,8 @@ class MetaSliderImageHelper {
         }
 
         if ($image_width < $container_width && $image_height < $container_height) {
-            if ($image_width > $image_height) {
-                $new_slide_height = $image_height;
-                $new_slide_width = $container_width / ($container_height / $image_height);
-            } else {
-                $new_slide_width = $image_width;
-                $new_slide_height = $container_height / ($container_width / $image_width);
-            }
+            $new_slide_width = $image_width;
+            $new_slide_height = $container_height / ($container_width / $image_width);
         }
 
         if ($image_width < $container_width && $image_height > $container_height) {
