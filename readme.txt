@@ -11,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-http://www.youtube.com/watch?v=SdPKN7rTfM8
+http://www.youtube.com/watch?v=uGSEc8dfiPA
 
 Meta Slider is a flexible, intuitive slideshow administration plugin that lets you choose between 4 jQuery sliders.
 
@@ -78,7 +78,7 @@ http://www.metaslider.com/examples/
 
 == Changelog ==
 
-= 2.0 =
+= 2.0-beta =
 * New feature: Preview slideshows in admin control panel
 * New feature: 'Easing' options added to flex slider
 * New feature: 'Carousel mode' option added for flex slider
