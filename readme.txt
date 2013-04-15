@@ -3,7 +3,7 @@ Contributors: matchalabs
 Tags: wordpress slider,slideshow,wordpress slideshow,image slider,flexslider,flex slider,nivoslider,nivo slider,responsiveslides,responsive,responsive slides,coinslider,coin slider,slideshow,carousel,responsive slider,vertical slides,ml slider,image rotator,metaslider,meta,ajax,metaslider pro
 Requires at least: 3.5
 Tested up to: 3.6
-Stable tag: 1.3
+Stable tag: 2.0-beta3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
