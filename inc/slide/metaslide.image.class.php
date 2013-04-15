@@ -97,7 +97,7 @@ class MetaImageSlide extends MetaSlide {
             'url' => get_post_meta($this->slide->ID, 'ml-slider_url', true),
             'alt' => get_post_meta($this->slide->ID, '_wp_attachment_image_alt', true),
             'target' => get_post_meta($this->slide->ID, 'ml-slider_new_window', true) ? '_blank' : '_self', 
-            'caption' => html_entity_decode(htmlentities($this->slide->post_excerpt, ENT_NOQUOTES, 'UTF-8', false)),
+            'caption' => html_entity_decode($this->slide->post_excerpt, ENT_NOQUOTES, 'UTF-8'),
         );
 
         // return the slide HTML

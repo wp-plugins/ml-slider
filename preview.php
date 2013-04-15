@@ -10,7 +10,6 @@ if (isset($_GET['slider_id']) && (int)$_GET['slider_id'] > 0) {
 
     $id = intval($_GET['slider_id']);
     echo "<html style='margin-top: 0 !important'><head>";
-    wp_head();
     echo "</head><body style='overflow: hidden'>";
     echo do_shortcode("[metaslider id={$id}]");
     wp_footer();
