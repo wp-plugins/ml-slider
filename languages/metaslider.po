@@ -1,0 +1,351 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: metaslider\n"
+"POT-Creation-Date: 2013-04-13 15:30-0000\n"
+"PO-Revision-Date: 2013-04-13 15:31-0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../ml-slider.php:80
+msgid "Go Pro"
+msgstr ""
+
+#: ../ml-slider.php:127
+msgid "Image"
+msgstr ""
+
+#: ../ml-slider.php:128
+msgid "Add to slider"
+msgstr ""
+
+#: ../ml-slider.php:147
+msgid "More Slide Types"
+msgstr ""
+
+#: ../ml-slider.php:193 ../inc/slide/metaslide.image.class.php:49
+msgid "URL"
+msgstr ""
+
+#: ../ml-slider.php:194 ../inc/slide/metaslide.image.class.php:47
+msgid "Caption"
+msgstr ""
+
+#: ../ml-slider.php:195 ../inc/slide/metaslide.image.class.php:48
+msgid "New Window"
+msgstr ""
+
+#: ../ml-slider.php:196
+msgid "Are you sure?"
+msgstr ""
+
+#: ../ml-slider.php:229
+msgid "Documentation"
+msgstr ""
+
+#: ../ml-slider.php:236
+msgid "Support Meta Slider"
+msgstr ""
+
+#: ../ml-slider.php:351
+msgid "New Slider"
+msgstr ""
+
+#: ../ml-slider.php:443
+msgid "Version"
+msgstr ""
+
+#: ../ml-slider.php:444
+msgid "Responsive"
+msgstr ""
+
+#: ../ml-slider.php:445 ../ml-slider.php:449
+msgid "Yes"
+msgstr ""
+
+#: ../ml-slider.php:445 ../ml-slider.php:449
+msgid "No"
+msgstr ""
+
+#: ../ml-slider.php:447 ../ml-slider.php:548
+msgid "Size"
+msgstr ""
+
+#: ../ml-slider.php:447
+msgid "kb"
+msgstr ""
+
+#: ../ml-slider.php:448
+msgid "Mobile Friendly"
+msgstr ""
+
+#: ../ml-slider.php:495
+msgid "Slides"
+msgstr ""
+
+#: ../ml-slider.php:498 ../ml-slider.php:499
+msgid "Add Slide"
+msgstr ""
+
+#: ../ml-slider.php:518
+msgid "Settings"
+msgstr ""
+
+#: ../ml-slider.php:519
+msgid "Save"
+msgstr ""
+
+#: ../ml-slider.php:520
+msgid "Save & Preview"
+msgstr ""
+
+#: ../ml-slider.php:547
+msgid "Set the initial size for the slides (width x height)"
+msgstr ""
+
+#: ../ml-slider.php:551
+msgid "Width"
+msgstr ""
+
+#: ../ml-slider.php:552
+msgid "Height"
+msgstr ""
+
+#: ../ml-slider.php:556
+msgid "Center align the slideshow"
+msgstr ""
+
+#: ../ml-slider.php:557
+msgid "Center align"
+msgstr ""
+
+#: ../ml-slider.php:564
+msgid "Show slide navigation row"
+msgstr ""
+
+#: ../ml-slider.php:565
+msgid "Controls"
+msgstr ""
+
+#: ../ml-slider.php:573
+msgid "Slide transition effect"
+msgstr ""
+
+#: ../ml-slider.php:574
+msgid "Effect"
+msgstr ""
+
+#: ../ml-slider.php:600
+msgid "Change the slider style"
+msgstr ""
+
+#: ../ml-slider.php:601
+msgid "Theme"
+msgstr ""
+
+#: ../ml-slider.php:613
+msgid "Advanced Settings"
+msgstr ""
+
+#: ../ml-slider.php:616
+msgid "Start the slideshow on page load"
+msgstr ""
+
+#: ../ml-slider.php:617
+msgid "Auto play"
+msgstr ""
+
+#: ../ml-slider.php:624
+msgid "Animation easing effect"
+msgstr ""
+
+#: ../ml-slider.php:625
+msgid "Easing"
+msgstr ""
+
+#: ../ml-slider.php:653
+msgid "Select the sliding direction"
+msgstr ""
+
+#: ../ml-slider.php:653
+msgid "Slide direction"
+msgstr ""
+
+#: ../ml-slider.php:656
+msgid "Horizontal"
+msgstr ""
+
+#: ../ml-slider.php:657
+msgid "Vertical"
+msgstr ""
+
+#: ../ml-slider.php:662
+msgid ""
+"Smart Crop ensures your responsive slides are cropped to a ratio that "
+"results in a consistent slideshow size"
+msgstr ""
+
+#: ../ml-slider.php:663
+msgid "Smart crop"
+msgstr ""
+
+#: ../ml-slider.php:670
+msgid ""
+"Display as carousel - when selected the effect and direction options will be "
+"ignored."
+msgstr ""
+
+#: ../ml-slider.php:671
+msgid "Carousel mode"
+msgstr ""
+
+#: ../ml-slider.php:678
+msgid "Randomise the order of the slides"
+msgstr ""
+
+#: ../ml-slider.php:679
+msgid "Random"
+msgstr ""
+
+#: ../ml-slider.php:686
+msgid ""
+"Pause the slideshow when hovering over slider, then resume when no longer "
+"hovering"
+msgstr ""
+
+#: ../ml-slider.php:687
+msgid "Hover pause"
+msgstr ""
+
+#: ../ml-slider.php:694
+msgid "Reverse the animation direction"
+msgstr ""
+
+#: ../ml-slider.php:695
+msgid "Reverse"
+msgstr ""
+
+#: ../ml-slider.php:702
+msgid "How long to display each slide, in milliseconds"
+msgstr ""
+
+#: ../ml-slider.php:703
+msgid "Slide delay"
+msgstr ""
+
+#: ../ml-slider.php:706 ../ml-slider.php:755 ../ml-slider.php:771
+msgid "ms"
+msgstr ""
+
+#: ../ml-slider.php:710
+msgid "Set the speed of animations, in milliseconds"
+msgstr ""
+
+#: ../ml-slider.php:711
+msgid "Animation speed"
+msgstr ""
+
+#: ../ml-slider.php:718
+msgid "Number of squares (width x height)"
+msgstr ""
+
+#: ../ml-slider.php:719
+msgid "Number of squares"
+msgstr ""
+
+#: ../ml-slider.php:727 ../ml-slider.php:728
+msgid "Number of slices"
+msgstr ""
+
+#: ../ml-slider.php:735
+msgid "Set the text for the 'previous' direction item"
+msgstr ""
+
+#: ../ml-slider.php:736
+msgid "Previous text"
+msgstr ""
+
+#: ../ml-slider.php:743
+msgid "Set the text for the 'next' direction item"
+msgstr ""
+
+#: ../ml-slider.php:744
+msgid "Next text"
+msgstr ""
+
+#: ../ml-slider.php:751
+msgid "Delay beetwen squares in ms"
+msgstr ""
+
+#: ../ml-slider.php:752
+msgid "Square delay"
+msgstr ""
+
+#: ../ml-slider.php:759
+msgid "Opacity of title and navigation"
+msgstr ""
+
+#: ../ml-slider.php:760
+msgid "Opacity"
+msgstr ""
+
+#: ../ml-slider.php:767
+msgid "Set the fade in speef of the caption"
+msgstr ""
+
+#: ../ml-slider.php:768
+msgid "Caption speed"
+msgstr ""
+
+#: ../ml-slider.php:775
+msgid "Developer Options"
+msgstr ""
+
+#: ../ml-slider.php:778
+msgid ""
+"Specify any custom CSS Classes you would like to be added to the slider "
+"wrapper"
+msgstr ""
+
+#: ../ml-slider.php:779
+msgid "CSS classes"
+msgstr ""
+
+#: ../ml-slider.php:786
+msgid "Uncheck this is you would like to include your own CSS"
+msgstr ""
+
+#: ../ml-slider.php:787
+msgid "Print CSS"
+msgstr ""
+
+#: ../ml-slider.php:794
+msgid "Uncheck this is you would like to include your own Javascript"
+msgstr ""
+
+#: ../ml-slider.php:795
+msgid "Print JS"
+msgstr ""
+
+#: ../ml-slider.php:806
+msgid "Usage"
+msgstr ""
+
+#: ../ml-slider.php:812
+msgid "Shortcode"
+msgstr ""
+
+#: ../ml-slider.php:818
+msgid "Template Include"
+msgstr ""
+
+#: ../ml-slider.php:828
+msgid "Delete Slider"
+msgstr ""

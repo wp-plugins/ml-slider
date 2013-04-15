@@ -1,47 +1,43 @@
 === Plugin Name ===
 Contributors: matchalabs
-Tags: wordpress slider,slider,slides,slideshow,wordpress slideshow,image slider,flexslider,flex,flex slider,nivoslider,nivo,nivo slider,responsiveslides,responsive,responsive slides,coinslider,coin,coin slider,slideshow,carousel,responsive slider,slider plugin,vertical slides,ml slider,image rotator,metaslider, meta
+Tags: wordpress slider,slideshow,wordpress slideshow,image slider,flexslider,flex slider,nivoslider,nivo slider,responsiveslides,responsive,responsive slides,coinslider,coin slider,slideshow,carousel,responsive slider,vertical slides,ml slider,image rotator,metaslider,meta,ajax,metaslider pro
 Requires at least: 3.5
-Tested up to: 3.5
+Tested up to: 3.6
 Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-4 image sliders in 1! Choose from Nivo Slider, Flex Slider, Coin Slider or Responsive Slides.
+4 sliders in 1! Choose from Nivo Slider, Flex Slider, Coin Slider or Responsive Slides.
 
 == Description ==
-Meta Slider is a flexible, intuitive slideshow administration plugin with that leaves the heavy lifting to a selection of open source jQuery libraries. The choice is yours:
+
+http://www.youtube.com/watch?v=SdPKN7rTfM8
+
+Meta Slider is a flexible, intuitive slideshow administration plugin that lets you choose between 4 jQuery sliders.
 
 * Nivo Slider (Responsive, 16 transition effects, 4 themes)
 * Flex Slider 2 (Responsive, 2 transition effects)
 * Coin Slider (4 transition effects)
 * Responsive Slides (Responsive, fade effect only, incredibly light weight!)
 
-The plugin builds upon standard WordPress functionality wherever possible; slideshows are stored as a custom post type, slides are stored as media files and the relation between the two is stored as taxonomy data.
+Features:
 
-http://www.youtube.com/watch?v=uGSEc8dfiPA
-
-Meta Slider Features:
-
-* Intuitive administration panel
+* Intuitive, responsive AJAX powered administration panel
 * Create unlimited slideshows with unlimited number of slides
-* Choose slider library from Nivo Slider, Flex Slider 2, Coin Slider or Responsive Slides (per slideshow)
-* Add captions to slides
-* Add URLs to slides
-* Reorder slides with drag and drop
-* Create new slides from your Media Library, or upload new images
-* Mix & Match! Include as many slideshows on the same page as you want
-* Option to include your own CSS
+* Change slideshow settings such as: speed, theme, hover pause, width, height, easing
+* Add Captions & URLs to slides
+* Drag & Drop reording
+* Fully integrated with the new WordPress 3.5 Media Manager
 * Lightweight, only the bare minimum in terms of JavaScript and CSS is outputted to your website
-* Built in shortcode
+* Built in intelligent image cropping
+* Carousel Mode available with flexslider
 * Supports localisation
 
-Slider Features:
+What people say:
 
-* Total of 18 transition effects
-* 4 themes (Nivo Slider)
-* Responsive (Nivo Slider, Flex Slider 2, Responsive Slides)
-* Adjust slider libary options such as: speed, theme, hover pause, width, height
+* "Can't imagine how you'd make a better, easier, or more intuitive slider."
+* "The admin area is so simple and intuitive that a child can handle it."
+* "It's simple, intuitive, and works the way it promises to."
 
 Read more and thanks to:
 
@@ -49,6 +45,15 @@ Read more and thanks to:
 * [http://responsive-slides.viljamis.com/](http://responsive-slides.viljamis.com/)
 * [http://workshop.rs/projects/coin-slider/](http://workshop.rs/projects/coin-slider/)
 * [http://dev7studios.com/nivo-slider/](http://dev7studios.com/nivo-slider/)
+
+Want More? Get the Meta Slider Pro addon pack to add support for:
+
+* YouTube slides
+* Vimeo slides
+* HTML slides
+* Dynamic Post Feed Slides (content slider)
+
+Find out more at http://www.metaslider.com
 
 == Installation ==
 
@@ -58,17 +63,11 @@ Read more and thanks to:
 
 == Frequently Asked Questions ==
 
-= How do I include a slideshow directly in my templates? =
-
-`<?php echo do_shortcode("[metaslider id=#]") ?>`
-
-= Why are some effects/options greyed out? =
-
-The effects are enabled/disabled depending on which slider library you have selected.
-
-For example, flex slider supports the 'Fade' and 'Slide' effect whereas coin slider supports 'Random', 'Swirl', 'Straight' and 'Rain'. Unavailable options are greyed out.
+http://www.metaslider.com/documentation/
 
 == Screenshots ==
+
+http://www.metaslider.com/examples/
 
 1. Administration panel - overview
 2. Nivo Slider example
@@ -79,6 +78,21 @@ For example, flex slider supports the 'Fade' and 'Slide' effect whereas coin sli
 
 == Changelog ==
 
+= 2.0 =
+* New feature: Preview slideshows in admin control panel
+* New feature: 'Easing' options added to flex slider
+* New feature: 'Carousel mode' option added for flex slider
+* New feature: 'Auto play' option added
+* New feature: 'Smart Crop' setting ensures your slideshow size remains consitent regardless of image dimensions
+* New feature: 'Center align slideshow' option added for all sliders
+* New feature: Coin Slider upgraded to latest version, new options now exposed in Meta Slider
+* New feature: Captions now supported by responsive slides
+* Improvement: Responsive AJAX powered administration screen
+* Improvement: Code refactored
+* Improvement: Flex Slider captions now sit over the slide
+* Fix: Nivo slider invalid markup (reported by and thanks to: nellyshark)
+* Fix: JS && encoding error (reported by and thanks to: neefje)
+
 = 1.3 =
 * Renamed to Meta Slider (previously ML Slider)
 * Improvement: Admin styling cleaned up
@@ -86,7 +100,7 @@ For example, flex slider supports the 'Fade' and 'Slide' effect whereas coin sli
 * Improvement: Plugin localised
 * Improvement: Template include PHP code now displayed on slider edit page
 * Improvement: jQuery tablednd replaced with jQuery sortable for reordering slides
-* Improvement: Open URL in new window option added
+* New feature: Open URL in new window option added
 * Improvement: max-width css rule added to slider wrapper
 * Fix: UTF-8 support in captions (reported by and thanks to: petergluk)
 * Fix: JS && encoding error (reported by and thanks to: neefje)
@@ -118,6 +132,3 @@ For example, flex slider supports the 'Fade' and 'Slide' effect whereas coin sli
 * Initial version
 
 == Upgrade Notice ==
-
-= 1.3 =
-As part of this update ML Slider will be renamed to MetaSlider. Your shortcodes and slideshows will be unaffected. If you have customised any CSS you should update your CSS files to reference .metaslider rather than .ml-slider. Check the changelog for updates.

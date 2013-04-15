@@ -1,30 +1,40 @@
 <?php
-/*
- *
+/**
+ * Nivo Slider specific markup, javascript, css and settings.
  */
 class MetaNivoSlider extends MetaSlider {
 
     protected $js_function = 'nivoSlider';
+    protected $js_path = 'sliders/nivoslider/jquery.nivo.slider.pack.js';
+    protected $css_path = 'sliders/nivoslider/nivo-slider.css';
 
     /**
      * Constructor
      */
     public function __construct($id) {
         parent::__construct($id);
+
+        add_filter('metaslider_nivo_slider_parameters', array($this, 'set_autoplay_parameter'), 10, 2);
     }
 
     /**
-     * Return the file path to the Javascript for this slider
+     * Other slides use "AutoPlay = true" (true autoplays the slideshow)
+     * Nivo slider uses "ManualAvance = false" (ie, false autoplays the slideshow)
+     * Take care of the manualAdvance parameter here.
      */
-    public function get_js_path() {
-        return 'nivoslider/jquery.nivo.slider.pack.js';
-    }
+    public function set_autoplay_parameter($options, $slider_id) {
+        if (isset($options["autoPlay"])) {
+            if ($options["autoPlay"] == 'true') {
+                $options["manualAdvance"] = 'false';
+            } else {
+                $options["manualAdvance"] = 'true';
+            }
+        }
+        
+        // we don't want this filter hanging around if there's more than one slideshow on the page
+        remove_filter('metaslider_nivo_slider_parameters', array($this, 'set_autoplay_parameter'));
 
-    /**
-     * Return the file path to the CSS for this slider
-     */
-    public function get_css_path() {
-        return 'nivoslider/nivo-slider.css';
+        return $options;
     }
 
     /**
@@ -45,7 +55,8 @@ class MetaNivoSlider extends MetaSlider {
             'spw' => 'boxCols',
             'sph' => 'boxRows',
             'navigation' => 'controlNav',
-            'links' =>'directionNav'
+            'links' =>'directionNav',
+            'autoPlay' => 'autoPlay'
         );
 
         if (isset($params[$param])) {
@@ -64,7 +75,7 @@ class MetaNivoSlider extends MetaSlider {
         // include the theme
         if ($this->get_setting('printCss') == 'true') {
             $theme = $this->get_setting('theme');
-            wp_enqueue_style('ml-slider_nivo_slider_theme_' . $theme, METASLIDER_ASSETS_URL  . "nivoslider/themes/{$theme}/{$theme}.css");
+            wp_enqueue_style('ml-slider_nivo_slider_theme_' . $theme, METASLIDER_ASSETS_URL  . "sliders/nivoslider/themes/{$theme}/{$theme}.css");
         }
     }
 
@@ -78,10 +89,8 @@ class MetaNivoSlider extends MetaSlider {
         $retVal .= "<div class='ribbon'></div>";
         $retVal .= "<div id='" . $this->get_identifier() . "' class='nivoSlider'>";
         
-        foreach ($this->get_slides() as $slide) {
-            if (strlen($slide['url'])) $retVal .= "<a href='{$slide['url']}' target='{$slide['target']}'>";
-            $retVal .= "<img src='{$slide['src']}' title='{$slide['caption']}' alt='{$slide['alt']}'>";
-            if (strlen($slide['url'])) $retVal .= "</a>";
+        foreach ($this->slides as $slide) {
+            $retVal .= $slide;
         }
         
         $retVal .= "</div></div>";
