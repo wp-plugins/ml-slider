@@ -3,7 +3,7 @@ Contributors: matchalabs
 Tags: wordpress slider,slideshow,wordpress slideshow,image slider,flexslider,flex slider,nivoslider,nivo slider,responsiveslides,responsive,responsive slides,coinslider,coin slider,slideshow,carousel,responsive slider,vertical slides,ml slider,image rotator,metaslider,meta,ajax,metaslider pro
 Requires at least: 3.5
 Tested up to: 3.6
-Stable tag: 1.3
+Stable tag: 2.0-beta
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,7 +78,7 @@ http://www.metaslider.com/examples/
 
 == Changelog ==
 
-= 2.0 =
+= 2.0-beta =
 * New feature: Preview slideshows in admin control panel
 * New feature: 'Easing' options added to flex slider
 * New feature: 'Carousel mode' option added for flex slider
