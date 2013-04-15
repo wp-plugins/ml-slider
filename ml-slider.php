@@ -147,7 +147,7 @@ class MetaSliderPlugin {
         if ((isset($_GET['page']) && $_GET['page'] == 'metaslider') || isset($_GET['tab']) == 'metaslider_pro') {
 
             $newtabs = array( 
-                'metaslider_pro' => __("More Slide Types", '')
+                'metaslider_pro' => __("More Slide Types", 'metaslider')
             );
 
             if (isset($tabs['nextgen'])) unset($tabs['nextgen']);
