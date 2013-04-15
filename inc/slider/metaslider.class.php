@@ -333,7 +333,7 @@ class MetaSlider {
         }
 
         // update the slider settings
-        update_post_meta($this->id, 'ml-slider_settings', array_merge($old_settings, $new_settings));
+        update_post_meta($this->id, 'ml-slider_settings', array_merge((array)$old_settings, $new_settings));
 
         $this->settings = $this->get_settings();
     }
