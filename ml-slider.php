@@ -67,8 +67,7 @@ class MetaSliderPlugin {
         add_filter('no_texturize_shortcodes', array($this, 'no_texturize_metaslider_shortcode'));
         
         $plugin = plugin_basename(__FILE__);
-        add_filter("plugin_action_links_{$plugin}", array($this,'your_plugin_settings_link') );
-
+        add_filter("plugin_action_links_{$plugin}", array($this,'upgrade_to_pro') );
 
         $this->register_slide_types();
     }
@@ -76,7 +75,7 @@ class MetaSliderPlugin {
     /**
      * Add settings link on plugin page
      */
-    public function your_plugin_settings_link($links) { 
+    public function upgrade_to_pro($links) { 
         $links[] = '<a href="http://www.metaslider.com/upgrade" target="_blank">' . __("Go Pro", 'metaslider') . '</a>'; 
         return $links; 
     }
@@ -92,7 +91,11 @@ class MetaSliderPlugin {
      * Media Manager iframe HTML
      */
     public function iframe() {
-        echo "<p style='padding: 20px;'>Get the <a href='http://www.metaslider.com' target='_blank'>Meta Slider Pro</a> addon pack to add support for:<ul><li>YouTube Slides</li><li>Vimeo Slides</li><li>HTML Overlay Slides</li><li>Post Feedslides</li></ul>";
+        wp_enqueue_style('metaslider-admin-styles', METASLIDER_ASSETS_URL . 'metaslider/admin.css', false, METASLIDER_VERSION);
+        wp_enqueue_script('google-font-api', 'http://fonts.googleapis.com/css?family=PT+Sans:400,700|PT+Serif+Caption|PT+Serif:400,700');
+
+        echo "<p style='text-align: center; font-size: 1.2em;'>Add support for <b>Post Feed</b> Slides, <b>YouTube</b> Slides, <b>HTML</b> Slides & <b>Vimeo</b> Slides</p>";
+        echo "<a class='probutton' href='http://www.metaslider.com/upgrade/' target='_blank'>Get <span class='logo'><strong>Meta</strong>Slider</span><span class='super'>Pro</span></a>";
     }
 
     /**
@@ -144,7 +147,7 @@ class MetaSliderPlugin {
         if ((isset($_GET['page']) && $_GET['page'] == 'metaslider') || isset($_GET['tab']) == 'metaslider_pro') {
 
             $newtabs = array( 
-                'metaslider_pro' => __("More Slide Types", 'metaslider')
+                'metaslider_pro' => __("More Slide Types", '')
             );
 
             if (isset($tabs['nextgen'])) unset($tabs['nextgen']);
