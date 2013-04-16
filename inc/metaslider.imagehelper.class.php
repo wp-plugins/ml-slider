@@ -7,34 +7,22 @@ class MetaSliderImageHelper {
     private $smart_crop = false; // crop mode (default or smart)
     private $container_width; // slideshow width
     private $container_height; // slideshow height
+    private $id;
     private $url;
+    private $path;
 
     /**
      * Constructor
      */
-    public function __construct($width, $height, $smart_crop) {
+    public function __construct($slide_id, $width, $height, $smart_crop) {
+        $this->id = $slide_id;
+
+        $upload_dir = wp_upload_dir();
+        $this->url = $upload_dir['baseurl'] . "/" . get_post_meta($slide_id, '_wp_attached_file', true);
+
         $this->container_width = $width;
         $this->container_height = $height;
         $this->smart_crop = $smart_crop;
-    }
-
-    /**
-     * Set image URL by specifying the attachment ID
-     * 
-     * @var $slide_id attachment ID
-     */
-    public function set_url_by_attachment_id($slide_id) {
-        $source_slide = wp_get_attachment_image_src($slide_id, 'full');
-        $this->url = $source_slide[0];
-    }
-
-    /**
-     * Set image URL
-     * 
-     * @var $url image url
-     */
-    public function set_url($url) {
-        $this->url = $url;
     }
 
     /**
@@ -118,15 +106,14 @@ class MetaSliderImageHelper {
      */
     function get_image_url() {
         // Get the image file path
-        $file_path = parse_url( $this->url );
-        $file_path = $_SERVER['DOCUMENT_ROOT'] . $file_path['path'];
+        $file_path = get_attached_file($this->id);
 
         // load image
         $image = wp_get_image_editor($file_path);
 
         // editor will return an error if the path is invalid
         if (is_wp_error($image)) {
-            return $image;
+            return $this->url;
         }
 
         // get the original image size
@@ -145,11 +132,11 @@ class MetaSliderImageHelper {
         $ext = $info['extension'];
         $name = wp_basename($file_path, ".$ext");
 
-        // Get the destination file name
+        // build the new file name
         $dest_file_name = "{$dir}/{$name}-{$dest_width}x{$dest_height}.{$ext}";
-
         $url = str_replace(basename($this->url), basename($dest_file_name), $this->url);
 
+        // resize if required
         if (!file_exists($dest_file_name)) {
             $dims = image_resize_dimensions($orig_width, $orig_height, $dest_width, $dest_height, true);
             list($dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h) = $dims;

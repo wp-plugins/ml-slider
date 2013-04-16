@@ -37,7 +37,7 @@ class MetaImageSlide extends MetaSlide {
      */
     protected function get_admin_slide() {
         // get some slide settings
-        $thumb   = wp_get_attachment_image_src($this->slide->ID);
+        $thumb   = $this->get_thumb();
         $full    = wp_get_attachment_image_src($this->slide->ID, 'full');
         $url     = get_post_meta($this->slide->ID, 'ml-slider_url', true);
         $target  = get_post_meta($this->slide->ID, 'ml-slider_new_window', true) ? 'checked=checked' : '';
@@ -51,7 +51,7 @@ class MetaImageSlide extends MetaSlide {
         // slide row HTML
         $row  = "<tr class='slide flex responsive nivo coin'>";
         $row .= "    <td class='col-1'>";
-        $row .= "        <div class='thumb' style='background-image: url({$thumb[0]})'>";
+        $row .= "        <div class='thumb' style='background-image: url({$thumb})'>";
         $row .= "            <a class='delete-slide confirm' href='?page=metaslider&id={$this->slider->ID}&deleteSlide={$this->slide->ID}'>x</a>";
         $row .= "            <span class='slide-details'>Image {$full[1]} x {$full[2]}</span>";
         $row .= "        </div>";
@@ -78,13 +78,12 @@ class MetaImageSlide extends MetaSlide {
     protected function get_public_slide() {
         // get the image url (and handle cropping)
         $imageHelper = new MetaSliderImageHelper(
+            $this->slide->ID,
             $this->settings['width'], 
             $this->settings['height'], 
-            isset($this->settings['smartCrop']) ? $this->settings['smartCrop'] : false
+            isset($this->settings['smartCrop']) ? $this->settings['smartCrop'] : 'false'
         );
 
-        $imageHelper->set_url_by_attachment_id($this->slide->ID);
-        
         $url = $imageHelper->get_image_url();
 
         if (is_wp_error($url)) {

@@ -89,16 +89,8 @@ class MetaSlide {
      * Get the thumbnail for the slide
      */
     public function get_thumb() {
-        $thumb_path = get_post_meta($this->slide->ID, '_wp_attached_file', true);
-        $upload_dir = wp_upload_dir();
-        $thumb_url = $upload_dir['baseurl'] . "/" . $thumb_path;
-
-        $imageHelper = new MetaSliderImageHelper(150,150,true);
-        $imageHelper->set_url($thumb_url);
-        
-        $resized_thumb = $imageHelper->get_image_url();
-
-        return $resized_thumb;
+        $imageHelper = new MetaSliderImageHelper($this->slide->ID, 150,150,'false');
+        return $imageHelper->get_image_url();
     }
 }
 ?>
