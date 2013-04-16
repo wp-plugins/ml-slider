@@ -163,8 +163,8 @@ class MetaSlider {
             $type = get_post_meta($query->post->ID, 'ml-slider_type', true);
             $type = $type ? $type : 'image';
 
-            if (has_filter("get_{$type}_slide")) {
-                $return = apply_filters("get_{$type}_slide", $query->post->ID, $this->id);
+            if (has_filter("metaslider_get_{$type}_slide")) {
+                $return = apply_filters("metaslider_get_{$type}_slide", $query->post->ID, $this->id);
 
                 if (is_array($return)) {
                     $slides = array_merge($slides, $return);
@@ -278,7 +278,9 @@ class MetaSlider {
         $return_value .= "\n        $('#" . $identifier . "')." . $this->js_function . "({ ";
         $return_value .= "\n            " . $this->get_javascript_parameters();
         $return_value .= "\n        });";
-        $return_value .= "\n        {$javascript}";
+        if (strlen ($javascript)) {
+            $return_value .= "\n        {$javascript}";
+        }
         $return_value .= "\n    };";
         $return_value .= "\n    var timer_" . $identifier . " = function() {";
         $return_value .= "\n        var slider = !window.jQuery ? window.setTimeout(timer_{$identifier}, 100) : !jQuery.isReady ? window.setTimeout(timer_{$identifier}, 100) : {$identifier}(window.jQuery);";
@@ -374,7 +376,7 @@ class MetaSlider {
      */
     private function update_slides($data) {
         foreach ($data as $slide_id => $fields) {
-            do_action("save_{$fields['type']}_slide", $slide_id, $this->id, $fields); 
+            do_action("metaslider_save_{$fields['type']}_slide", $slide_id, $this->id, $fields); 
         }
     }
 }

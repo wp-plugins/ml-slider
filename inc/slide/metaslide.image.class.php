@@ -8,8 +8,8 @@ class MetaImageSlide extends MetaSlide {
      * Register slide type
      */
     public function __construct() {
-        add_filter('get_image_slide', array($this, 'get_slide'), 10, 2);
-        add_action('save_image_slide', array($this, 'save_slide'), 5, 3);
+        add_filter('metaslider_get_image_slide', array($this, 'get_slide'), 10, 2);
+        add_action('metaslider_save_image_slide', array($this, 'save_slide'), 5, 3);
         add_action('wp_ajax_create_image_slide', array($this, 'ajax_create_slide'));
     }
 
