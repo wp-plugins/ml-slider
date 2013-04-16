@@ -41,7 +41,7 @@ class MetaSliderImageHelper {
 
         $container_width = $this->container_width;
         $container_height = $this->container_height;
-        
+
         /**
          * Slideshow Width == Slide Width
          */
@@ -68,9 +68,57 @@ class MetaSliderImageHelper {
             $new_slide_height = $image_height / ($container_width / $image_width);
         }
 
+        /**
+         * Slide is smaller than slidehow - both width and height
+         */
         if ($image_width < $container_width && $image_height < $container_height) {
-            $new_slide_width = $image_width;
-            $new_slide_height = $container_height / ($container_width / $image_width);
+            $container_ratio = $container_width / $container_height;
+
+            if ($container_width > $container_height) {
+                // wide
+                if ($image_width > $image_height) {
+                    // wide
+                    $new_slide_height = $image_height;
+                    $new_slide_width = $container_width / ($container_height / $image_height);
+
+                    if ($image_height >= ($container_height/2)) {
+                        $new_slide_width = $image_width;
+                        $new_slide_height = $container_height / ($container_width / $image_width);
+                    }
+                } else {
+                    // tall
+                    $new_slide_width = $image_width;
+                    $new_slide_height = $container_height / ($container_width / $image_width);
+
+                    if ($slide_width >= ($container_width/2)) {
+                        //echo "Can you get here? A";
+                        $new_slide_height = $image_height;
+                        $new_slide_width = $container_width / ($container_height / $image_height);
+                    }
+                }
+            } else {
+                //tall
+                if ($image_width > $image_height) {
+                    // wide
+                    $new_slide_height = $image_height;
+                    $new_slide_width = $container_width / ($container_height / $image_height);
+
+                    if ($image_height >= ($container_height/2)) {
+                        //echo "Can you get here? B";
+                        $new_slide_width = $image_width;
+                        $new_slide_height = $container_height / ($container_width / $image_width);
+                    }
+                } else {
+                    // tall
+                    $new_slide_width = $image_width;
+                    $new_slide_height = $container_height / ($container_width / $image_width);
+
+                    if ($image_width >= ($container_width/2)) {
+                        $new_slide_height = $image_height;
+                        $new_slide_width = $container_width / ($container_height / $image_height);
+                    }
+                }
+            }
         }
 
         if ($image_width < $container_width && $image_height > $container_height) {
