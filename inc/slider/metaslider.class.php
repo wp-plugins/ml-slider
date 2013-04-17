@@ -38,10 +38,13 @@ class MetaSlider {
      * @return array slider settings
      */
     private function get_settings() {
-        $saved_settings = get_post_meta($this->id, 'ml-slider_settings', true);
+        $settings = get_post_meta($this->id, 'ml-slider_settings', true);
 
-        if (is_array($saved_settings) && isset($saved_settings['type'])) {
-            return $saved_settings;
+        if (is_array($settings) && 
+            isset($settings['type']) && 
+            in_array($settings['type'], array('flex', 'coin', 'nivo', 'responsive'))) 
+        {
+            return $settings;
         } else {
             return $this->get_default_parameters();
         }

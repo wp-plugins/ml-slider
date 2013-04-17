@@ -270,8 +270,14 @@ class MetaSliderPlugin {
      * Set the current slider
      */
     private function set_slider($id) {
+        $type = 'flex';
         $settings = get_post_meta($id, 'ml-slider_settings', true);
-        $this->slider = $this->create_slider($settings['type'], $id);
+
+        if (isset($settings['type']) && in_array($settings['type'], array('flex', 'coin', 'nivo', 'responsive'))) {
+            $type = $settings['type'];
+        }
+
+        $this->slider = $this->create_slider($type, $id);
     }
 
     /**
