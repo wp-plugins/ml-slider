@@ -26,6 +26,7 @@
 .metaslider .flexslider .flex-direction-nav,
 .metaslider .rslides li,
 .metaslider .rslides .rslides_tabs {
+  height: auto;
   border: 0;
   border-top: 0;
   border-right: 0;
