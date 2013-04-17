@@ -3,7 +3,7 @@ Contributors: matchalabs
 Tags: wordpress slider,slideshow,wordpress slideshow,image slider,flexslider,flex slider,nivoslider,nivo slider,responsiveslides,responsive,responsive slides,coinslider,coin slider,slideshow,carousel,responsive slider,vertical slides,ml slider,image rotator,metaslider,meta,ajax,metaslider pro
 Requires at least: 3.5
 Tested up to: 3.6
-Stable tag: 1.3
+Stable tag: 2.0-beta5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,15 @@ http://www.metaslider.com/examples/
 6. Administration panel - selecting slides
 
 == Changelog ==
+
+= 2.0-betaX=
+* Improvement: Error messages exposed in admin is Meta Slider cannot load the slides
+* Improvement: Load default settings if original settings are corrupt/incomplete
+* Fix: Smart Crop ratio
+* Fix: UTF-8 characters in captions (reported by and thanks to: javitopo)
+* Fix: JetPack Photo not loading images (reported by and thanks to: Jason)
+* Fix: Double slash on jQuery easing path
+* Fix: Paragraph tags outputted in JavaScript (reported by and thanks to: CrimsonRaddish)
 
 = 2.0-beta =
 * New feature: Preview slideshows in admin control panel
