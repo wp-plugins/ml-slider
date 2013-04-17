@@ -67,13 +67,11 @@ http://www.metaslider.com/documentation/
 
 == Screenshots ==
 
-http://www.metaslider.com/examples/
-
-1. Administration panel - overview
+1. Meta Slider - for live demos see http://www.metaslider.com/examples/
 2. Nivo Slider example
 3. Coin Slider example
 4. Flex Slider example
-5. Responsive Slides example
+5. Carousel Example
 6. Administration panel - selecting slides
 
 == Changelog ==
