@@ -4,12 +4,12 @@
  */
 class MetaSliderImageHelper {
 
-    private $smart_crop = false; // crop mode (default or smart)
+    private $smart_crop = 'false';
     private $container_width; // slideshow width
     private $container_height; // slideshow height
-    private $id;
+    private $id; // slide/attachment ID
     private $url;
-    private $path;
+    private $path; // path to attachment on server
 
     /**
      * Constructor
