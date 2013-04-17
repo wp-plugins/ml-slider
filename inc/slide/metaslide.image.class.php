@@ -120,7 +120,7 @@ class MetaImageSlide extends MetaSlide {
      * @return string slide html
      */
     private function get_nivo_slider_markup($slide) {
-        $html = "<img height='{$this->settings['height']}px' width='{$this->settings['width']}px' src='{$slide['thumb']}' title='{$slide['caption']}' alt='{$slide['alt']}' />";
+        $html = "<img height='{$this->settings['height']}' width='{$this->settings['width']}' src='{$slide['thumb']}' title='{$slide['caption']}' alt='{$slide['alt']}' />";
 
         if (strlen($slide['url'])) {
             $html = "<a href='{$slide['url']}' target='{$slide['target']}'>" . $html . "</a>";
@@ -135,7 +135,7 @@ class MetaImageSlide extends MetaSlide {
      * @return string slide html
      */
     private function get_flex_slider_markup($slide) {
-        $html = "<img height='{$this->settings['height']}px' width='{$this->settings['width']}px' src='{$slide['thumb']}' alt='{$slide['alt']}' />";
+        $html = "<img height='{$this->settings['height']}' width='{$this->settings['width']}' src='{$slide['thumb']}' alt='{$slide['alt']}' />";
 
         if (strlen($slide['url'])) {
             $html = "<a href='{$slide['url']}' target='{$slide['target']}'>" . $html . "</a>";
@@ -157,7 +157,7 @@ class MetaImageSlide extends MetaSlide {
         $url = strlen($slide['url']) ? $slide['url'] : "javascript:void(0)"; // coinslider always wants a URL
 
         $html  = "<a href='{$url}' style='display: none;'>";
-        $html .= "<img height='{$this->settings['height']}px' width='{$this->settings['width']}px' src='{$slide['thumb']}' alt='{$slide['alt']}' />"; // target doesn't work with coin
+        $html .= "<img height='{$this->settings['height']}' width='{$this->settings['width']}' src='{$slide['thumb']}' alt='{$slide['alt']}' />"; // target doesn't work with coin
         $html .= "<span>{$slide['caption']}</span>";
         $html .= "</a>";
         return $html;
@@ -169,7 +169,7 @@ class MetaImageSlide extends MetaSlide {
      * @return string slide html
      */
     private function get_responsive_slides_markup($slide) {
-        $html = "<img height='{$this->settings['height']}px' width='{$this->settings['width']}px' src='{$slide['thumb']}' alt='{$slide['alt']}' />";
+        $html = "<img height='{$this->settings['height']}' width='{$this->settings['width']}' src='{$slide['thumb']}' alt='{$slide['alt']}' />";
 
         if (strlen($slide['caption'])) {
             $html .= "<div class='caption-wrap'><div class='caption'>" . $slide['caption'] . "</div></div>";
