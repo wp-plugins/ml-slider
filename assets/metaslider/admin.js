@@ -52,6 +52,12 @@ jQuery(document).ready(function($) {
         return confirm(metaslider.confirm);
     });
 
+    // show the confirm dialogue
+    jQuery(".toggle").live('click', function(e) {
+        e.preventDefault();
+        jQuery(this).next('.message').toggle();
+    });
+
     // helptext tooltips
     jQuery(".metaslider .tooltip").tipsy({className: 'msTipsy', live: true, delayIn: 1000, html: true, fade: true, gravity: 'e'});
     jQuery(".metaslider .tooltiptop").tipsy({live: true, delayIn: 1000, html: true, fade: true, gravity: 'se'});

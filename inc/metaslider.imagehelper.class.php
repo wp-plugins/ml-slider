@@ -72,8 +72,6 @@ class MetaSliderImageHelper {
          * Slide is smaller than slidehow - both width and height
          */
         if ($image_width < $container_width && $image_height < $container_height) {
-            $container_ratio = $container_width / $container_height;
-
             if ($container_width > $container_height) {
                 // wide
                 if ($image_width > $image_height) {
@@ -161,6 +159,16 @@ class MetaSliderImageHelper {
 
         // editor will return an error if the path is invalid
         if (is_wp_error($image)) {
+            if (is_admin()) {
+                echo '<div id="message" class="error">';
+                echo "<p><strong>ERROR</strong> " . $image->get_error_message() . " Check <a href='http://codex.wordpress.org/Changing_File_Permissions' target='_blank'>file permissions</a></p>";
+                echo "<button class='toggle'>Show Details</button>";
+                echo "<div class='message' style='display: none;'><br />Slide ID: {$this->id}<pre>";
+                var_dump($image); 
+                echo "</pre></div>";
+                echo "</div>";
+            }
+            
             return $this->url;
         }
 
