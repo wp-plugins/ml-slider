@@ -41,8 +41,13 @@ class MetaResponsiveSlider extends MetaSlider {
     protected function get_html() {
         $return_value = "<ul id='" . $this->get_identifier() . "' class='rslides'>";
         
+        $first = true;
         foreach ($this->slides as $slide) {
-            $return_value .= "<li style='display: none'>" . $slide . "</li>";
+            if (!$first) {
+                $style = " style='display: none'";
+            }
+            $return_value .= "<li{$style}>" . $slide . "</li>";
+            $first = false;
         }
         
         $return_value .= "</ul>";

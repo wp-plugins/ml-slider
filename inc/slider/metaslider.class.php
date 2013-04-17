@@ -38,7 +38,13 @@ class MetaSlider {
      * @return array slider settings
      */
     private function get_settings() {
-        return get_post_meta($this->id, 'ml-slider_settings', true);
+        $saved_settings = get_post_meta($this->id, 'ml-slider_settings', true);
+
+        if (is_array($saved_settings) && isset($saved_settings['type'])) {
+            return $saved_settings;
+        } else {
+            return $this->get_default_parameters();
+        }
     }
 
     /**
