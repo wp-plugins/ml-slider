@@ -1,3 +1,6 @@
+.metaslider-responsive {
+  position: relative;
+}
 .metaslider .flexslider .slides li,
 .metaslider ul.rslides li  {
   position: relative;
@@ -17,7 +20,9 @@
 .metaslider .caption {
   padding: 5px 10px;
 }
-.metaslider img,
+.metaslider img {
+  height: auto;
+}
 .metaslider .flexslider,
 .metaslider .flexslider ul,
 .metaslider .flexslider .slides li,
@@ -26,7 +31,6 @@
 .metaslider .flexslider .flex-direction-nav,
 .metaslider .rslides li,
 .metaslider .rslides .rslides_tabs {
-  height: auto;
   border: 0;
   border-top: 0;
   border-right: 0;
