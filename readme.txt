@@ -80,6 +80,7 @@ http://www.metaslider.com/documentation/
 * Fix: Responsive slides navigation styling
 * Fix: Update slide order on save
 * Fix: Smart crop edge cases
+* Fix: Flexslider navigation overflow
 
 = 2.0-betaX =
 * Improvement: Error messages exposed in admin is Meta Slider cannot load the slides
