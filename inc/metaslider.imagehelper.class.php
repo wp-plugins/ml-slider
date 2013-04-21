@@ -74,12 +74,13 @@ class MetaSliderImageHelper {
         if ($image_width < $container_width && $image_height < $container_height) {
             if ($container_width > $container_height) {
                 // wide
+
                 if ($image_width > $image_height) {
                     // wide
                     $new_slide_height = $image_height;
                     $new_slide_width = $container_width / ($container_height / $image_height);
 
-                    if ($image_height >= ($container_height/2)) {
+                    if ($new_slide_width > $image_width) {
                         $new_slide_width = $image_width;
                         $new_slide_height = $container_height / ($container_width / $image_width);
                     }
@@ -88,21 +89,19 @@ class MetaSliderImageHelper {
                     $new_slide_width = $image_width;
                     $new_slide_height = $container_height / ($container_width / $image_width);
 
-                    if ($slide_width >= ($container_width/2)) {
-                        //echo "Can you get here? A";
+                    if ($new_slide_height > $image_height) {
                         $new_slide_height = $image_height;
                         $new_slide_width = $container_width / ($container_height / $image_height);
                     }
                 }
             } else {
-                //tall
+                // tall
                 if ($image_width > $image_height) {
                     // wide
                     $new_slide_height = $image_height;
                     $new_slide_width = $container_width / ($container_height / $image_height);
 
-                    if ($image_height >= ($container_height/2)) {
-                        //echo "Can you get here? B";
+                    if ($new_slide_width > $image_width) {
                         $new_slide_width = $image_width;
                         $new_slide_height = $container_height / ($container_width / $image_width);
                     }
@@ -111,7 +110,7 @@ class MetaSliderImageHelper {
                     $new_slide_width = $image_width;
                     $new_slide_height = $container_height / ($container_width / $image_width);
 
-                    if ($image_width >= ($container_width/2)) {
+                    if ($new_slide_height > $image_height) {
                         $new_slide_height = $image_height;
                         $new_slide_width = $container_width / ($container_height / $image_height);
                     }

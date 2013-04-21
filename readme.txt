@@ -78,8 +78,8 @@ http://www.metaslider.com/documentation/
 
 = 2.0 =
 * Fix: Responsive slides navigation styling
-* Fix: Slide ordering
-* Fix: Double confirmation alert when deleting slides
+* Fix: Update slide order on save
+* Fix: Smart crop edge cases
 
 = 2.0-betaX =
 * Improvement: Error messages exposed in admin is Meta Slider cannot load the slides
