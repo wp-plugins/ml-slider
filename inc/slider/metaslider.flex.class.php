@@ -99,12 +99,8 @@ class MetaFlexSlider extends MetaSlider {
     protected function get_html() {
         $return_value = "<div id='" . $this->get_identifier() . "' class='flexslider'><ul class='slides'>";
 
-        $first = true;
         foreach ($this->slides as $slide) {
-            if (!$first) {
-                $style = " style='display: none'";
-            }
-            $return_value .= "<li{$style}>" . $slide . "</li>";
+            $return_value .= "<li style='display: none;'>" . $slide . "</li>";
             $first = false;
         }
         

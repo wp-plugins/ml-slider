@@ -1,3 +1,9 @@
+/**
+ * The files in /assets are unmodified.
+ * This file contains 
+ *    - resets, in an attempt to ensure sliders display properly in all themes
+ *    - modifications to the default sliders CSS
+ */
 .metaslider-responsive {
   position: relative;
 }
@@ -23,7 +29,6 @@
 .metaslider img {
   height: auto;
 }
-.metaslider .flexslider,
 .metaslider .flexslider ul,
 .metaslider .flexslider .slides li,
 .metaslider .flexslider .slides ul,
@@ -43,6 +48,9 @@
   margin-left: 0;
 	list-style-type: none;
 }
+.metaslider .flexslider {
+  border: 0;
+}
 .metaslider li:before,
 .metaslider li:after {
   content: "" !important;
@@ -51,6 +59,7 @@
 	margin: 0;
 }
 .metaslider .flexslider {
+  background: none;
   box-shadow: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -115,7 +124,4 @@
 .metaslider .rslides_nav.next {
 	right:0px;
   text-decoration: none;
-}
-.metaslider iframe {
-  display: block;
 }
