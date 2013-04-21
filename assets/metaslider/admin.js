@@ -102,6 +102,9 @@ jQuery(document).ready(function($) {
     jQuery(".metaslider form").find(":submit").click(function(e) {
         e.preventDefault();
 
+        // update slide order
+        jQuery(".metaslider .left table").trigger('updateSlideOrder');
+
         // get some values from elements on the page:
         var the_form = jQuery(this).parents("form");
         var data = the_form.serialize();
