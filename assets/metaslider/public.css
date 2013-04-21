@@ -51,6 +51,10 @@
 .metaslider .flexslider {
   border: 0;
 }
+.metaslider .flex-direction-nav a {
+  -moz-transition: all .3s ease;
+  transition: all .3s ease;
+}
 .metaslider li:before,
 .metaslider li:after {
   content: "" !important;
