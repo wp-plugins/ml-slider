@@ -760,6 +760,9 @@ class MetaSliderPlugin {
                                     <input class='option coin' type='number' min='0' max='10000' step='100' name="settings[titleSpeed]" value='<?php echo $this->slider->get_setting('titleSpeed') ?>' /><?php _e("ms", 'metaslider') ?>
                                 </td>
                             </tr>
+
+                            <?php echo apply_filters('metaslider_admin_options', $this->slider->settings); ?>
+
                             <tr>
                                 <td colspan='2' class='highlight'><?php _e("Developer Options", 'metaslider') ?></td>
                             </tr>
