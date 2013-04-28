@@ -33,6 +33,10 @@ Features:
 * Carousel Mode available with Flex Slider
 * Supports localisation
 
+Meta Slider has been translated into the following languages:
+
+* French (thanks to fb-graphiklab)
+
 Read more and thanks to:
 
 * [http://flexslider.woothemes.com/](http://flexslider.woothemes.com/)
@@ -71,6 +75,7 @@ http://www.metaslider.com/documentation/
 == Changelog ==
 
 = 2.0.1 =
+* New feature: French translation pack (thanks to: fb-graphiklab)
 * Fix: Use transparent background on default flexslider theme
 * Fix: Set direction to LTR for flexslider viewport (fix for RTL languages)
 * Fix: Nivoslider HTML Captions
