@@ -15,10 +15,10 @@ http://www.youtube.com/watch?v=5DgZGVulRRM
 
 Meta Slider is a flexible, intuitive slideshow administration plugin that lets you choose between 4 jQuery sliders.
 
+* Flex Slider 2 (Responsive, 2 transition effects, carousel mode)
 * Nivo Slider (Responsive, 16 transition effects, 4 themes)
-* Flex Slider 2 (Responsive, 2 transition effects)
-* Coin Slider (4 transition effects)
 * Responsive Slides (Responsive, fade effect only, incredibly light weight!)
+* Coin Slider (4 transition effects)
 
 Features:
 
@@ -30,14 +30,8 @@ Features:
 * Fully integrated with the new WordPress 3.5 Media Manager
 * Lightweight, only the bare minimum in terms of JavaScript and CSS is outputted to your website
 * Built in intelligent image cropping
-* Carousel Mode available with flexslider
+* Carousel Mode available with Flex Slider
 * Supports localisation
-
-What people say:
-
-* "Can't imagine how you'd make a better, easier, or more intuitive slider."
-* "The admin area is so simple and intuitive that a child can handle it."
-* "It's simple, intuitive, and works the way it promises to."
 
 Read more and thanks to:
 
@@ -75,6 +69,12 @@ http://www.metaslider.com/documentation/
 6. Administration panel - selecting slides
 
 == Changelog ==
+
+= 2.0.1 =
+* Fix: Use transparent background on default flexslider theme
+* Fix: Set direction to LTR for flexslider viewport (fix for RTL languages)
+* Fix: Nivoslider HTML Captions
+* Fix: Responsive slides navigation positioning
 
 = 2.0 =
 * Fix: Responsive slides navigation styling
