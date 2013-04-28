@@ -11,6 +11,9 @@
 .metaslider ul.rslides li  {
   position: relative;
 }
+.metaslider .flex-viewport {
+  direction: ltr;
+}
 .metaslider .caption-wrap {
   position: absolute;
   bottom: 0;
