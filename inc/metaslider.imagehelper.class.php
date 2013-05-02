@@ -141,7 +141,7 @@ class MetaSliderImageHelper {
             $new_slide_height = $container_height;
         }
 
-        return array('width' => (int)$new_slide_width, 'height' => (int)$new_slide_height);
+        return array('width' => floor($new_slide_width), 'height' => floor($new_slide_height));
     }
 
     /**
@@ -181,21 +181,25 @@ class MetaSliderImageHelper {
         $dest_width = $size['width'];
         $dest_height = $size['height'];
 
-        // Some additional info about the image
+        // image info
         $info = pathinfo( $file_path );
         $dir = $info['dirname'];
         $ext = $info['extension'];
         $name = wp_basename($file_path, ".$ext");
-
-        // build the new file name
         $dest_file_name = "{$dir}/{$name}-{$dest_width}x{$dest_height}.{$ext}";
+
+        // URL to destination file
         $url = str_replace(basename($this->url), basename($dest_file_name), $this->url);
 
-        // resize if required
+        // crop needed
         if (!file_exists($dest_file_name)) {
             $dims = image_resize_dimensions($orig_width, $orig_height, $dest_width, $dest_height, true);
-            list($dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h) = $dims;
-            $image->crop($src_x, $src_y, $src_w, $src_h, $dst_w, $dst_h);
+            
+            if ($dims) {
+                list($dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h) = $dims;
+                $image->crop($src_x, $src_y, $src_w, $src_h, $dst_w, $dst_h);
+            }
+
             $saved = $image->save($dest_file_name);
             $url = str_replace(basename($this->url), basename($saved['path']), $this->url);
         }
