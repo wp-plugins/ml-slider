@@ -74,6 +74,9 @@ http://www.metaslider.com/documentation/
 
 == Changelog ==
 
+= 2.0.2 =
+* Fix: PHP Error when using slides the same size as the slideshow
+
 = 2.0.1 =
 * New feature: French translation pack (thanks to: fb-graphiklab)
 * Fix: Use transparent background on default flexslider theme
