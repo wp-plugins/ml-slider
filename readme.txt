@@ -3,7 +3,7 @@ Contributors: matchalabs
 Tags: wordpress slider,slideshow,wordpress slideshow,image slider,flexslider,flex slider,nivoslider,nivo slider,responsiveslides,responsive,responsive slides,coinslider,coin slider,slideshow,carousel,responsive slider,vertical slides,ml slider,image rotator,metaslider,meta,ajax,metaslider pro
 Requires at least: 3.5
 Tested up to: 3.6
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -73,6 +73,9 @@ http://www.metaslider.com/documentation/
 6. Administration panel - selecting slides
 
 == Changelog ==
+
+= 2.0.2 =
+* Fix: PHP Error when using slides the same size as the slideshow
 
 = 2.0.1 =
 * New feature: French translation pack (thanks to: fb-graphiklab)
