@@ -3,7 +3,7 @@
  * Plugin Name: Meta Slider
  * Plugin URI: http://www.metaslider.com
  * Description: 4 sliders in 1! Choose from Nivo Slider, Flex Slider, Coin Slider or Responsive Slides.
- * Version: 2.0.1
+ * Version: 2.0.2
  * Author: Matcha Labs
  * Author URI: http://www.matchalabs.com
  * License: GPLv2 or later
@@ -14,7 +14,7 @@
  * GNU General Public License for more details.
  */
 
-define('METASLIDER_VERSION', '2.0.1');
+define('METASLIDER_VERSION', '2.0.2');
 define('METASLIDER_BASE_URL', plugin_dir_url(__FILE__));
 define('METASLIDER_ASSETS_URL', METASLIDER_BASE_URL . 'assets/');
 define('METASLIDER_BASE_DIR_LONG', dirname(__FILE__));
@@ -162,14 +162,18 @@ class MetaSliderPlugin {
      * Register admin JavaScript
      */
     public function register_admin_scripts() {
+        if (wp_script_is('wp-auth-check', 'queue')) {
+            // meta slider checks for active AJAX requests in order to show the spinner
+            // .. but the auth-check runs an AJAX request every 15 seconds
+            // deregister the script that displays the login panel if the user becomes logged
+            // out at some point
+            // todo: implement some more intelligent request checking
+            wp_deregister_script('wp-auth-check');
+            wp_register_script('wp-auth-check', null); // fix php notice
+        }
+
         // media library dependencies
         wp_enqueue_media();
-        // meta slider checks for active AJAX requests in order to show the spinner
-        // .. but the auth-check runs an AJAX request every 15 seconds
-        // deregister the script that displays the login panel if the user becomes logged
-        // out at some point
-        // todo: implement some more intelligent request checking
-        wp_deregister_script('wp-auth-check');
 
         // plugin dependencies
         wp_enqueue_script('jquery-ui-core', array('jquery'));
@@ -269,7 +273,7 @@ class MetaSliderPlugin {
     /**
      * Set the current slider
      */
-    private function set_slider($id) {
+    public function set_slider($id) {
         $type = 'flex';
         $settings = get_post_meta($id, 'ml-slider_settings', true);
 
@@ -760,6 +764,7 @@ class MetaSliderPlugin {
                                     <input class='option coin' type='number' min='0' max='10000' step='100' name="settings[titleSpeed]" value='<?php echo $this->slider->get_setting('titleSpeed') ?>' /><?php _e("ms", 'metaslider') ?>
                                 </td>
                             </tr>
+        
                             <tr>
                                 <td colspan='2' class='highlight'><?php _e("Developer Options", 'metaslider') ?></td>
                             </tr>
