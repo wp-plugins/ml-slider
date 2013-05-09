@@ -15,6 +15,7 @@ class MetaNivoSlider extends MetaSlider {
         parent::__construct($id);
 
         add_filter('metaslider_nivo_slider_parameters', array($this, 'set_autoplay_parameter'), 10, 2);
+
     }
 
     /**
@@ -74,9 +75,22 @@ class MetaNivoSlider extends MetaSlider {
 
         // include the theme
         if ($this->get_setting('printCss') == 'true') {
-            $theme = $this->get_setting('theme');
+            $theme = $this->get_theme();
             wp_enqueue_style('ml-slider_nivo_slider_theme_' . $theme, METASLIDER_ASSETS_URL  . "sliders/nivoslider/themes/{$theme}/{$theme}.css");
         }
+    }
+
+    /**
+     * 
+     */
+    private function get_theme() {
+        $theme = $this->get_setting('theme');
+
+        if (!in_array($theme, array('dark', 'bar', 'light'))) {
+            $theme = 'default';
+        }
+
+        return $theme;
     }
 
     /**
@@ -85,7 +99,9 @@ class MetaNivoSlider extends MetaSlider {
      * @return string slider markup.
      */
     protected function get_html() {
-        $retVal  = "<div class='slider-wrapper theme-{$this->get_setting('theme')}'>";
+
+
+        $retVal  = "<div class='slider-wrapper theme-{$this->get_theme()}'>";
         $retVal .= "<div class='ribbon'></div>";
         $retVal .= "<div id='" . $this->get_identifier() . "' class='nivoSlider'>";
         
