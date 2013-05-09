@@ -51,7 +51,15 @@ class MetaSlide {
      * @return string slide html
      */
     public function get_slide_html() {
-        return is_admin() && !isset($_GET['slider_id']) ? $this->get_admin_slide() : $this->get_public_slide();
+        if (is_admin() && isset($_GET['page']) && $_GET['page'] == 'metaslider-theme-editor') {
+            return $this->get_public_slide();
+        }
+        
+        if (is_admin() && !isset($_GET['slider_id'])) {
+            return $this->get_admin_slide();
+        }
+
+        return $this->get_public_slide();
     }
     
     /**
