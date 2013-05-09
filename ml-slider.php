@@ -64,10 +64,28 @@ class MetaSliderPlugin {
         add_filter('media_view_strings', array($this, 'custom_media_uploader_tabs'), 5);
         add_action('media_upload_metaslider_pro', array($this, 'metaslider_pro_tab'));
         
+
+        // system check
+        add_action('admin_notices', array($this, 'system_check'));
+
+        // add 'go pro' link to plugin options
         $plugin = plugin_basename(__FILE__);
         add_filter("plugin_action_links_{$plugin}", array($this,'upgrade_to_pro') );
 
         $this->register_slide_types();
+    }
+
+    /**
+     * Check our WordPress installation is compatible with Meta Slider
+     */
+    public function system_check(){
+        if (!function_exists('wp_enqueue_media')) {
+            echo '<div id="message" class="updated"><p><b>Warning</b> Meta Slider requires WordPress 3.5 or above. Please upgrade your WordPress installation.</p></div>';
+        }
+
+        if ((!extension_loaded('gd') || !function_exists('gd_info')) && (!extension_loaded( 'imagick' ) || !class_exists( 'Imagick' ) || !class_exists( 'ImagickPixel' ))) {
+            echo '<div id="message" class="updated"><p><b>Warning</b> Meta Slider requires the GD or ImageMagick PHP extension. Please contact your hosting provider.</p></div>';
+        }
     }
 
     /**
@@ -91,9 +109,12 @@ class MetaSliderPlugin {
     public function iframe() {
         wp_enqueue_style('metaslider-admin-styles', METASLIDER_ASSETS_URL . 'metaslider/admin.css', false, METASLIDER_VERSION);
         wp_enqueue_script('google-font-api', 'http://fonts.googleapis.com/css?family=PT+Sans:400,700|PT+Serif+Caption|PT+Serif:400,700');
-
-        echo "<p style='text-align: center; font-size: 1.2em;'>Add support for <b>Post Feed</b> Slides, <b>YouTube</b> Slides, <b>HTML</b> Slides & <b>Vimeo</b> Slides</p>";
+        echo "<div class='metaslider'>";
+        echo "<p style='text-align: center; font-size: 1.2em;'>Get the Pro Addon pack to add support for: <b>Content Feed</b> Slides, <b>YouTube</b> Slides, <b>HTML</b> Slides & <b>Vimeo</b> Slides</p>";
+        echo "<p style='text-align: center; font-size: 1.2em;'><i>New</i>: The Pro Addon Pack includes a live <b>theme editor</b>!</p>";
         echo "<a class='probutton' href='http://www.metaslider.com/upgrade/' target='_blank'>Get <span class='logo'><strong>Meta</strong>Slider</span><span class='super'>Pro</span></a>";
+        echo "<span class='subtext'>Opens in a new window</span>";
+        echo "</div>";
     }
 
     /**
@@ -467,7 +488,7 @@ class MetaSliderPlugin {
                                 } else {
                                     echo "<a href='?page=metaslider&id={$tab['id']}' class='nav-tab'>" . $tab['title'] . "</a>";
                                 }
-                            }                           
+                            }
                         }
                     ?>
                     
@@ -594,11 +615,15 @@ class MetaSliderPlugin {
                                     <?php _e("Theme", 'metaslider') ?>
                                 </td>
                                 <td>
-                                    <select class='option nivo' name="settings[theme]">
-                                        <option value='default' <?php if ($this->slider->get_setting('theme') == 'default') echo 'selected=selected' ?>>Default</option>
-                                        <option value='dark' <?php if ($this->slider->get_setting('theme') == 'dark') echo 'selected=selected' ?>>Dark</option>
-                                        <option value='light' <?php if ($this->slider->get_setting('theme') == 'light') echo 'selected=selected' ?>>Light</option>
-                                        <option value='bar' <?php if ($this->slider->get_setting('theme') == 'bar') echo 'selected=selected' ?>>Bar</option>
+                                    <select name="settings[theme]" class='theme option coin nivo flex responsive'>
+                                        <?php 
+                                            $themes =  "<option value='default' class='option nivo flex coin responsive'>Default</option>
+                                                        <option value='dark' class='option nivo'>Dark (Nivo)</option>
+                                                        <option value='light' class='option nivo'>Light (Nivo)</option>
+                                                        <option value='bar' class='option nivo'>Bar (Nivo)</option>";
+
+                                            echo apply_filters('metaslider_get_available_themes', $themes, $this->slider->get_setting('theme')); 
+                                        ?>
                                     </select>
                                 </td>
                             </tr>
@@ -764,7 +789,6 @@ class MetaSliderPlugin {
                                     <input class='option coin' type='number' min='0' max='10000' step='100' name="settings[titleSpeed]" value='<?php echo $this->slider->get_setting('titleSpeed') ?>' /><?php _e("ms", 'metaslider') ?>
                                 </td>
                             </tr>
-        
                             <tr>
                                 <td colspan='2' class='highlight'><?php _e("Developer Options", 'metaslider') ?></td>
                             </tr>
