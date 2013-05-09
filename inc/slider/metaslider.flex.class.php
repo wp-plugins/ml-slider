@@ -98,7 +98,9 @@ class MetaFlexSlider extends MetaSlider {
      */
     public function enqueue_scripts() {
         parent::enqueue_scripts();
-        wp_enqueue_script('metaslider-easing', METASLIDER_ASSETS_URL . 'easing/jQuery.easing.min.js', array('jquery'), METASLIDER_VERSION);
+        if ($this->get_setting('printJs') == 'true') {
+            wp_enqueue_script('metaslider-easing', METASLIDER_ASSETS_URL . 'easing/jQuery.easing.min.js', array('jquery'), METASLIDER_VERSION);
+        }
     }
     
     /**
