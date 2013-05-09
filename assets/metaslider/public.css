@@ -4,131 +4,34 @@
  *    - resets, in an attempt to ensure sliders display properly in all themes
  *    - modifications to the default sliders CSS
  */
-.metaslider-responsive {
-  position: relative;
+
+ /* general resets */
+.metaslider {
+    position: relative;
 }
-.metaslider .flexslider .slides li,
-.metaslider ul.rslides li  {
-  position: relative;
-}
-.metaslider .flex-viewport {
-  direction: ltr;
-}
-.metaslider .caption-wrap {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background: black;
-  color: white;
-  line-height: 30px;
-  opacity: 0.7;
-  margin: 0;
-  display: block;
-  width: 100%;
-}
+
 .metaslider .caption {
-  padding: 5px 10px;
+    padding: 5px 10px;
 }
+
 .metaslider img {
-  height: auto;
+    height: auto;
 }
-.metaslider .flexslider ul,
-.metaslider .flexslider .slides li,
-.metaslider .flexslider .slides ul,
-.metaslider .flexslider .slides ol,
-.metaslider .flexslider .flex-direction-nav,
-.metaslider .rslides li,
-.metaslider .rslides .rslides_tabs {
-  border: 0;
-  border-top: 0;
-  border-right: 0;
-  border-bottom: 0;
-  border-left: 0;
-  margin: 0;
-  margin-top: 0;
-  margin-right: 0;
-  margin-bottom: 0;
-  margin-left: 0;
-	list-style-type: none;
-}
-.metaslider .flexslider {
-  border: 0;
-}
-.metaslider .flex-direction-nav a {
-  -moz-transition: all .3s ease;
-  transition: all .3s ease;
-}
+
 .metaslider li:before,
 .metaslider li:after {
-  content: "" !important;
+    content: "" !important;
 }
-.metaslider .flexslider .slides p {
-	margin: 0;
-}
-.metaslider .flexslider {
-  background: none;
-  box-shadow: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  -o-box-shadow: none;
-}
-.metaslider .rslides_tabs {
-  margin: 0;
-  padding: 7px 0 !important;
-  background: #333;
-  font-size: 18px;
-  list-style: none;
-  padding: 10px 0;
-  text-align: center;
-  width: 100%;
-}
-.metaslider .rslides_tabs li {
-  margin: 0;
-  padding: 0;
-  display: inline;
-  float: none;
-  margin-right: 1px;
-  list-style-type: none;
-}
-.metaslider .rslides_tabs a {
-  text-decoration: none;
-  width: auto;
-  line-height: 20px;
-  padding: 9px 20px;
-  height: auto;
-  background: transparent;
-  display: inline;
-  color: white;
-}
-.metaslider .rslides_tabs a:hover {
-  border: 0;
-  color: white;
-}
-.metaslider .rslides_tabs li:first-child {
-  margin-left: 0;
-}
-.metaslider .rslides_tabs .rslides_here a {
-  background: rgba(255,255,255,.1);
-  color: #fff;
-  font-weight: bold;
-}
-.metaslider .rslides_nav {
-  background-color: #000000;
-  color: #FFFFFF;
-  padding: 10px;
-  position: absolute;
-  top: 50%;
-  z-index: 9;
-  cursor: pointer;
-  font-weight: bold;
-  margin-top: -15px;
-  opacity: 0.7;
-}
-.metaslider .rslides_nav.prev {
-	left:0px;
-  text-decoration: none;
-}
-.metaslider .rslides_nav.next {
-	right:0px;
-  text-decoration: none;
+
+.metaslider .caption-wrap {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: black;
+    color: white;
+    line-height: 30px;
+    opacity: 0.7;
+    margin: 0;
+    display: block;
+    width: 100%;
 }
