@@ -57,6 +57,12 @@ jQuery(document).ready(function($) {
         return confirm(metaslider.confirm);
     });
 
+    $('.useWithCaution').change(function(){
+        if(!this.checked) {
+            return alert(metaslider.useWithCaution);
+        }
+    });
+
     // show the confirm dialogue
     jQuery(".toggle").live('click', function(e) {
         e.preventDefault();
@@ -64,8 +70,8 @@ jQuery(document).ready(function($) {
     });
 
     // helptext tooltips
-    jQuery(".metaslider .tooltip").tipsy({className: 'msTipsy', live: true, delayIn: 1000, html: true, fade: true, gravity: 'e'});
-    jQuery(".metaslider .tooltiptop").tipsy({live: true, delayIn: 1000, html: true, fade: true, gravity: 'se'});
+    jQuery(".metaslider .tooltip").tipsy({className: 'msTipsy', live: true, delayIn: 500, html: true, fade: true, gravity: 'e'});
+    jQuery(".metaslider .tooltiptop").tipsy({live: true, delayIn: 500, html: true, fade: true, gravity: 'se'});
 
     // Select input field contents when clicked
     jQuery(".metaslider .shortcode input").click(function() {

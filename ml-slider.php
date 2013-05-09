@@ -211,7 +211,8 @@ class MetaSliderPlugin {
             'new_window' => __("New Window", 'metaslider'),
             'confirm' => __("Are you sure?", 'metaslider'),
             'ajaxurl' => admin_url( 'admin-ajax.php' ),
-            'iframeurl' => METASLIDER_BASE_URL . 'preview.php'
+            'iframeurl' => METASLIDER_BASE_URL . 'preview.php',
+            'useWithCaution' => __("Caution: This setting is for advanced developers only. If you're unsure, leave it checked.", 'metaslider')
         ));
 
         do_action('metaslider_register_admin_scripts');
@@ -805,7 +806,7 @@ class MetaSliderPlugin {
                                     <?php _e("Print CSS", 'metaslider') ?>
                                 </td>
                                 <td>
-                                    <input type='checkbox' name="settings[printCss]" <?php if ($this->slider->get_setting('printCss') == 'true') echo 'checked=checked' ?> />
+                                    <input type='checkbox' class='useWithCaution' name="settings[printCss]" <?php if ($this->slider->get_setting('printCss') == 'true') echo 'checked=checked' ?> />
                                 </td>
                             </tr>
                             <tr>
@@ -813,7 +814,7 @@ class MetaSliderPlugin {
                                     <?php _e("Print JS", 'metaslider') ?>
                                 </td>
                                 <td>
-                                    <input type='checkbox' name="settings[printJs]" <?php if ($this->slider->get_setting('printJs') == 'true') echo 'checked=checked' ?> />
+                                    <input type='checkbox' class='useWithCaution' name="settings[printJs]" <?php if ($this->slider->get_setting('printJs') == 'true') echo 'checked=checked' ?> />
                                 </td>
                             </tr>
                             <tr>
