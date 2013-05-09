@@ -43,6 +43,8 @@ class MetaResponsiveSlider extends MetaSlider {
         
         $first = true;
         foreach ($this->slides as $slide) {
+            $style = "";
+            
             if (!$first) {
                 $style = " style='display: none'";
             }
