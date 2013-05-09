@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-    
+
     // Enable the correct options for this slider type
     var switchType = function(slider) {
         jQuery('.metaslider .option:not(.' + slider + ')').attr('disabled', 'disabled').parents('tr').hide();
@@ -8,6 +8,11 @@ jQuery(document).ready(function($) {
         // make sure that the selected option is available for this slider type
         if (jQuery('.effect option:selected').attr('disabled') === 'disabled') {
             jQuery('.effect option:enabled:first').attr('selected', 'selected');
+        }
+
+        // make sure that the selected option is available for this slider type
+        if (jQuery('.theme option:selected').attr('disabled') === 'disabled') {
+            jQuery('.theme option:enabled:first').attr('selected', 'selected');
         }
 
         // slides - set red background on incompatible slides
