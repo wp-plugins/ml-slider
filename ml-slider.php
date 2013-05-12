@@ -34,6 +34,9 @@ require_once( METASLIDER_INC_DIR . 'slide/metaslide.image.class.php' );
 // include image helper
 require_once( METASLIDER_INC_DIR . 'metaslider.imagehelper.class.php' );
 
+// include widget
+require_once( METASLIDER_INC_DIR . 'metaslider.widget.class.php' );
+
 /**
  * Register the plugin.
  *
