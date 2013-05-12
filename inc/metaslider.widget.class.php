@@ -93,7 +93,7 @@ class MetaSlider_Widget extends WP_Widget {
 		<p>
 			<?php if ($sliders) { ?>
 				<label for="<?php echo $this->get_field_id('slider_id'); ?>"><?php _e('Select Slider:', 'metaslider'); ?></label> 
-				<select id="<?php echo $this->get_field_id('slider_id'); ?>" name="<?php echo $this->get_field_name( 'slider_id' ); ?>">
+				<select id="<?php echo $this->get_field_id('slider_id'); ?>" name="<?php echo $this->get_field_name('slider_id'); ?>">
 					<?php
 						foreach ($sliders as $slider) {
 							$selected = $slider['active'] ? 'selected=selected' : '';
@@ -101,7 +101,9 @@ class MetaSlider_Widget extends WP_Widget {
 						}
 					?>
 				</select>
-			<?php } ?>
+			<?php } else {
+				_e('No slideshows found', 'metaslider');
+			} ?>
 		</p>
 		<?php 
 	}
