@@ -83,7 +83,13 @@ html[xmlns] .slides {display: block;}
     -moz-box-shadow: none;
     -o-box-shadow: none;
     border: 0;
+    margin: 0 0 50px 0;
 }
+
+.metaslider .flex-control-nav {
+	bottom: -30px;
+}
+
 
 /** move margin from list items to anchors */
 .metaslider .flex-control-nav li {
