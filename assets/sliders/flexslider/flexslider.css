@@ -91,6 +91,7 @@ html[xmlns] .slides {display: block;}
 }
 .metaslider .flex-control-nav li a {
 	margin: 0 6px;
+	padding: 0;
 }
 
 .metaslider .flexslider .slides li {
@@ -100,27 +101,6 @@ html[xmlns] .slides {display: block;}
 /** fix for users with RTL languages */
 .metaslider .flex-viewport {
     direction: ltr;
-}
-
-/** quick resets **/
-.metaslider .flexslider ul,
-.metaslider .flexslider .slides li,
-.metaslider .flexslider .slides ul,
-.metaslider .flexslider .slides ol,
-.metaslider .flexslider .flex-direction-nav,
-.metaslider .flexslider .flex-direction-nav li
- {
-    border: 0;
-    border-top: 0;
-    border-right: 0;
-    border-bottom: 0;
-    border-left: 0;
-    margin: 0;
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    list-style-type: none;
 }
 
 /** add transition effects to firefox **/
