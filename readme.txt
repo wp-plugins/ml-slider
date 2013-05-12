@@ -74,6 +74,14 @@ http://www.metaslider.com/documentation/
 
 == Changelog ==
 
+= 2.1 =
+* New feature: Widget added
+* New feature: System check added (checks for required image libraries and WordPress version)
+* Fix: Multiple CSS fixes added for popular themes
+* Fix: Flex slider shows first slide when JS is disabled
+* Improvement: Display warning message when unchecking Print JS and Print CSS options
+* Improvement: Coinslider navigation centered
+
 = 2.0.2 =
 * Fix: PHP Error when using slides the same size as the slideshow
 
