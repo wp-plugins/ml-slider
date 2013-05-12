@@ -109,7 +109,9 @@ class MetaSlider_Widget extends WP_Widget {
 	}
 }
 
-add_action('widgets_init', function(){
-     register_widget('MetaSlider_Widget');
-});
+add_action('widgets_init', 'register_metaslider_widget');  
+
+function register_metaslider_widget() {  
+    register_widget('MetaSlider_Widget'); 
+}
 ?>
