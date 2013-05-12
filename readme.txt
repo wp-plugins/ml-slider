@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: matchalabs
-Tags: wordpress slider,slideshow,wordpress slideshow,image slider,flexslider,flex slider,nivoslider,nivo slider,responsiveslides,responsive,responsive slides,coinslider,coin slider,slideshow,carousel,responsive slider,vertical slides,ml slider,image rotator,metaslider,meta,ajax,metaslider pro
+Tags: widget,wordpress slider,slideshow,wordpress slideshow,image slider,flexslider,flex slider,nivoslider,nivo slider,responsiveslides,responsive,responsive slides,coinslider,coin slider,slideshow,carousel,responsive slider,vertical slides,ml slider,image rotator,metaslider,meta,ajax,metaslider pro
 Requires at least: 3.5
 Tested up to: 3.6
 Stable tag: 2.0.2
@@ -15,23 +15,22 @@ http://www.youtube.com/watch?v=5DgZGVulRRM
 
 Meta Slider is a flexible, intuitive slideshow administration plugin that lets you choose between 4 jQuery sliders.
 
-* Flex Slider 2 (Responsive, 2 transition effects, carousel mode)
-* Nivo Slider (Responsive, 16 transition effects, 4 themes)
-* Responsive Slides (Responsive, fade effect only, incredibly light weight!)
-* Coin Slider (4 transition effects)
+* **Nivo Slider** (Responsive, 16 transition effects, 4 themes)
+* **Coin Slider** (4 transition effects)
+* **Flex Slider 2** (Responsive, 2 transition effects, carousel mode)
+* **Responsive Slides** (Responsive, fade effect only, incredibly light weight!)
 
 Features:
 
-* Intuitive, responsive AJAX powered administration panel
-* Create unlimited slideshows with unlimited number of slides
-* Change slideshow settings such as: speed, theme, hover pause, width, height, easing
-* Add Captions & URLs to slides
-* Drag & Drop reording
-* Fully integrated with the new WordPress 3.5 Media Manager
-* Lightweight, only the bare minimum in terms of JavaScript and CSS is outputted to your website
-* Built in intelligent image cropping
-* Carousel Mode available with Flex Slider
-* Supports localisation
+* Easy to use **AJAX** powered administration panel
+* Built in **Widget** and **Shortcode**
+* Change settings per slideshow *(speed, theme, hover pause, width, height, easing etc)*
+* Fully integrated with the new WordPress 3.5 media manager
+* Add captions and URLs to slides
+* **Drag and drop** reordering
+* Lightweight
+* Intelligent image cropping (Smart Crop)
+* Fully localised
 
 Meta Slider has been translated into the following languages:
 
@@ -44,7 +43,7 @@ Read more and thanks to:
 * [http://workshop.rs/projects/coin-slider/](http://workshop.rs/projects/coin-slider/)
 * [http://dev7studios.com/nivo-slider/](http://dev7studios.com/nivo-slider/)
 
-Want More? Get the Meta Slider Pro addon pack to add support for:
+Want More? Get the **Meta Slider Pro** addon pack to add support for:
 
 * YouTube slides
 * Vimeo slides
@@ -55,6 +54,14 @@ Find out more at http://www.metaslider.com
 
 == Installation ==
 
+The easy way:
+
+1. Go to the Plugins Menu in WordPress
+1. Search for "Meta Slider"
+1. Click 'Install'
+
+The not so easy way:
+
 1. Upload the `ml-slider` folder to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Manage your slideshows using the 'MetaSlider' menu option
@@ -62,6 +69,23 @@ Find out more at http://www.metaslider.com
 == Frequently Asked Questions ==
 
 http://www.metaslider.com/documentation/
+
+= How do I include a slideshow in the header of my site? =
+
+You will need to paste the "Template Include" code into your theme (you can find this in the 'Usage' section underneath the slideshow settings)
+
+* Go to Appearance > Editor in WordPress
+* Edit a file called 'header.php' (or similar)
+* Find the correct place to add it (for example above or below the logo)
+* Paste in the code and save.
+
+If you want to include the slideshow on your homepage only, use this code:
+
+`<?php 
+if (is_front_page() || is_home()) {
+    echo do_shortcode("[metaslider id=123]"); //replace 123 with slider ID
+} 
+?>`
 
 == Screenshots ==
 
