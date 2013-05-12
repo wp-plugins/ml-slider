@@ -111,10 +111,9 @@ class MetaSliderPlugin {
      */
     public function iframe() {
         wp_enqueue_style('metaslider-admin-styles', METASLIDER_ASSETS_URL . 'metaslider/admin.css', false, METASLIDER_VERSION);
-        wp_enqueue_script('google-font-api', 'http://fonts.googleapis.com/css?family=PT+Sans:400,700|PT+Serif+Caption|PT+Serif:400,700');
+        wp_enqueue_script('google-font-api', 'http://fonts.googleapis.com/css?family=PT+Sans:400,700');
         echo "<div class='metaslider'>";
         echo "<p style='text-align: center; font-size: 1.2em;'>Get the Pro Addon pack to add support for: <b>Content Feed</b> Slides, <b>YouTube</b> Slides, <b>HTML</b> Slides & <b>Vimeo</b> Slides</p>";
-        echo "<p style='text-align: center; font-size: 1.2em;'><i>New</i>: The Pro Addon Pack includes a live <b>theme editor</b>!</p>";
         echo "<a class='probutton' href='http://www.metaslider.com/upgrade/' target='_blank'>Get <span class='logo'><strong>Meta</strong>Slider</span><span class='super'>Pro</span></a>";
         echo "<span class='subtext'>Opens in a new window</span>";
         echo "</div>";
