@@ -43,12 +43,13 @@ Read more and thanks to:
 * [http://workshop.rs/projects/coin-slider/](http://workshop.rs/projects/coin-slider/)
 * [http://dev7studios.com/nivo-slider/](http://dev7studios.com/nivo-slider/)
 
-Want More? Get the **Meta Slider Pro** addon pack to add support for:
+Want More? The **Meta Slider Pro** addon pack includes:
 
+* Theme Editor
 * YouTube slides
 * Vimeo slides
 * HTML slides
-* Dynamic Post Feed Slides (content slider)
+* Featured Image slides
 
 Find out more at http://www.metaslider.com
 
