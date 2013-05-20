@@ -582,8 +582,8 @@ class MetaSliderPlugin {
                                     <?php _e("Controls", 'metaslider') ?>
                                 </td>
                                 <td>
-                                    <label class='option responsive nivo flex' ><input type='checkbox' name="settings[navigation]" <?php if ($this->slider->get_setting('navigation') == 'true') echo 'checked=checked' ?> />Pager</label>
-                                    <label class='option coin responsive nivo flex' ><input type='checkbox' name="settings[links]" <?php if ($this->slider->get_setting('links') == 'true') echo 'checked=checked' ?> />Navigation</label>
+                                    <label class='option responsive nivo flex' ><input type='checkbox' name="settings[navigation]" <?php if ($this->slider->get_setting('navigation') == 'true') echo 'checked=checked' ?> /><?php _e("Pager", 'metaslider') ?></label>
+                                    <label class='option coin responsive nivo flex' ><input type='checkbox' name="settings[links]" <?php if ($this->slider->get_setting('links') == 'true') echo 'checked=checked' ?> /><?php _e("Navigation", 'metaslider') ?></label>
                                 </td>
                             </tr>
                             <tr>
@@ -592,24 +592,24 @@ class MetaSliderPlugin {
                                 </td>
                                 <td>
                                     <select name="settings[effect]" class='effect option coin nivo flex'>
-                                        <option class='option coin nivo' value='random' <?php if ($this->slider->get_setting('effect') == 'random') echo 'selected=selected' ?>>Random</option>
-                                        <option class='option coin' value='swirl' <?php if ($this->slider->get_setting('effect') == 'swirl') echo 'selected=selected' ?>>Swirl</option>
-                                        <option class='option coin' value='rain' <?php if ($this->slider->get_setting('effect') == 'rain') echo 'selected=selected' ?>>Rain</option>
-                                        <option class='option coin' value='straight' <?php if ($this->slider->get_setting('effect') == 'straight') echo 'selected=selected' ?>>Straight</option>
-                                        <option class='option nivo' value='sliceDown' <?php if ($this->slider->get_setting('effect') == 'sliceDown') echo 'selected=selected' ?>>Slice Down</option>
-                                        <option class='option nivo' value='sliceUp' <?php if ($this->slider->get_setting('effect') == 'sliceUp') echo 'selected=selected' ?>>Slice Up</option>
-                                        <option class='option nivo' value='sliceUpLeft' <?php if ($this->slider->get_setting('effect') == 'sliceUpLeft') echo 'selected=selected' ?>>Slice Up Left</option>
-                                        <option class='option nivo' value='sliceUpDown' <?php if ($this->slider->get_setting('effect') == 'sliceUpDown') echo 'selected=selected' ?>>Slice Up Down</option>
-                                        <option class='option nivo' value='sliceUpDownLeft' <?php if ($this->slider->get_setting('effect') == 'sliceUpDownLeft') echo 'selected=selected' ?>>Slice Up Down Left</option>
-                                        <option class='option nivo' value='fold' <?php if ($this->slider->get_setting('effect') == 'fold') echo 'selected=selected' ?>>Fold</option>
-                                        <option class='option nivo flex' value='fade' <?php if ($this->slider->get_setting('effect') == 'fade') echo 'selected=selected' ?>>Fade</option>
-                                        <option class='option nivo' value='slideInRight' <?php if ($this->slider->get_setting('effect') == 'slideInRight') echo 'selected=selected' ?>>Slide In Right</option>
-                                        <option class='option nivo' value='slideInLeft' <?php if ($this->slider->get_setting('effect') == 'slideInLeft') echo 'selected=selected' ?>>Slide In Left</option>
-                                        <option class='option nivo' value='boxRandom' <?php if ($this->slider->get_setting('effect') == 'boxRandom') echo 'selected=selected' ?>>Box Random</option>
-                                        <option class='option nivo' value='boxRain' <?php if ($this->slider->get_setting('effect') == 'boxRain') echo 'selected=selected' ?>>Box Rain</option>
-                                        <option class='option nivo' value='boxRainReverse' <?php if ($this->slider->get_setting('effect') == 'boxRainReverse') echo 'selected=selected' ?>>Box Rain Reverse</option>
-                                        <option class='option nivo' value='boxRainGrowReverse' <?php if ($this->slider->get_setting('effect') == 'boxRainGrowReverse') echo 'selected=selected' ?>>Box Rain Grow Reverse</option>
-                                        <option class='option flex' value='slide' <?php if ($this->slider->get_setting('effect') == 'slide') echo 'selected=selected' ?>>Slide</option>
+                                        <option class='option coin nivo' value='random' <?php if ($this->slider->get_setting('effect') == 'random') echo 'selected=selected' ?>><?php _e("Random", 'metaslider') ?></option>
+                                        <option class='option coin' value='swirl' <?php if ($this->slider->get_setting('effect') == 'swirl') echo 'selected=selected' ?>><?php _e("Swirl", 'metaslider') ?></option>
+                                        <option class='option coin' value='rain' <?php if ($this->slider->get_setting('effect') == 'rain') echo 'selected=selected' ?>><?php _e("Rain", 'metaslider') ?></option>
+                                        <option class='option coin' value='straight' <?php if ($this->slider->get_setting('effect') == 'straight') echo 'selected=selected' ?>><?php _e("Straight", 'metaslider') ?></option>
+                                        <option class='option nivo' value='sliceDown' <?php if ($this->slider->get_setting('effect') == 'sliceDown') echo 'selected=selected' ?>><?php _e("Slide Down", 'metaslider') ?></option>
+                                        <option class='option nivo' value='sliceUp' <?php if ($this->slider->get_setting('effect') == 'sliceUp') echo 'selected=selected' ?>><?php _e("Slice Up", 'metaslider') ?></option>
+                                        <option class='option nivo' value='sliceUpLeft' <?php if ($this->slider->get_setting('effect') == 'sliceUpLeft') echo 'selected=selected' ?>><?php _e("Slide Up Left", 'metaslider') ?></option>
+                                        <option class='option nivo' value='sliceUpDown' <?php if ($this->slider->get_setting('effect') == 'sliceUpDown') echo 'selected=selected' ?>><?php _e("Slice Up Down", 'metaslider') ?></option>
+                                        <option class='option nivo' value='sliceUpDownLeft' <?php if ($this->slider->get_setting('effect') == 'sliceUpDownLeft') echo 'selected=selected' ?>><?php _e("Slide Up Down Left", 'metaslider') ?></option>
+                                        <option class='option nivo' value='fold' <?php if ($this->slider->get_setting('effect') == 'fold') echo 'selected=selected' ?>><?php _e("Fold", 'metaslider') ?></option>
+                                        <option class='option nivo flex' value='fade' <?php if ($this->slider->get_setting('effect') == 'fade') echo 'selected=selected' ?>><?php _e("Fade", 'metaslider') ?></option>
+                                        <option class='option nivo' value='slideInRight' <?php if ($this->slider->get_setting('effect') == 'slideInRight') echo 'selected=selected' ?>><?php _e("Slide In Right", 'metaslider') ?></option>
+                                        <option class='option nivo' value='slideInLeft' <?php if ($this->slider->get_setting('effect') == 'slideInLeft') echo 'selected=selected' ?>><?php _e("Slide In Left", 'metaslider') ?></option>
+                                        <option class='option nivo' value='boxRandom' <?php if ($this->slider->get_setting('effect') == 'boxRandom') echo 'selected=selected' ?>><?php _e("Box Random", 'metaslider') ?></option>
+                                        <option class='option nivo' value='boxRain' <?php if ($this->slider->get_setting('effect') == 'boxRain') echo 'selected=selected' ?>><?php _e("Box Rain", 'metaslider') ?></option>
+                                        <option class='option nivo' value='boxRainReverse' <?php if ($this->slider->get_setting('effect') == 'boxRainReverse') echo 'selected=selected' ?>><?php _e("Box Rain Reverse", 'metaslider') ?></option>
+                                        <option class='option nivo' value='boxRainGrowReverse' <?php if ($this->slider->get_setting('effect') == 'boxRainGrowReverse') echo 'selected=selected' ?>><?php _e("Box Rain Grow Reverse", 'metaslider') ?></option>
+                                        <option class='option flex' value='slide' <?php if ($this->slider->get_setting('effect') == 'slide') echo 'selected=selected' ?>><?php _e("Slide", 'metaslider') ?></option>
                                     </select>
                                 </td>
                             </tr>
@@ -639,7 +639,7 @@ class MetaSliderPlugin {
                                 <td colspan='2' class='highlight'><?php _e("Advanced Settings", 'metaslider') ?></td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Start the slideshow on page load", 'metaslider') ?>">
+                                <td width='40%' class='tooltip' title="<?php _e("Start the slideshow on page load", 'metaslider') ?>">
                                     <?php _e("Auto play", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -801,7 +801,7 @@ class MetaSliderPlugin {
                                 <td colspan='2' class='highlight'><?php _e("Developer Options", 'metaslider') ?></td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Specify any custom CSS Classes you would like to be added to the slider wrapper", 'metaslider') ?>">
+                                <td width='40%' class='tooltip' title="<?php _e("Specify any custom CSS Classes you would like to be added to the slider wrapper", 'metaslider') ?>">
                                     <?php _e("CSS classes", 'metaslider') ?>
                                 </td>
                                 <td>

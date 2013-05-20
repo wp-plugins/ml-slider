@@ -197,8 +197,9 @@
 }
 .metaslider .left table tr.slide .new_window label {
   position: absolute;
-  width: 78px;
-  right: 0;
+  width: 120px;
+  right: 6px;
+  text-align: right;
   top: -28px;
 }
 .metaslider .left table td {

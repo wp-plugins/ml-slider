@@ -98,6 +98,14 @@ if (is_front_page() || is_home()) {
 
 == Changelog ==
 
+= 2.1.2 =
+* Fix: Nivo Slider theme select dropdown (reported by and thanks to: macks)
+* Fix: HTML5 Validation fix for inline styles
+* Improvement: Title field added to widget (suggested by and thanks to: pa_esp)
+
+= 2.1.1 =
+* Fix: PHP version compatibility
+
 = 2.1 =
 * New feature: Widget added
 * New feature: System check added (checks for required image libraries and WordPress version)
