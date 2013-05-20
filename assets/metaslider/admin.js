@@ -106,7 +106,15 @@ jQuery(document).ready(function($) {
 
     // return lightbox height
     var getLightboxHeight = function() {
-        return parseInt(jQuery('input.height').val(), 10) + 80 + 'px';
+        var height = parseInt(jQuery('input.height').val(), 10);
+
+        if (!isNaN(height)) {
+            height = height + 80 + 'px'
+        } else {
+            height = '70%';
+        }
+
+        return height;
     };
 
     // AJAX save & preview
