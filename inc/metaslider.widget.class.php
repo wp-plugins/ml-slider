@@ -29,6 +29,12 @@ class MetaSlider_Widget extends WP_Widget {
 		if (isset($instance['slider_id'])) {
 			$slider_id = $instance['slider_id'];
 
+			$title = apply_filters( 'widget_title', $instance['title'] );
+
+			echo $before_widget;
+			if ( ! empty( $title ) )
+				echo $before_title . $title . $after_title;
+
 			echo $before_widget;
 			echo do_shortcode("[metaslider id={$slider_id}]");
 			echo $after_widget;
@@ -48,6 +54,7 @@ class MetaSlider_Widget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
 		$instance['slider_id'] = strip_tags( $new_instance['slider_id'] );
+		$instance['title'] = strip_tags( $new_instance['title'] );
 
 		return $instance;
 	}
@@ -61,10 +68,15 @@ class MetaSlider_Widget extends WP_Widget {
 	 */
 	public function form( $instance ) {
 		$selected_slider = 0;
+		$title = "";
 		$sliders = false;
 
 		if (isset($instance['slider_id'])) {
 			$selected_slider = $instance['slider_id'];
+		}
+
+		if (isset($instance['title'])) {
+			$title = $instance['title'];
 		}
 
         // list the tabs
@@ -92,6 +104,10 @@ class MetaSlider_Widget extends WP_Widget {
 		?>
 		<p>
 			<?php if ($sliders) { ?>
+				<p>
+					<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
+					<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+				</p>
 				<label for="<?php echo $this->get_field_id('slider_id'); ?>"><?php _e('Select Slider:', 'metaslider'); ?></label> 
 				<select id="<?php echo $this->get_field_id('slider_id'); ?>" name="<?php echo $this->get_field_name('slider_id'); ?>">
 					<?php
