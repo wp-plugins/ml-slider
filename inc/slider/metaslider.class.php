@@ -323,7 +323,7 @@ class MetaSlider {
             $css = apply_filters("metaslider_css", "", $this->settings, $this->id);
 
             if (strlen($css)) {
-                return "<style type='text/css'>{$css}</style>";
+                return "<style type='text/css' scoped>{$css}</style>";
             }
         }
 
