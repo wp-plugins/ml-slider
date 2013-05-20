@@ -123,3 +123,13 @@ html[xmlns] .slides {display: block;}
 .metaslider .flex-control-nav {
 	margin: auto;
 }
+
+.metaslider .flexslider .slides > li:first-child {
+    display: block; 
+    -webkit-backface-visibility: visible;
+} 
+
+.metaslider .flexslider .slides > li {
+    display: none; 
+    -webkit-backface-visibility: hidden;
+}
