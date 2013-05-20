@@ -1,0 +1,458 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: metaslider\n"
+"POT-Creation-Date: 2013-05-20 17:36-0000\n"
+"PO-Revision-Date: 2013-05-20 17:36-0000\n"
+"Last-Translator: Miguel <contacto@eltipografico.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../ml-slider.php:98
+msgid "Go Pro"
+msgstr "Comprar versión Pro"
+
+#: ../ml-slider.php:142
+msgid "Image"
+msgstr "Imagen"
+
+#: ../ml-slider.php:143
+msgid "Add to slider"
+msgstr "Añadir al pase"
+
+#: ../ml-slider.php:162
+msgid "More Slide Types"
+msgstr "Más tipos de pases"
+
+#: ../ml-slider.php:211 ../inc/slide/metaslide.image.class.php:49
+msgid "URL"
+msgstr "URL"
+
+#: ../ml-slider.php:212 ../inc/slide/metaslide.image.class.php:47
+msgid "Caption"
+msgstr "Subtítulo"
+
+#: ../ml-slider.php:213 ../inc/slide/metaslide.image.class.php:48
+msgid "New Window"
+msgstr "Nueva ventana"
+
+#: ../ml-slider.php:214
+msgid "Are you sure?"
+msgstr "¿Estás seguro?"
+
+#: ../ml-slider.php:217
+msgid ""
+"Caution: This setting is for advanced developers only. If you're unsure, "
+"leave it checked."
+msgstr ""
+"Cuidado: Estos ajustes son solo para desarrolladores avanzados. Si tienes "
+"dudas, déjalo marcado."
+
+#: ../ml-slider.php:248
+msgid "Documentation"
+msgstr "Documentación"
+
+#: ../ml-slider.php:368
+msgid "New Slider"
+msgstr "Nuevo pase"
+
+#: ../ml-slider.php:460
+msgid "Version"
+msgstr "Versión"
+
+#: ../ml-slider.php:461
+msgid "Responsive"
+msgstr "Responsibe"
+
+#: ../ml-slider.php:462 ../ml-slider.php:466
+msgid "Yes"
+msgstr "Si"
+
+#: ../ml-slider.php:462 ../ml-slider.php:466
+msgid "No"
+msgstr "No"
+
+#: ../ml-slider.php:464 ../ml-slider.php:565
+msgid "Size"
+msgstr "Tamaño"
+
+#: ../ml-slider.php:464
+msgid "kb"
+msgstr "kb"
+
+#: ../ml-slider.php:465
+msgid "Mobile Friendly"
+msgstr "Apto para móviles"
+
+#: ../ml-slider.php:512
+msgid "Slides"
+msgstr "Diapositivas"
+
+#: ../ml-slider.php:515 ../ml-slider.php:516
+msgid "Add Slide"
+msgstr "Añadir diapositiva"
+
+#: ../ml-slider.php:535
+msgid "Settings"
+msgstr "Ajustes"
+
+#: ../ml-slider.php:536
+msgid "Save"
+msgstr "Guardar"
+
+#: ../ml-slider.php:537
+msgid "Save & Preview"
+msgstr "Guardar y previsualizar"
+
+#: ../ml-slider.php:564
+msgid "Set the initial size for the slides (width x height)"
+msgstr "Establecer el tamaño inicial para las dipositivas (ancho x alto)"
+
+#: ../ml-slider.php:568
+msgid "Width"
+msgstr "Ancho"
+
+#: ../ml-slider.php:569
+msgid "Height"
+msgstr "Alto"
+
+#: ../ml-slider.php:573
+msgid "Center align the slideshow"
+msgstr "Centrar el pase de diapositvas"
+
+#: ../ml-slider.php:574
+msgid "Center align"
+msgstr "Centrar"
+
+#: ../ml-slider.php:581
+msgid "Show slide navigation row"
+msgstr "Mostrar la barra de navegación"
+
+#: ../ml-slider.php:582
+msgid "Controls"
+msgstr "Controles"
+
+#: ../ml-slider.php:585
+msgid "Pager"
+msgstr ""
+
+#: ../ml-slider.php:586
+msgid "Navigation"
+msgstr ""
+
+#: ../ml-slider.php:590
+msgid "Slide transition effect"
+msgstr "Efecto de la transición entre diapositivas"
+
+#: ../ml-slider.php:591
+msgid "Effect"
+msgstr "Efecto"
+
+#: ../ml-slider.php:595 ../ml-slider.php:705
+msgid "Random"
+msgstr "Aleatorio"
+
+#: ../ml-slider.php:596
+msgid "Swirl"
+msgstr ""
+
+#: ../ml-slider.php:597
+msgid "Rain"
+msgstr ""
+
+#: ../ml-slider.php:598
+msgid "Straight"
+msgstr ""
+
+#: ../ml-slider.php:599
+#, fuzzy
+msgid "Slide Down"
+msgstr "Dirección del pase"
+
+#: ../ml-slider.php:600
+msgid "Slice Up"
+msgstr ""
+
+#: ../ml-slider.php:601
+msgid "Slide Up Left"
+msgstr ""
+
+#: ../ml-slider.php:602
+msgid "Slice Up Down"
+msgstr ""
+
+#: ../ml-slider.php:603
+msgid "Slide Up Down Left"
+msgstr ""
+
+#: ../ml-slider.php:604
+msgid "Fold"
+msgstr ""
+
+#: ../ml-slider.php:605
+msgid "Fade"
+msgstr ""
+
+#: ../ml-slider.php:606
+msgid "Slide In Right"
+msgstr ""
+
+#: ../ml-slider.php:607
+#, fuzzy
+msgid "Slide In Left"
+msgstr "Efecto de la transición entre diapositivas"
+
+#: ../ml-slider.php:608
+#, fuzzy
+msgid "Box Random"
+msgstr "Aleatorio"
+
+#: ../ml-slider.php:609
+msgid "Box Rain"
+msgstr ""
+
+#: ../ml-slider.php:610
+#, fuzzy
+msgid "Box Rain Reverse"
+msgstr "Invertir"
+
+#: ../ml-slider.php:611
+msgid "Box Rain Grow Reverse"
+msgstr ""
+
+#: ../ml-slider.php:612
+#, fuzzy
+msgid "Slide"
+msgstr "Diapositivas"
+
+#: ../ml-slider.php:617
+msgid "Change the slider style"
+msgstr "Cambar el estilo del pase"
+
+#: ../ml-slider.php:618
+msgid "Theme"
+msgstr "Tema"
+
+#: ../ml-slider.php:639
+msgid "Advanced Settings"
+msgstr "Ajustes avanzados"
+
+#: ../ml-slider.php:642
+msgid "Start the slideshow on page load"
+msgstr "Comenzar el pase al cargar la página"
+
+#: ../ml-slider.php:643
+msgid "Auto play"
+msgstr "Auto arranque"
+
+#: ../ml-slider.php:650
+msgid "Animation easing effect"
+msgstr "Efecto de la animación suavizado"
+
+#: ../ml-slider.php:651
+msgid "Easing"
+msgstr "Suavizado"
+
+#: ../ml-slider.php:679
+msgid "Select the sliding direction"
+msgstr "Seleccionar la dirección del pase"
+
+#: ../ml-slider.php:679
+msgid "Slide direction"
+msgstr "Dirección del pase"
+
+#: ../ml-slider.php:682
+msgid "Horizontal"
+msgstr "Horizontal"
+
+#: ../ml-slider.php:683
+msgid "Vertical"
+msgstr "Vertical"
+
+#: ../ml-slider.php:688
+msgid ""
+"Smart Crop ensures your responsive slides are cropped to a ratio that "
+"results in a consistent slideshow size"
+msgstr ""
+"El recorte inteligente asegura que tus pases responsive sean cortados en una "
+"proporción correcta"
+
+#: ../ml-slider.php:689
+msgid "Smart crop"
+msgstr "Recorte inteligente"
+
+#: ../ml-slider.php:696
+msgid ""
+"Display as carousel - when selected the effect and direction options will be "
+"ignored."
+msgstr ""
+"Mostar como carrusel - Cuando lo seleccionas, los efectos y ajusttes de "
+"dirección son ignorados"
+
+#: ../ml-slider.php:697
+msgid "Carousel mode"
+msgstr "Modo carrusel"
+
+#: ../ml-slider.php:704
+msgid "Randomise the order of the slides"
+msgstr "Ordenar aleatoriamente las diapositivas"
+
+#: ../ml-slider.php:712
+msgid ""
+"Pause the slideshow when hovering over slider, then resume when no longer "
+"hovering"
+msgstr ""
+"Pausar el pase de diapositivas cuando el ratón se pose encima y continuar "
+"con la reproducción cuando el ratón salga."
+
+#: ../ml-slider.php:713
+msgid "Hover pause"
+msgstr "Pausar cuando situes el ratón encima"
+
+#: ../ml-slider.php:720
+msgid "Reverse the animation direction"
+msgstr "Invertir orden de la animación"
+
+#: ../ml-slider.php:721
+msgid "Reverse"
+msgstr "Invertir"
+
+#: ../ml-slider.php:728
+msgid "How long to display each slide, in milliseconds"
+msgstr "Cuanto tiempo se muestra cada diapositiva en milisegundos"
+
+#: ../ml-slider.php:729
+msgid "Slide delay"
+msgstr "Retraso de la diapositiva"
+
+#: ../ml-slider.php:732 ../ml-slider.php:781 ../ml-slider.php:797
+msgid "ms"
+msgstr "ms"
+
+#: ../ml-slider.php:736
+msgid "Set the speed of animations, in milliseconds"
+msgstr "Ajustar la duración de las animaciones en milisegundos"
+
+#: ../ml-slider.php:737
+msgid "Animation speed"
+msgstr "Velocidad de la animación"
+
+#: ../ml-slider.php:744
+msgid "Number of squares (width x height)"
+msgstr "Número de cuadros (ancho x alto)"
+
+#: ../ml-slider.php:745
+msgid "Number of squares"
+msgstr "Nmúero de cuadros"
+
+#: ../ml-slider.php:753 ../ml-slider.php:754
+msgid "Number of slices"
+msgstr "Número de cortes"
+
+#: ../ml-slider.php:761
+msgid "Set the text for the 'previous' direction item"
+msgstr "Introducir el texto de \"anterior\" en la dirección del elemento"
+
+#: ../ml-slider.php:762
+msgid "Previous text"
+msgstr "Texto \"previo\""
+
+#: ../ml-slider.php:769
+msgid "Set the text for the 'next' direction item"
+msgstr "Introducir el texto de \"siguiente\" en la dirección del elemento"
+
+#: ../ml-slider.php:770
+msgid "Next text"
+msgstr "Texto \"siguiente\""
+
+#: ../ml-slider.php:777
+msgid "Delay beetwen squares in ms"
+msgstr "Retardo entre cuadros en ms"
+
+#: ../ml-slider.php:778
+msgid "Square delay"
+msgstr "Retardo entre cuadros"
+
+#: ../ml-slider.php:785
+msgid "Opacity of title and navigation"
+msgstr "Opacidad del título y navegación"
+
+#: ../ml-slider.php:786
+msgid "Opacity"
+msgstr "Opacidad"
+
+#: ../ml-slider.php:793
+msgid "Set the fade in speed of the caption"
+msgstr "Ajustar el fundido en la velocidad del subtítulo"
+
+#: ../ml-slider.php:794
+msgid "Caption speed"
+msgstr "Velocidad del subtítulo"
+
+#: ../ml-slider.php:801
+msgid "Developer Options"
+msgstr "Opciones de desarrollador"
+
+#: ../ml-slider.php:804
+msgid ""
+"Specify any custom CSS Classes you would like to be added to the slider "
+"wrapper"
+msgstr "Añadir las clases CSS personalizadas en el pase de diapositivas"
+
+#: ../ml-slider.php:805
+msgid "CSS classes"
+msgstr "Clases CSS"
+
+#: ../ml-slider.php:812
+msgid "Uncheck this is you would like to include your own CSS"
+msgstr "Marca esta si quieres incluir tu propio CSS"
+
+#: ../ml-slider.php:813
+msgid "Print CSS"
+msgstr "Imprimir CSS"
+
+#: ../ml-slider.php:820
+msgid "Uncheck this is you would like to include your own Javascript"
+msgstr "Desmarca esto si quieres incluír tu propio javascript"
+
+#: ../ml-slider.php:821
+msgid "Print JS"
+msgstr "Imprimir JS"
+
+#: ../ml-slider.php:829
+msgid "Delete Slider"
+msgstr "Borrar pase"
+
+#: ../ml-slider.php:838
+msgid "Usage"
+msgstr "Uso"
+
+#: ../ml-slider.php:844
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: ../ml-slider.php:850
+msgid "Template Include"
+msgstr "Template include"
+
+#: ../inc/metaslider.widget.class.php:14
+msgid "Meta Slider"
+msgstr "Meta Slider"
+
+#: ../inc/metaslider.widget.class.php:108
+msgid "Title:"
+msgstr ""
+
+#: ../inc/metaslider.widget.class.php:111
+msgid "Select Slider:"
+msgstr "Seleccionar pase"
+
+#: ../inc/metaslider.widget.class.php:121
+msgid "No slideshows found"
+msgstr "No se han encontrado pases de diapositiva"
