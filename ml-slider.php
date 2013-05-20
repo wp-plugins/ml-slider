@@ -620,10 +620,15 @@ class MetaSliderPlugin {
                                 <td>
                                     <select name="settings[theme]" class='theme option coin nivo flex responsive'>
                                         <?php 
-                                            $themes =  "<option value='default' class='option nivo flex coin responsive'>Default</option>
-                                                        <option value='dark' class='option nivo'>Dark (Nivo)</option>
-                                                        <option value='light' class='option nivo'>Light (Nivo)</option>
-                                                        <option value='bar' class='option nivo'>Bar (Nivo)</option>";
+                                            $defaultSelected = $this->slider->get_setting('theme') == 'default' ? 'selected=selected' : '';
+                                            $darkSelected = $this->slider->get_setting('theme') == 'dark' ? 'selected=selected' : '';
+                                            $lightSelected = $this->slider->get_setting('theme') == 'light' ? 'selected=selected' : '';
+                                            $barSelected = $this->slider->get_setting('theme') == 'bar' ? 'selected=selected' : '';
+
+                                            $themes =  "<option value='default' class='option nivo flex coin responsive' {$defaultSelected}>Default</option>
+                                                        <option value='dark' class='option nivo' {$darkSelected}>Dark (Nivo)</option>
+                                                        <option value='light' class='option nivo' {$lightSelected}>Light (Nivo)</option>
+                                                        <option value='bar' class='option nivo' {$barSelected}>Bar (Nivo)</option>";
 
                                             echo apply_filters('metaslider_get_available_themes', $themes, $this->slider->get_setting('theme')); 
                                         ?>
