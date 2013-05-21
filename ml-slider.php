@@ -241,7 +241,7 @@ class MetaSliderPlugin {
      */
     public function go_pro_cta() {
         if (!is_plugin_active('ml-slider-pro/ml-slider-pro.php')) {
-            $goPro = "<div id='goProWrap'><span>Meta Slider v" . METASLIDER_VERSION . 
+            $goPro = "<div id='goProWrap'><span>Meta Slider Free v" . METASLIDER_VERSION . 
                 " - <a target='_blank' href='http://www.metaslider.com'>" . 
                 __('Upgrade to Pro $19', 'metaslider') . 
                 "</a></span></div>";

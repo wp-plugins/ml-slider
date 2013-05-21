@@ -35,6 +35,7 @@ Features:
 Meta Slider has been translated into the following languages:
 
 * French (thanks to fb-graphiklab)
+* Spanish (thanks to eltipografico)
 
 Read more and thanks to:
 
@@ -98,10 +99,14 @@ if (is_front_page() || is_home()) {
 
 == Changelog ==
 
+= 2.1.3 =
+* Fix: User Access Manager Plugin incompatibility issues (reported by and thanks to: eltipografico)
+
 = 2.1.2 =
 * Fix: Nivo Slider theme select dropdown (reported by and thanks to: macks)
 * Fix: HTML5 Validation fix for inline styles
 * Improvement: Title field added to widget (suggested by and thanks to: pa_esp)
+* New feature: Spanish language pack (thanks to eltipografico)
 
 = 2.1.1 =
 * Fix: PHP version compatibility
