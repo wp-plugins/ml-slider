@@ -123,7 +123,7 @@ if (is_front_page() || is_home()) {
 * Fix: PHP Error when using slides the same size as the slideshow
 
 = 2.0.1 =
-* New feature: French translation pack (thanks to: fb-graphiklab)
+* New feature: French language pack (thanks to: fb-graphiklab)
 * Fix: Use transparent background on default flexslider theme
 * Fix: Set direction to LTR for flexslider viewport (fix for RTL languages)
 * Fix: Nivoslider HTML Captions
