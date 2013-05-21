@@ -99,6 +99,9 @@ if (is_front_page() || is_home()) {
 
 == Changelog ==
 
+= 2.1.4 =
+* Fix: Widget markup invalid (reported by and thanks to: CarlosCanvas)
+
 = 2.1.3 =
 * Fix: User Access Manager Plugin incompatibility issues (reported by and thanks to: eltipografico)
 
