@@ -35,6 +35,34 @@
   width: 100%;
   margin: 0 0 8px 0;
 }
+#goProWrap {
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  -webkit-border-bottom-left-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  background: #e3e3e3;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#dfdfdf), to(#f1f1f1));
+  background-image: -webkit-linear-gradient(bottom, #dfdfdf, #f1f1f1);
+  background-image: -moz-linear-gradient(bottom, #dfdfdf, #f1f1f1);
+  background-image: -o-linear-gradient(bottom, #dfdfdf, #f1f1f1);
+  background-image: linear-gradient(to top, #dfdfdf, #f1f1f1);
+  float: right;
+}
+#goProWrap span {
+  z-index: 1;
+  padding: 0 6px;
+  height: 22px;
+  line-height: 22px;
+  font-size: 12px;
+  display: block;
+  text-shadow: rgba(255, 255, 255, 0.7) 0 1px 0;
+}
+#goProWrap a {
+  text-decoration: none;
+}
 .metaslider .section {
   cursor: pointer;
 }
