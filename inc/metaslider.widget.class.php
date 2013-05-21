@@ -35,7 +35,6 @@ class MetaSlider_Widget extends WP_Widget {
 			if ( ! empty( $title ) )
 				echo $before_title . $title . $after_title;
 
-			echo $before_widget;
 			echo do_shortcode("[metaslider id={$slider_id}]");
 			echo $after_widget;
 		}
