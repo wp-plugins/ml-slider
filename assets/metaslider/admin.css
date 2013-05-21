@@ -114,7 +114,7 @@
 .metaslider .logo {
   text-transform: uppercase;
 }
-.metaslider .tooltip {
+.metaslider .tipsy-tooltip {
   font-size: 0.9em;
 }
 .metaslider .nav-tab-active input {

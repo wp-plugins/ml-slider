@@ -70,8 +70,8 @@ jQuery(document).ready(function($) {
     });
 
     // helptext tooltips
-    jQuery(".metaslider .tooltip").tipsy({className: 'msTipsy', live: true, delayIn: 500, html: true, fade: true, gravity: 'e'});
-    jQuery(".metaslider .tooltiptop").tipsy({live: true, delayIn: 500, html: true, fade: true, gravity: 'se'});
+    jQuery(".metaslider .tipsy-tooltip").tipsy({className: 'msTipsy', live: true, delayIn: 500, html: true, fade: true, gravity: 'e'});
+    jQuery(".metaslider .tipsy-tooltip-top").tipsy({live: true, delayIn: 500, html: true, fade: true, gravity: 'se'});
 
     // Select input field contents when clicked
     jQuery(".metaslider .shortcode input").click(function() {

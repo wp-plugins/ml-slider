@@ -558,34 +558,34 @@ class MetaSliderPlugin {
                             <tr>
                                 <td colspan='2' class='slider-lib-row'>
                                     <div class='slider-lib flex'>
-                                        <label for='flex' title='<?php echo $this->get_library_details(2.1, true, 17, true); ?>' class='tooltiptop'>FlexSlider</label>
+                                        <label for='flex' title='<?php echo $this->get_library_details(2.1, true, 17, true); ?>' class='tipsy-tooltip-top'>FlexSlider</label>
                                         <input class="select-slider" id='flex' rel='flex' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'flex') echo 'checked=checked' ?> value='flex' />
                                     </div>
                                     <div class='slider-lib responsive'>
-                                        <label for='responsive' title='<?php echo $this->get_library_details(1.53, true, 3, true); ?>' class='tooltiptop'>Responsive</label>
+                                        <label for='responsive' title='<?php echo $this->get_library_details(1.53, true, 3, true); ?>' class='tipsy-tooltip-top'>Responsive</label>
                                         <input class="select-slider" id='responsive' rel='responsive' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'responsive') echo 'checked=checked' ?> value='responsive' />
                                     </div>
                                     <div class='slider-lib nivo'>
-                                        <label for='nivo' title='<?php echo $this->get_library_details(3.2, true, 12, true); ?>' class='tooltiptop'>NivoSlider</label>
+                                        <label for='nivo' title='<?php echo $this->get_library_details(3.2, true, 12, true); ?>' class='tipsy-tooltip-top'>NivoSlider</label>
                                         <input class="select-slider" id='nivo' rel='nivo' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'nivo') echo 'checked=checked' ?> value='nivo' />
                                     </div>
                                     <div class='slider-lib coin'>
-                                        <label for='coin' title='<?php echo $this->get_library_details(1.0, false, 8, true); ?>' class='tooltiptop'>CoinSlider</label>
+                                        <label for='coin' title='<?php echo $this->get_library_details(1.0, false, 8, true); ?>' class='tipsy-tooltip-top'>CoinSlider</label>
                                         <input class="select-slider" id='coin' rel='coin' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'coin') echo 'checked=checked' ?> value='coin' />
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td width='40%' class='tooltip' title="<?php _e("Set the initial size for the slides (width x height)", 'metaslider') ?>">
+                                <td width='40%' class='tipsy-tooltip' title="<?php _e("Set the initial size for the slides (width x height)", 'metaslider') ?>">
                                     <?php _e("Size", 'metaslider') ?>
                                 </td>
                                 <td>
-                                    <input type='text' size='3' class="width tooltiptop" title='<?php _e("Width", 'metaslider') ?>' name="settings[width]" value='<?php echo $this->slider->get_setting('width') ?>' />px X
-                                    <input type='text' size='3' class="height tooltiptop" title='<?php _e("Height", 'metaslider') ?>' name="settings[height]" value='<?php echo $this->slider->get_setting('height') ?>' />px
+                                    <input type='text' size='3' class="width tipsytop" title='<?php _e("Width", 'metaslider') ?>' name="settings[width]" value='<?php echo $this->slider->get_setting('width') ?>' />px X
+                                    <input type='text' size='3' class="height tipsytop" title='<?php _e("Height", 'metaslider') ?>' name="settings[height]" value='<?php echo $this->slider->get_setting('height') ?>' />px
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Center align the slideshow", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Center align the slideshow", 'metaslider') ?>">
                                     <?php _e("Center align", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -593,7 +593,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Show slide navigation row", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Show slide navigation row", 'metaslider') ?>">
                                     <?php _e("Controls", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -602,7 +602,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Slide transition effect", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Slide transition effect", 'metaslider') ?>">
                                     <?php _e("Effect", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -629,7 +629,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Change the slider style", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Change the slider style", 'metaslider') ?>">
                                     <?php _e("Theme", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -654,7 +654,7 @@ class MetaSliderPlugin {
                                 <td colspan='2' class='highlight'><?php _e("Advanced Settings", 'metaslider') ?></td>
                             </tr>
                             <tr>
-                                <td width='40%' class='tooltip' title="<?php _e("Start the slideshow on page load", 'metaslider') ?>">
+                                <td width='40%' class='tipsy-tooltip' title="<?php _e("Start the slideshow on page load", 'metaslider') ?>">
                                     <?php _e("Auto play", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -662,7 +662,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Animation easing effect", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Animation easing effect", 'metaslider') ?>">
                                     <?php _e("Easing", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -691,7 +691,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Select the sliding direction", 'metaslider') ?>"><?php _e("Slide direction", 'metaslider') ?></td>
+                                <td class='tipsy-tooltip' title="<?php _e("Select the sliding direction", 'metaslider') ?>"><?php _e("Slide direction", 'metaslider') ?></td>
                                 <td>
                                     <select class='option flex' name="settings[direction]">
                                         <option value='horizontal' <?php if ($this->slider->get_setting('direction') == 'horizontal') echo 'selected=selected' ?>><?php _e("Horizontal", 'metaslider') ?></option>
@@ -700,7 +700,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Smart Crop ensures your responsive slides are cropped to a ratio that results in a consistent slideshow size", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Smart Crop ensures your responsive slides are cropped to a ratio that results in a consistent slideshow size", 'metaslider') ?>">
                                     <?php _e("Smart crop", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -708,7 +708,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Display as carousel - when selected the effect and direction options will be ignored.", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Display as carousel - when selected the effect and direction options will be ignored.", 'metaslider') ?>">
                                     <?php _e("Carousel mode", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -716,7 +716,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Randomise the order of the slides", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Randomise the order of the slides", 'metaslider') ?>">
                                     <?php _e("Random", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -724,7 +724,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Pause the slideshow when hovering over slider, then resume when no longer hovering", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Pause the slideshow when hovering over slider, then resume when no longer hovering", 'metaslider') ?>">
                                     <?php _e("Hover pause", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -732,7 +732,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Reverse the animation direction", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Reverse the animation direction", 'metaslider') ?>">
                                     <?php _e("Reverse", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -740,7 +740,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("How long to display each slide, in milliseconds", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("How long to display each slide, in milliseconds", 'metaslider') ?>">
                                     <?php _e("Slide delay", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -748,7 +748,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Set the speed of animations, in milliseconds", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Set the speed of animations, in milliseconds", 'metaslider') ?>">
                                     <?php _e("Animation speed", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -756,7 +756,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Number of squares (width x height)", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Number of squares (width x height)", 'metaslider') ?>">
                                     <?php _e("Number of squares", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -765,7 +765,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Number of slices", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Number of slices", 'metaslider') ?>">
                                     <?php _e("Number of slices", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -773,7 +773,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Set the text for the 'previous' direction item", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Set the text for the 'previous' direction item", 'metaslider') ?>">
                                     <?php _e("Previous text", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -781,7 +781,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Set the text for the 'next' direction item", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Set the text for the 'next' direction item", 'metaslider') ?>">
                                     <?php _e("Next text", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -789,7 +789,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Delay beetwen squares in ms", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Delay beetwen squares in ms", 'metaslider') ?>">
                                     <?php _e("Square delay", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -797,7 +797,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Opacity of title and navigation", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Opacity of title and navigation", 'metaslider') ?>">
                                     <?php _e("Opacity", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -805,7 +805,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Set the fade in speed of the caption", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Set the fade in speed of the caption", 'metaslider') ?>">
                                     <?php _e("Caption speed", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -816,7 +816,7 @@ class MetaSliderPlugin {
                                 <td colspan='2' class='highlight'><?php _e("Developer Options", 'metaslider') ?></td>
                             </tr>
                             <tr>
-                                <td width='40%' class='tooltip' title="<?php _e("Specify any custom CSS Classes you would like to be added to the slider wrapper", 'metaslider') ?>">
+                                <td width='40%' class='tipsy-tooltip' title="<?php _e("Specify any custom CSS Classes you would like to be added to the slider wrapper", 'metaslider') ?>">
                                     <?php _e("CSS classes", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -824,7 +824,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Uncheck this is you would like to include your own CSS", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Uncheck this is you would like to include your own CSS", 'metaslider') ?>">
                                     <?php _e("Print CSS", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -832,7 +832,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tooltip' title="<?php _e("Uncheck this is you would like to include your own Javascript", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Uncheck this is you would like to include your own Javascript", 'metaslider') ?>">
                                     <?php _e("Print JS", 'metaslider') ?>
                                 </td>
                                 <td>
