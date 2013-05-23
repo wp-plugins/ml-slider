@@ -17,7 +17,6 @@ class MetaFlexSlider extends MetaSlider {
         add_filter('metaslider_css', array($this, 'get_carousel_css'), 10, 3);
     }
 
-
     /**
      * Adjust the slider parameters so they're comparible with the carousel mode
      */
@@ -58,7 +57,7 @@ class MetaFlexSlider extends MetaSlider {
      */
     public function get_carousel_css($css, $settings, $slider_id) {
         if (isset($settings["carouselMode"]) && $settings['carouselMode'] == 'true') {
-            $css .= "#metaslider_{$slider_id}.flexslider li {margin-right: {$this->carousel_item_margin}px;}";
+            $css .= ".flexslider li {margin-right: {$this->carousel_item_margin}px;}\n";
         }
 
         return $css;
@@ -109,20 +108,15 @@ class MetaFlexSlider extends MetaSlider {
      * @return string slider markup.
      */
     protected function get_html() {
-        $return_value = "<div id='" . $this->get_identifier() . "' class='flexslider'><ul class='slides'>";
-
-        $first = true;
-        $style = "";
+        $return_value = "<div id='" . $this->get_identifier() . "' class='flexslider'>";
+        $return_value .= "\n            <ul class='slides'>";
 
         foreach ($this->slides as $slide) {
-            if (!$first) {
-                $style = " style='display: none;'";
-            }
-            $return_value .= "<li{$style}>" . $slide . "</li>";
-            $first = false;
+            $return_value .= "\n                <li>\n    " . $slide . "\n                </li>";
         }
         
-        $return_value .= "</ul></div>";
+        $return_value .= "\n            </ul>";
+        $return_value .= "\n        </div>";
 
         return $return_value;
     }

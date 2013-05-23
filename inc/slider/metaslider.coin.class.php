@@ -48,10 +48,10 @@ class MetaCoinSlider extends MetaSlider {
         $retVal = "<div id='" . $this->get_identifier() . "' class='coin-slider'>";
         
         foreach ($this->slides as $slide) {
-            $retVal .= $slide;
+            $retVal .= "\n" . $slide;
         }
         
-        $retVal .= "</div>";
+        $retVal .= "\n        </div>";
         
         return $retVal;
     }

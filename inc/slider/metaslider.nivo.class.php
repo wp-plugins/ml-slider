@@ -68,16 +68,17 @@ class MetaNivoSlider extends MetaSlider {
     }
 
     /**
-     * Include slider assets
+     * 
      */
-    public function enqueue_scripts() {
-        parent::enqueue_scripts();
+    public function get_slider_css($css, $settings, $slider_id) {
+        $css = parent::get_slider_css($css, $settings, $slider_id);
 
-        // include the theme
         if ($this->get_setting('printCss') == 'true') {
             $theme = $this->get_theme();
-            wp_enqueue_style('ml-slider_nivo_slider_theme_' . $theme, METASLIDER_ASSETS_URL  . "sliders/nivoslider/themes/{$theme}/{$theme}.css");
+            $css .= "\n        @import url('" . METASLIDER_ASSETS_URL  . "sliders/nivoslider/themes/{$theme}/{$theme}.css');";
         }
+
+        return $css;
     }
 
     /**
@@ -99,17 +100,15 @@ class MetaNivoSlider extends MetaSlider {
      * @return string slider markup.
      */
     protected function get_html() {
-
-
         $retVal  = "<div class='slider-wrapper theme-{$this->get_theme()}'>";
-        $retVal .= "<div class='ribbon'></div>";
-        $retVal .= "<div id='" . $this->get_identifier() . "' class='nivoSlider'>";
+        $retVal .= "\n            <div class='ribbon'></div>";
+        $retVal .= "\n            <div id='" . $this->get_identifier() . "' class='nivoSlider'>";
         
         foreach ($this->slides as $slide) {
-            $retVal .= $slide;
+            $retVal .= "\n                " . $slide;
         }
         
-        $retVal .= "</div></div>";
+        $retVal .= "\n            </div>\n        </div>";
         
         return $retVal;
     }

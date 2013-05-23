@@ -138,14 +138,16 @@ class MetaImageSlide extends MetaSlide {
      * @return string slide html
      */
     private function get_flex_slider_markup($slide) {
-        $html = "<img height='{$this->settings['height']}' width='{$this->settings['width']}' src='{$slide['thumb']}' alt='{$slide['alt']}' />";
+        $html = "                <img height='{$this->settings['height']}' width='{$this->settings['width']}' src='{$slide['thumb']}' alt='{$slide['alt']}' />";
 
         if (strlen($slide['url'])) {
-            $html = "<a href='{$slide['url']}' target='{$slide['target']}'>" . $html . "</a>";
+            $html = "                <a href='{$slide['url']}' target='{$slide['target']}'>\n        " . $html . "\n                    </a>";
         }
 
         if (strlen($slide['caption'])) {
-            $html .= "<div class='caption-wrap'><div class='caption'>" . $slide['caption'] . "</div></div>";
+            $html .= "\n                    <div class='caption-wrap'>";
+            $html .= "\n                        <div class='caption'>" . $slide['caption'] . "</div>";
+            $html .= "\n                    </div>";
         }
 
         return $html;
@@ -157,12 +159,12 @@ class MetaImageSlide extends MetaSlide {
      * @return string slide html
      */
     private function get_coin_slider_markup($slide) {
-        $url = strlen($slide['url']) ? $slide['url'] : "javascript:void(0)"; // coinslider always wants a URL
+        $url = strlen($slide['url']) ? $slide['url'] : 'javascript:void(0)'; // coinslider always wants a URL
 
-        $html  = "<a href='{$url}' style='display: none;'>";
-        $html .= "<img height='{$this->settings['height']}' width='{$this->settings['width']}' src='{$slide['thumb']}' alt='{$slide['alt']}' />"; // target doesn't work with coin
-        $html .= "<span>{$slide['caption']}</span>";
-        $html .= "</a>";
+        $html  = "            <a href='" . $url . "' style='display: none;'>";
+        $html .= "\n                <img height='{$this->settings['height']}' width='{$this->settings['width']}' src='{$slide['thumb']}' alt='{$slide['alt']}'   />"; // target doesn't work with coin
+        $html .= "\n                <span>{$slide['caption']}</span>";
+        $html .= "\n            </a>";
         return $html;
     }
 
@@ -172,14 +174,16 @@ class MetaImageSlide extends MetaSlide {
      * @return string slide html
      */
     private function get_responsive_slides_markup($slide) {
-        $html = "<img height='{$this->settings['height']}' width='{$this->settings['width']}' src='{$slide['thumb']}' alt='{$slide['alt']}' />";
+        $html = "                <img height='{$this->settings['height']}' width='{$this->settings['width']}' src='{$slide['thumb']}' alt='{$slide['alt']}' />";
 
         if (strlen($slide['caption'])) {
-            $html .= "<div class='caption-wrap'><div class='caption'>" . $slide['caption'] . "</div></div>";
+            $html .= "\n                    <div class='caption-wrap'>";
+            $html .= "\n                        <div class='caption'>{$slide['caption']}</div>";
+            $html .= "\n                    </div>";
         }
 
         if (strlen($slide['url'])) {
-            $html = "<a href='{$slide['url']}' target='{$slide['target']}'>" . $html . "</a>";
+            $html = "                <a href='{$slide['url']}' target='{$slide['target']}'>\n    " . $html . "\n                </a>";
         }
 
         return $html;
