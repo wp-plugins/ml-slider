@@ -99,6 +99,9 @@ if (is_front_page() || is_home()) {
 
 == Changelog ==
 
+= 2.1.5 (DEV) =
+* Fix: HTML 5 Validation
+
 = 2.1.4 =
 * Fix: Widget markup invalid (reported by and thanks to: CarlosCanvas)
 
