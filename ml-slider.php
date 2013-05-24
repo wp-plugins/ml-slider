@@ -305,6 +305,7 @@ class MetaSliderPlugin {
         // lets go
         $this->set_slider($id);
         $this->slider->enqueue_scripts();
+        
         return $this->slider->render_public_slides();
     }
 

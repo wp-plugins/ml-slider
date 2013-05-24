@@ -76,7 +76,7 @@ html[xmlns] .slides {display: block;}
 }
 
 /** Custom Meta Slider CSS **/
-.metaslider .flexslider {
+.flexslider {
     background: none;
     box-shadow: none;
     -webkit-box-shadow: none;
@@ -86,50 +86,50 @@ html[xmlns] .slides {display: block;}
     margin: 0 0 40px 0;
 }
 
-.metaslider .flex-control-nav {
+.flex-control-nav {
 	bottom: -30px;
 	line-height: 11px;
 }
 
 
 /** move margin from list items to anchors */
-.metaslider .flex-control-nav li {
+.flex-control-nav li {
 	margin: 0;
 }
-.metaslider .flex-control-nav li a {
+.flex-control-nav li a {
 	margin: 0 6px;
 	padding: 0;
 }
 
-.metaslider .flexslider .slides li {
+.flexslider .slides li {
     position: relative;
 }
 
 /** fix for users with RTL languages */
-.metaslider .flex-viewport {
+.flex-viewport {
     direction: ltr;
 }
 
 /** add transition effects to firefox **/
-.metaslider .flex-direction-nav a {
+.flex-direction-nav a {
     -moz-transition: all .3s ease;
     transition: all .3s ease;
 }
 
-.metaslider .flexslider .slides p {
+.flexslider .slides p {
     margin: 0;
 }
 
-.metaslider .flex-control-nav {
+.flex-control-nav {
 	margin: auto;
 }
 
-.metaslider .flexslider .slides > li:first-child {
+.flexslider .slides > li:first-child {
     display: block; 
     -webkit-backface-visibility: visible;
 } 
 
-.metaslider .flexslider .slides > li {
+.flexslider .slides > li {
     display: none; 
     -webkit-backface-visibility: hidden;
 }

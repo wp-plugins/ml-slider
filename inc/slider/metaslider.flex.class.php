@@ -57,7 +57,7 @@ class MetaFlexSlider extends MetaSlider {
      */
     public function get_carousel_css($css, $settings, $slider_id) {
         if (isset($settings["carouselMode"]) && $settings['carouselMode'] == 'true') {
-            $css .= ".flexslider li {margin-right: {$this->carousel_item_margin}px;}\n";
+            $css .= "\n#metaslider_{$slider_id}.flexslider li {margin-right: {$this->carousel_item_margin}px;}";
         }
 
         return $css;

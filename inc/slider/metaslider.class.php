@@ -234,15 +234,14 @@ class MetaSlider {
 
         // build the HTML
         $html  = "\n<!--meta slider-->";
-        $html .= "\n<div style='{$style}'>";
+        $html .= "\n<div style='{$style}' class='{$class}'>";
         $html .= "\n    " . $this->get_inline_css();
-        $html .= "\n    <div id='metaslider_container_{$this->id}' class='{$class}'>";
+        $html .= "\n    <div id='metaslider_container_{$this->id}'>";
         $html .= "\n        " . $this->get_html(); 
         $html .= "\n    </div>";
         $html .= $this->get_inline_javascript();
         $html .= "\n</div>";
         $html .= "\n<!--//meta slider-->";
-        
 
         return $html;
     }
@@ -351,6 +350,10 @@ class MetaSlider {
      * 
      */
     public function get_slider_css($css, $settings, $slider_id) {
+        if ($slider_id != $this->id) {
+            return $css;
+        }
+
         $imports = "";
 
         if ($this->get_setting('printCss') == 'true') {
