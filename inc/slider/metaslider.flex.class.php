@@ -112,7 +112,7 @@ class MetaFlexSlider extends MetaSlider {
         $return_value .= "\n            <ul class='slides'>";
 
         foreach ($this->slides as $slide) {
-            $return_value .= "\n                <li>\n    " . $slide . "\n                </li>";
+            $return_value .= "\n                <li style='display: none;'>\n    " . $slide . "\n                </li>";
         }
         
         $return_value .= "\n            </ul>";

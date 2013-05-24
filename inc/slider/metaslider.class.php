@@ -357,8 +357,8 @@ class MetaSlider {
         $imports = "";
 
         if ($this->get_setting('printCss') == 'true') {
-            $stylesheets[] = "@import url('" . METASLIDER_ASSETS_URL . "metaslider/public.css');";
-            $stylesheets[] = "@import url('" . METASLIDER_ASSETS_URL . $this->css_path . "');";
+            $stylesheets[] = "@import url('" . METASLIDER_ASSETS_URL . "metaslider/public.css?ver=" . METASLIDER_VERSION . "');";
+            $stylesheets[] = "@import url('" . METASLIDER_ASSETS_URL . $this->css_path . "?ver=" . METASLIDER_VERSION . "');";
             $imports = "\n        " . implode("\n        ", $stylesheets);
         }
 
