@@ -150,6 +150,7 @@ class MetaSlider {
         $slides = array();
 
         $args = array(
+            'force_no_custom_order' => true,
             'orderby' => 'menu_order',
             'order' => 'ASC',
             'post_type' => 'attachment',

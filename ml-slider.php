@@ -253,7 +253,7 @@ class MetaSliderPlugin {
     /**
      * 
      */
-    public function help_tab () {
+    public function help_tab() {
         $screen = get_current_screen();
 
         // documentation tab
@@ -419,6 +419,7 @@ class MetaSliderPlugin {
      */
     private function find_slider($orderby, $order) {
         $args = array(
+            'force_no_custom_order' => true,
             'post_type' => 'ml-slider',
             'num_posts' => 1,
             'post_status' => 'publish',
