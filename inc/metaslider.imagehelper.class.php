@@ -181,6 +181,11 @@ class MetaSliderImageHelper {
         $dest_width = $size['width'];
         $dest_height = $size['height'];
 
+        // check if a resize is needed
+        if ($dest_width == $orig_width && $dest_height == $orig_height) {
+            return $this->url;
+        }
+
         // image info
         $info = pathinfo( $file_path );
         $dir = $info['dirname'];
