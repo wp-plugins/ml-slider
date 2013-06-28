@@ -99,7 +99,15 @@ if (is_front_page() || is_home()) {
 
 == Changelog ==
 
-= 2.1.5 (DEV) =
+= 2.1.6 =
+* Fix: Use the original image file if the slideshow size is the same size as the image file
+* Fix: Conflict with Advanced Post Types Order plugin
+* Fix: Colorbox conflict when using resizable elements in lightbox
+* Improvement: Refresh slides after clicking 'save'
+* Improvement: Ensure taxonomy category exists before tagging slide to slideshow
+* Fix: Only submit form when submit button is clicked (not all buttons)
+
+= 2.1.5 =
 * Fix: HTML 5 Validation
 
 = 2.1.4 =
