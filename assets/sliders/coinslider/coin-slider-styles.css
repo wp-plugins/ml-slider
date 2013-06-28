@@ -7,7 +7,14 @@
 
 .cs-active { background-color: #B8C4CF; color: #FFFFFF; }
 
-.cs-title { box-sizing: border-box; width: 100%; padding: 10px; background-color: #000000; color: #FFFFFF; }
+.cs-title { 
+	box-sizing: border-box; 
+	-moz-box-sizing: border-box;
+	width: 100%; 
+	padding: 10px; 
+	background-color: #000000; 
+	color: #FFFFFF; 
+}
 
 .cs-prev, 
 .cs-next { background-color: #000000; color: #FFFFFF; padding: 0px 10px; }

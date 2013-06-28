@@ -7,7 +7,6 @@ class MetaFlexSlider extends MetaSlider {
     protected $js_function = 'flexslider';
     protected $js_path = 'sliders/flexslider/jquery.flexslider-min.js';
     protected $css_path = 'sliders/flexslider/flexslider.css';
-
     protected $carousel_item_margin = 5;
 
     public function __construct($id) {
@@ -15,6 +14,8 @@ class MetaFlexSlider extends MetaSlider {
         add_filter('metaslider_flex_slider_parameters', array($this, 'enable_carousel_mode'), 10, 2);
         add_filter('metaslider_flex_slider_parameters', array($this, 'enable_easing'), 10, 2);
         add_filter('metaslider_css', array($this, 'get_carousel_css'), 10, 3);
+        
+        $this->carousel_item_margin = apply_filters('metaslider_carousel_margin', $this->carousel_item_margin, $id);
     }
 
     /**

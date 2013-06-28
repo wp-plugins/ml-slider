@@ -106,6 +106,8 @@ if (is_front_page() || is_home()) {
 * Improvement: Refresh slides after clicking 'save'
 * Improvement: Ensure taxonomy category exists before tagging slide to slideshow
 * Fix: Only submit form when submit button is clicked (not all buttons)
+* Fix: Coin slider caption width in FireFox
+* Improvement: Added hook to adjust carousel image margin
 
 = 2.1.5 =
 * Fix: HTML 5 Validation
