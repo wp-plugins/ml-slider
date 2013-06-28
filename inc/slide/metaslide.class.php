@@ -66,6 +66,11 @@ class MetaSlide {
      * Tag the slide attachment to the slider tax category
      */
     public function tag_slide_to_slider() {
+        if (!term_exists($this->slider->ID, 'ml-slider')) {
+            // create the taxonomy term, the term is the ID of the slider itself
+            wp_insert_term($this->slider->ID, 'ml-slider');            
+        }
+
         // get the term thats name is the same as the ID of the slider
         $term = get_term_by('name', $this->slider->ID, 'ml-slider');
         // tag this slide to the taxonomy term
