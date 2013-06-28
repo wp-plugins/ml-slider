@@ -3,7 +3,7 @@ Contributors: matchalabs
 Tags: widget,wordpress slider,slideshow,wordpress slideshow,image slider,flexslider,flex slider,nivoslider,nivo slider,responsiveslides,responsive,responsive slides,coinslider,coin slider,slideshow,carousel,responsive slider,vertical slides,ml slider,image rotator,metaslider,meta,ajax,metaslider pro
 Requires at least: 3.5
 Tested up to: 3.6
-Stable tag: 2.1.5
+Stable tag: 2.1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -99,7 +99,15 @@ if (is_front_page() || is_home()) {
 
 == Changelog ==
 
-= 2.1.5 (DEV) =
+= 2.1.6 =
+* Fix: Use the original image file if the slideshow size is the same size as the image file
+* Fix: Conflict with Advanced Post Types Order plugin
+* Fix: Colorbox conflict when using resizable elements in lightbox
+* Improvement: Refresh slides after clicking 'save'
+* Improvement: Ensure taxonomy category exists before tagging slide to slideshow
+* Fix: Only submit form when submit button is clicked (not all buttons)
+
+= 2.1.5 =
 * Fix: HTML 5 Validation
 
 = 2.1.4 =
