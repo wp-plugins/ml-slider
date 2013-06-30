@@ -141,7 +141,7 @@ class MetaImageSlide extends MetaSlide {
         $html = "                <img height='{$this->settings['height']}' width='{$this->settings['width']}' src='{$slide['thumb']}' alt='{$slide['alt']}' />";
 
         if (strlen($slide['url'])) {
-            $html = "                <a href='{$slide['url']}' target='{$slide['target']}'>\n        " . $html . "\n                    </a>";
+            $html = "                <a href='{$slide['url']}' target='{$slide['target']}'>        " . $html . "                    </a>";
         }
 
         if (strlen($slide['caption'])) {
@@ -183,7 +183,7 @@ class MetaImageSlide extends MetaSlide {
         }
 
         if (strlen($slide['url'])) {
-            $html = "                <a href='{$slide['url']}' target='{$slide['target']}'>\n    " . $html . "\n                </a>";
+            $html = "                <a href='{$slide['url']}' target='{$slide['target']}'>    " . $html . "                </a>";
         }
 
         return $html;
