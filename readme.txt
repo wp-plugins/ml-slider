@@ -46,9 +46,11 @@ Read more and thanks to:
 
 Want More? Get the **Meta Slider Pro** addon pack to add support for:
 
+* Theme Editor (new!)
 * YouTube slides
 * Vimeo slides
 * HTML slides
+* Layer Slides (new!)
 * Dynamic Post Feed Slides (content slider)
 
 Find out more at http://www.metaslider.com
