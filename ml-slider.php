@@ -3,7 +3,7 @@
  * Plugin Name: Meta Slider
  * Plugin URI: http://www.metaslider.com
  * Description: 4 sliders in 1! Choose from Nivo Slider, Flex Slider, Coin Slider or Responsive Slides.
- * Version: 2.1.6
+ * Version: 2.2
  * Author: Matcha Labs
  * Author URI: http://www.matchalabs.com
  * License: GPLv2 or later
@@ -14,7 +14,7 @@
  * GNU General Public License for more details.
  */
 
-define('METASLIDER_VERSION', '2.1.6');
+define('METASLIDER_VERSION', '2.2');
 define('METASLIDER_BASE_URL', plugin_dir_url(__FILE__));
 define('METASLIDER_ASSETS_URL', METASLIDER_BASE_URL . 'assets/');
 define('METASLIDER_BASE_DIR_LONG', dirname(__FILE__));
@@ -112,9 +112,15 @@ class MetaSliderPlugin {
     public function iframe() {
         wp_enqueue_style('metaslider-admin-styles', METASLIDER_ASSETS_URL . 'metaslider/admin.css', false, METASLIDER_VERSION);
         wp_enqueue_script('google-font-api', 'http://fonts.googleapis.com/css?family=PT+Sans:400,700');
+        
+        $link = apply_filters('metaslider_hoplink', 'http://www.metaslider.com/upgrade/');
+        $link .= '?utm_source=lite&utm_medium=more-slide-types&utm_campaign=pro';
+
         echo "<div class='metaslider'>";
-        echo "<p style='text-align: center; font-size: 1.2em;'>Get the Pro Addon pack to add support for: <b>Content Feed</b> Slides, <b>YouTube</b> Slides, <b>HTML</b> Slides & <b>Vimeo</b> Slides</p>";
-        echo "<a class='probutton' href='http://www.metaslider.com/upgrade/' target='_blank'>Get <span class='logo'><strong>Meta</strong>Slider</span><span class='super'>Pro</span></a>";
+        echo "<p style='text-align: center; font-size: 1.2em; margin-top: 50px;'>Get the Pro Addon pack to add support for: <b>Post Feed</b> Slides, <b>YouTube</b> Slides, <b>HTML</b> Slides & <b>Vimeo</b> Slides</p>";
+        echo "<p style='text-align: center; font-size: 1.2em;'><b>NEW:</b> Animated HTML <b>Layer</b> Slides (with an awesome Drag & Drop editor!)</p>";
+        echo "<p style='text-align: center; font-size: 1.2em;'><b>NEW:</b> Live Theme Editor!</p>";
+        echo "<a class='probutton' href='{$link}' target='_blank'>Get <span class='logo'><strong>Meta</strong>Slider</span><span class='super'>Pro</span></a>";
         echo "<span class='subtext'>Opens in a new window</span>";
         echo "</div>";
     }
@@ -226,6 +232,10 @@ class MetaSliderPlugin {
     public function register_admin_menu() {
         $title = apply_filters('metaslider_menu_title', "Meta Slider");
 
+        if ($title == "Meta Slider") {
+            $title = "Meta Slider Lite";
+        }
+
         $page = add_menu_page($title, $title, 'edit_others_posts', 'metaslider', array(
             $this, 'render_admin_page'
         ), METASLIDER_ASSETS_URL . 'metaslider/matchalabs.png', 9501);
@@ -241,8 +251,12 @@ class MetaSliderPlugin {
      */
     public function go_pro_cta() {
         if (!is_plugin_active('ml-slider-pro/ml-slider-pro.php')) {
-            $goPro = "<div id='goProWrap'><span>Meta Slider Free v" . METASLIDER_VERSION . 
-                " - <a target='_blank' href='http://www.metaslider.com'>" . 
+            $link = apply_filters('metaslider_hoplink', 'http://www.metaslider.com/upgrade/');
+
+            $link .= '?utm_source=lite&utm_medium=nag&utm_campaign=pro';
+
+            $goPro = "<div id='goProWrap'><span>Meta Slider Lite v" . METASLIDER_VERSION . 
+                " - <a target='_blank' href='{$link}'>" . 
                 __('Upgrade to Pro $19', 'metaslider') . 
                 "</a></span></div>";
 
