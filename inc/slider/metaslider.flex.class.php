@@ -27,6 +27,7 @@ class MetaFlexSlider extends MetaSlider {
                 $options["itemWidth"] = $this->get_setting('width');
                 $options["animation"] = "'slide'";
                 $options["direction"] = "'horizontal'";
+                $options["minItems"] = 1;
                 $options["itemMargin"] = $this->carousel_item_margin;
             }
 
