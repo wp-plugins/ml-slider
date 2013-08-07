@@ -104,6 +104,10 @@ if (is_front_page() || is_home()) {
 
 == Changelog ==
 
+= 2.2.1 =
+* Fix: Responsive slides styling in FireFox (reported by and thanks to: dznr418)
+* Fix: Flex Slider carousel causing browser to crash in some circumstances
+
 = 2.2 =
 * Fix: Paragraph tags being added to output using Nivo Slider
 
