@@ -24,12 +24,14 @@ Meta Slider is a flexible, intuitive slideshow administration plugin that lets y
 Features:
 
 * Easy to use **AJAX** powered administration panel
-* Built in **Widget** and **Shortcode**
+* Built in Widget and Shortcode
+* Add unlimited slideshows and slides
 * Change settings per slideshow *(speed, theme, hover pause, width, height, easing etc)*
 * Fully integrated with the new WordPress 3.5 media manager
 * Add captions and URLs to slides
-* **Drag and drop** reordering
-* Lightweight
+* Captions support HTML
+* Drag and drop slide reordering
+* Lightweight - only the minimum JavaScript/CSS is outputted to your page
 * Intelligent image cropping (Smart Crop)
 * Fully localised
 
@@ -103,6 +105,9 @@ if (is_front_page() || is_home()) {
 6. Administration panel - selecting slides
 
 == Changelog ==
+
+= 2.2.2 =
+* Improvement: System check added with option to dismiss messages. Checks made for: role scoper plugin, wp_footer, wordpress version & GD/ImageMagick.
 
 = 2.2.1 =
 * Fix: Responsive slides styling in FireFox (reported by and thanks to: dznr418)
