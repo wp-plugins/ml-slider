@@ -94,6 +94,8 @@ class MetaSliderSystemCheck {
             if (isset($access_types['front']) && !$access_types['front']) {
                 $error = 'Role Scoper Plugin Detected. Please go to Roles > Options. Click the Realm Tab, scroll down to "Access Types" and uncheck the "Viewing content (front-end)" setting.';
                 $this->printMessage($error, 'roleScoper');
+            } else {
+                $this->options['roleScoper'] = false;
             }
         } else {
             $this->options['roleScoper'] = false;
