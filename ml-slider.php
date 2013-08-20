@@ -37,6 +37,9 @@ require_once( METASLIDER_INC_DIR . 'metaslider.imagehelper.class.php' );
 // include widget
 require_once( METASLIDER_INC_DIR . 'metaslider.widget.class.php' );
 
+// include system check
+require_once( METASLIDER_INC_DIR . 'metaslider.systemcheck.class.php' );
+
 /**
  * Register the plugin.
  *
@@ -68,9 +71,6 @@ class MetaSliderPlugin {
         add_action('media_upload_metaslider_pro', array($this, 'metaslider_pro_tab'));
         
 
-        // system check
-        add_action('admin_notices', array($this, 'system_check'));
-
         // add 'go pro' link to plugin options
         $plugin = plugin_basename(__FILE__);
         add_filter("plugin_action_links_{$plugin}", array($this,'upgrade_to_pro') );
@@ -82,13 +82,8 @@ class MetaSliderPlugin {
      * Check our WordPress installation is compatible with Meta Slider
      */
     public function system_check(){
-        if (!function_exists('wp_enqueue_media')) {
-            echo '<div id="message" class="updated"><p><b>Warning</b> Meta Slider requires WordPress 3.5 or above. Please upgrade your WordPress installation.</p></div>';
-        }
-
-        if ((!extension_loaded('gd') || !function_exists('gd_info')) && (!extension_loaded( 'imagick' ) || !class_exists( 'Imagick' ) || !class_exists( 'ImagickPixel' ))) {
-            echo '<div id="message" class="updated"><p><b>Warning</b> Meta Slider requires the GD or ImageMagick PHP extension. Please contact your hosting provider.</p></div>';
-        }
+        $systemCheck = new MetaSliderSystemCheck();
+        $systemCheck->check();
     }
 
     /**
@@ -244,6 +239,7 @@ class MetaSliderPlugin {
         add_action('admin_print_scripts-' . $page, array($this, 'register_admin_scripts'));
         add_action('admin_print_styles-' . $page, array($this, 'register_admin_styles'));
         add_action('load-' . $page, array($this, 'help_tab'));
+
     }
 
     /**
@@ -504,6 +500,7 @@ class MetaSliderPlugin {
     public function render_admin_page() {
         $this->admin_process();
         $this->go_pro_cta();
+        $this->system_check();
         ?>
 
         <script type='text/javascript'>
