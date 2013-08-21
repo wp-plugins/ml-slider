@@ -263,6 +263,7 @@ class MetaSlider {
         $custom_js = apply_filters("metaslider_{$type}_slider_javascript", "", $this->id);
 
         $script  = "\n    <script type='text/javascript'>";
+        $script .= "\n        if (jQuery.browser.mozilla) { jQuery('.metaslider style').removeAttr('scoped'); }; ";
         $script .= "\n        var " . $identifier . " = function($) {";
         $script .= "\n            $('#" . $identifier . "')." . $this->js_function . "({ ";
         $script .= "\n                " . $this->get_javascript_parameters();
@@ -332,15 +333,8 @@ class MetaSlider {
             $css = apply_filters("metaslider_css", "", $this->settings, $this->id);
             $scoped = ' scoped';
 
-            if (isset($_SERVER['HTTP_USER_AGENT'])){
-                $agent = $_SERVER['HTTP_USER_AGENT'];
-                if (strlen(strstr($agent,"Firefox")) > 0 ){ 
-                    $scoped = '';
-                }
-            }
-
             if (strlen($css)) {
-                return "<style type='text/css'{$scoped}>{$css}\n    </style>";
+                return "<style type='text/css' scoped>{$css}\n    </style>";
             }
         }
 
