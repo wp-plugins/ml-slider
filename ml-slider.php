@@ -501,6 +501,7 @@ class MetaSliderPlugin {
         $this->admin_process();
         $this->go_pro_cta();
         $this->system_check();
+        $max_tabs = apply_filters('metaslider_max_tabs', 0);
         ?>
 
         <script type='text/javascript'>
@@ -509,10 +510,25 @@ class MetaSliderPlugin {
 
         <div class="wrap metaslider">
             <form accept-charset="UTF-8" action="?page=metaslider&id=<?php echo $this->slider->id ?>" method="post">
+                <?php
+                    $title = "";
+                    
+                    if ($tabs = $this->all_meta_sliders()) {
+                        if ($max_tabs && count($tabs) > $max_tabs) {
+                            echo "<div style='margin-top: 20px;'><label for='select-slider'>Select Slider: </label>";
+                            echo "<select name='select-slider' onchange='if (this.value) window.location.href=this.value'>";
+                            foreach ($tabs as $tab) {
+                                $selected = $tab['active'] ? " selected='selected'" : "";
 
-                <h2 class="nav-tab-wrapper">
-                    <?php
-                        if ($tabs = $this->all_meta_sliders()) {
+                                if ($tab['active']) {
+                                    $title = $tab['title'];
+                                }
+
+                                echo "<option value='?page=metaslider&id={$tab['id']}'{$selected}>{$tab['title']}</option>";
+                            }
+                            echo "</select></div>";
+                        } else {
+                            echo "<h2 class='nav-tab-wrapper'>";
                             foreach ($tabs as $tab) {
                                 if ($tab['active']) {
                                     echo "<div class='nav-tab nav-tab-active'><input type='text' name='title'  value='" . $tab['title'] . "' onkeypress='this.style.width = ((this.value.length + 1) * 9) + \"px\"' /></div>";
@@ -520,11 +536,12 @@ class MetaSliderPlugin {
                                     echo "<a href='?page=metaslider&id={$tab['id']}' class='nav-tab'>" . $tab['title'] . "</a>";
                                 }
                             }
+                            echo "<a href='?page=metaslider&add=true' id='create_new_tab' class='nav-tab'>+</a>";
+                            echo "</h2>";
                         }
-                    ?>
-                    
-                    <a href="?page=metaslider&add=true" id="create_new_tab" class="nav-tab">+</a>
-                </h2>
+
+                    }
+                ?>
 
                 <?php
                     if (!$this->slider->id) {
@@ -588,6 +605,16 @@ class MetaSliderPlugin {
                                     </div>
                                 </td>
                             </tr>
+                            <?php if ($max_tabs && count($this->all_meta_sliders()) > $max_tabs) { ?>
+                            <tr>
+                                <td width='40%' class='tipsy-tooltip' title="<?php _e("Slideshow title", 'metaslider') ?>">
+                                    <?php _e("Title", 'metaslider') ?>
+                                </td>
+                                <td>
+                                    <input type='text' class="title tipsytop" name="title" value='<?php echo $title ?>' />
+                                </td>
+                            </tr>
+                            <?php } ?>
                             <tr>
                                 <td width='40%' class='tipsy-tooltip' title="<?php _e("Set the initial size for the slides (width x height)", 'metaslider') ?>">
                                     <?php _e("Size", 'metaslider') ?>
