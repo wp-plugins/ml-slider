@@ -106,6 +106,11 @@ if (is_front_page() || is_home()) {
 
 == Changelog ==
 
+= 2.3 =
+* Improvement: Flex Slider upgraded to v2.2
+* Improvement: Responsive Slides upgraded to v1.54
+* Improvement: 'Create first slideshow' prompt added for new users
+
 = 2.2.2 =
 * Improvement: System check added with option to dismiss messages. Checks made for: role scoper plugin, wp_footer, wordpress version & GD/ImageMagick.
 
