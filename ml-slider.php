@@ -512,7 +512,7 @@ class MetaSliderPlugin {
             <form accept-charset="UTF-8" action="?page=metaslider&id=<?php echo $this->slider->id ?>" method="post">
                 <?php
                     $title = "";
-                    
+
                     if ($tabs = $this->all_meta_sliders()) {
                         if ($max_tabs && count($tabs) > $max_tabs) {
                             echo "<div style='margin-top: 20px;'><label for='select-slider'>Select Slider: </label>";
@@ -525,6 +525,8 @@ class MetaSliderPlugin {
                                 }
 
                                 echo "<option value='?page=metaslider&id={$tab['id']}'{$selected}>{$tab['title']}</option>";
+                                echo "<a href='?page=metaslider&add=true' id='create_new_tab' class='nav-tab'>+</a>";
+
                             }
                             echo "</select></div>";
                         } else {
@@ -539,8 +541,13 @@ class MetaSliderPlugin {
                             echo "<a href='?page=metaslider&add=true' id='create_new_tab' class='nav-tab'>+</a>";
                             echo "</h2>";
                         }
-
+                    } else {
+                        echo "<h2 class='nav-tab-wrapper'>";
+                        echo "<a href='?page=metaslider&add=true' id='create_new_tab' class='nav-tab'>+</a>";
+                        echo "<div class='bubble'>" . __("Click the '+' button to create your first slideshow") . "</div>";
+                        echo "</h2>";
                     }
+
                 ?>
 
                 <?php
