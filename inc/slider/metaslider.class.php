@@ -263,7 +263,6 @@ class MetaSlider {
         $custom_js = apply_filters("metaslider_{$type}_slider_javascript", "", $this->id);
 
         $script  = "\n    <script type='text/javascript'>";
-        $script .= "\n        if (jQuery.browser.mozilla) { jQuery('.metaslider style').removeAttr('scoped'); }; ";
         $script .= "\n        var " . $identifier . " = function($) {";
         $script .= "\n            $('#" . $identifier . "')." . $this->js_function . "({ ";
         $script .= "\n                " . $this->get_javascript_parameters();
