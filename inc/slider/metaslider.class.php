@@ -264,6 +264,8 @@ class MetaSlider {
 
         $script  = "\n    <script type='text/javascript'>";
         $script .= "\n        var " . $identifier . " = function($) {";
+        // See: https://bugzilla.mozilla.org/show_bug.cgi?id=830056
+        $script .= "\n            if ($.browser.mozilla) { $('.metaslider style').removeAttr('scoped'); }; ";
         $script .= "\n            $('#" . $identifier . "')." . $this->js_function . "({ ";
         $script .= "\n                " . $this->get_javascript_parameters();
         $script .= "\n            });";
