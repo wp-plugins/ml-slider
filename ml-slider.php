@@ -515,6 +515,9 @@ class MetaSliderPlugin {
 
                     if ($tabs = $this->all_meta_sliders()) {
                         if ($max_tabs && count($tabs) > $max_tabs) {
+                            if (isset($_GET['add']) && $_GET['add'] == 'true') {
+                                echo "<div id='message' class='updated'><p>" . __("New slideshow created. Click 'Add Slide' to get started!", 'metaslider') . "</p></div>";
+                            }
                             echo "<div style='margin-top: 20px;'><label for='select-slider'>Select Slider: </label>";
                             echo "<select name='select-slider' onchange='if (this.value) window.location.href=this.value'>";
                             foreach ($tabs as $tab) {
@@ -525,10 +528,10 @@ class MetaSliderPlugin {
                                 }
 
                                 echo "<option value='?page=metaslider&id={$tab['id']}'{$selected}>{$tab['title']}</option>";
-                                echo "<a href='?page=metaslider&add=true' id='create_new_tab' class='nav-tab'>+</a>";
 
                             }
-                            echo "</select></div>";
+                            echo "</select> " . __('or', 'metaslider') . " ";
+                            echo "<a href='?page=metaslider&add=true'>" . __('Add New Slideshow', 'metaslider') . "</a></div>";
                         } else {
                             echo "<h2 class='nav-tab-wrapper'>";
                             foreach ($tabs as $tab) {
