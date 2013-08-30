@@ -21,7 +21,7 @@ class MetaSliderSystemCheck {
         $this->checkWordPressVersion();
         $this->checkImageLibrary();
         $this->checkRoleScoper();
-        $this->checkWpFooter();
+        //$this->checkWpFooter();
         $this->updateSystemCheck();
     }
 
