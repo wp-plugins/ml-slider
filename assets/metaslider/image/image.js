@@ -3,8 +3,16 @@
  */
 (function ($) {
 	$(function () {
+		var file_frame;
+		
 		jQuery('.metaslider .add-slide').live('click', function(event){
 			event.preventDefault();
+
+			// If the media frame already exists, reopen it.
+			if ( file_frame ) {
+				file_frame.open();
+				return;
+			}
 
 			// Create the media frame.
 			file_frame = wp.media.frames.file_frame = wp.media({
@@ -34,6 +42,9 @@
 			});
 
 			file_frame.open();
+
+			// Remove the Media Library tab (media_upload_tabs filter is broken in 3.6)
+			jQuery(".media-menu  a:contains('Media Library')").remove();
 		});
 	});
 
