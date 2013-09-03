@@ -206,6 +206,17 @@ class MetaSliderImageHelper {
             }
 
             $saved = $image->save($dest_file_name);
+
+            // Record the new size so that the file is correctly removed when the media file is deleted.
+            $backup_sizes = get_post_meta($this->id,'_wp_attachment_backup_sizes',true);
+
+            if (!is_array($backup_sizes)) {
+                $backup_sizes = array();
+            }
+
+            $backup_sizes["resized-{$dest_width}x{$dest_height}"] = $saved;
+            update_post_meta($this->id,'_wp_attachment_backup_sizes', $backup_sizes);
+
             $url = str_replace(basename($this->url), basename($saved['path']), $this->url);
         }
 
