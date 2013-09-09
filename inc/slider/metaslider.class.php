@@ -264,8 +264,6 @@ class MetaSlider {
 
         $script  = "\n    <script type='text/javascript'>";
         $script .= "\n        var " . $identifier . " = function($) {";
-        // See: https://bugzilla.mozilla.org/show_bug.cgi?id=830056
-        $script .= "\n            if ($.browser.mozilla) { $('.metaslider style').removeAttr('scoped'); }; ";
         $script .= "\n            $('#" . $identifier . "')." . $this->js_function . "({ ";
         $script .= "\n                " . $this->get_javascript_parameters();
         $script .= "\n            });";
@@ -332,10 +330,12 @@ class MetaSlider {
     private function get_inline_css() {
         if (has_filter("metaslider_css")) {
             $css = apply_filters("metaslider_css", "", $this->settings, $this->id);
-            $scoped = ' scoped';
+
+            // use this to add the scoped attribute for HTML5 validation (if needed)
+            $attributes = apply_filters("metaslider_style_attributes", "", $this->settings, $this->id);
 
             if (strlen($css)) {
-                return "<style type='text/css' scoped>{$css}\n    </style>";
+                return "<style type='text/css' {$attributes}>{$css}\n    </style>";
             }
         }
 

@@ -110,6 +110,11 @@ if (is_front_page() || is_home()) {
 * Improvement: Flex Slider upgraded to v2.2
 * Improvement: Responsive Slides upgraded to v1.54
 * Improvement: 'Create first slideshow' prompt added for new users
+* Change: 'scoped' attribute removed from inline CSS tag until browsers catch up with supporting it properly. A new filter has been added: "metaslider_style_attributes" if you wish to add the scoped attribute back in.
+* Change: wp_footer check removed due to confusion
+* Improvement: 'metaslider_max_tabs' filter added to convert tab list to ordered drop down menu
+* Fix: Remove 'Insert Media' tab from 'Add Slide' modal (WP 3.6 only)
+* Improvement: Filters added to allow modification of image slide HTML
 
 = 2.2.2 =
 * Improvement: System check added with option to dismiss messages. Checks made for: role scoper plugin, wp_footer, wordpress version & GD/ImageMagick.

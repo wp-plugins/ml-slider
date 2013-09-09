@@ -454,14 +454,14 @@ class MetaSliderPlugin {
      *
      * @return array all published sliders
      */
-    private function all_meta_sliders() {
+    private function all_meta_sliders($sort_key = 'date') {
         $sliders = false;
         
         // list the tabs
         $args = array(
             'post_type' => 'ml-slider',
             'post_status' => 'publish',
-            'orderby' => 'date',
+            'orderby' => $sort_key,
             'order' => 'ASC',
             'posts_per_page' => -1
         );
@@ -520,6 +520,9 @@ class MetaSliderPlugin {
                             }
                             echo "<div style='margin-top: 20px;'><label for='select-slider'>Select Slider: </label>";
                             echo "<select name='select-slider' onchange='if (this.value) window.location.href=this.value'>";
+
+                            $tabs = $this->all_meta_sliders('title');
+
                             foreach ($tabs as $tab) {
                                 $selected = $tab['active'] ? " selected='selected'" : "";
 
