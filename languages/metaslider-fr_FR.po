@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: metaslider\n"
-"POT-Creation-Date: 2013-09-10 15:22-0000\n"
-"PO-Revision-Date: 2013-09-10 15:22-0000\n"
+"POT-Creation-Date: 2013-09-10 16:01-0000\n"
+"PO-Revision-Date: 2013-09-10 16:01-0000\n"
 "Last-Translator: FB-graphiklab.com <referencement@fb-graphiklab.com>\n"
 "Language-Team: www.fb-graphiklab.com\n"
 "Language: fr_FR\n"
@@ -107,8 +107,9 @@ msgid "Add New Slideshow"
 msgstr "Ajouter une diapositive"
 
 #: ../ml-slider.php:553
-msgid "Click the '+' button to create your first slideshow"
-msgstr ""
+#, fuzzy
+msgid "Create your first slideshow"
+msgstr "Alignement central du diaporama"
 
 #: ../ml-slider.php:570
 msgid "Slides"

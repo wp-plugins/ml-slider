@@ -3,7 +3,7 @@
  * Plugin Name: Meta Slider
  * Plugin URI: http://www.metaslider.com
  * Description: 4 sliders in 1! Choose from Nivo Slider, Flex Slider, Coin Slider or Responsive Slides.
- * Version: 2.3
+ * Version: 2.3-beta
  * Author: Matcha Labs
  * Author URI: http://www.matchalabs.com
  * License: GPLv2 or later
@@ -14,7 +14,7 @@
  * GNU General Public License for more details.
  */
 
-define('METASLIDER_VERSION', '2.3');
+define('METASLIDER_VERSION', '2.3-beta');
 define('METASLIDER_BASE_URL', plugin_dir_url(__FILE__));
 define('METASLIDER_ASSETS_URL', METASLIDER_BASE_URL . 'assets/');
 define('METASLIDER_BASE_DIR_LONG', dirname(__FILE__));
@@ -550,7 +550,7 @@ class MetaSliderPlugin {
                     } else {
                         echo "<h2 class='nav-tab-wrapper'>";
                         echo "<a href='?page=metaslider&add=true' id='create_new_tab' class='nav-tab'>+</a>";
-                        echo "<div class='bubble'>" . __("Click the '+' button to create your first slideshow") . "</div>";
+                        echo "<div class='bubble'>" . __("Create your first slideshow") . "</div>";
                         echo "</h2>";
                     }
 
