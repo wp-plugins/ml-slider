@@ -103,7 +103,7 @@ class MetaImageSlide extends MetaSlide {
             'rel' => ""
         );
 
-        $slide = apply_filters('metaslider_image_slide_attributes', $slide, $this->settings);
+        $slide = apply_filters('metaslider_image_slide_attributes', $slide, $this->slider->ID, $this->settings);
 
         // return the slide HTML
         switch($this->settings['type']) {
