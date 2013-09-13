@@ -144,6 +144,8 @@ class MetaSliderImageHelper {
         return array('width' => floor($new_slide_width), 'height' => floor($new_slide_height));
     }
 
+
+
     /**
      * Return the image URL, crop the image to the correct dimensions if required
      * 
@@ -153,28 +155,9 @@ class MetaSliderImageHelper {
         // Get the image file path
         $file_path = get_attached_file($this->id);
 
-        // load image
-        $image = wp_get_image_editor($file_path);
-
-        // editor will return an error if the path is invalid
-        if (is_wp_error($image)) {
-            if (is_admin()) {
-                echo '<div id="message" class="error">';
-                echo "<p><strong>ERROR</strong> " . $image->get_error_message() . " Check <a href='http://codex.wordpress.org/Changing_File_Permissions' target='_blank'>file permissions</a></p>";
-                echo "<button class='toggle'>Show Details</button>";
-                echo "<div class='message' style='display: none;'><br />Slide ID: {$this->id}<pre>";
-                var_dump($image); 
-                echo "</pre></div>";
-                echo "</div>";
-            }
-            
-            return $this->url;
-        }
-
-        // get the original image size
-        $size = $image->get_size();
-        $orig_width = $size['width'];
-        $orig_height = $size['height'];
+        $image_attributes = wp_get_attachment_image_src($this->id, 'full');
+        $orig_width = $image_attributes[1];
+        $orig_height = $image_attributes[2];
 
         // get the crop size
         $size = $this->get_crop_dimensions($orig_width, $orig_height);
@@ -187,7 +170,7 @@ class MetaSliderImageHelper {
         }
 
         // image info
-        $info = pathinfo( $file_path );
+        $info = pathinfo($file_path);
         $dir = $info['dirname'];
         $ext = $info['extension'];
         $name = wp_basename($file_path, ".$ext");
@@ -198,6 +181,24 @@ class MetaSliderImageHelper {
 
         // crop needed
         if (!file_exists($dest_file_name)) {
+            // load image
+            $image = wp_get_image_editor($file_path);
+
+            // editor will return an error if the path is invalid
+            if (is_wp_error($image)) {
+                if (is_admin()) {
+                    echo '<div id="message" class="error">';
+                    echo "<p><strong>ERROR</strong> " . $image->get_error_message() . " Check <a href='http://codex.wordpress.org/Changing_File_Permissions' target='_blank'>file permissions</a></p>";
+                    echo "<button class='toggle'>Show Details</button>";
+                    echo "<div class='message' style='display: none;'><br />Slide ID: {$this->id}<pre>";
+                    var_dump($image); 
+                    echo "</pre></div>";
+                    echo "</div>";
+                }
+                
+                return $this->url;
+            }
+
             $dims = image_resize_dimensions($orig_width, $orig_height, $dest_width, $dest_height, true);
             
             if ($dims) {
