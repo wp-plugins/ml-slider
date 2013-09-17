@@ -13,13 +13,18 @@ class MetaSliderImageHelper {
 
     /**
      * Constructor
+     * 
+     * @param integer $slide_id
+     * @param integer $width - required width of image
+     * @param integer $height - required height of image
+     * @param string $smart_crop
      */
     public function __construct($slide_id, $width, $height, $smart_crop) {
-        $this->id = $slide_id;
-
         $upload_dir = wp_upload_dir();
-        $this->url = $upload_dir['baseurl'] . "/" . get_post_meta($slide_id, '_wp_attached_file', true);
 
+        $this->id = $slide_id;
+        $this->url = $upload_dir['baseurl'] . "/" . get_post_meta($slide_id, '_wp_attached_file', true);
+        $this->path = get_attached_file($slide_id);
         $this->container_width = $width;
         $this->container_height = $height;
         $this->smart_crop = $smart_crop;
@@ -32,6 +37,8 @@ class MetaSliderImageHelper {
      * dimensions that respect the container size ratio. This ensures image displays in a 
      * sane manner in responsive sliders
      * 
+     * @param integer $image_width
+     * @param integer $image_height
      * @return array image dimensions
      */
     private function get_crop_dimensions($image_width, $image_height) {
@@ -153,75 +160,123 @@ class MetaSliderImageHelper {
      */
     function get_image_url() {
         // Get the image file path
-        $file_path = get_attached_file($this->id);
-
-        $image_attributes = wp_get_attachment_image_src($this->id, 'full');
-        $orig_width = $image_attributes[1];
-        $orig_height = $image_attributes[2];
-
-        // get the crop size
-        $size = $this->get_crop_dimensions($orig_width, $orig_height);
-        $dest_width = $size['width'];
-        $dest_height = $size['height'];
-
-        // check if a resize is needed
-        if ($dest_width == $orig_width && $dest_height == $orig_height) {
+        if (!strlen($this->path)) {
             return $this->url;
         }
 
-        // image info
-        $info = pathinfo($file_path);
+        // source image size
+        $orig_size = $this->get_original_image_dimensions();
+
+        // required size
+        $dest_size = $this->get_crop_dimensions($orig_size['width'], $orig_size['height']);
+
+        // check if a resize is needed
+        if ($orig_size['width'] == $dest_size['width'] && $orig_size['height'] == $dest_size['height']) {
+            return $this->url;
+        }
+
+        $dest_file_name = $this->get_destination_file_name($dest_size);
+
+        if (file_exists($dest_file_name)) {
+            $dest_url = str_replace(basename($this->url), basename($dest_file_name), $this->url);
+        } else {
+            $dest_url = $this->resize_image($orig_size, $dest_size, $dest_file_name);
+        }
+
+        return $dest_url;
+    }
+
+    /**
+     * Get the image dimensions for the original image.
+     * 
+     * Fall back to using the WP_Image_Editor if the size is not stored in metadata
+     * 
+     * @return array
+     */
+    private function get_original_image_dimensions() {
+        $orig_width = 0;
+        $orig_height = 0;
+
+        // try and get the image size from metadata
+        if ($image_attributes = wp_get_attachment_image_src($this->id, 'full')) {
+            $orig_width = $image_attributes[1];
+            $orig_height = $image_attributes[2];
+        } else {
+            // get the size from the image itself
+            $image = wp_get_image_editor($this->path);
+            $size = $image->get_size();
+            $orig_width = $size['width'];
+            $orig_height = $size['height'];
+        }
+
+        return array('width' => $orig_width, 'height' => $orig_height);
+    }
+
+    /**
+     * Return the file name for the required image size
+     * 
+     * @param array $dest_size image dimensions (width/height) in pixels
+     * @return string 
+     */
+    private function get_destination_file_name($dest_size) {
+        $info = pathinfo($this->path);
         $dir = $info['dirname'];
         $ext = $info['extension'];
-        $name = wp_basename($file_path, ".$ext");
-        $dest_file_name = "{$dir}/{$name}-{$dest_width}x{$dest_height}.{$ext}";
+        $name = wp_basename($this->path, ".$ext");
+        $dest_file_name = "{$dir}/{$name}-{$dest_size['width']}x{$dest_size['height']}.{$ext}";
 
-        // URL to destination file
-        $url = str_replace(basename($this->url), basename($dest_file_name), $this->url);
+        return $dest_file_name;
+    }
 
-        // crop needed
-        if (!file_exists($dest_file_name)) {
-            // load image
-            $image = wp_get_image_editor($file_path);
+    /**
+     * Use WP_Image_Editor to create a resized image and return the URL for that image
+     * 
+     * @param array $orig_size
+     * @param array $dest_size
+     * @return string
+     */
+    private function resize_image($orig_size, $dest_size, $dest_file_name) {
+        // load image
+        $image = wp_get_image_editor($this->path);
 
-            // editor will return an error if the path is invalid
-            if (is_wp_error($image)) {
-                if (is_admin()) {
-                    echo '<div id="message" class="error">';
-                    echo "<p><strong>ERROR</strong> " . $image->get_error_message() . " Check <a href='http://codex.wordpress.org/Changing_File_Permissions' target='_blank'>file permissions</a></p>";
-                    echo "<button class='toggle'>Show Details</button>";
-                    echo "<div class='message' style='display: none;'><br />Slide ID: {$this->id}<pre>";
-                    var_dump($image); 
-                    echo "</pre></div>";
-                    echo "</div>";
-                }
-                
-                return $this->url;
+        // editor will return an error if the path is invalid
+        if (is_wp_error($image)) {
+            if (is_admin()) {
+                echo '<div id="message" class="error">';
+                echo "<p><strong>ERROR</strong> " . $image->get_error_message() . " Check <a href='http://codex.wordpress.org/Changing_File_Permissions' target='_blank'>file permissions</a></p>";
+                echo "<button class='toggle'>Show Details</button>";
+                echo "<div class='message' style='display: none;'><br />Slide ID: {$this->id}<pre>";
+                var_dump($image); 
+                echo "</pre></div>";
+                echo "</div>";
             }
-
-            $dims = image_resize_dimensions($orig_width, $orig_height, $dest_width, $dest_height, true);
             
-            if ($dims) {
-                list($dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h) = $dims;
-                $image->crop($src_x, $src_y, $src_w, $src_h, $dst_w, $dst_h);
-            }
-
-            $saved = $image->save($dest_file_name);
-
-            // Record the new size so that the file is correctly removed when the media file is deleted.
-            $backup_sizes = get_post_meta($this->id,'_wp_attachment_backup_sizes',true);
-
-            if (!is_array($backup_sizes)) {
-                $backup_sizes = array();
-            }
-
-            $backup_sizes["resized-{$dest_width}x{$dest_height}"] = $saved;
-            update_post_meta($this->id,'_wp_attachment_backup_sizes', $backup_sizes);
-
-            $url = str_replace(basename($this->url), basename($saved['path']), $this->url);
+            return $this->url;
         }
+
+        $dims = image_resize_dimensions($orig_size['width'], $orig_size['height'], $dest_size['width'], $dest_size['height'], true);
+
+        if ($dims) {
+            list($dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h) = $dims;
+            $image->crop($src_x, $src_y, $src_w, $src_h, $dst_w, $dst_h);
+        }
+
+        $saved = $image->save($dest_file_name);
+
+        // Record the new size so that the file is correctly removed when the media file is deleted.
+        $backup_sizes = get_post_meta($this->id,'_wp_attachment_backup_sizes',true);
+
+        if (!is_array($backup_sizes)) {
+            $backup_sizes = array();
+        }
+
+        $backup_sizes["resized-{$dest_size['width']}x{$dest_size['height']}"] = $saved;
+        update_post_meta($this->id,'_wp_attachment_backup_sizes', $backup_sizes);
+
+        $url = str_replace(basename($this->url), basename($saved['path']), $this->url);
 
         return $url;
     }
 }
+
 ?>
