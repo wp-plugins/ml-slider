@@ -45,7 +45,7 @@ class MetaFlexSlider extends MetaSlider {
         }
         
         // we don't want this filter hanging around if there's more than one slideshow on the page
-        remove_filter('metaslider_flex_slider_parameters', 'enable_carousel_mode');
+        remove_filter('metaslider_flex_slider_parameters', array($this, 'enable_carousel_mode'), 10, 2);
         
         return $options;
     }
