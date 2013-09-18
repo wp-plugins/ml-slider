@@ -100,7 +100,8 @@ class MetaImageSlide extends MetaSlide {
             'caption' => html_entity_decode($this->slide->post_excerpt, ENT_NOQUOTES, 'UTF-8'),
             'caption_raw' => $this->slide->post_excerpt,
             'class' => "slider-{$this->slider->ID} slide-{$this->slide->ID}",
-            'rel' => ""
+            'rel' => "",
+            'data-thumb' => ""
         );
 
         $slide = apply_filters('metaslider_image_slide_attributes', $slide, $this->slider->ID, $this->settings);
@@ -120,18 +121,48 @@ class MetaImageSlide extends MetaSlide {
         }
     }
 
+
+    /**
+     * Build image HTML
+     * 
+     * @param array $attributes
+     * @return string image HTML
+     */
+    private function build_image_tag($attributes) {
+        $html = "<img";
+
+        foreach ($attributes as $att => $val) {
+            if (strlen($val)) {
+                $html .= " " . $att . '="' . $val . '"';
+            }
+        }
+
+        $html .= " />";
+
+        return $html;
+    }
+
     /**
      * Generate nivo slider markup
      * 
      * @return string slide html
      */
     private function get_nivo_slider_markup($slide) {
-        $caption = htmlentities($slide['caption_raw'], ENT_QUOTES, 'UTF-8');
+        $attributes = array(
+            'src' => $slide['thumb'],
+            'height' => $this->settings['height'],
+            'width' => $this->settings['width'],
+            'title' => htmlentities($slide['caption_raw'], ENT_QUOTES, 'UTF-8'),
+            'data-thumb' => $slide['data-thumb'],
+            'alt' => $slide['alt'],
+            'rel' => $slide['rel'],
+            'class' => $slide['class']
+        );
 
-        $html = "<img height='{$this->settings['height']}' width='{$this->settings['width']}' src='{$slide['thumb']}' title=\"{$caption}\" alt='{$slide['alt']}' rel='{$slide['rel']}' class='{$slide['class']}' />";
+        $html = $this->build_image_tag($attributes);
 
         if (strlen($slide['url'])) {
-            $html = "<a href='{$slide['url']}' target='{$slide['target']}'>" . $html . "</a>";
+            $html = '<a href="' . $slide['url'] . '" target="' . $slide['target'] . '">' . $html . '</a>';
         }
 
         return apply_filters('metaslider_image_nivo_slider_markup', $html, $slide, $this->settings);
@@ -143,17 +174,28 @@ class MetaImageSlide extends MetaSlide {
      * @return string slide html
      */
     private function get_flex_slider_markup($slide) {
-        $html = "                <img height='{$this->settings['height']}' width='{$this->settings['width']}' src='{$slide['thumb']}' alt='{$slide['alt']}' rel='{$slide['rel']}' class='{$slide['class']}' />";
+        $attributes = array(
+            'src' => $slide['thumb'],
+            'height' => $this->settings['height'],
+            'width' => $this->settings['width'],
+            'alt' => $slide['alt'],
+            'rel' => $slide['rel'],
+            'class' => $slide['class']
+        );
+
+        $html = $this->build_image_tag($attributes);
 
         if (strlen($slide['url'])) {
-            $html = "                <a href='{$slide['url']}' target='{$slide['target']}'>        " . $html . "                    </a>";
+            $html = '<a href="' . $slide['url'] . '" target="' . $slide['target'] . '">' . $html . '</a>';
         }
 
         if (strlen($slide['caption'])) {
-            $html .= "\n                    <div class='caption-wrap'>";
-            $html .= "\n                        <div class='caption'>" . $slide['caption'] . "</div>";
-            $html .= "\n                    </div>";
+            $html .= '<div class="caption-wrap"><div class="caption">' . $slide['caption'] . '</div></div>';
         }
+
+        $thumb = isset($slide['data-thumb']) && strlen($slide['data-thumb']) ? " data-thumb=\"{$slide['data-thumb']}\"" : "";
+        
+        $html = '<li style="display: none;"' . $thumb . '>' . $html . '</li>';
 
         return apply_filters('metaslider_image_flex_slider_markup', $html, $slide, $this->settings);
     }
@@ -166,10 +208,22 @@ class MetaImageSlide extends MetaSlide {
     private function get_coin_slider_markup($slide) {
         $url = strlen($slide['url']) ? $slide['url'] : 'javascript:void(0)'; // coinslider always wants a URL
 
-        $html  = "            <a href='" . $url . "' style='display: none;'>";
-        $html .= "\n                <img height='{$this->settings['height']}' width='{$this->settings['width']}' src='{$slide['thumb']}' alt='{$slide['alt']}' rel='{$slide['rel']}' class='{$slide['class']}' />"; // target doesn't work with coin
-        $html .= "\n                <span>{$slide['caption']}</span>";
-        $html .= "\n            </a>";
+        $attributes = array(
+            'src' => $slide['thumb'],
+            'height' => $this->settings['height'],
+            'width' => $this->settings['width'],
+            'alt' => $slide['alt'],
+            'rel' => $slide['rel'],
+            'class' => $slide['class']
+        );
+
+        $html = $this->build_image_tag($attributes);
+
+        if (strlen($slide['caption'])) {
+            $html .= "<span>{$slide['caption']}</span>";
+        }
+
+        $html  = '<a href="' . $url . '" style="display: none;">"' . $html . '</a>';
 
         return apply_filters('metaslider_image_coin_slider_markup', $html, $slide, $this->settings);
     }
@@ -180,17 +234,23 @@ class MetaImageSlide extends MetaSlide {
      * @return string slide html
      */
     private function get_responsive_slides_markup($slide) {
-        $html = "                <img height='{$this->settings['height']}' width='{$this->settings['width']}' src='{$slide['thumb']}' alt='{$slide['alt']}' rel='{$slide['rel']}' class='{$slide['class']}' />";
+        $attributes = array(
+            'src' => $slide['thumb'],
+            'height' => $this->settings['height'],
+            'width' => $this->settings['width'],
+            'alt' => $slide['alt'],
+            'rel' => $slide['rel'],
+            'class' => $slide['class']
+        );
 
+        $html = $this->build_image_tag($attributes);
 
         if (strlen($slide['caption'])) {
-            $html .= "\n                    <div class='caption-wrap'>";
-            $html .= "\n                        <div class='caption'>{$slide['caption']}</div>";
-            $html .= "\n                    </div>";
+            $html .= '<div class="caption-wrap"><div class="caption">' . $slide['caption'] . '</div></div>';
         }
 
         if (strlen($slide['url'])) {
-            $html = "                <a href='{$slide['url']}' target='{$slide['target']}'>    " . $html . "                </a>";
+            $html = '<a href="' . $slide['url'] . '" target="' . $slide['target'] . '">'. $html . '</a>';
         }
 
         return apply_filters('metaslider_image_responsive_slider_markup', $html, $slide, $this->settings);
