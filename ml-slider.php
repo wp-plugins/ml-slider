@@ -3,7 +3,7 @@
  * Plugin Name: Meta Slider
  * Plugin URI: http://www.metaslider.com
  * Description: 4 sliders in 1! Choose from Nivo Slider, Flex Slider, Coin Slider or Responsive Slides.
- * Version: 2.3-beta
+ * Version: 2.3
  * Author: Matcha Labs
  * Author URI: http://www.matchalabs.com
  * License: GPLv2 or later
@@ -14,7 +14,7 @@
  * GNU General Public License for more details.
  */
 
-define('METASLIDER_VERSION', '2.3-beta');
+define('METASLIDER_VERSION', '2.3');
 define('METASLIDER_BASE_URL', plugin_dir_url(__FILE__));
 define('METASLIDER_ASSETS_URL', METASLIDER_BASE_URL . 'assets/');
 define('METASLIDER_BASE_DIR_LONG', dirname(__FILE__));
@@ -638,23 +638,6 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tipsy-tooltip' title="<?php _e("Center align the slideshow", 'metaslider') ?>">
-                                    <?php _e("Center align", 'metaslider') ?>
-                                </td>
-                                <td>
-                                    <input class='option coin responsive nivo flex' type='checkbox' name="settings[center]" <?php if ($this->slider->get_setting('center') == 'true') echo 'checked=checked' ?> />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class='tipsy-tooltip' title="<?php _e("Show slide navigation row", 'metaslider') ?>">
-                                    <?php _e("Controls", 'metaslider') ?>
-                                </td>
-                                <td>
-                                    <label class='option responsive nivo flex' ><input type='checkbox' name="settings[navigation]" <?php if ($this->slider->get_setting('navigation') == 'true') echo 'checked=checked' ?> /><?php _e("Pager", 'metaslider') ?></label>
-                                    <label class='option coin responsive nivo flex' ><input type='checkbox' name="settings[links]" <?php if ($this->slider->get_setting('links') == 'true') echo 'checked=checked' ?> /><?php _e("Navigation", 'metaslider') ?></label>
-                                </td>
-                            </tr>
-                            <tr>
                                 <td class='tipsy-tooltip' title="<?php _e("Slide transition effect", 'metaslider') ?>">
                                     <?php _e("Effect", 'metaslider') ?>
                                 </td>
@@ -704,7 +687,44 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
+                                <td colspan='2' class='highlight'><?php _e("Controls", 'metaslider') ?></td>
+                            </tr>
+                            <tr>
+                                <td class='tipsy-tooltip' title="<?php _e("Show slide navigation row", 'metaslider') ?>">
+                                    <?php _e("Arrows", 'metaslider') ?>
+                                </td>
+                                <td>
+                                    <label class='option coin responsive nivo flex' ><input type='checkbox' name="settings[links]" <?php if ($this->slider->get_setting('links') == 'true') echo 'checked=checked' ?> /></label>
+                                </td>
+                            </tr>
+
+                            <?php
+
+                                $falseChecked = $this->slider->get_setting('navigation') == 'false' ? 'checked' : '';
+                                $trueChecked = $this->slider->get_setting('navigation') == 'true' ? 'checked' : '';
+
+                                $navigation_row = "<tr>
+                                                        <td class='tipsy-tooltip' title='" . __("Show slide navigation row", 'metaslider') . "'>
+                                                            " . __("Navigation", 'metaslider')  . "
+                                                        </td>
+                                                        <td style='padding: 0 8px 8px 8px;'>
+                                                            <input type='radio' name='settings[navigation]' value='false' {$falseChecked} />" . __("Hidden", 'metaslider') . "</option><br />
+                                                            <input type='radio' name='settings[navigation]' value='true' {$trueChecked} />" . __("Dots", 'metaslider') . "</option><br />
+                                                        </td>
+                                                    </tr>";
+
+                                echo apply_filters('metaslider_navigation_options', $navigation_row, $this->slider);
+                            ?>
+                            <tr>
                                 <td colspan='2' class='highlight'><?php _e("Advanced Settings", 'metaslider') ?></td>
+                            </tr>
+                            <tr>
+                                <td class='tipsy-tooltip' title="<?php _e("Center align the slideshow", 'metaslider') ?>">
+                                    <?php _e("Center align", 'metaslider') ?>
+                                </td>
+                                <td>
+                                    <input class='option coin responsive nivo flex' type='checkbox' name="settings[center]" <?php if ($this->slider->get_setting('center') == 'true') echo 'checked=checked' ?> />
+                                </td>
                             </tr>
                             <tr>
                                 <td width='40%' class='tipsy-tooltip' title="<?php _e("Start the slideshow on page load", 'metaslider') ?>">
