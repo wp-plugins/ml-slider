@@ -633,8 +633,8 @@ class MetaSliderPlugin {
                                     <?php _e("Size", 'metaslider') ?> (<?php _e("px", 'metaslider') ?>)
                                 </td>
                                 <td>
-                                    <input type='text' size='3' class="width tipsy-tooltip-top" title='<?php _e("Width", 'metaslider') ?>' name="settings[width]" value='<?php echo $this->slider->get_setting('width') ?>' />x 
-                                    <input type='text' size='3' class="height tipsy-tooltip-top" title='<?php _e("Height", 'metaslider') ?>' name="settings[height]" value='<?php echo $this->slider->get_setting('height') ?>' />
+                                    <?php _e("Width", 'metaslider') ?>: <input type='text' size='3' class="width tipsy-tooltip-top" title='<?php _e("Width", 'metaslider') ?>' name="settings[width]" value='<?php echo $this->slider->get_setting('width') ?>' /> 
+                                    <?php _e("Height", 'metaslider') ?>: <input type='text' size='3' class="height tipsy-tooltip-top" title='<?php _e("Height", 'metaslider') ?>' name="settings[height]" value='<?php echo $this->slider->get_setting('height') ?>' />
                                 </td>
                             </tr>
                             <tr>
