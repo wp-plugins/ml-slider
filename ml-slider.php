@@ -757,7 +757,7 @@ class MetaSliderPlugin {
                                                 if ($this->slider->get_setting('easing') == $option) {
                                                     echo 'selected=selected';
                                                 }
-                                                echo ">{$option}</option>";
+                                                echo ">" . ucfirst(preg_replace('/(\w+)([A-Z])/U', '\\1 \\2', $option)) . "</option>";
                                             }
                                         ?>
                                     </select>
