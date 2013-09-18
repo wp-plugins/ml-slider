@@ -58,7 +58,7 @@ class MetaImageSlide extends MetaSlide {
         $row .= "    </td>";
         $row .= "    <td class='col-2'>";
         $row .= "        <textarea name='attachment[{$this->slide->ID}][post_excerpt]' placeholder='{$str_caption}'>{$caption}</textarea>";
-        $row .= "        <input class='url' name='attachment[{$this->slide->ID}][url]' placeholder='{$str_url}' value='{$url}' />";
+        $row .= "        <input class='url' type='text' name='attachment[{$this->slide->ID}][url]' placeholder='{$str_url}' value='{$url}' />";
         $row .= "        <div class='new_window'>";
         $row .= "            <label>{$str_new_window}<input type='checkbox' name='attachment[{$this->slide->ID}][new_window]' {$target} /></label>";
         $row .= "        </div>";
