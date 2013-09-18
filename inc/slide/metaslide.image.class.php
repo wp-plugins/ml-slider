@@ -58,7 +58,7 @@ class MetaImageSlide extends MetaSlide {
         $row .= "    </td>";
         $row .= "    <td class='col-2'>";
         $row .= "        <textarea name='attachment[{$this->slide->ID}][post_excerpt]' placeholder='{$str_caption}'>{$caption}</textarea>";
-        $row .= "        <input class='url' type='url' name='attachment[{$this->slide->ID}][url]' placeholder='{$str_url}' value='{$url}' />";
+        $row .= "        <input class='url' name='attachment[{$this->slide->ID}][url]' placeholder='{$str_url}' value='{$url}' />";
         $row .= "        <div class='new_window'>";
         $row .= "            <label>{$str_new_window}<input type='checkbox' name='attachment[{$this->slide->ID}][new_window]' {$target} /></label>";
         $row .= "        </div>";
@@ -103,6 +103,11 @@ class MetaImageSlide extends MetaSlide {
             'rel' => "",
             'data-thumb' => ""
         );
+
+        // fix slide URLs
+        if (strpos($slide['url'], 'www.') === 0) {
+            $slide['url'] = 'http://' . $slide['url'];
+        }
 
         $slide = apply_filters('metaslider_image_slide_attributes', $slide, $this->slider->ID, $this->settings);
 
