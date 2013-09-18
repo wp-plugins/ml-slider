@@ -167,6 +167,11 @@ class MetaSliderImageHelper {
         // source image size
         $orig_size = $this->get_original_image_dimensions();
 
+        // bail out if we can't find the image dimensions
+        if ($orig_size == false) {
+            return $this->url;
+        }
+
         // required size
         $dest_size = $this->get_crop_dimensions($orig_size['width'], $orig_size['height']);
 
@@ -194,22 +199,23 @@ class MetaSliderImageHelper {
      * @return array
      */
     private function get_original_image_dimensions() {
-        $orig_width = 0;
-        $orig_height = 0;
+        $size = array();
 
         // try and get the image size from metadata
         if ($image_attributes = wp_get_attachment_image_src($this->id, 'full')) {
-            $orig_width = $image_attributes[1];
-            $orig_height = $image_attributes[2];
-        } else {
-            // get the size from the image itself
-            $image = wp_get_image_editor($this->path);
-            $size = $image->get_size();
-            $orig_width = $size['width'];
-            $orig_height = $size['height'];
+            $size['width'] = $image_attributes[1];
+            $size['height'] = $image_attributes[2];
+            return $size;
         }
 
-        return array('width' => $orig_width, 'height' => $orig_height);
+        // get the size from the image itself
+        $image = wp_get_image_editor($this->path);
+        if (!is_wp_error($image)) {
+            $size = $image->get_size();
+            return $size;
+        }
+
+        return false;
     }
 
     /**
