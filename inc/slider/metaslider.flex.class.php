@@ -138,7 +138,7 @@ class MetaFlexSlider extends MetaSlider {
             // backwards compatibility with older versions of Meta Slider Pro (< v2.0)
             // MS Pro < 2.0 does not include the <li>
             // MS Pro 2.0+ returns the <li>
-            if ($this->starts_with($slide, '<li')) {
+            if (strpos($slide, '<li') === 0) {
                 $return_value .= "\n                " . $slide;
             } else {
                 $return_value .= "\n                <li style=\"display: none;\">" . $slide . "</li>";
@@ -149,16 +149,6 @@ class MetaFlexSlider extends MetaSlider {
         $return_value .= "\n        </div>";
 
         return $return_value;
-    }
-
-    /**
-     * Check if a string starts with a specified text
-     * 
-     * @param string $haystack - text to search within
-     * @param string $needle - search term
-     */
-    private function starts_with($haystack, $needle) {
-        return $needle === "" || strpos($haystack, $needle) === 0;
     }
 }
 ?>
