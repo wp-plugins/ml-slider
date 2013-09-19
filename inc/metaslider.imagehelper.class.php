@@ -205,11 +205,15 @@ class MetaSliderImageHelper {
         if ($image_attributes = wp_get_attachment_image_src($this->id, 'full')) {
             $size['width'] = $image_attributes[1];
             $size['height'] = $image_attributes[2];
-            return $size;
+
+            if ($size['width'] > 0 && $size['height'] > 0) {
+                return $size;
+            }
         }
 
         // get the size from the image itself
         $image = wp_get_image_editor($this->path);
+        
         if (!is_wp_error($image)) {
             $size = $image->get_size();
             return $size;
@@ -268,6 +272,10 @@ class MetaSliderImageHelper {
         }
 
         $saved = $image->save($dest_file_name);
+
+        if (is_wp_error($saved)) {
+            return $this->url;
+        }
 
         // Record the new size so that the file is correctly removed when the media file is deleted.
         $backup_sizes = get_post_meta($this->id,'_wp_attachment_backup_sizes',true);
