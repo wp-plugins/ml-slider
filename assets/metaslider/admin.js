@@ -1,5 +1,7 @@
 jQuery(document).ready(function($) {
 
+    jQuery("#ms-pro-meta-link-wrap").appendTo('#screen-meta-links');
+
     // Enable the correct options for this slider type
     var switchType = function(slider) {
         jQuery('.metaslider .option:not(.' + slider + ')').attr('disabled', 'disabled').parents('tr').hide();
