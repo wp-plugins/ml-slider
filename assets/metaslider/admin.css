@@ -39,8 +39,8 @@
   position: relative;
   height: 20px;
   padding: 0px 5px;
-  background: #FFFFFF;
-  border: firebrick solid 2px;
+  background: #b6e026;
+  border: #b6e026 solid 2px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -48,7 +48,10 @@
   text-align: center;
   vertical-align: middle;
   line-height: 20px;
-  margin-left: 10px;
+  margin-left: 6px;
+  color: black;
+  text-shadow: none;
+  bottom: 2px;
 }
 .bubble:after {
   content: "";
@@ -57,7 +60,7 @@
   left: -6px;
   border-style: solid;
   border-width: 5px 6px 5px 0;
-  border-color: transparent #FFFFFF;
+  border-color: transparent #b6e026;
   display: block;
   width: 0;
   z-index: 1;
@@ -69,7 +72,7 @@
   left: -9px;
   border-style: solid;
   border-width: 6px 7px 6px 0;
-  border-color: transparent firebrick;
+  border-color: transparent #b6e026;
   display: block;
   width: 0;
   z-index: 0;
@@ -126,6 +129,7 @@
 }
 .metaslider .tipsy-tooltip {
   font-size: 0.9em;
+  cursor: help;
 }
 .metaslider .nav-tab-active input {
   padding: 0;
