@@ -619,7 +619,7 @@ class MetaSliderPlugin {
                             </tr>
                             <?php if ($max_tabs && count($this->all_meta_sliders()) > $max_tabs) { ?>
                             <tr>
-                                <td width='40%' class='tipsy-tooltip' title="<?php _e("Slideshow title", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Slideshow title", 'metaslider') ?>">
                                     <?php _e("Title", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -628,12 +628,16 @@ class MetaSliderPlugin {
                             </tr>
                             <?php } ?>
                             <tr>
-                                <td width='40%' class='tipsy-tooltip' title="<?php _e("Set the initial size for the slides (width x height)", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Set the initial size for the slides (width x height)", 'metaslider') ?>">
                                     <?php _e("Size", 'metaslider') ?> (<?php _e("px", 'metaslider') ?>)
                                 </td>
                                 <td>
-                                    <?php _e("Width", 'metaslider') ?>: <input type='text' size='3' class="width tipsy-tooltip-top" title='<?php _e("Width", 'metaslider') ?>' name="settings[width]" value='<?php echo $this->slider->get_setting('width') ?>' /> 
-                                    <?php _e("Height", 'metaslider') ?>: <input type='text' size='3' class="height tipsy-tooltip-top" title='<?php _e("Height", 'metaslider') ?>' name="settings[height]" value='<?php echo $this->slider->get_setting('height') ?>' />
+                                    <div style='width: 50%; float: left;'>
+                                        <input type='number' min='0' max='9999' style='width: 70%;' class="width tipsy-tooltip-top" title='<?php _e("Width", 'metaslider') ?>' name="settings[width]" value='<?php echo $this->slider->get_setting('width') ?>' />&nbsp;x
+                                    </div>
+                                    <div style='width: 50%; float: left;'>
+                                        <input type='number' min='0' max='9999' style='width: 70%;' class="height tipsy-tooltip-top" title='<?php _e("Height", 'metaslider') ?>' name="settings[height]" value='<?php echo $this->slider->get_setting('height') ?>' />
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -709,6 +713,7 @@ class MetaSliderPlugin {
                                                         <td style='padding: 0 8px 8px 8px;'>
                                                             <input type='radio' name='settings[navigation]' value='false' {$falseChecked} />" . __("Hidden", 'metaslider') . "</option><br />
                                                             <input type='radio' name='settings[navigation]' value='true' {$trueChecked} />" . __("Dots", 'metaslider') . "</option><br />
+                                                            <input type='radio' disabled='disabled' /><span style='color: #c0c0c0'>" . __("Thumbnails (Pro)", 'metaslider') . "</span></option>
                                                         </td>
                                                     </tr>";
 
@@ -726,7 +731,7 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td width='40%' class='tipsy-tooltip' title="<?php _e("Start the slideshow on page load", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Start the slideshow on page load", 'metaslider') ?>">
                                     <?php _e("Auto play", 'metaslider') ?>
                                 </td>
                                 <td>
@@ -888,7 +893,7 @@ class MetaSliderPlugin {
                                 <td colspan='2' class='highlight'><?php _e("Developer Options", 'metaslider') ?></td>
                             </tr>
                             <tr>
-                                <td width='40%' class='tipsy-tooltip' title="<?php _e("Specify any custom CSS Classes you would like to be added to the slider wrapper", 'metaslider') ?>">
+                                <td class='tipsy-tooltip' title="<?php _e("Specify any custom CSS Classes you would like to be added to the slider wrapper", 'metaslider') ?>">
                                     <?php _e("CSS classes", 'metaslider') ?>
                                 </td>
                                 <td>
