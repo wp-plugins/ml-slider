@@ -39,6 +39,7 @@ class MetaImageSlide extends MetaSlide {
         // get some slide settings
         $thumb   = $this->get_thumb();
         $full    = wp_get_attachment_image_src($this->slide->ID, 'full');
+        $filename = basename($full[0]);
         $url     = get_post_meta($this->slide->ID, 'ml-slider_url', true);
         $target  = get_post_meta($this->slide->ID, 'ml-slider_new_window', true) ? 'checked=checked' : '';
         $caption = htmlentities($this->slide->post_excerpt, ENT_QUOTES, 'UTF-8');
@@ -53,7 +54,7 @@ class MetaImageSlide extends MetaSlide {
         $row .= "    <td class='col-1'>";
         $row .= "        <div class='thumb' style='background-image: url({$thumb})'>";
         $row .= "            <a class='delete-slide confirm' href='?page=metaslider&id={$this->slider->ID}&deleteSlide={$this->slide->ID}'>x</a>";
-        $row .= "            <span class='slide-details'>Image {$full[1]} x {$full[2]}</span>";
+        $row .= "            <span class='slide-details'>Image {$filename}</span>";
         $row .= "        </div>";
         $row .= "    </td>";
         $row .= "    <td class='col-2'>";
