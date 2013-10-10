@@ -39,6 +39,8 @@ Meta Slider has been translated into the following languages:
 
 * French (thanks to fb-graphiklab)
 * Spanish (thanks to eltipografico)
+* Polish (thanks to gordon34)
+* Chinese (thanks to 断青丝)
 
 Read more and thanks to:
 
@@ -105,6 +107,18 @@ if (is_front_page() || is_home()) {
 6. Administration panel - selecting slides
 
 == Changelog ==
+
+= 2.3.1 [10/10/13] =
+
+* Fix: FlexSlider styling in twenty twelve theme
+* Fix: IE10 - "Caption" placeholder text being saved as actual caption
+* Improvement: Settings table tidied up
+* Improvement: New slides are resized during addition to the slideshow
+* Improvement: Default slideshow size increased to 700x300
+* Improvement: Image filename now displayed for each slide (instead of image dimensions)
+* Improvement: Replace deprecated 'live()' jQuery call with 'on()'
+* Improvement: Polish Language pack added (thanks to gordon34)
+* Improvement: Chinese language pack added (thanks to 断青丝)
 
 = 2.3 [18/09/13] =
 * Improvement: Flex Slider upgraded to v2.2
