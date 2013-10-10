@@ -443,3 +443,9 @@ ul.info li {
   text-shadow: rgba(255,255,255,0.7) 0 1px 0;
   background: none;
 }
+input:-ms-input-placeholder {
+    color:LightGray;
+}
+textarea:-ms-input-placeholder {
+    color:LightGray;
+}
