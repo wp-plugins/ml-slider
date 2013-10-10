@@ -26,6 +26,18 @@ class MetaImageSlide extends MetaSlide {
 
         $this->add_or_update_or_delete_meta($slide_id, 'type', 'image');
 
+        $settings = get_post_meta($slider_id, 'ml-slider_settings', true);
+
+        // create a copy of the correct sized image
+        $imageHelper = new MetaSliderImageHelper(
+            $slide_id,
+            $settings['width'], 
+            $settings['height'], 
+            isset($settings['smartCrop']) ? $settings['smartCrop'] : 'false'
+        );
+
+        $url = $imageHelper->get_image_url();
+
         echo $this->get_admin_slide();
         die();
     }
