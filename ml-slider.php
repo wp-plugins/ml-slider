@@ -113,8 +113,9 @@ class MetaSliderPlugin {
 
         echo "<div class='metaslider'>";
         echo "<p style='text-align: center; font-size: 1.2em; margin-top: 50px;'>Get the Pro Addon pack to add support for: <b>Post Feed</b> Slides, <b>YouTube</b> Slides, <b>HTML</b> Slides & <b>Vimeo</b> Slides</p>";
-        echo "<p style='text-align: center; font-size: 1.2em;'><b>NEW:</b> Animated HTML <b>Layer</b> Slides (with an awesome Drag & Drop editor!)</p>";
-        echo "<p style='text-align: center; font-size: 1.2em;'><b>NEW:</b> Live Theme Editor!</p>";
+        echo "<p style='text-align: center; font-size: 1.2em;'><b>NEW: </b> Animated HTML <b>Layer</b> Slides (with an awesome Drag & Drop editor!)</p>";
+        echo "<p style='text-align: center; font-size: 1.2em;'><b></b> Live Theme Editor!</p>";
+        echo "<p style='text-align: center; font-size: 1.2em;'><b>NEW:</b> Thumbnail Navigation for Flex & Nivo Slider!</p>";
         echo "<a class='probutton' href='{$link}' target='_blank'>Get <span class='logo'><strong>Meta</strong>Slider</span><span class='super'>Pro</span></a>";
         echo "<span class='subtext'>Opens in a new window</span>";
         echo "</div>";
