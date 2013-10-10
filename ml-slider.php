@@ -712,9 +712,9 @@ class MetaSliderPlugin {
                                                             " . __("Navigation", 'metaslider')  . "
                                                         </td>
                                                         <td style='padding: 0 8px 8px 8px;'>
-                                                            <input type='radio' name='settings[navigation]' value='false' {$falseChecked} />" . __("Hidden", 'metaslider') . "</option><br />
-                                                            <input type='radio' name='settings[navigation]' value='true' {$trueChecked} />" . __("Dots", 'metaslider') . "</option><br />
-                                                            <input type='radio' disabled='disabled' /><span style='color: #c0c0c0'>" . __("Thumbnails (Pro)", 'metaslider') . "</span></option>
+                                                            <label><input type='radio' name='settings[navigation]' value='false' {$falseChecked} />" . __("Hidden", 'metaslider') . "</option></label><br />
+                                                            <label><input type='radio' name='settings[navigation]' value='true' {$trueChecked} />" . __("Dots", 'metaslider') . "</option></label><br />
+                                                            <label><input type='radio' disabled='disabled' /><span style='color: #c0c0c0'>" . __("Thumbnails (Pro)", 'metaslider') . "</span></option></label>
                                                         </td>
                                                     </tr>";
 
