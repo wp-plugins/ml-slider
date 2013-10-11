@@ -280,7 +280,10 @@ class MetaSliderPlugin {
     public function register_post_type() {
         register_post_type('ml-slider', array(
             'query_var' => false,
-            'rewrite' => false
+            'rewrite' => false,
+            'labels' => array(
+                'name' => 'Meta Slider'
+            )
         ));
     }
 
