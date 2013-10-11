@@ -53,6 +53,7 @@ class MetaImageSlide extends MetaSlide {
         $full    = wp_get_attachment_image_src($this->slide->ID, 'full');
         $filename = basename($full[0]);
         $url     = get_post_meta($this->slide->ID, 'ml-slider_url', true);
+
         $target  = get_post_meta($this->slide->ID, 'ml-slider_new_window', true) ? 'checked=checked' : '';
         $caption = htmlentities($this->slide->post_excerpt, ENT_QUOTES, 'UTF-8');
 
@@ -97,17 +98,25 @@ class MetaImageSlide extends MetaSlide {
             isset($this->settings['smartCrop']) ? $this->settings['smartCrop'] : 'false'
         );
 
-        $url = $imageHelper->get_image_url();
+        $thumb = $imageHelper->get_image_url();
 
         if (is_wp_error($url)) {
             return ""; // bail out here. todo: look at a way of notifying the admin
         }
 
+        $url = get_post_meta($this->slide->ID, 'ml-slider_url', true);
+
+        // qTranslate support for URL. Example URL format for qTranslate:
+        // <!--:en-->http://www.google.co.uk<!--:--><!--:de-->http://www.google.de<!--:-->
+        if (function_exists('qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage')) {
+            $url = qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage($url);
+        }
+
         // store the slide details
         $slide = array(
             'id' => $this->slide->ID,
-            'thumb' => $url,
-            'url' => get_post_meta($this->slide->ID, 'ml-slider_url', true),
+            'thumb' => $thumb,
+            'url' => $url,
             'alt' => get_post_meta($this->slide->ID, '_wp_attachment_image_alt', true),
             'target' => get_post_meta($this->slide->ID, 'ml-slider_new_window', true) ? '_blank' : '_self', 
             'caption' => html_entity_decode($this->slide->post_excerpt, ENT_NOQUOTES, 'UTF-8'),
