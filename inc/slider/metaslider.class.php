@@ -157,6 +157,7 @@ class MetaSlider {
             'order' => 'ASC',
             'post_type' => 'attachment',
             'post_status' => 'inherit',
+            'lang' => '', // polylang, ingore language filter
             'posts_per_page' => -1,
             'tax_query' => array(
                 array(
