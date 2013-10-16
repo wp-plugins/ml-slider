@@ -140,7 +140,7 @@ Coin Slider is not responsive. This means (unlike the other slideshows in Meta S
 
 == Changelog ==
 
-= 2.3.1 [11/10/13] =
+= 2.3.1 [16/10/13] =
 
 * Fix: FlexSlider styling in twenty twelve theme
 * Fix: IE10 - "Caption" placeholder text being saved as actual caption
@@ -151,8 +151,9 @@ Coin Slider is not responsive. This means (unlike the other slideshows in Meta S
 * Improvement: Replace deprecated 'live()' jQuery call with 'on()'
 * Improvement: Polish Language pack added (thanks to gordon34)
 * Improvement: Chinese language pack added (thanks to 断青丝)
-* Improvement: qTranslate support for slide URLs (see: http://screencast.com/t/FrsrptyhoT)
-* Improvement: PolyLang fix to ensure slides are extracted for all languages (set up a new slideshow for each language)
+* Change: qTranslate support for slide URLs (see: http://screencast.com/t/FrsrptyhoT)
+* Change: PolyLang fix to ensure slides are extracted for all languages (set up a new slideshow for each language)
+* Change: WPMU fix to ensure slides are extracted for all languages (set up a new slideshow for each language)
 
 = 2.3 [18/09/13] =
 * Improvement: Flex Slider upgraded to v2.2
