@@ -23,17 +23,30 @@ Meta Slider is a flexible, intuitive slideshow administration plugin that lets y
 
 Features:
 
-* Easy to use **AJAX** powered administration panel
-* Built in Widget and Shortcode
-* Add unlimited slideshows and slides
-* Change settings per slideshow *(speed, theme, hover pause, width, height, easing etc)*
-* Fully integrated with the new WordPress 3.5 media manager
-* Add captions and URLs to slides
-* Captions support HTML
-* Drag and drop slide reordering
-* Lightweight - only the minimum JavaScript/CSS is outputted to your page
-* Intelligent image cropping (Smart Crop)
+* Create unlimited fully featured image slideshows
+* Simple, easy to use interface
+* Choose from 4 slideshow types
+* Live admin preview
+* Built in Widget and Shortcode to easily embed your slideshows into Posts, Pages & Templates
+* Configure each slideshow individually *(speed, theme, hover pause, width, height, easing etc)*
+* Fully integrated with the new style WordPress Media Manager
+* Add captions (html supported) and URLs to slides
+* Drag and drop reordering
+* Intelligent image cropping
 * Fully localised
+* Multi Site compatible
+* Lightweight - only the minimum JavaScript/CSS is outputted to your page
+* Minimal upgrade nags(!)
+* Lots more!
+
+Want More? Get the **Meta Slider Pro** addon pack to add support for:
+
+* YouTube & Vimeo slides
+* HTML slides
+* Layer slides with CSS3 animations
+* Dynamic Post Feed/Featured Image Slides (content slider)
+* Custom Themes
+* Thumbnail Navigation (new!)
 
 Meta Slider has been translated into the following languages:
 
@@ -48,15 +61,6 @@ Read more and thanks to:
 * [http://responsive-slides.viljamis.com/](http://responsive-slides.viljamis.com/)
 * [http://workshop.rs/projects/coin-slider/](http://workshop.rs/projects/coin-slider/)
 * [http://dev7studios.com/nivo-slider/](http://dev7studios.com/nivo-slider/)
-
-Want More? Get the **Meta Slider Pro** addon pack to add support for:
-
-* Live Theme Editor (new!)
-* YouTube slides
-* Vimeo slides
-* HTML slides
-* Animated Layer Slides (new!)
-* Dynamic Post Feed Slides (content slider)
 
 Find out more at http://www.metaslider.com
 
@@ -96,6 +100,34 @@ if (is_front_page() || is_home()) {
     echo do_shortcode("[metaslider id=123]"); //replace 123 with slider ID
 } 
 ?>`
+
+= It's not working - what can I do? =
+
+Check out the troubleshooting page here: 
+
+http://www.metaslider.com/documentation/troubleshooting
+
+= Does Meta Slider work with translation plugins? =
+
+We have tested with qTranslate and Polylang. We're working with the WPML team to bring in WMPL compatibility.
+
+= Is it multi site compatible? =
+
+Yes!
+
+= Meta Slider is cropping my images in the wrong place - what can I do? =
+
+Meta Slider uses responsive slideshow libraries. This means images will always be stretched or squeezed to 100% of the *width* of the slideshow. If you're trying to mix landscape and portrait images, you'll probably find that the top and bottom of your portrait images are being cropped. This is because Meta Slider wants to keep the slideshow a consistent height for all slides, and to do this it needs to crop your portrait images down in height so they match your landscape images.
+
+The best way to fix this is to ensure your images are correctly sized before adding them into Meta Slider (or at least ensure they all have similar width:height ratios), then set the slideshow size to the same size as your images. In this case, Meta Slider will not crop your images. If you're looking for a gallery style slideshow then you might wish to 'pad' your portrait images with white bars to the left and right, to effectively turn your portrait images into landscape images.
+
+= What is Smart Crop? =
+
+Smart crop takes the largest, most central portion of an image that it can, whilst ensuring the width:height ratio of the image matches the width:height ratio of the slideshow itself. This is essential for ensuring your responsive slideshow height remains fixed when navigating between different sized images.
+
+= Why is Coin Slider tiling my images? =
+
+Coin Slider is not responsive. This means (unlike the other slideshows in Meta Slider) it will not stretch images to fill the slideshow - it will tile them instead. You need to ensure your source images are the same size (or larger) as your slideshow size.
 
 == Screenshots ==
 
