@@ -70,7 +70,6 @@ class MetaSliderPlugin {
         add_filter('media_view_strings', array($this, 'custom_media_uploader_tabs'), 5);
         add_action('media_upload_metaslider_pro', array($this, 'metaslider_pro_tab'));
         
-
         // add 'go pro' link to plugin options
         $plugin = plugin_basename(__FILE__);
         add_filter("plugin_action_links_{$plugin}", array($this,'upgrade_to_pro') );
@@ -240,8 +239,10 @@ class MetaSliderPlugin {
         add_action('admin_print_scripts-' . $page, array($this, 'register_admin_scripts'));
         add_action('admin_print_styles-' . $page, array($this, 'register_admin_styles'));
         add_action('load-' . $page, array($this, 'help_tab'));
-
+        
     }
+
+
 
     /**
      * Upgrade CTA.
@@ -636,12 +637,10 @@ class MetaSliderPlugin {
                                     <?php _e("Size", 'metaslider') ?> (<?php _e("px", 'metaslider') ?>)
                                 </td>
                                 <td>
-                                    <div style='width: 50%; float: left;'>
-                                        <input type='number' min='0' max='9999' style='width: 70%;' class="width tipsy-tooltip-top" title='<?php _e("Width", 'metaslider') ?>' name="settings[width]" value='<?php echo $this->slider->get_setting('width') ?>' />&nbsp;x
-                                    </div>
-                                    <div style='width: 50%; float: left;'>
-                                        <input type='number' min='0' max='9999' style='width: 70%;' class="height tipsy-tooltip-top" title='<?php _e("Height", 'metaslider') ?>' name="settings[height]" value='<?php echo $this->slider->get_setting('height') ?>' />
-                                    </div>
+                                        <?php _e("Width", 'metaslider') ?>:
+                                        <input type='number' min='0' max='9999' class="width tipsy-tooltip-top" title='<?php _e("Width", 'metaslider') ?>' name="settings[width]" value='<?php echo $this->slider->get_setting('width') ?>' />
+                                        <?php _e("Height", 'metaslider') ?>:
+                                        <input type='number' min='0' max='9999' class="height tipsy-tooltip-top" title='<?php _e("Height", 'metaslider') ?>' name="settings[height]" value='<?php echo $this->slider->get_setting('height') ?>' />
                                 </td>
                             </tr>
                             <tr>
@@ -905,19 +904,18 @@ class MetaSliderPlugin {
                                 </td>
                             </tr>
                             <tr>
-                                <td class='tipsy-tooltip' title="<?php _e("Uncheck this is you would like to include your own CSS", 'metaslider') ?>">
-                                    <?php _e("Print CSS", 'metaslider') ?>
+                                <td class='tipsy-tooltip' title="<?php _e("Uncheck this is you would like to include your own Javascript", 'metaslider') ?>">
+                                    <?php _e("Print Scripts", 'metaslider') ?>
                                 </td>
                                 <td>
                                     <input type='checkbox' class='useWithCaution' name="settings[printCss]" <?php if ($this->slider->get_setting('printCss') == 'true') echo 'checked=checked' ?> />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class='tipsy-tooltip' title="<?php _e("Uncheck this is you would like to include your own Javascript", 'metaslider') ?>">
-                                    <?php _e("Print JS", 'metaslider') ?>
-                                </td>
-                                <td>
+                                    <span class='tipsy-tooltip' title="<?php _e("Uncheck this is you would like to include your own CSS", 'metaslider') ?>">
+                                        <?php _e("CSS", 'metaslider') ?>
+                                    </span>
                                     <input type='checkbox' class='useWithCaution' name="settings[printJs]" <?php if ($this->slider->get_setting('printJs') == 'true') echo 'checked=checked' ?> />
+                                    <span class='tipsy-tooltip' title="<?php _e("Uncheck this is you would like to include your own Javascript", 'metaslider') ?>">
+                                        <?php _e("JavaScript", 'metaslider') ?>
+                                    </span>
                                 </td>
                             </tr>
                             <tr>
@@ -978,4 +976,5 @@ class MetaSliderPlugin {
 }
 
 $metaslider = new MetaSliderPlugin();
+
 ?>
