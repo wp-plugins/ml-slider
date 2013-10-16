@@ -437,6 +437,7 @@ class MetaSliderPlugin {
             'post_type' => 'ml-slider',
             'num_posts' => 1,
             'post_status' => 'publish',
+            'suppress_filters' => 1, // wpml, ignore language filter
             'orderby' => $orderby,
             'order' => $order
         );
@@ -466,6 +467,7 @@ class MetaSliderPlugin {
             'post_type' => 'ml-slider',
             'post_status' => 'publish',
             'orderby' => $sort_key,
+            'suppress_filters' => 1, // wpml, ignore language filter
             'order' => 'ASC',
             'posts_per_page' => -1
         );
