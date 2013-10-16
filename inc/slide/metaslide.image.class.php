@@ -99,11 +99,6 @@ class MetaImageSlide extends MetaSlide {
         );
 
         $thumb = $imageHelper->get_image_url();
-
-        if (is_wp_error($url)) {
-            return ""; // bail out here. todo: look at a way of notifying the admin
-        }
-
         $url = get_post_meta($this->slide->ID, 'ml-slider_url', true);
 
         // qTranslate support for URL. Example URL format for qTranslate:
