@@ -158,6 +158,7 @@ class MetaSlider {
             'post_type' => 'attachment',
             'post_status' => 'inherit',
             'lang' => '', // polylang, ingore language filter
+            'suppress_filters' => 1, // wpml, ignore language filter
             'posts_per_page' => -1,
             'tax_query' => array(
                 array(
