@@ -226,6 +226,9 @@
   text-transform: uppercase;
   font-size: 9px;
   opacity: 0.6;
+  word-wrap: break-word;
+  max-width: 140px;
+  padding: 0 5px;
 }
 .metaslider .left table tr.slide td.col-1:hover .delete-slide {
   display: block;
