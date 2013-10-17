@@ -140,8 +140,10 @@ Coin Slider is not responsive. This means (unlike the other slideshows in Meta S
 
 == Changelog ==
 
-= 2.4 [16/10/13] =
+= 2.4.1 [17/10/13] =
+* Fix: PHP Warning (reported by & thanks to: fgirardey)
 
+= 2.4 [16/10/13] =
 * Fix: FlexSlider styling in twenty twelve theme
 * Fix: IE10 - "Caption" placeholder text being saved as actual caption
 * Improvement: Settings table tidied up
