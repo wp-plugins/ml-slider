@@ -140,6 +140,9 @@ Coin Slider is not responsive. This means (unlike the other slideshows in Meta S
 
 == Changelog ==
 
+= 2.4.2 [17/10/13] =
+* Fix: qTranslate caption & URL parsing for image slides
+
 = 2.4.1 [17/10/13] =
 * Fix: PHP Warning (reported by & thanks to: fgirardey)
 

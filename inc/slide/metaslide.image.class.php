@@ -53,7 +53,6 @@ class MetaImageSlide extends MetaSlide {
         $full    = wp_get_attachment_image_src($this->slide->ID, 'full');
         $filename = basename($full[0]);
         $url     = get_post_meta($this->slide->ID, 'ml-slider_url', true);
-
         $target  = get_post_meta($this->slide->ID, 'ml-slider_new_window', true) ? 'checked=checked' : '';
         $caption = htmlentities($this->slide->post_excerpt, ENT_QUOTES, 'UTF-8');
 
@@ -99,23 +98,16 @@ class MetaImageSlide extends MetaSlide {
         );
 
         $thumb = $imageHelper->get_image_url();
-        $url = get_post_meta($this->slide->ID, 'ml-slider_url', true);
-
-        // qTranslate support for URL. Example URL format for qTranslate:
-        // <!--:en-->http://www.google.co.uk<!--:--><!--:de-->http://www.google.de<!--:-->
-        if (function_exists('qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage')) {
-            $url = qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage($url);
-        }
 
         // store the slide details
         $slide = array(
             'id' => $this->slide->ID,
             'thumb' => $thumb,
-            'url' => $url,
-            'alt' => get_post_meta($this->slide->ID, '_wp_attachment_image_alt', true),
+            'url' => __(get_post_meta($this->slide->ID, 'ml-slider_url', true)),
+            'alt' => __(get_post_meta($this->slide->ID, '_wp_attachment_image_alt', true)),
             'target' => get_post_meta($this->slide->ID, 'ml-slider_new_window', true) ? '_blank' : '_self', 
-            'caption' => html_entity_decode($this->slide->post_excerpt, ENT_NOQUOTES, 'UTF-8'),
-            'caption_raw' => $this->slide->post_excerpt,
+            'caption' => __(html_entity_decode($this->slide->post_excerpt, ENT_NOQUOTES, 'UTF-8')),
+            'caption_raw' => __($this->slide->post_excerpt),
             'class' => "slider-{$this->slider->ID} slide-{$this->slide->ID}",
             'rel' => "",
             'data-thumb' => ""
