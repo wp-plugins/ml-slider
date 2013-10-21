@@ -11,8 +11,8 @@ class MetaNivoSlider extends MetaSlider {
     /**
      * Constructor
      */
-    public function __construct($id) {
-        parent::__construct($id);
+    public function __construct($id, $shortcode_settings) {
+        parent::__construct($id, $shortcode_settings);
 
         add_filter('metaslider_nivo_slider_parameters', array($this, 'set_autoplay_parameter'), 10, 3);
 

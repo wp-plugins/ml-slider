@@ -15,9 +15,9 @@ class MetaSlider {
     /**
      * Constructor
      */
-    public function __construct($id) {
+    public function __construct($id, $shortcode_settings) {
         $this->id = $id;
-        $this->settings = $this->get_settings();
+        $this->settings = array_merge($shortcode_settings, $this->get_settings());
         $this->identifier = 'metaslider_' . $this->id;
         $this->save();
         $this->populate_slides();
@@ -226,7 +226,7 @@ class MetaSlider {
         $class = apply_filters('metaslider_css_classes', $class, $this->id, $this->settings);
 
         // carousels are always 100% wide
-        if ($this->get_setting('carouselMode') != 'true') {
+        if ($this->get_setting('carouselMode') != 'true' && $this->get_setting('fullwidth') != 'true') {
             $style = "max-width: {$this->get_setting('width')}px;";
         } else {
             $style = "width: 100%;";

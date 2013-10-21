@@ -14,8 +14,8 @@ class MetaFlexSlider extends MetaSlider {
      * 
      * @param integer $id slideshow ID
      */
-    public function __construct($id) {
-        parent::__construct($id);
+    public function __construct($id, $shortcode_settings) {
+        parent::__construct($id, $shortcode_settings);
 
         add_filter('metaslider_flex_slider_parameters', array($this, 'enable_carousel_mode'), 10, 2);
         add_filter('metaslider_flex_slider_parameters', array($this, 'enable_easing'), 10, 2);

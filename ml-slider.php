@@ -242,7 +242,6 @@ class MetaSliderPlugin {
         add_action('admin_print_scripts-' . $page, array($this, 'register_admin_scripts'));
         add_action('admin_print_styles-' . $page, array($this, 'register_admin_styles'));
         add_action('load-' . $page, array($this, 'help_tab'));
-        
     }
 
 
@@ -309,18 +308,18 @@ class MetaSliderPlugin {
      * @return string HTML output of the shortcode
      */
     public function register_shortcode($atts) {
-        extract(shortcode_atts(array('id' => null), $atts));
-
-        if ($id == null) return;
+        if (!isset($atts['id'])) {
+            return false;
+        }
 
         // we have an ID to work with
-        $slider = get_post($id);
+        $slider = get_post($atts['id']);
 
         // check the slider is published
         if ($slider->post_status != 'publish') return false;
 
         // lets go
-        $this->set_slider($id);
+        $this->set_slider($atts['id'], $atts);
         $this->slider->enqueue_scripts();
         
         return $this->slider->render_public_slides();
@@ -329,32 +328,33 @@ class MetaSliderPlugin {
     /**
      * Set the current slider
      */
-    public function set_slider($id) {
+    public function set_slider($id, $shortcode_settings = array()) {
         $type = 'flex';
-        $settings = get_post_meta($id, 'ml-slider_settings', true);
+
+        $settings = array_merge(get_post_meta($id, 'ml-slider_settings', true), $shortcode_settings);
 
         if (isset($settings['type']) && in_array($settings['type'], array('flex', 'coin', 'nivo', 'responsive'))) {
             $type = $settings['type'];
         }
 
-        $this->slider = $this->create_slider($type, $id);
+        $this->slider = $this->create_slider($type, $id, $shortcode_settings);
     }
 
     /**
      * Create a new slider based on the sliders type setting
      */
-    private function create_slider($type, $id) {
+    private function create_slider($type, $id, $shortcode_settings) {
         switch ($type) {
             case('coin'):
-                return new MetaCoinSlider($id);
+                return new MetaCoinSlider($id, $shortcode_settings);
             case('flex'):
-                return new MetaFlexSlider($id);
+                return new MetaFlexSlider($id, $shortcode_settings);
             case('nivo'):
-                return new MetaNivoSlider($id);
+                return new MetaNivoSlider($id, $shortcode_settings);
             case('responsive'):
-                return new MetaResponsiveSlider($id);
+                return new MetaResponsiveSlider($id, $shortcode_settings);
             default:
-                return new MetaFlexSlider($id);
+                return new MetaFlexSlider($id, $shortcode_settings);
         }
     }
 
