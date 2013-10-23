@@ -10,6 +10,7 @@ class MetaSliderImageHelper {
     private $id; // slide/attachment ID
     private $url;
     private $path; // path to attachment on server
+    private $use_image_editor;
 
     /**
      * Constructor
@@ -19,7 +20,7 @@ class MetaSliderImageHelper {
      * @param integer $height - required height of image
      * @param string $smart_crop
      */
-    public function __construct($slide_id, $width, $height, $smart_crop) {
+    public function __construct($slide_id, $width, $height, $smart_crop, $use_image_editor = true) {
         $upload_dir = wp_upload_dir();
 
         $this->id = $slide_id;
@@ -28,6 +29,7 @@ class MetaSliderImageHelper {
         $this->container_width = $width;
         $this->container_height = $height;
         $this->smart_crop = $smart_crop;
+        $this->use_image_editor = $use_image_editor;
     }
 
     /**
@@ -182,10 +184,20 @@ class MetaSliderImageHelper {
 
         $dest_file_name = $this->get_destination_file_name($dest_size);
 
-        if (file_exists($dest_file_name)) {
+        if (file_exists($dest_file_name)) 
+        {
+            // good. no need for resize, just return the URL
             $dest_url = str_replace(basename($this->url), basename($dest_file_name), $this->url);
-        } else {
+        } 
+        else if ($this->use_image_editor) 
+        {
+            // resize, assuming we're allowed to use the image editor
             $dest_url = $this->resize_image($orig_size, $dest_size, $dest_file_name);
+        }
+        else 
+        {
+            // fall back to the full URL
+            $dest_url = $this->url;
         }
 
         $dest_url = apply_filters('metaslider_resized_image_url', $dest_url, $this->url);
@@ -213,12 +225,14 @@ class MetaSliderImageHelper {
             }
         }
 
-        // get the size from the image itself
-        $image = wp_get_image_editor($this->path);
-        
-        if (!is_wp_error($image)) {
-            $size = $image->get_size();
-            return $size;
+        if ($this->use_image_editor) {
+            // get the size from the image itself
+            $image = wp_get_image_editor($this->path);
+            
+            if (!is_wp_error($image)) {
+                $size = $image->get_size();
+                return $size;
+            }
         }
 
         return false;

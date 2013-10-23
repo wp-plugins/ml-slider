@@ -49,12 +49,15 @@ class MetaImageSlide extends MetaSlide {
      */
     protected function get_admin_slide() {
         // get some slide settings
-        $thumb   = $this->get_thumb();
-        $full    = wp_get_attachment_image_src($this->slide->ID, 'full');
-        $filename = basename($full[0]);
-        $url     = get_post_meta($this->slide->ID, 'ml-slider_url', true);
-        $target  = get_post_meta($this->slide->ID, 'ml-slider_new_window', true) ? 'checked=checked' : '';
-        $caption = htmlentities($this->slide->post_excerpt, ENT_QUOTES, 'UTF-8');
+        $imageHelper = new MetaSliderImageHelper($this->slide->ID, 150, 150, 'false', $this->use_wp_image_editor());
+        $thumb       = $imageHelper->get_image_url();
+
+        $full        = wp_get_attachment_image_src($this->slide->ID);
+        $filename    = basename($full[0]);
+
+        $url         = get_post_meta($this->slide->ID, 'ml-slider_url', true);
+        $target      = get_post_meta($this->slide->ID, 'ml-slider_new_window', true) ? 'checked=checked' : '';
+        $caption     = htmlentities($this->slide->post_excerpt, ENT_QUOTES, 'UTF-8');
 
         // localisation
         $str_caption    = __("Caption", 'metaslider');
@@ -70,6 +73,11 @@ class MetaImageSlide extends MetaSlide {
         $row .= "        </div>";
         $row .= "    </td>";
         $row .= "    <td class='col-2'>";
+
+        if (!$this->is_valid_image()) {
+            $row .= "<div class='warning'>" . __('Warning: Image data does not exist. Please re-upload the image. Cropping has been disabled for this image.') . "</div>";
+        }
+
         $row .= "        <textarea name='attachment[{$this->slide->ID}][post_excerpt]' placeholder='{$str_caption}'>{$caption}</textarea>";
         $row .= "        <input class='url' type='text' name='attachment[{$this->slide->ID}][url]' placeholder='{$str_url}' value='{$url}' />";
         $row .= "        <div class='new_window'>";
@@ -84,17 +92,49 @@ class MetaImageSlide extends MetaSlide {
     }
 
     /**
+     * Check to see if metadata exists for this image. Assume the image is
+     * valid if metadata and a size exists for it (generated during initial
+     * upload to WordPress).
+     *
+     * @return bool, true if metadata and size exists.
+     */
+    public function is_valid_image() {
+        $image_attributes = wp_get_attachment_image_src($this->slide->ID);
+
+        if (!is_array($image_attributes)) {
+            return false;
+        }
+
+        if ($image_attributes[1] > 0 && $image_attributes[1] > 0) {
+            return true;
+        }
+        
+        return false;
+    }
+
+    /**
+     * Disable/enable image editor
+     *
+     * @return bool
+     */
+    public function use_wp_image_editor() {
+        return apply_filters('metaslider_use_image_editor', $this->is_valid_image());
+    }
+
+    /**
      * Returns the HTML for the public slide
      * 
      * @return string slide html
      */
     protected function get_public_slide() {
         // get the image url (and handle cropping)
+        // disable wp_image_editor if metadata does not exist for the slide
         $imageHelper = new MetaSliderImageHelper(
             $this->slide->ID,
             $this->settings['width'], 
             $this->settings['height'], 
-            isset($this->settings['smartCrop']) ? $this->settings['smartCrop'] : 'false'
+            isset($this->settings['smartCrop']) ? $this->settings['smartCrop'] : 'false',
+            $this->use_wp_image_editor()
         );
 
         $thumb = $imageHelper->get_image_url();

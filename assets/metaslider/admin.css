@@ -439,6 +439,14 @@ ul.info li {
   top: -1px;
 }
 
+.metaslider .warning {
+  background-color: #ffebe8;
+  border: 1px solid #c00;
+  margin-bottom: 5px;
+  border-radius: 3px;
+  padding: 5px 10px;
+}
+
 #ms-pro-meta-link-wrap a {
   text-decoration: none;
   z-index: 1;
