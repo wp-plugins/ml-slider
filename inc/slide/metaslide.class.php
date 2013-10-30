@@ -75,6 +75,55 @@ class MetaSlide {
         $term = get_term_by('name', $this->slider->ID, 'ml-slider');
         // tag this slide to the taxonomy term
         wp_set_post_terms($this->slide->ID, $term->term_id, 'ml-slider', true);
+
+        $this->update_menu_order();
+    }
+
+    /**
+     * Ensure slides are added to the slideshow in the correct order.
+     *
+     * Find the highest slide menu_order in the slideshow, increment, then
+     * update the new slides menu_order.
+     */
+    public function update_menu_order() {
+        $menu_order = 0;
+
+        // get the slide with the highest menu_order so far
+        $args = array(
+            'force_no_custom_order' => true,
+            'orderby' => 'menu_order',
+            'order' => 'DESC',
+            'post_type' => 'attachment',
+            'post_status' => 'inherit',
+            'lang' => '', // polylang, ingore language filter
+            'suppress_filters' => 1, // wpml, ignore language filter
+            'posts_per_page' => 1,
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'ml-slider',
+                    'field' => 'slug',
+                    'terms' => $this->slider->ID
+                )
+            )
+        );
+
+        $query = new WP_Query($args);
+
+        while ($query->have_posts()) {
+            $query->next_post();
+            $menu_order = $query->post->menu_order;
+        }
+
+        wp_reset_query();
+
+        // increment
+        $menu_order = $menu_order + 1;
+
+        // update the slide
+        wp_update_post(array(
+            'ID' => $this->slide->ID,
+            'menu_order' => $menu_order
+        ));
     }
 
     /**

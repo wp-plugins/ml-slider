@@ -11,20 +11,39 @@ class MetaImageSlide extends MetaSlide {
         add_filter('metaslider_get_image_slide', array($this, 'get_slide'), 10, 2);
         add_action('metaslider_save_image_slide', array($this, 'save_slide'), 5, 3);
         add_action('wp_ajax_create_image_slide', array($this, 'ajax_create_slide'));
+        add_action('wp_ajax_resize_image_slide', array($this, 'ajax_resize_slide'));
     }
 
     /**
      * Create a new slide and echo the admin HTML
      */
     public function ajax_create_slide() {
-        $slide_id = intval($_POST['slide_id']);
         $slider_id = intval($_POST['slider_id']);
+        $selection = $_POST['selection'];
+        $return = "";
+
+        foreach ($selection as $slide_id) {
+            $this->set_slide($slide_id);
+            $this->set_slider($slider_id);
+            $this->tag_slide_to_slider();
+            $this->add_or_update_or_delete_meta($slide_id, 'type', 'image');
+            $return .= $this->get_admin_slide();
+        }
+
+        echo $return;
+
+        die();
+    }
+
+    /**
+     * Create a new slide and echo the admin HTML
+     */
+    public function ajax_resize_slide() {
+        $slider_id = intval($_POST['slider_id']);
+        $slide_id = intval($_POST['slide_id']);
 
         $this->set_slide($slide_id);
         $this->set_slider($slider_id);
-        $this->tag_slide_to_slider();
-
-        $this->add_or_update_or_delete_meta($slide_id, 'type', 'image');
 
         $settings = get_post_meta($slider_id, 'ml-slider_settings', true);
 
@@ -33,12 +52,14 @@ class MetaImageSlide extends MetaSlide {
             $slide_id,
             $settings['width'], 
             $settings['height'], 
-            isset($settings['smartCrop']) ? $settings['smartCrop'] : 'false'
+            isset($settings['smartCrop']) ? $settings['smartCrop'] : 'false',
+            $this->use_wp_image_editor()
         );
 
         $url = $imageHelper->get_image_url();
 
-        echo $this->get_admin_slide();
+        echo $settings['width'] . 'x' . $settings['height'] . '=' . $url;
+
         die();
     }
 
@@ -65,7 +86,7 @@ class MetaImageSlide extends MetaSlide {
         $str_url        = __("URL", 'metaslider');
 
         // slide row HTML
-        $row  = "<tr class='slide flex responsive nivo coin'>";
+        $row  = "<tr class='slide image flex responsive nivo coin'>";
         $row .= "    <td class='col-1'>";
         $row .= "        <div class='thumb' style='background-image: url({$thumb})'>";
         $row .= "            <a class='delete-slide confirm' href='?page=metaslider&id={$this->slider->ID}&deleteSlide={$this->slide->ID}'>x</a>";
@@ -85,6 +106,7 @@ class MetaImageSlide extends MetaSlide {
         $row .= "        </div>";
         $row .= "        <input type='hidden' name='attachment[{$this->slide->ID}][type]' value='image' />";
         $row .= "        <input type='hidden' class='menu_order' name='attachment[{$this->slide->ID}][menu_order]' value='{$this->slide->menu_order}' />";
+        $row .= "        <input type='hidden' name='slide_id' value='{$this->slide->ID}' />";
         $row .= "    </td>";
         $row .= "</tr>";
 

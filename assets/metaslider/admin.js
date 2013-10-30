@@ -54,6 +54,20 @@ jQuery(document).ready(function($) {
         });
     });
 
+    // bind an event to the slides table to update the menu order of each slide
+    jQuery('.metaslider .left table').live('resizeSlides', function(event) {
+        jQuery("tr.slide.image input[name='slide_id']", this).each(function() {
+            var data = {
+                action: 'resize_image_slide',
+                slider_id: window.parent.metaslider_slider_id,
+                slide_id: jQuery(this).val()
+            };
+
+            jQuery.post(ajaxurl, data, function(response) {
+                console.log(response);
+            });
+        });
+    });
     // show the confirm dialogue
     jQuery(".confirm").live('click', function() {
         return confirm(metaslider.confirm);
@@ -155,6 +169,7 @@ jQuery(document).ready(function($) {
             success: function(data) {
                 // update the slides with the response html
                 $(".metaslider .left tbody").html($(".metaslider .left tbody", data).html());
+                jQuery(".metaslider .left table").trigger('resizeSlides');
                 
                 fixIE10PlaceholderText();
 
