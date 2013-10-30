@@ -71,7 +71,10 @@ class MetaSliderPlugin {
 
         add_filter('media_upload_tabs', array($this,'custom_media_upload_tab_name'), 998);
         add_filter('media_view_strings', array($this, 'custom_media_uploader_tabs'), 5);
-        add_action('media_upload_metaslider_pro', array($this, 'metaslider_pro_tab'));
+        add_action('media_upload_vimeo', array($this, 'metaslider_pro_tab'));
+        add_action('media_upload_youtube', array($this, 'metaslider_pro_tab'));
+        add_action('media_upload_post_feed', array($this, 'metaslider_pro_tab'));
+        add_action('media_upload_layer', array($this, 'metaslider_pro_tab'));
         
         // add 'go pro' link to plugin options
         $plugin = plugin_basename(__FILE__);
@@ -92,7 +95,9 @@ class MetaSliderPlugin {
      * Add settings link on plugin page
      */
     public function upgrade_to_pro($links) { 
-        $links[] = '<a href="http://www.metaslider.com/upgrade" target="_blank">' . __("Go Pro", 'metaslider') . '</a>'; 
+        if (!is_plugin_active('ml-slider-pro/ml-slider-pro.php')) {
+            $links[] = '<a href="http://www.metaslider.com/upgrade" target="_blank">' . __("Go Pro", 'metaslider') . '</a>'; 
+        }
         return $links; 
     }
      
@@ -100,7 +105,9 @@ class MetaSliderPlugin {
      * Return the meta slider pro upgrade iFrame
      */
     public function metaslider_pro_tab() {
-        return wp_iframe( array($this, 'iframe'));
+        if (!is_plugin_active('ml-slider-pro/ml-slider-pro.php')) {
+            return wp_iframe( array($this, 'iframe'));
+        }
     }
 
     /**
@@ -145,7 +152,6 @@ class MetaSliderPlugin {
         if ((isset($_GET['page']) && $_GET['page'] == 'metaslider')) {
             $strings['insertMediaTitle'] = __("Image", 'metaslider');
             $strings['insertIntoPost'] = __("Add to slider", 'metaslider');
-
             // remove options
             if (isset($strings['createGalleryTitle'])) unset($strings['createGalleryTitle']);
             if (isset($strings['insertFromUrlTitle'])) unset($strings['insertFromUrlTitle']);
@@ -158,17 +164,23 @@ class MetaSliderPlugin {
      * 
      * @var array existing media manager tabs
      */
-    public function custom_media_upload_tab_name( $tabs ) {
+    public function custom_media_upload_tab_name($tabs) {
         // restrict our tab changes to the meta slider plugin page
         if ((isset($_GET['page']) && $_GET['page'] == 'metaslider') || isset($_GET['tab']) == 'metaslider_pro') {
+            $newtabs = array();
 
-            $newtabs = array( 
-                'metaslider_pro' => __("More Slide Types", 'metaslider')
-            );
+            if (!is_plugin_active('ml-slider-pro/ml-slider-pro.php')) {
+                $newtabs = array( 
+                    'post_feed' => __("Post Feed", 'metaslider'),
+                    'vimeo' => __("Vimeo", 'metaslider'),
+                    'youtube' => __("YouTube", 'metaslider'),
+                    'layer' => __("Layer Slide", 'metaslider')
+                );
+            }
 
             if (isset($tabs['nextgen'])) unset($tabs['nextgen']);
 
-            return array_merge( $tabs, $newtabs );
+            return array_merge($tabs, $newtabs);
         }
 
         return $tabs;
@@ -515,6 +527,7 @@ class MetaSliderPlugin {
 
         <script type='text/javascript'>
             var metaslider_slider_id = <?php echo $this->slider->id; ?>;
+            var metaslider_pro_active = <?php echo is_plugin_active('ml-slider-pro/ml-slider-pro.php') ? 'true' : 'false' ?>;
         </script>
 
         <div class="wrap metaslider">

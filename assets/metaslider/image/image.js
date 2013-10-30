@@ -45,6 +45,9 @@
 
 			// Remove the Media Library tab (media_upload_tabs filter is broken in 3.6)
 			jQuery(".media-menu  a:contains('Media Library')").remove();
+			if (!window.parent.metaslider_pro_active) {
+				jQuery(".media-menu a:not(:first)").addClass('disabled');
+			}
 		});
 	});
 
