@@ -656,9 +656,9 @@ class MetaSliderPlugin {
                                 </td>
                                 <td>
                                         <?php _e("Width", 'metaslider') ?>:
-                                        <input type='number' min='0' max='9999' class="width tipsy-tooltip-top" title='<?php _e("Width", 'metaslider') ?>' name="settings[width]" value='<?php echo $this->slider->get_setting('width') ?>' />
+                                        <input type='number' size='3' min='0' max='9999' class="width tipsy-tooltip-top" title='<?php _e("Width", 'metaslider') ?>' name="settings[width]" value='<?php echo $this->slider->get_setting('width') ?>' />
                                         <?php _e("Height", 'metaslider') ?>:
-                                        <input type='number' min='0' max='9999' class="height tipsy-tooltip-top" title='<?php _e("Height", 'metaslider') ?>' name="settings[height]" value='<?php echo $this->slider->get_setting('height') ?>' />
+                                        <input type='number' size='3' min='0' max='9999' class="height tipsy-tooltip-top" title='<?php _e("Height", 'metaslider') ?>' name="settings[height]" value='<?php echo $this->slider->get_setting('height') ?>' />
                                 </td>
                             </tr>
                             <tr>
@@ -804,7 +804,7 @@ class MetaSliderPlugin {
                                     <?php _e("Slide delay", 'metaslider') ?> (<?php _e("ms", 'metaslider') ?>)
                                 </td>
                                 <td>
-                                    <input class='option coin flex responsive nivo' type='number' min='500' max='10000' step='100' name="settings[delay]" value='<?php echo $this->slider->get_setting('delay') ?>' />
+                                    <input class='option coin flex responsive nivo' type='number' size='3' min='500' max='10000' step='100' name="settings[delay]" value='<?php echo $this->slider->get_setting('delay') ?>' />
                                 </td>
                             </tr>
                             <tr>
@@ -812,7 +812,7 @@ class MetaSliderPlugin {
                                     <?php _e("Animation speed", 'metaslider') ?> (<?php _e("ms", 'metaslider') ?>)
                                 </td>
                                 <td>
-                                    <input class='option flex responsive nivo' type='number' min='0' max='2000' step='100' name="settings[animationSpeed]" value='<?php echo $this->slider->get_setting('animationSpeed') ?>' />
+                                    <input class='option flex responsive nivo' type='number' size='3' min='0' max='2000' step='100' name="settings[animationSpeed]" value='<?php echo $this->slider->get_setting('animationSpeed') ?>' />
                                 </td>
                             </tr>
                             <tr>
@@ -820,8 +820,8 @@ class MetaSliderPlugin {
                                     <?php _e("Number of squares", 'metaslider') ?>
                                 </td>
                                 <td>
-                                    <input class='option coin nivo' type='number' min='1' max='20' step='1' name="settings[spw]" value='<?php echo $this->slider->get_setting('spw') ?>' /> x 
-                                    <input class='option coin nivo' type='number' min='1' max='20' step='1' name="settings[sph]" value='<?php echo $this->slider->get_setting('sph') ?>' />
+                                    <input class='option coin nivo' type='number' size='3' min='1' max='20' step='1' name="settings[spw]" value='<?php echo $this->slider->get_setting('spw') ?>' /> x 
+                                    <input class='option coin nivo' type='number' size='3' min='1' max='20' step='1' name="settings[sph]" value='<?php echo $this->slider->get_setting('sph') ?>' />
                                 </td>
                             </tr>
                             <tr>
@@ -829,7 +829,7 @@ class MetaSliderPlugin {
                                     <?php _e("Number of slices", 'metaslider') ?>
                                 </td>
                                 <td>
-                                    <input class='option nivo' type='number' min='1' max='20' step='1' name="settings[slices]" value='<?php echo $this->slider->get_setting('slices') ?>' />
+                                    <input class='option nivo' type='number' size='3' min='1' max='20' step='1' name="settings[slices]" value='<?php echo $this->slider->get_setting('slices') ?>' />
                                 </td>
                             </tr>
                             <tr>
@@ -891,7 +891,7 @@ class MetaSliderPlugin {
                                     <?php _e("Square delay", 'metaslider') ?> (<?php _e("ms", 'metaslider') ?>)
                                 </td>
                                 <td>
-                                    <input class='option coin' type='number' min='0' max='500' step='10' name="settings[sDelay]" value='<?php echo $this->slider->get_setting('sDelay') ?>' />
+                                    <input class='option coin' type='number' size='3' min='0' max='500' step='10' name="settings[sDelay]" value='<?php echo $this->slider->get_setting('sDelay') ?>' />
                                 </td>
                             </tr>
                             <tr>
@@ -899,7 +899,7 @@ class MetaSliderPlugin {
                                     <?php _e("Opacity", 'metaslider') ?>
                                 </td>
                                 <td>
-                                    <input class='option coin' type='number' min='0.1' max='1.0' step='0.1' name="settings[opacity]" value='<?php echo $this->slider->get_setting('opacity') ?>' />
+                                    <input class='option coin' type='number' size='3' min='0.1' max='1.0' step='0.1' name="settings[opacity]" value='<?php echo $this->slider->get_setting('opacity') ?>' />
                                 </td>
                             </tr>
                             <tr>
@@ -907,7 +907,7 @@ class MetaSliderPlugin {
                                     <?php _e("Caption speed", 'metaslider') ?> (<?php _e("ms", 'metaslider') ?>)
                                 </td>
                                 <td>
-                                    <input class='option coin' type='number' min='0' max='10000' step='100' name="settings[titleSpeed]" value='<?php echo $this->slider->get_setting('titleSpeed') ?>' />
+                                    <input class='option coin' type='number' size='3' min='0' max='10000' step='100' name="settings[titleSpeed]" value='<?php echo $this->slider->get_setting('titleSpeed') ?>' />
                                 </td>
                             </tr>
                             <tr>
