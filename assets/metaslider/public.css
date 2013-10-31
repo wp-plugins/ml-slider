@@ -9,6 +9,9 @@
 .metaslider {
     position: relative;
 }
+.metaslider.nav-hidden .flexslider {
+    margin-bottom: 0;
+}
 
 .metaslider .caption {
     padding: 5px 10px;

@@ -20,6 +20,7 @@ class MetaFlexSlider extends MetaSlider {
         add_filter('metaslider_flex_slider_parameters', array($this, 'enable_carousel_mode'), 10, 2);
         add_filter('metaslider_flex_slider_parameters', array($this, 'enable_easing'), 10, 2);
         add_filter('metaslider_css', array($this, 'get_carousel_css'), 11, 3);
+        add_filter('metaslider_css_classes', array($this, 'remove_bottom_margin'), 11, 3);
         
         $this->carousel_item_margin = apply_filters('metaslider_carousel_margin', $this->carousel_item_margin, $id);
     }
@@ -50,8 +51,10 @@ class MetaFlexSlider extends MetaSlider {
         return $options;
     }
 
+
+
     /**
-     * Adjust the slider parameters so they're comparible with the carousel mode
+     * Ensure CSS transitions are disabled when easing is enabled.
      * 
      * @param array $options
      * @param integer $slider_id
@@ -66,6 +69,22 @@ class MetaFlexSlider extends MetaSlider {
         remove_filter('metaslider_flex_slider_parameters', 'enable_easing');
 
         return $options;
+    }
+
+    /**
+     * Add a 'nav-hidden' class to slideshows where the navigation is hidden.
+     * 
+     * @param string $css
+     * @param array $settings
+     * @param integer $slider_id
+     * @return string $css
+     */
+    public function remove_bottom_margin($class, $id, $settings) {
+        if (isset($settings["navigation"]) && $settings['navigation'] == 'false') {
+            return $class .= " nav-hidden";
+        }
+
+        return $class;
     }
 
     /**
