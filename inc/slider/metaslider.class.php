@@ -225,11 +225,17 @@ class MetaSlider {
         // handle any custom classes
         $class = apply_filters('metaslider_css_classes', $class, $this->id, $this->settings);
 
+        // default
+        $style = "max-width: {$this->get_setting('width')}px; {$this->get_setting('percentwidth')}";
+
         // carousels are always 100% wide
-        if ($this->get_setting('carouselMode') != 'true' && $this->get_setting('fullwidth') != 'true') {
-            $style = "max-width: {$this->get_setting('width')}px;";
-        } else {
+        if ($this->get_setting('carouselMode') == 'true') {
             $style = "width: 100%;";
+        }
+
+        // percentWidth showcode parameter takes precedence
+        if ($this->get_setting('percentwidth') != 'false' && $this->get_setting('percentwidth') > 0) {
+            $style = "width: {$this->get_setting('percentwidth')}%;";
         }
 
         // center align the slideshow
