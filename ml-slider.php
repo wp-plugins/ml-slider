@@ -18,8 +18,8 @@
 if (!defined('ABSPATH')) exit;
 
 define('METASLIDER_VERSION', '2.4.2');
-define('METASLIDER_BASE_URL', plugin_dir_url(__FILE__));
-define('METASLIDER_ASSETS_URL', METASLIDER_BASE_URL . 'assets/');
+define('METASLIDER_BASE_URL', plugins_url('ml-slider')); //plugin_dir_url(__FILE__)
+define('METASLIDER_ASSETS_URL', METASLIDER_BASE_URL . '/assets/');
 define('METASLIDER_BASE_DIR_LONG', dirname(__FILE__));
 define('METASLIDER_INC_DIR', METASLIDER_BASE_DIR_LONG . '/inc/');
 
