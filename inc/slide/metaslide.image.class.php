@@ -18,19 +18,24 @@ class MetaImageSlide extends MetaSlide {
      * Create a new slide and echo the admin HTML
      */
     public function ajax_create_slide() {
-        $slider_id = intval($_POST['slider_id']);
-        $selection = $_POST['selection'];
-        $return = "";
-
-        foreach ($selection as $slide_id) {
-            $this->set_slide($slide_id);
-            $this->set_slider($slider_id);
-            $this->tag_slide_to_slider();
-            $this->add_or_update_or_delete_meta($slide_id, 'type', 'image');
-            $return .= $this->get_admin_slide();
+        // security check
+        if (!wp_verify_nonce($_REQUEST['_wpnonce'], 'metaslider_addslide')) {
+            echo "<tr><td></td><td>Security check failed. Refresh page and try again.</td></tr>";
+            die();
         }
 
-        echo $return;
+        $slider_id = intval($_POST['slider_id']);
+        $selection = $_POST['selection'];
+
+        if (is_array($selection) && count($selection) && $slider_id > 0) {
+            foreach ($selection as $slide_id) {
+                $this->set_slide($slide_id);
+                $this->set_slider($slider_id);
+                $this->tag_slide_to_slider();
+                $this->add_or_update_or_delete_meta($slide_id, 'type', 'image');
+                echo $this->get_admin_slide();
+            }
+        }
 
         die();
     }
@@ -39,6 +44,8 @@ class MetaImageSlide extends MetaSlide {
      * Create a new slide and echo the admin HTML
      */
     public function ajax_resize_slide() {
+        check_admin_referer('metaslider_resize');
+
         $slider_id = intval($_POST['slider_id']);
         $slide_id = intval($_POST['slide_id']);
 
@@ -58,7 +65,7 @@ class MetaImageSlide extends MetaSlide {
 
         $url = $imageHelper->get_image_url();
 
-        echo $settings['width'] . 'x' . $settings['height'] . '=' . $url;
+        echo $url . " (" . $settings['width'] . 'x' . $settings['height'] . ")";
 
         die();
     }
@@ -96,7 +103,7 @@ class MetaImageSlide extends MetaSlide {
         $row .= "    <td class='col-2'>";
 
         if (!$this->is_valid_image()) {
-            $row .= "<div class='warning'>" . __('Warning: Image data does not exist. Please re-upload the image. Cropping has been disabled for this image.') . "</div>";
+            $row .= "<div class='warning'>" . __('Warning: Image data does not exist. Please re-upload the image.') . "</div>";
         }
 
         $row .= "        <textarea name='attachment[{$this->slide->ID}][post_excerpt]' placeholder='{$str_caption}'>{$caption}</textarea>";
@@ -106,7 +113,7 @@ class MetaImageSlide extends MetaSlide {
         $row .= "        </div>";
         $row .= "        <input type='hidden' name='attachment[{$this->slide->ID}][type]' value='image' />";
         $row .= "        <input type='hidden' class='menu_order' name='attachment[{$this->slide->ID}][menu_order]' value='{$this->slide->menu_order}' />";
-        $row .= "        <input type='hidden' name='slide_id' value='{$this->slide->ID}' />";
+        $row .= "        <input type='hidden' name='resize_slide_id' value='{$this->slide->ID}' />";
         $row .= "    </td>";
         $row .= "</tr>";
 

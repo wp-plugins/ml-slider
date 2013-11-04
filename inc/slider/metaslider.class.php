@@ -126,11 +126,14 @@ class MetaSlider {
         if (!is_admin()) {
             return;
         }
+
         // make changes to slider
         if (isset($_POST['settings'])) {
+            check_admin_referer('metaslider_save_' . $this->slider->ID);
             $this->update_settings($_POST['settings']);
         }
         if (isset($_POST['title'])) {
+            check_admin_referer('metaslider_save_' . $this->slider->ID);
             $this->update_title($_POST['title']);
         }
         if (isset($_GET['deleteSlide'])) {
@@ -139,6 +142,7 @@ class MetaSlider {
 
         // make changes to slides
         if (isset($_POST['attachment'])) {
+            check_admin_referer('metaslider_save_' . $this->slider->ID);
             $this->update_slides($_POST['attachment']);
         }
     }
@@ -353,7 +357,7 @@ class MetaSlider {
     }
 
     /**
-     * 
+     * Generate the @import rules for the inline style tag.
      */
     public function get_slider_css($css, $settings, $slider_id) {
         if ($slider_id != $this->id) {
@@ -370,7 +374,6 @@ class MetaSlider {
 
         return $css . $imports;
     }
-
 
     /**
      * Include slider assets, JS and CSS paths are specified by child classes.
@@ -420,7 +423,9 @@ class MetaSlider {
 
     /**
      * Delete a slide. This doesn't actually remove the slide from WordPress, simply untags
-     * it from the slide taxonomy
+     * it from the slide taxonomy.
+     *
+     * @param int $slide_id
      */
     private function delete_slide($slide_id) {
         // Get the existing terms and only keep the ones we don't want removed
@@ -439,6 +444,8 @@ class MetaSlider {
 
     /**
      * Loop over each slide and call the save action on each
+     *
+     * @param array $data - posted form data.
      */
     private function update_slides($data) {
         foreach ($data as $slide_id => $fields) {

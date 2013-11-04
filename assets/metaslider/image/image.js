@@ -34,10 +34,11 @@
 				var data = {
 					action: 'create_image_slide',
 					slider_id: window.parent.metaslider_slider_id,
-					selection: slide_ids
+					selection: slide_ids,
+					_wpnonce: metaslider_image.addslide_nonce
 				};
 
-				jQuery.post(ajaxurl, data, function(response) {
+				jQuery.post(metaslider.ajaxurl, data, function(response) {
 					jQuery(".metaslider .left table").append(response);
 					jQuery(".metaslider .left table").trigger('resizeSlides');
 				});

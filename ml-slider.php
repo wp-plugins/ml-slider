@@ -18,8 +18,8 @@
 if (!defined('ABSPATH')) exit;
 
 define('METASLIDER_VERSION', '2.4.2');
-define('METASLIDER_BASE_URL', plugins_url('ml-slider')); //plugin_dir_url(__FILE__)
-define('METASLIDER_ASSETS_URL', METASLIDER_BASE_URL . '/assets/');
+define('METASLIDER_BASE_URL', plugins_url('ml-slider') . '/'); //plugin_dir_url(__FILE__)
+define('METASLIDER_ASSETS_URL', METASLIDER_BASE_URL . 'assets/');
 define('METASLIDER_BASE_DIR_LONG', dirname(__FILE__));
 define('METASLIDER_INC_DIR', METASLIDER_BASE_DIR_LONG . '/inc/');
 
@@ -223,12 +223,18 @@ class MetaSliderPlugin {
         wp_enqueue_script('metaslider-admin-addslide', METASLIDER_ASSETS_URL . 'metaslider/image/image.js', array('metaslider-admin-script'), METASLIDER_VERSION);
 
         // localise the JS
+        wp_localize_script( 'metaslider-admin-addslide', 'metaslider_image', array( 
+            'addslide_nonce' => wp_create_nonce('metaslider_addslide')
+        ));
+
+        // localise the JS
         wp_localize_script( 'metaslider-admin-script', 'metaslider', array( 
             'url' => __("URL", 'metaslider'), 
             'caption' => __("Caption", 'metaslider'),
             'new_window' => __("New Window", 'metaslider'),
             'confirm' => __("Are you sure?", 'metaslider'),
             'ajaxurl' => admin_url( 'admin-ajax.php' ),
+            'resize_nonce' => wp_create_nonce('metaslider_resize'),
             'iframeurl' => METASLIDER_BASE_URL . 'preview.php',
             'useWithCaution' => __("Caution: This setting is for advanced developers only. If you're unsure, leave it checked.", 'metaslider')
         ));
@@ -532,6 +538,8 @@ class MetaSliderPlugin {
 
         <div class="wrap metaslider">
             <form accept-charset="UTF-8" action="?page=metaslider&id=<?php echo $this->slider->id ?>" method="post">
+                <?php wp_nonce_field('metaslider_save_' . $this->slider->ID); ?>
+
                 <?php
                     $title = "";
 

@@ -56,18 +56,20 @@ jQuery(document).ready(function($) {
 
     // bind an event to the slides table to update the menu order of each slide
     jQuery('.metaslider .left table').live('resizeSlides', function(event) {
-        jQuery("tr.slide.image input[name='slide_id']", this).each(function() {
+        jQuery("tr.slide input[name='resize_slide_id']", this).each(function() {
             var data = {
                 action: 'resize_image_slide',
                 slider_id: window.parent.metaslider_slider_id,
-                slide_id: jQuery(this).val()
+                slide_id: jQuery(this).val(),
+                _wpnonce: metaslider.resize_nonce
             };
 
-            jQuery.post(ajaxurl, data, function(response) {
+            jQuery.post(metaslider.ajaxurl, data, function(response) {
                 console.log(response);
             });
         });
     });
+
     // show the confirm dialogue
     jQuery(".confirm").live('click', function() {
         return confirm(metaslider.confirm);
