@@ -140,16 +140,14 @@ Coin Slider is not responsive. This means (unlike the other slideshows in Meta S
 
 == Changelog ==
 
-= 2.4.3 [31/10/13] =
-
+= 2.5 [31/10/13] =
 * New Feature: 'percentwidth' parameter added to shortcode to allow for 100% wide slideshows
 * Improvement: Generate resized images through multiple Ajax requests on save (blank screen fix)
 * Improvement: IE9 admin styling tidied up
 * Change: Remove bottom margin from flex slider when navigation is hidden
 * Fix: Add slides to slideshow in the same order they're selected in the Media Library
 * Fix: Symlink path resolution
-* Fix: Do not try to resize/open images that are corrupt (missing meta data) (blank screen fix)
-
+* Fix: Do not try to resize/open images that are corrupt (missing metadata) (blank screen fix)
 
 = 2.4.2 [17/10/13] =
 * Fix: qTranslate caption & URL parsing for image slides
