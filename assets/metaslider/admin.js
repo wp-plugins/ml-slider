@@ -56,17 +56,43 @@ jQuery(document).ready(function($) {
 
     // bind an event to the slides table to update the menu order of each slide
     jQuery('.metaslider .left table').live('resizeSlides', function(event) {
-        jQuery("tr.slide input[name='resize_slide_id']", this).each(function() {
-            var data = {
-                action: 'resize_image_slide',
-                slider_id: window.parent.metaslider_slider_id,
-                slide_id: jQuery(this).val(),
-                _wpnonce: metaslider.resize_nonce
-            };
+        var slideshow_width = jQuery('input.width').val();
+        var slideshow_height = jQuery('input.height').val();
 
-            jQuery.post(metaslider.ajaxurl, data, function(response) {
-                console.log(response);
-            });
+        jQuery("tr.slide input[name='resize_slide_id']", this).each(function() {
+            $this = jQuery(this);
+
+            var thumb_width = $this.attr('data-width');
+            var thumb_height = $this.attr('data-height');
+
+            if ((thumb_width != slideshow_width || thumb_height != slideshow_height)) {
+                $this.attr('data-width', slideshow_width);
+                $this.attr('data-height', slideshow_height);
+
+                var resizing = jQuery('<div class="resize_overlay" />');
+                $this.parent().parent().children('.col-1').children('.thumb').append(resizing);
+
+                var data = {
+                    action: 'resize_image_slide',
+                    slider_id: window.parent.metaslider_slider_id,
+                    slide_id: $this.attr('data-slide_id'),
+                    _wpnonce: metaslider.resize_nonce
+                };
+
+                jQuery.ajax({   
+                    type: "POST",
+                    data : data,
+                    cache: false,
+                    url: metaslider.ajaxurl,
+                    success: function(data) {
+                        if (typeof console == "object") {
+                            console.log(data);
+                        }
+                        
+                        resizing.remove();
+                    }   
+                });
+            }
         });
     });
 
@@ -169,9 +195,9 @@ jQuery(document).ready(function($) {
             cache: false,
             url: url,
             success: function(data) {
-                // update the slides with the response html
-                $(".metaslider .left tbody").html($(".metaslider .left tbody", data).html());
                 jQuery(".metaslider .left table").trigger('resizeSlides');
+                // update the slides with the response html
+               // $(".metaslider .left tbody").html($(".metaslider .left tbody", data).html());
                 
                 fixIE10PlaceholderText();
 

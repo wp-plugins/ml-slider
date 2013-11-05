@@ -33,6 +33,11 @@ class MetaImageSlide extends MetaSlide {
                 $this->set_slider($slider_id);
                 $this->tag_slide_to_slider();
                 $this->add_or_update_or_delete_meta($slide_id, 'type', 'image');
+
+                // override the width and height to kick off the AJAX image resizing on save
+                $this->settings['width'] = 0;
+                $this->settings['height'] = 0;
+
                 echo $this->get_admin_slide();
             }
         }
@@ -113,7 +118,7 @@ class MetaImageSlide extends MetaSlide {
         $row .= "        </div>";
         $row .= "        <input type='hidden' name='attachment[{$this->slide->ID}][type]' value='image' />";
         $row .= "        <input type='hidden' class='menu_order' name='attachment[{$this->slide->ID}][menu_order]' value='{$this->slide->menu_order}' />";
-        $row .= "        <input type='hidden' name='resize_slide_id' value='{$this->slide->ID}' />";
+        $row .= "        <input type='hidden' name='resize_slide_id' data-slide_id='{$this->slide->ID}' data-width='{$this->settings['width']}' data-height='{$this->settings['height']}' />";
         $row .= "    </td>";
         $row .= "</tr>";
 
