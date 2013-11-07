@@ -406,6 +406,8 @@ class MetaSliderPlugin {
      * Create a new slider
      */
     private function add_slider() {
+        check_admin_referer("metaslider_add_slider");
+
         $defaults = array();
 
         // if possible, take a copy of the last edited slider settings in place of default settings
@@ -551,6 +553,7 @@ class MetaSliderPlugin {
 
                 <?php
                     $title = "";
+                    $add_url = wp_nonce_url("?page=metaslider&add=true", "metaslider_add_slider");
 
                     if ($tabs = $this->all_meta_sliders()) {
                         if ($max_tabs && count($tabs) > $max_tabs) {
@@ -583,12 +586,12 @@ class MetaSliderPlugin {
                                     echo "<a href='?page=metaslider&id={$tab['id']}' class='nav-tab'>" . $tab['title'] . "</a>";
                                 }
                             }
-                            echo "<a href='?page=metaslider&add=true' id='create_new_tab' class='nav-tab'>+</a>";
+                            echo "<a href='{$add_url}' id='create_new_tab' class='nav-tab'>+</a>";
                             echo "</h2>";
                         }
                     } else {
                         echo "<h2 class='nav-tab-wrapper'>";
-                        echo "<a href='?page=metaslider&add=true' id='create_new_tab' class='nav-tab'>+</a>";
+                        echo "<a href='{$add_url}' id='create_new_tab' class='nav-tab'>+</a>";
                         echo "<div class='bubble'>" . __("Create your first slideshow") . "</div>";
                         echo "</h2>";
                     }
