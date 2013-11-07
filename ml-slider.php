@@ -538,7 +538,7 @@ class MetaSliderPlugin {
 
         <div class="wrap metaslider">
             <form accept-charset="UTF-8" action="?page=metaslider&id=<?php echo $this->slider->id ?>" method="post">
-                <?php wp_nonce_field('metaslider_save_' . $this->slider->ID); ?>
+                <?php wp_nonce_field('metaslider_save_' . $this->slider->id); ?>
 
                 <?php
                     $title = "";

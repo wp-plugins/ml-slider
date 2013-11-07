@@ -129,11 +129,11 @@ class MetaSlider {
 
         // make changes to slider
         if (isset($_POST['settings'])) {
-            check_admin_referer('metaslider_save_' . $this->slider->ID);
+            check_admin_referer('metaslider_save_' . $this->id);
             $this->update_settings($_POST['settings']);
         }
         if (isset($_POST['title'])) {
-            check_admin_referer('metaslider_save_' . $this->slider->ID);
+            check_admin_referer('metaslider_save_' . $this->id);
             $this->update_title($_POST['title']);
         }
         if (isset($_GET['deleteSlide'])) {
@@ -142,7 +142,7 @@ class MetaSlider {
 
         // make changes to slides
         if (isset($_POST['attachment'])) {
-            check_admin_referer('metaslider_save_' . $this->slider->ID);
+            check_admin_referer('metaslider_save_' . $this->id);
             $this->update_slides($_POST['attachment']);
         }
     }
