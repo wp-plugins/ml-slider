@@ -66,7 +66,7 @@ class MetaFlexSlider extends MetaSlider {
         }
         
         // we don't want this filter hanging around if there's more than one slideshow on the page
-        remove_filter('metaslider_flex_slider_parameters', 'enable_easing');
+        remove_filter('metaslider_flex_slider_parameters', array($this, 'enable_easing'), 10, 2);
 
         return $options;
     }
@@ -84,6 +84,9 @@ class MetaFlexSlider extends MetaSlider {
             return $class .= " nav-hidden";
         }
 
+        // we don't want this filter hanging around if there's more than one slideshow on the page
+        remove_filter('metaslider_css_classes', array($this, 'remove_bottom_margin'), 11, 3);
+
         return $class;
     }
 
@@ -99,6 +102,9 @@ class MetaFlexSlider extends MetaSlider {
         if (isset($settings["carouselMode"]) && $settings['carouselMode'] == 'true') {
             $css .= "\n        #metaslider_{$slider_id}.flexslider li {margin-right: {$this->carousel_item_margin}px;}";
         }
+
+        // we don't want this filter hanging around if there's more than one slideshow on the page
+        remove_filter('metaslider_css', array($this, 'get_carousel_css'), 11, 3);
 
         return $css;
     }
