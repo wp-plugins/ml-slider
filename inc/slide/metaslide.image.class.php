@@ -20,7 +20,7 @@ class MetaImageSlide extends MetaSlide {
     public function ajax_create_slide() {
         // security check
         if (!wp_verify_nonce($_REQUEST['_wpnonce'], 'metaslider_addslide')) {
-            echo "<tr><td></td><td>Security check failed. Refresh page and try again.</td></tr>";
+            echo "<tr><td colspan='2'>" . __("Security check failed. Refresh page and try again.", 'metaslider') . "</td></tr>";
             die();
         }
 
@@ -31,18 +31,30 @@ class MetaImageSlide extends MetaSlide {
             foreach ($selection as $slide_id) {
                 $this->set_slide($slide_id);
                 $this->set_slider($slider_id);
-                $this->tag_slide_to_slider();
-                $this->add_or_update_or_delete_meta($slide_id, 'type', 'image');
 
-                // override the width and height to kick off the AJAX image resizing on save
-                $this->settings['width'] = 0;
-                $this->settings['height'] = 0;
+                if ($this->slide_exists_in_slideshow($slider_id, $slide_id)) {
+                    echo "<tr><td colspan='2'>ID: {$slide_id}. " . __("Failed to add slide. Slide already exists in slideshow.", 'metaslider') . "</td></tr>";
+                } else {
+                    $this->tag_slide_to_slider();
+                    $this->add_or_update_or_delete_meta($slide_id, 'type', 'image');
 
-                echo $this->get_admin_slide();
+                    // override the width and height to kick off the AJAX image resizing on save
+                    $this->settings['width'] = 0;
+                    $this->settings['height'] = 0;
+
+                    echo $this->get_admin_slide();                   
+                }
             }
         }
 
         die();
+    }
+
+    /**
+     *
+     */
+    public function slide_exists_in_slideshow($slider_id, $slide_id) {
+        return has_term("{$slider_id}", 'ml-slider', $slide_id);
     }
 
     /**
@@ -133,12 +145,12 @@ class MetaImageSlide extends MetaSlide {
      * @return bool, true if metadata and size exists.
      */
     public function is_valid_image() {
-        $image_attributes = wp_get_attachment_image_src($this->slide->ID);
+        $image_attributes = wp_get_attachment_image_src($this->slide->ID, 'full');
 
         if (!is_array($image_attributes)) {
             return false;
         }
-
+        
         if ($image_attributes[1] > 0 && $image_attributes[1] > 0) {
             return true;
         }
