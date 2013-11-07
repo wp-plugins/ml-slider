@@ -435,8 +435,13 @@ class MetaSliderPlugin {
 
     /**
      * Delete a slider (send it to trash)
+     *
+     * @param int $id
      */
     private function delete_slider($id) {
+        // check nonce
+        check_admin_referer("metaslider_delete_slider");
+
         $slide = array(
             'ID' => $id,
             'post_status' => 'trash'
@@ -478,6 +483,7 @@ class MetaSliderPlugin {
      * Get sliders. Returns a nicely formatted array of currently
      * published sliders.
      *
+     * @param string $sort_key
      * @return array all published sliders
      */
     private function all_meta_sliders($sort_key = 'date') {
@@ -509,6 +515,9 @@ class MetaSliderPlugin {
         return $sliders;
     }
 
+    /**
+     * Build a string describing the features of a slideshow
+     */
     public function get_library_details($version, $responsive, $size, $mobile) {
          $details  = __("Version", 'metaslider') . ": " . $version . "<br />";
          $details .= __("Responsive", 'metaslider') . ": ";
@@ -946,7 +955,7 @@ class MetaSliderPlugin {
                             </tr>
                             <tr>
                                 <td colspan='2'>
-                                    <a class='alignright delete-slider button-secondary confirm' href="?page=metaslider&delete=<?php echo $this->slider->id ?>"><?php _e("Delete Slider", 'metaslider') ?></a>
+                                    <a class='alignright delete-slider button-secondary confirm' href='<?php echo wp_nonce_url("?page=metaslider&delete={$this->slider->id}", "metaslider_delete_slider"); ?>'><?php _e("Delete Slider", 'metaslider') ?></a>
                                 </td>
                             </tr>
                         </tbody>
