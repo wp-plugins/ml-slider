@@ -262,8 +262,6 @@ class MetaSliderPlugin {
         add_action('load-' . $page, array($this, 'help_tab'));
     }
 
-
-
     /**
      * Upgrade CTA.
      */
@@ -385,14 +383,12 @@ class MetaSliderPlugin {
 
         // delete a slider
         if (isset($_GET['delete'])) {
-            $this->delete_slider(intval($_GET['delete']));
-            $slider_id = $this->find_slider('date', 'DESC');
+            $slider_id = $this->delete_slider(intval($_GET['delete']));
         }
 
         // create a new slider
         if (isset($_GET['add'])) {
-            $this->add_slider();
-            $slider_id = $this->find_slider('date', 'DESC');
+            $slider_id = $this->add_slider();
         }
 
         if (isset($_REQUEST['id'])) {
@@ -408,6 +404,7 @@ class MetaSliderPlugin {
      * Create a new slider
      */
     private function add_slider() {
+        // check nonce
         check_admin_referer("metaslider_add_slider");
 
         $defaults = array();
@@ -417,6 +414,12 @@ class MetaSliderPlugin {
             $defaults = get_post_meta($last_modified, 'ml-slider_settings', true);
         }
 
+        // use the default settings if we can't find anything more suitable.
+        if (empty($defaults)) {
+            $slider = new MetaSlider($id, array());
+            $defaults = $slider->get_default_parameters();
+        }
+
         // insert the post
         $id = wp_insert_post(array(
             'post_title' => __("New Slider", 'metaslider'),
@@ -424,17 +427,13 @@ class MetaSliderPlugin {
             'post_type' => 'ml-slider'
         ));
 
-        // use the default settings if we can't find anything more suitable.
-        if (empty($defaults)) {
-            $slider = new MetaSlider($id, array());
-            $defaults = $slider->get_default_parameters();
-        }
-
         // insert the post meta
         add_post_meta($id, 'ml-slider_settings', $defaults, true);
 
         // create the taxonomy term, the term is the ID of the slider itself
         wp_insert_term($id, 'ml-slider');
+
+        return $id;
     }
 
     /**
@@ -446,12 +445,13 @@ class MetaSliderPlugin {
         // check nonce
         check_admin_referer("metaslider_delete_slider");
 
-        $slide = array(
+        // send the post to trash
+        wp_update_post(array(
             'ID' => $id,
             'post_status' => 'trash'
-        );
-        
-        wp_update_post($slide);
+        ));
+
+        return $this->find_slider('date', 'DESC');
     }
 
     /**
