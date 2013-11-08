@@ -399,7 +399,9 @@ class MetaSliderPlugin {
             $slider_id = $_REQUEST['id'];
         }
 
-        $this->set_slider($slider_id);
+        if ($slider_id > 0) {
+            $this->set_slider($slider_id);
+        }
     }
 
     /**
@@ -424,7 +426,7 @@ class MetaSliderPlugin {
 
         // use the default settings if we can't find anything more suitable.
         if (empty($defaults)) {
-            $slider = new MetaSlider($id);
+            $slider = new MetaSlider($id, array());
             $defaults = $slider->get_default_parameters();
         }
 
@@ -549,9 +551,11 @@ class MetaSliderPlugin {
 
         <div class="wrap metaslider">
             <form accept-charset="UTF-8" action="?page=metaslider&id=<?php echo $this->slider->id ?>" method="post">
-                <?php wp_nonce_field('metaslider_save_' . $this->slider->id); ?>
+                <?php 
+                    if ($this->slider) {
+                        wp_nonce_field('metaslider_save_' . $this->slider->id);
+                    }
 
-                <?php
                     $title = "";
                     $add_url = wp_nonce_url("?page=metaslider&add=true", "metaslider_add_slider");
 
@@ -599,7 +603,7 @@ class MetaSliderPlugin {
                 ?>
 
                 <?php
-                    if (!$this->slider->id) {
+                    if (!$this->slider) {
                         return;
                     }
                 ?>
