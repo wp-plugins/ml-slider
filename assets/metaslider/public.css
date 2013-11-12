@@ -12,6 +12,9 @@
 .metaslider.nav-hidden .flexslider {
     margin-bottom: 0;
 }
+.metaslider.nav-hidden.add-margin .flexslider {
+    margin-bottom: 40px;
+}
 
 .metaslider .caption {
     padding: 5px 10px;
