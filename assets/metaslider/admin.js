@@ -85,7 +85,7 @@ jQuery(document).ready(function($) {
                     cache: false,
                     url: metaslider.ajaxurl,
                     success: function(data) {
-                        if (typeof console == "object") {
+                        if (console && console.log) {
                             console.log(data);
                         }
                         
@@ -197,7 +197,6 @@ jQuery(document).ready(function($) {
             success: function(data) {
                 var response = jQuery(data);
                 jQuery(".metaslider .left table").trigger('resizeSlides');
-
 
                 jQuery("button[data-thumb]", response).each(function() {
                     var $this = jQuery(this);
