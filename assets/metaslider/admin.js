@@ -195,10 +195,19 @@ jQuery(document).ready(function($) {
             cache: false,
             url: url,
             success: function(data) {
+                var response = jQuery(data);
                 jQuery(".metaslider .left table").trigger('resizeSlides');
-                // update the slides with the response html
-               // $(".metaslider .left tbody").html($(".metaslider .left tbody", data).html());
-                
+
+
+                jQuery("button[data-thumb]", response).each(function() {
+                    var $this = jQuery(this);
+                    var editor_id = $this.attr('data-editor_id');
+                    jQuery("button[data-editor_id=" + editor_id + "]")
+                        .attr('data-thumb', $this.attr('data-thumb'))
+                        .attr('data-width', $this.attr('data-width'))
+                        .attr('data-height', $this.attr('data-height'));
+                });
+
                 fixIE10PlaceholderText();
 
                 if (button.id === 'preview') {

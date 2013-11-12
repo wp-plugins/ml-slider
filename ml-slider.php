@@ -580,7 +580,7 @@ class MetaSliderPlugin {
 
                             }
                             echo "</select> " . __('or', 'metaslider') . " ";
-                            echo "<a href='?page=metaslider&add=true'>" . __('Add New Slideshow', 'metaslider') . "</a></div>";
+                            echo "<a href='{$add_url}'>" . __('Add New Slideshow', 'metaslider') . "</a></div>";
                         } else {
                             echo "<h2 class='nav-tab-wrapper'>";
                             foreach ($tabs as $tab) {

@@ -188,10 +188,12 @@ class MetaImageSlide extends MetaSlide {
         // store the slide details
         $slide = array(
             'id' => $this->slide->ID,
-            'thumb' => $thumb,
             'url' => __(get_post_meta($this->slide->ID, 'ml-slider_url', true)),
-            'alt' => __(get_post_meta($this->slide->ID, '_wp_attachment_image_alt', true)),
             'target' => get_post_meta($this->slide->ID, 'ml-slider_new_window', true) ? '_blank' : '_self', 
+            'src' => $thumb,
+            'width' => $this->settings['width'],
+            'height' => $this->settings['height'],
+            'alt' => __(get_post_meta($this->slide->ID, '_wp_attachment_image_alt', true)),
             'caption' => __(html_entity_decode($this->slide->post_excerpt, ENT_NOQUOTES, 'UTF-8')),
             'caption_raw' => __($this->slide->post_excerpt),
             'class' => "slider-{$this->slider->ID} slide-{$this->slide->ID}",
@@ -249,15 +251,17 @@ class MetaImageSlide extends MetaSlide {
      */
     private function get_nivo_slider_markup($slide) {
         $attributes = array(
-            'src' => $slide['thumb'],
-            'height' => $this->settings['height'],
-            'width' => $this->settings['width'],
+            'src' => $slide['src'],
+            'height' => $slide['height'],
+            'width' => $slide['width'],
             'title' => htmlentities($slide['caption_raw'], ENT_QUOTES, 'UTF-8'),
             'data-thumb' => $slide['data-thumb'],
             'alt' => $slide['alt'],
             'rel' => $slide['rel'],
             'class' => $slide['class']
         );
+
+        $attributes = apply_filters('metaslider_nivo_slider_image_attributes', $attributes, $slide, $this->slider->id);
 
         $html = $this->build_image_tag($attributes);
 
@@ -275,13 +279,15 @@ class MetaImageSlide extends MetaSlide {
      */
     private function get_flex_slider_markup($slide) {
         $attributes = array(
-            'src' => $slide['thumb'],
-            'height' => $this->settings['height'],
-            'width' => $this->settings['width'],
+            'src' => $slide['src'],
+            'height' => $slide['height'],
+            'width' => $slide['width'],
             'alt' => $slide['alt'],
             'rel' => $slide['rel'],
             'class' => $slide['class']
         );
+
+        $attributes = apply_filters('metaslider_flex_slider_image_attributes', $attributes, $slide, $this->slider->id);
 
         $html = $this->build_image_tag($attributes);
 
@@ -309,13 +315,15 @@ class MetaImageSlide extends MetaSlide {
         $url = strlen($slide['url']) ? $slide['url'] : 'javascript:void(0)'; // coinslider always wants a URL
 
         $attributes = array(
-            'src' => $slide['thumb'],
-            'height' => $this->settings['height'],
-            'width' => $this->settings['width'],
+            'src' => $slide['src'],
+            'height' => $slide['height'],
+            'width' => $slide['width'],
             'alt' => $slide['alt'],
             'rel' => $slide['rel'],
             'class' => $slide['class']
         );
+
+        $attributes = apply_filters('metaslider_coin_slider_image_attributes', $attributes, $slide, $this->slider->id);
 
         $html = $this->build_image_tag($attributes);
 
@@ -335,13 +343,15 @@ class MetaImageSlide extends MetaSlide {
      */
     private function get_responsive_slides_markup($slide) {
         $attributes = array(
-            'src' => $slide['thumb'],
-            'height' => $this->settings['height'],
-            'width' => $this->settings['width'],
+            'src' => $slide['src'],
+            'height' => $slide['height'],
+            'width' => $slide['width'],
             'alt' => $slide['alt'],
             'rel' => $slide['rel'],
             'class' => $slide['class']
         );
+
+        $attributes = apply_filters('metaslider_responsive_slider_image_attributes', $attributes, $slide, $this->slider->id);
 
         $html = $this->build_image_tag($attributes);
 
