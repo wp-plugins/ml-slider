@@ -140,6 +140,9 @@ Coin Slider is not responsive. This means (unlike the other slideshows in Meta S
 
 == Changelog ==
 
+= 2.5-beta1 [12/11/13] =
+* Fix: Center align slideshow
+
 = 2.5-beta [12/11/13] =
 * New Feature: 'percentwidth' parameter added to shortcode to allow for 100% wide slideshows
 * Improvement: Generate resized images through multiple Ajax requests on save (blank screen fix)
