@@ -33,8 +33,10 @@ class MetaImageSlide extends MetaSlide {
                 $this->set_slider($slider_id);
 
                 if ($this->slide_exists_in_slideshow($slider_id, $slide_id)) {
-                    echo "<tr><td colspan='2'>ID: {$slide_id}. " . __("Failed to add slide. Slide already exists in slideshow.", 'metaslider') . "</td></tr>";
-                } else {
+                    echo "<tr><td colspan='2'>ID: {$slide_id} \"" . get_the_title($slide_id) . "\" - " . __("Failed to add slide. Slide already exists in slideshow.", 'metaslider') . "</td></tr>";
+                } else if (!$this->slide_is_unassigned_or_image_slide($slider_id, $slide_id)) {
+                    echo "<tr><td colspan='2'>ID: {$slide_id} \"" . get_the_title($slide_id) . "\" - " . __("Failed to add slide. Slide is not of type 'image'.", 'metaslider') . "</td></tr>";
+                }else {
                     $this->tag_slide_to_slider();
                     $this->add_or_update_or_delete_meta($slide_id, 'type', 'image');
 
@@ -55,6 +57,14 @@ class MetaImageSlide extends MetaSlide {
      */
     public function slide_exists_in_slideshow($slider_id, $slide_id) {
         return has_term("{$slider_id}", 'ml-slider', $slide_id);
+    }
+
+    /**
+     *
+     */
+    public function slide_is_unassigned_or_image_slide($slider_id, $slide_id) {
+        $type = get_post_meta($slide_id, 'ml-slider_type', true);
+        return !strlen($type) || $type == 'image';
     }
 
     /**
