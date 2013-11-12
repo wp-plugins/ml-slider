@@ -230,7 +230,7 @@ class MetaSlider {
         $class = apply_filters('metaslider_css_classes', $class, $this->id, $this->settings);
 
         // default
-        $style = "max-width: {$this->get_setting('width')}px; {$this->get_setting('percentwidth')}";
+        $style = "max-width: {$this->get_setting('width')}px;";
 
         // carousels are always 100% wide
         if ($this->get_setting('carouselMode') == 'true') {
