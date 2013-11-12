@@ -145,6 +145,7 @@ Coin Slider is not responsive. This means (unlike the other slideshows in Meta S
 * Improvement: Generate resized images through multiple Ajax requests on save (blank screen fix)
 * Improvement: IE9 admin styling tidied up
 * Improvement: Filters added to add/change attributes in <img> and <a> tags
+* Improvement: Security - nonce checking added
 * Change: Remove bottom margin from flex slider when navigation is hidden (add a CSS Class of 'add-margin' if you need the margin)
 * Fix: Add slides to slideshow in the same order they're selected in the Media Library
 * Fix: Symlink path resolution
