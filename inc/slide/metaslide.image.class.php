@@ -261,7 +261,7 @@ class MetaImageSlide extends MetaSlide {
             'class' => $slide['class']
         );
 
-        $attributes = apply_filters('metaslider_nivo_slider_image_attributes', $attributes, $slide, $this->slider->id);
+        $attributes = apply_filters('metaslider_nivo_slider_image_attributes', $attributes, $slide, $this->slider->ID);
 
         $html = $this->build_image_tag($attributes);
 
@@ -287,7 +287,7 @@ class MetaImageSlide extends MetaSlide {
             'class' => $slide['class']
         );
 
-        $attributes = apply_filters('metaslider_flex_slider_image_attributes', $attributes, $slide, $this->slider->id);
+        $attributes = apply_filters('metaslider_flex_slider_image_attributes', $attributes, $slide, $this->slider->ID);
 
         $html = $this->build_image_tag($attributes);
 
@@ -323,7 +323,7 @@ class MetaImageSlide extends MetaSlide {
             'class' => $slide['class']
         );
 
-        $attributes = apply_filters('metaslider_coin_slider_image_attributes', $attributes, $slide, $this->slider->id);
+        $attributes = apply_filters('metaslider_coin_slider_image_attributes', $attributes, $slide, $this->slider->ID);
 
         $html = $this->build_image_tag($attributes);
 
@@ -351,7 +351,7 @@ class MetaImageSlide extends MetaSlide {
             'class' => $slide['class']
         );
 
-        $attributes = apply_filters('metaslider_responsive_slider_image_attributes', $attributes, $slide, $this->slider->id);
+        $attributes = apply_filters('metaslider_responsive_slider_image_attributes', $attributes, $slide, $this->slider->ID);
 
         $html = $this->build_image_tag($attributes);
 
