@@ -270,7 +270,7 @@ class MetaImageSlide extends MetaSlide {
      * @return string slide html
      */
     private function get_nivo_slider_markup($slide) {
-        $attributes = array(
+        $attributes = apply_filters('metaslider_nivo_slider_image_attributes', array(
             'src' => $slide['src'],
             'height' => $slide['height'],
             'width' => $slide['width'],
@@ -279,21 +279,17 @@ class MetaImageSlide extends MetaSlide {
             'alt' => $slide['alt'],
             'rel' => $slide['rel'],
             'class' => $slide['class']
-        );
-
-        $attributes = apply_filters('metaslider_nivo_slider_image_attributes', $attributes, $slide, $this->slider->ID);
+        ), $slide, $this->slider->ID);
 
         $html = $this->build_image_tag($attributes);
 
-        if (strlen($slide['url'])) {
-            $attributes = array(
-                'href' => $slide['url'],
-                'target' => $slide['target']
-            );
+        $anchor_attributes = apply_filters('metaslider_nivo_slider_anchor_attributes', array(
+            'href' => $slide['url'],
+            'target' => $slide['target']
+        ), $slide, $this->slider->ID);
 
-            $attributes = apply_filters('metaslider_nivo_slider_anchor_attributes', $attributes, $slide, $this->slider->ID);
-
-            $html = $this->build_anchor_tag($attributes, $html);
+        if (strlen($anchor_attributes['href'])) {
+            $html = $this->build_anchor_tag($anchor_attributes, $html);
         }
 
         return apply_filters('metaslider_image_nivo_slider_markup', $html, $slide, $this->settings);
@@ -305,28 +301,24 @@ class MetaImageSlide extends MetaSlide {
      * @return string slide html
      */
     private function get_flex_slider_markup($slide) {
-        $attributes = array(
+        $attributes = apply_filters('metaslider_flex_slider_image_attributes', array(
             'src' => $slide['src'],
             'height' => $slide['height'],
             'width' => $slide['width'],
             'alt' => $slide['alt'],
             'rel' => $slide['rel'],
             'class' => $slide['class']
-        );
-
-        $attributes = apply_filters('metaslider_flex_slider_image_attributes', $attributes, $slide, $this->slider->ID);
+        ), $slide, $this->slider->ID);
 
         $html = $this->build_image_tag($attributes);
 
-        if (strlen($slide['url'])) {
-            $attributes = array(
-                'href' => $slide['url'],
-                'target' => $slide['target']
-            );
+        $anchor_attributes = apply_filters('metaslider_nivo_slider_anchor_attributes', array(
+            'href' => $slide['url'],
+            'target' => $slide['target']
+        ), $slide, $this->slider->ID);
 
-            $attributes = apply_filters('metaslider_flex_slider_anchor_attributes', $attributes, $slide, $this->slider->ID);
-
-            $html = $this->build_anchor_tag($attributes, $html);
+        if (strlen($anchor_attributes['href'])) {
+            $html = $this->build_anchor_tag($anchor_attributes, $html);
         }
 
         // add caption
@@ -347,18 +339,14 @@ class MetaImageSlide extends MetaSlide {
      * @return string slide html
      */
     private function get_coin_slider_markup($slide) {
-        $url = strlen($slide['url']) ? $slide['url'] : 'javascript:void(0)'; // coinslider always wants a URL
-
-        $attributes = array(
+        $attributes = apply_filters('metaslider_coin_slider_image_attributes', array(
             'src' => $slide['src'],
             'height' => $slide['height'],
             'width' => $slide['width'],
             'alt' => $slide['alt'],
             'rel' => $slide['rel'],
             'class' => $slide['class']
-        );
-
-        $attributes = apply_filters('metaslider_coin_slider_image_attributes', $attributes, $slide, $this->slider->ID);
+        ), $slide, $this->slider->ID);
 
         $html = $this->build_image_tag($attributes);
 
@@ -366,11 +354,9 @@ class MetaImageSlide extends MetaSlide {
             $html .= "<span>{$slide['caption']}</span>";
         }
 
-        $attributes = array(
-            'href' => $url
-        );
-
-        $attributes = apply_filters('metaslider_coin_slider_anchor_attributes', $attributes, $slide, $this->slider->ID);
+        $attributes = apply_filters('metaslider_coin_slider_anchor_attributes', array(
+            'href' => strlen($slide['url']) ? $slide['url'] : 'javascript:void(0)'
+        ), $slide, $this->slider->ID);
 
         $html = $this->build_anchor_tag($attributes, $html);
 
@@ -383,16 +369,14 @@ class MetaImageSlide extends MetaSlide {
      * @return string slide html
      */
     private function get_responsive_slides_markup($slide) {
-        $attributes = array(
+        $attributes = apply_filters('metaslider_responsive_slider_image_attributes', array(
             'src' => $slide['src'],
             'height' => $slide['height'],
             'width' => $slide['width'],
             'alt' => $slide['alt'],
             'rel' => $slide['rel'],
             'class' => $slide['class']
-        );
-
-        $attributes = apply_filters('metaslider_responsive_slider_image_attributes', $attributes, $slide, $this->slider->ID);
+        ), $slide, $this->slider->ID);
 
         $html = $this->build_image_tag($attributes);
 
@@ -400,15 +384,13 @@ class MetaImageSlide extends MetaSlide {
             $html .= '<div class="caption-wrap"><div class="caption">' . $slide['caption'] . '</div></div>';
         }
 
-        if (strlen($slide['url'])) {
-            $attributes = array(
-                'href' => $slide['url'],
-                'target' => $slide['target']
-            );
+        $anchor_attributes = apply_filters('metaslider_nivo_slider_anchor_attributes', array(
+            'href' => $slide['url'],
+            'target' => $slide['target']
+        ), $slide, $this->slider->ID);
 
-            $attributes = apply_filters('metaslider_responsive_slider_anchor_attributes', $attributes, $slide, $this->slider->ID);
-
-            $html = $this->build_anchor_tag($attributes, $html);
+        if (strlen($anchor_attributes['href'])) {
+            $html = $this->build_anchor_tag($anchor_attributes, $html);
         }
 
         return apply_filters('metaslider_image_responsive_slider_markup', $html, $slide, $this->settings);
