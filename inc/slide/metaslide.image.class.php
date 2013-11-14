@@ -323,7 +323,7 @@ class MetaImageSlide extends MetaSlide {
 
         $html = $this->build_image_tag($attributes);
 
-        $anchor_attributes = apply_filters('metaslider_nivo_slider_anchor_attributes', array(
+        $anchor_attributes = apply_filters('metaslider_flex_slider_anchor_attributes', array(
             'href' => $slide['url'],
             'target' => $slide['target']
         ), $slide, $this->slider->ID);
