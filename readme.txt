@@ -140,6 +140,10 @@ Coin Slider is not responsive. This means (unlike the other slideshows in Meta S
 
 == Changelog ==
 
+= 2.5-beta2 [14/11/13] =
+* Fix: Vantage theme backwards compatibility
+* Fix: Flexslider anchor attributes filter
+
 = 2.5-beta1 [12/11/13] =
 * Fix: Center align slideshow
 
