@@ -201,6 +201,7 @@ class MetaImageSlide extends MetaSlide {
             'url' => __(get_post_meta($this->slide->ID, 'ml-slider_url', true)),
             'target' => get_post_meta($this->slide->ID, 'ml-slider_new_window', true) ? '_blank' : '_self', 
             'src' => $thumb,
+            'thumb' => $thumb, // backwards compatibility with Vantage
             'width' => $this->settings['width'],
             'height' => $this->settings['height'],
             'alt' => __(get_post_meta($this->slide->ID, '_wp_attachment_image_alt', true)),
