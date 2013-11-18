@@ -550,7 +550,7 @@ class MetaSliderPlugin {
 
         <script type='text/javascript'>
             var metaslider_slider_id = <?php echo $this->slider->id; ?>;
-            var metaslider_pro_active = <?php echo is_plugin_active('ml-slider-pro/ml-slider-pro.php') ? 'true' : 'false' ?>;
+            var metaslider_pro_active = <?php echo function_exists('is_plugin_active') && is_plugin_active('ml-slider-pro/ml-slider-pro.php') ? 'true' : 'false' ?>;
         </script>
 
         <div class="wrap metaslider">
