@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-    jQuery("#ms-pro-meta-link-wrap").appendTo('#screen-meta-links');
+    jQuery("#ms-pro-meta-link-wrap").appendTo('#screen-meta-links').show();
 
     // Enable the correct options for this slider type
     var switchType = function(slider) {

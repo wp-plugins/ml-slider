@@ -174,10 +174,6 @@ z-index: 9999;
   box-shadow: 3px 3px 5px #cccccc;
 }
 .metaslider .left {
-  width: 68%;
-  margin-top: 20px;
-  float: left;
-  clear: none;
 }
 @media (max-width: 900px) {
   .metaslider .left {
@@ -276,17 +272,8 @@ z-index: 9999;
   padding: 8px 8px 8px 0;
 }
 .metaslider .right {
-  width: 30%;
-  float: right;
-  margin-top: 20px;
-  clear: none;
 }
-@media (max-width: 900px) {
-  .metaslider .right {
-    width: 100%;
-    float: none;
-  }
-}
+
 .metaslider .right .highlight {
   background: #f1f1f1;
   border-top: 3px solid #f9f9f9;
@@ -312,20 +299,20 @@ z-index: 9999;
   list-style-type: none;
   text-align: center;
 }
+.metaslider .right .settings .width,
+.metaslider .right .settings .height {
+  padding-right: 0;
+  margin-right: 0;
+}
+.metaslider .right input[type="number"] {
+  width: 50px;
+}
+.metaslider .right input[type="text"],
+.metaslider .right select {
+  width: 100px;
+}
 .metaslider .right .settings .slider-lib input {
   margin: 3px 0 0 0;
-}
-@media (max-width: 1120px) {
-  .metaslider .right .settings .slider-lib {
-    width: 48%;
-    margin: 1%;
-  }
-}
-@media (max-width: 900px) {
-  .metaslider .right .settings .slider-lib {
-    width: 23%;
-    margin: 1%;
-  }
 }
 .metaslider .right .settings .slider-lib label {
   color: white;
