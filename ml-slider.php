@@ -300,6 +300,8 @@ class MetaSliderPlugin {
         register_post_type('ml-slider', array(
             'query_var' => false,
             'rewrite' => false,
+            'public' => true,
+            'show_ui' => false,
             'labels' => array(
                 'name' => 'Meta Slider'
             )
@@ -502,6 +504,8 @@ class MetaSliderPlugin {
             'order' => 'ASC',
             'posts_per_page' => -1
         );
+
+        $args = apply_filters('metaslider_all_meta_sliders_args', $args);
         
         $the_query = new WP_Query($args);
         
