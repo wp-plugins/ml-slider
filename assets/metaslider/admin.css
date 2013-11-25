@@ -262,16 +262,17 @@
   float: right;
   padding: 0px;
   color: #a9a9a9;
+  line-height: 20px;
+  top: -31px;
+  right: 6px;
 }
 .metaslider .left table tr.slide .new_window input {
   margin: 0 0 0 3px;
 }
 .metaslider .left table tr.slide .new_window label {
-  position: absolute;
   width: 120px;
-  right: 6px;
   text-align: right;
-  top: -31px;
+  font-size: 11px;
 }
 .metaslider .left table td {
   border-top: 0;
