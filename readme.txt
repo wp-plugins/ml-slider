@@ -4,7 +4,7 @@ Tags: widget,wordpress slider,slideshow,wordpress slideshow,image slider,flexsli
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CQ84KC4X8YKW8
 Requires at least: 3.5
 Tested up to: 3.7
-Stable tag: 2.5-beta2
+Stable tag: 2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,7 @@ Meta Slider has been translated into the following languages:
 
 * French (thanks to fb-graphiklab)
 * Spanish (thanks to eltipografico)
+* German (thanks to Rewolve44)
 * Polish (thanks to gordon34)
 * Chinese (thanks to 断青丝)
 
