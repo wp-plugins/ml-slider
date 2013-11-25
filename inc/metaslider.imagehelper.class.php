@@ -216,7 +216,8 @@ class MetaSliderImageHelper {
         $size = array();
 
         // try and get the image size from metadata
-        $meta = wp_get_attachment_metadata($this->slide->ID);
+        $meta = wp_get_attachment_metadata($this->id);
+
         if (isset($meta['width'], $meta['height'])) {
             return $meta;
         }
