@@ -155,17 +155,8 @@ class MetaImageSlide extends MetaSlide {
      * @return bool, true if metadata and size exists.
      */
     public function is_valid_image() {
-        $image_attributes = wp_get_attachment_image_src($this->slide->ID, 'full');
-
-        if (!is_array($image_attributes)) {
-            return false;
-        }
-        
-        if ($image_attributes[1] > 0 && $image_attributes[1] > 0) {
-            return true;
-        }
-        
-        return false;
+        $meta = wp_get_attachment_metadata($this->slide->ID);
+        return isset($meta['width'], $meta['height']);
     }
 
     /**
