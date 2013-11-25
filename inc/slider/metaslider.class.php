@@ -327,7 +327,7 @@ class MetaSlider {
             if (is_array($value)) {
                 $pairs[] = "{$key}: function() {\n                " 
                             . implode("\n                ", $value) 
-                            . "\n            }";
+                            . "\n                }";
             } else {
                 $pairs[] = "{$key}:{$value}";
             }
