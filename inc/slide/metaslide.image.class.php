@@ -53,21 +53,6 @@ class MetaImageSlide extends MetaSlide {
     }
 
     /**
-     *
-     */
-    public function slide_exists_in_slideshow($slider_id, $slide_id) {
-        return has_term("{$slider_id}", 'ml-slider', $slide_id);
-    }
-
-    /**
-     *
-     */
-    public function slide_is_unassigned_or_image_slide($slider_id, $slide_id) {
-        $type = get_post_meta($slide_id, 'ml-slider_type', true);
-        return !strlen($type) || $type == 'image';
-    }
-
-    /**
      * Create a new slide and echo the admin HTML
      */
     public function ajax_resize_slide() {
@@ -223,47 +208,6 @@ class MetaImageSlide extends MetaSlide {
             default:
                 return $this->get_flex_slider_markup($slide);
         }
-    }
-
-
-    /**
-     * Build image HTML
-     * 
-     * @param array $attributes
-     * @return string image HTML
-     */
-    private function build_image_tag($attributes) {
-        $html = "<img";
-
-        foreach ($attributes as $att => $val) {
-            if (strlen($val)) {
-                $html .= " " . $att . '="' . $val . '"';
-            }
-        }
-
-        $html .= " />";
-
-        return $html;
-    }
-
-    /**
-     * Build image HTML
-     * 
-     * @param array $attributes
-     * @return string image HTML
-     */
-    private function build_anchor_tag($attributes, $content) {
-        $html = "<a";
-
-        foreach ($attributes as $att => $val) {
-            if (strlen($val)) {
-                $html .= " " . $att . '="' . $val . '"';
-            }
-        }
-
-        $html .= ">" . $content . "</a>";
-
-        return $html;
     }
 
     /**
