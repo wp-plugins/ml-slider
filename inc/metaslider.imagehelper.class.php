@@ -166,7 +166,18 @@ class MetaSliderImageHelper {
             return $this->url;
         }
 
-        // source image size
+        // if the file exists, just return it without going any further
+        $dest_file_name = $this->get_destination_file_name(array(
+	        	'width' => $this->container_width, 
+	        	'height' => $this->container_height
+        	)
+        );
+
+        if (file_exists($dest_file_name)) {
+            return str_replace(basename($this->url), basename($dest_file_name), $this->url);
+        }
+
+        // file doesn't exist, detect required size
         $orig_size = $this->get_original_image_dimensions();
 
         // bail out if we can't find the image dimensions
