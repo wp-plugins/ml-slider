@@ -617,18 +617,14 @@ class MetaSliderPlugin {
 	                        <div id="side-sortables" class="meta-box-sortables ui-sortable">
 	                            <div class='right'>
 	                            	<div class="postbox">
-										<div class="inside">
+										<h3 class='configuration'>
+											<?php _e("Settings", 'metaslider') ?>
+			                                <input class='alignright button button-primary' type='submit' name='save' id='save' value='<?php _e("Save", 'metaslider') ?>' />
+			                                <input class='alignright button button-primary' type='submit' name='preview' id='preview' value='<?php _e("Save & Preview", 'metaslider') ?>' id='quickview' data-slider_id='<?php echo $this->slider->id ?>' data-slider_width='<?php echo $this->slider->get_setting('width') ?>' data-slider_height='<?php echo $this->slider->get_setting('height') ?>' />
+			                                <span class="spinner"></span>
+			                            </h3>
+			                            <div class="inside">
 			                                <table class="widefat settings postbox">
-			                                    <thead>
-			                                        <tr>
-			                                            <th colspan='2'>
-			                                                <span class='configuration'><?php _e("Settings", 'metaslider') ?></span>
-			                                                <input class='alignright button button-primary' type='submit' name='save' id='save' value='<?php _e("Save", 'metaslider') ?>' />
-			                                                <input class='alignright button button-primary' type='submit' name='preview' id='preview' value='<?php _e("Save & Preview", 'metaslider') ?>' id='quickview' data-slider_id='<?php echo $this->slider->id ?>' data-slider_width='<?php echo $this->slider->get_setting('width') ?>' data-slider_height='<?php echo $this->slider->get_setting('height') ?>' />
-			                                                <span class="spinner"></span>
-			                                            </th>
-			                                        </tr>
-			                                    </thead>
 			                                    <tbody>
 			                                        <tr>
 			                                            <td colspan='2' class='slider-lib-row'>
@@ -948,7 +944,7 @@ class MetaSliderPlugin {
 			                                        </tr>
 			                                        <tr>
 			                                            <td colspan='2'>
-			                                                <a class='alignright delete-slider button-secondary confirm' href='<?php echo wp_nonce_url("?page=metaslider&delete={$this->slider->id}", "metaslider_delete_slider"); ?>'><?php _e("Delete Slider", 'metaslider') ?></a>
+			                                                <a class='delete-slider button-secondary confirm' href='<?php echo wp_nonce_url("?page=metaslider&delete={$this->slider->id}", "metaslider_delete_slider"); ?>'><?php _e("Delete Slider", 'metaslider') ?></a>
 			                                            </td>
 			                                        </tr>
 			                                    </tbody>

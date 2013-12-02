@@ -16,17 +16,13 @@ jQuery(document).ready(function($) {
         if (jQuery('.theme option:selected').attr('disabled') === 'disabled') {
             jQuery('.theme option:enabled:first').attr('selected', 'selected');
         }
-
-        // slides - set red background on incompatible slides
-        jQuery('.metaslider .slide:not(.' + slider + ')').css('background', '#FFD9D9');
-        jQuery('.metaslider .slide.' + slider).css('background', '');
     };
 
     // enable the correct options on page load
     switchType(jQuery('.metaslider .select-slider:checked').attr('rel'));
 
     // handle slide libary switching
-    jQuery('.metaslider .select-slider').click(function() {
+    jQuery('.metaslider .select-slider').on('click', function() {
         switchType(jQuery(this).attr('rel'));
     });
 
@@ -97,20 +93,15 @@ jQuery(document).ready(function($) {
     });
 
     // show the confirm dialogue
-    jQuery(".confirm").live('click', function() {
+    jQuery(".confirm").on('click', function() {
         return confirm(metaslider.confirm);
     });
 
-    $('.useWithCaution').change(function(){
+    $('.useWithCaution').on('change', function(){
         if(!this.checked) {
-            return alert(metaslider.useWithCaution);
+            alert(metaslider.useWithCaution);
+            return true;
         }
-    });
-
-    // show the confirm dialogue
-    jQuery(".toggle").live('click', function(e) {
-        e.preventDefault();
-        jQuery(this).next('.message').toggle();
     });
 
     // helptext tooltips
@@ -118,7 +109,7 @@ jQuery(document).ready(function($) {
     jQuery(".metaslider .tipsy-tooltip-top").tipsy({live: true, delayIn: 500, html: true, fade: true, gravity: 'se'});
 
     // Select input field contents when clicked
-    jQuery(".metaslider .shortcode input, .metaslider .shortcode textarea").click(function() {
+    jQuery(".metaslider .shortcode input, .metaslider .shortcode textarea").on('click', function() {
         this.select();
     });
 
@@ -161,6 +152,8 @@ jQuery(document).ready(function($) {
         return height;
     };
 
+
+
     // IE10 treats placeholder text as the actual value of a textarea
     // http://stackoverflow.com/questions/13764607/html5-placeholder-attribute-on-textarea-via-jquery-in-ie10
     var fixIE10PlaceholderText = function() {
@@ -171,12 +164,11 @@ jQuery(document).ready(function($) {
         });
     }
 
-    jQuery(".metaslider .toggle h3").click(function() {
+    jQuery(".metaslider .toggle h3").on('click', function() {
     	$(this).parent().toggleClass('closed');
     });
 
-    // handle slide libary switching
-    jQuery('.metaslider ul.tabs li').click(function() {
+    jQuery('.metaslider').on('click', 'ul.tabs li', function() {
     	var tab = $(this);
     	tab.parent().parent().children('.tabs-content').children('div.tab').hide();
     	tab.parent().parent().children('.tabs-content').children('div.'+tab.attr('rel')).show();
@@ -185,7 +177,7 @@ jQuery(document).ready(function($) {
     });
 
     // AJAX save & preview
-    jQuery(".metaslider form").find("input[type=submit]").click(function(e) {
+    jQuery(".metaslider form").find("input[type=submit]").on('click', function(e) {
         e.preventDefault();
 
         // update slide order

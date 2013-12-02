@@ -15,9 +15,6 @@
 	left: 3px;
 	z-index: 9999;
 }
-.metaslider #poststuff .left h3 {
-	padding: 0 5px;
-}
 .media-frame-menu .media-menu > a.disabled {
   display: block;
   position: relative;
@@ -61,9 +58,13 @@
   overflow: hidden;
   width: 100%;
 }
-.metaslider .right .configuration {
-	font-weight: bold;
-	line-height: 2em;
+.metaslider #poststuff .right h3.configuration,
+.metaslider #poststuff .left h3 {
+	padding: 7px 7px 7px 12px;
+	line-height: 27px;
+}
+.metaslider #poststuff .left th {
+	padding: 0 7px 0 0;
 }
 .metaslider .left table tr.slide input.url {
   width: 100%;
@@ -231,8 +232,8 @@
   bottom: 0;
   left: 0;
   position: absolute;
-  background: white;
-  color: #333;
+  background: #333;
+  color: white;
   padding: 5px;
   font-size: 12px;
   opacity: 0.7;
@@ -374,7 +375,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5db1', end
   background: linear-gradient(to bottom, #00b7ea 0%, #009ec3 100%);
 }
 .metaslider .right .slider-lib-row {
-  padding: 17px 3px 9px 3px;
+  padding: 17px 0 9px 0;
   text-align: center;
 }
 .metaslider .right #save {
@@ -398,44 +399,63 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5db1', end
 .metaslider .right select {
   width: 110px;
 }
-
-.metaslider #poststuff .closed .inside {
+.metaslider .right #poststuff .closed .inside {
 	display: none;
 }
-.metaslider #poststuff .postbox .inside {
-	padding: 0 5px;
+.metaslider .right #poststuff .postbox .inside {
+	padding: 0 12px;
 	margin: 0;
 }
-.metaslider .right .postbox table {
-	border: 0;
-}
-.metaslider .right .postbox h3 {
-	cursor: pointer;
-}
-.metaslider #poststuff .shortcode .inside {
+.metaslider .shortcode .inside {
 	padding: 15px 10px;
 }
-.metaslider .right .shortcode input,
-.metaslider .right .shortcode input:active,
-.metaslider .right .shortcode textarea,
-.metaslider .right .shortcode textarea:active {
+.metaslider .shortcode input[type=text],
+.metaslider .shortcode input[type=text]:active,
+.metaslider .shortcode textarea,
+.metaslider .shortcode textarea:active {
   font-family: monospace;
   font-size: 11px;
   width: 100%;
   background: transparent;
   border: 0;
   box-shadow: none;
+
 }
-.metaslider .right .shortcode textarea {
+.metaslider .shortcode textarea {
 	height: 65px;
+}
+.metaslider .shortcode ul.tabs {
+	margin: 0;
+}
+.metaslider .shortcode ul.tabs li.selected {
+	background: #fdfdfd;
+	border-bottom: 1px solid #fdfdfd;
+}
+.metaslider .shortcode .tabs-content {
+	clear: both;
+	background: #fdfdfd;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	padding: 10px;
+}
+.metaslider .right .postbox table {
+	border: 0;
+}
+.metaslider .right .postbox h3 {
+	cursor: inherit;
+}
+.metaslider .right .postbox.toggle h3 {
+	cursor: pointer;
 }
 .metaslider .right table {
 	margin: 0 0 5px 0;
 }
 .metaslider .right table td {
   vertical-align: middle;
-  padding: 8px;
+  padding: 8px 4px;
   border: 0;
+  height: 21px;
 }
 .metaslider table td,
 .metaslider table td input,
@@ -473,9 +493,6 @@ ul.info li {
   width: 33%;
   float: left;
 }
-.delete-slider {
-  margin: 0 5px 3px 0 !important;
-}
 #ms-pro-meta-link-wrap {
   float: right;
   height: 23px;
@@ -498,15 +515,6 @@ ul.info li {
   position: relative;
   top: -1px;
 }
-
-.metaslider .warning {
-  background-color: #ffebe8;
-  border: 1px solid #c00;
-  margin-bottom: 5px;
-  border-radius: 3px;
-  padding: 5px 10px;
-}
-
 #ms-pro-meta-link-wrap a {
   text-decoration: none;
   z-index: 1;
@@ -518,6 +526,15 @@ ul.info li {
   text-shadow: rgba(255,255,255,0.7) 0 1px 0;
   background: none;
 }
+.metaslider .warning {
+  background-color: #ffebe8;
+  border: 1px solid #c00;
+  margin-bottom: 5px;
+  border-radius: 3px;
+  padding: 5px 10px;
+}
+
+
 input:-ms-input-placeholder {
     color:LightGray;
 }
@@ -605,18 +622,3 @@ textarea:-ms-input-placeholder {
   border-bottom: 1px solid #f9f9f9;
 }
 
-.metaslider .shortcode ul.tabs {
-	margin: 0;
-}
-.metaslider .shortcode ul.tabs li.selected {
-	background: #fdfdfd;
-	border-bottom: 1px solid #fdfdfd;
-}
-.metaslider .shortcode .tabs-content {
-	clear: both;
-	background: #fdfdfd;
-	border-left: 1px solid #ccc;
-	border-right: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	padding: 10px;
-}
