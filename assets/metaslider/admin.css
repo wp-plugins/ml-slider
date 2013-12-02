@@ -15,6 +15,9 @@
 	left: 3px;
 	z-index: 9999;
 }
+.metaslider #poststuff .left h3 {
+	padding: 0 5px;
+}
 .media-frame-menu .media-menu > a.disabled {
   display: block;
   position: relative;
@@ -58,11 +61,14 @@
   overflow: hidden;
   width: 100%;
 }
-.metaslider .left table tr.slide input.alt,
+.metaslider .right .configuration {
+	font-weight: bold;
+	line-height: 2em;
+}
 .metaslider .left table tr.slide input.url {
   width: 100%;
-  margin: 0 0 8px 0;
-  padding: 5px;
+  margin: 0;
+  padding: 4px;
 }
 .bubble {
   position: relative;
@@ -166,37 +172,14 @@
   width: 100px;
   font-size: 13px;
 }
-.metaslider .button {
-  font-family: sans-serif;
-}
-.metaslider .widefat th {
-  padding: 6px 7px 5px;
-  font-size: 15px;
-  line-height: 1.4em;
-}
-.metaslider .nav-tab-wrapper :first-child {
-  margin-left: 5px;
-}
 .metaslider .ui-sortable-helper {
   box-shadow: 3px 3px 5px #cccccc;
-}
-.metaslider .left {
-}
-@media (max-width: 900px) {
-  .metaslider .left {
-    width: 100%;
-    float: none;
-  }
 }
 .metaslider .left table {
   width: 100%;
 }
 .metaslider .left table thead input {
   margin-left: 5px;
-}
-.metaslider .left table thead .add-slide {
-  padding-left: 0.4em;
-  padding-right: 0.6em;
 }
 .metaslider .left table thead .add-slide .wp-media-buttons-icon {
   background: url('../../../../../wp-admin/images/media-button.png') no-repeat top left;
@@ -207,16 +190,20 @@
   margin: 0 2px;
 }
 .metaslider .left table tr.slide {
-  background: #f9f9f9;
   height: 167px;
 }
-.metaslider .left table tr.slide label input {
-  margin: 1px 0 10px 3px;
+.metaslider .left table tr.slide:nth-child(even) {
+	background: white;
+}
+
+.metaslider .left table tr.slide:nth-child(odd) {
+  background: #f9f9f9;
 }
 .metaslider .left table tr.slide textarea {
   width: 100%;
-  height: 75px;
+  height: 60px;
   margin: 0 0 5px 0;
+  padding: 2px 5px;
 }
 .metaslider .left table tr.slide td.col-1 {
   cursor: move;
@@ -244,95 +231,106 @@
   bottom: 0;
   left: 0;
   position: absolute;
-  background: #333;
-  color: white;
-  padding: 0 5px;
-  text-transform: uppercase;
-  font-size: 9px;
-  opacity: 0.6;
+  background: white;
+  color: #333;
+  padding: 5px;
+  font-size: 12px;
+  opacity: 0.7;
   word-wrap: break-word;
-  max-width: 140px;
-  padding: 0 5px;
+  width: 140px;
+  padding: 3px 5px;
+  font-weight: bold;
 }
 .metaslider .left table tr.slide td.col-1:hover .delete-slide {
   display: block;
 }
-.metaslider .left table tr.slide .new_window {
+.metaslider .left table tr.slide .tabs-content .new_window {
   position: relative;
   float: right;
   padding: 0px;
   color: #a9a9a9;
   line-height: 20px;
-  top: -31px;
-  right: 6px;
+  bottom: 23px;
+  right: 0;
 }
-.metaslider .left table tr.slide .new_window input {
-  margin: 0 0 0 3px;
+.metaslider .left table tr.slide .tabs-content .new_window input {
+  margin-left: 3px;
 }
-.metaslider .left table tr.slide .new_window label {
+.metaslider .left table tr.slide .tabs-content .new_window label {
   width: 120px;
   text-align: right;
   font-size: 11px;
 }
 .metaslider .left table td {
   border-top: 0;
-  padding: 8px;
+  border-bottom: 1px solid #e1e1e1;
+  padding: 12px;
 }
 .metaslider .left table td.col-2 {
-  padding: 8px 8px 8px 0;
-}
-.metaslider .right {
+  padding: 12px 12px 12px 0;
 }
 
 .metaslider .right .highlight {
-  background: #f1f1f1;
-  border-top: 3px solid #f9f9f9;
-  border-bottom: 3px solid #f9f9f9;
+  background: transparent;
+  border: 0;
+  font-weight: bold;
 }
-.metaslider .right .settings .slider-lib-row {
-  padding: 6px 3px;
-  text-shadow: 1px 1px 1px grey;
+
+
+/*
+ Change background color for label next to checked radio button
+ to make it look like highlighted button
+*/
+.metaslider .right .slider-lib-row input[type=radio]:checked + label { 
+   background-image: none;
+    background-color:#d0d0d0;
 }
-.metaslider .right .settings #save {
-  margin-right: 0;
+
+.metaslider .right .slider-lib-row input[type=radio] {
+    display:none;
 }
-.metaslider .right .settings input {
-  margin-right: 5px;
+ 
+.metaslider .right .slider-lib-row input[type=radio] + label {
+    display:inline-block;
+    margin:-2px;
+    padding: 4px 0;
+    margin-bottom: 0;
+    font-size: 11px;
+    line-height: 20px;
+    color: #333;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    background-image: -moz-linear-gradient(top,#fff,#e6e6e6);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6));
+    background-image: -webkit-linear-gradient(top,#fff,#e6e6e6);
+    background-image: -o-linear-gradient(top,#fff,#e6e6e6);
+    background-image: linear-gradient(to bottom,#fff,#e6e6e6);
+    background-repeat: repeat-x;
+    border: 1px solid #ccc;
+    border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+    border-bottom-color: #b3b3b3;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#ffe6e6e6',GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+    width: 24%;
 }
-.metaslider .right .settings label {
-  margin-right: 10px;
+ 
+input[type=radio]:checked + label {
+       background-image: none;
+    outline: 0;
+    -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+    -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+        background-color:#e0e0e0;
 }
-.metaslider .right .settings .slider-lib {
-  float: left;
-  width: 23%;
-  margin: 1%;
-  list-style-type: none;
-  text-align: center;
-}
-.metaslider .right .settings .width,
-.metaslider .right .settings .height {
-  padding-right: 0;
-  margin-right: 0;
-}
-.metaslider .right input[type="number"] {
-  width: 50px;
-}
-.metaslider .right input[type="text"],
-.metaslider .right select {
-  width: 100px;
-}
-.metaslider .right .settings .slider-lib input {
-  margin: 3px 0 0 0;
-}
-.metaslider .right .settings .slider-lib label {
+.metaslider .right #nivo + label:hover,
+.metaslider .right #nivo:checked + label {
   color: white;
-  border-radius: 2px;
-  float: left;
-  width: 100%;
-  padding: 5px 0px;
-  vertical-align: bottom;
-}
-.metaslider .right .settings .slider-lib.nivo label {
   background: #b6e026;
   background: -moz-linear-gradient(top, #b6e026 0%, #abdc28 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b6e026), color-stop(100%, #abdc28));
@@ -341,16 +339,21 @@
   background: -ms-linear-gradient(top, #b6e026 0%, #abdc28 100%);
   background: linear-gradient(to bottom, #b6e026 0%, #abdc28 100%);
 }
-.metaslider .right .settings .slider-lib.responsive label {
-  background: #959595;
-  background: -moz-linear-gradient(top, #959595 0%, #0d0d0d 46%, #010101 50%, #0a0a0a 53%, #4e4e4e 76%, #383838 87%, #1b1b1b 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #959595), color-stop(46%, #0d0d0d), color-stop(50%, #010101), color-stop(53%, #0a0a0a), color-stop(76%, #4e4e4e), color-stop(87%, #383838), color-stop(100%, #1b1b1b));
-  background: -webkit-linear-gradient(top, #959595 0%, #0d0d0d 46%, #010101 50%, #0a0a0a 53%, #4e4e4e 76%, #383838 87%, #1b1b1b 100%);
-  background: -o-linear-gradient(top, #959595 0%, #0d0d0d 46%, #010101 50%, #0a0a0a 53%, #4e4e4e 76%, #383838 87%, #1b1b1b 100%);
-  background: -ms-linear-gradient(top, #959595 0%, #0d0d0d 46%, #010101 50%, #0a0a0a 53%, #4e4e4e 76%, #383838 87%, #1b1b1b 100%);
-  background: linear-gradient(to bottom, #959595 0%, #0d0d0d 46%, #010101 50%, #0a0a0a 53%, #4e4e4e 76%, #383838 87%, #1b1b1b 100%);
+.metaslider .right #responsive + label:hover,
+.metaslider .right #responsive:checked + label {
+	  color: white;
+background: #ff5db1; /* Old browsers */
+background: -moz-linear-gradient(top,  #ff5db1 0%, #ef017c 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff5db1), color-stop(100%,#ef017c)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #ff5db1 0%,#ef017c 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #ff5db1 0%,#ef017c 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #ff5db1 0%,#ef017c 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #ff5db1 0%,#ef017c 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5db1', endColorstr='#ef017c',GradientType=0 ); /* IE6-9 */
 }
-.metaslider .right .settings .slider-lib.coin label {
+.metaslider .right #coin + label:hover,
+.metaslider .right #coin:checked + label {
+	  color: white;
   background: #ffd65e;
   background: -moz-linear-gradient(top, #ffd65e 0%, #febf04 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffd65e), color-stop(100%, #febf04));
@@ -359,7 +362,9 @@
   background: -ms-linear-gradient(top, #ffd65e 0%, #febf04 100%);
   background: linear-gradient(to bottom, #ffd65e 0%, #febf04 100%);
 }
-.metaslider .right .settings .slider-lib.flex label {
+.metaslider .right #flex + label:hover,
+.metaslider .right #flex:checked + label {
+	  color: white;
   background: #00b7ea;
   background: -moz-linear-gradient(top, #00b7ea 0%, #009ec3 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #00b7ea), color-stop(100%, #009ec3));
@@ -368,44 +373,69 @@
   background: -ms-linear-gradient(top, #00b7ea 0%, #009ec3 100%);
   background: linear-gradient(to bottom, #00b7ea 0%, #009ec3 100%);
 }
-@media (max-width: 1120px) {
-  .metaslider .right .settings .configuration {
-    display: none;
-  }
+.metaslider .right .slider-lib-row {
+  padding: 17px 3px 9px 3px;
+  text-align: center;
 }
-@media (max-width: 900px) {
-  .metaslider .right .settings .configuration {
-    display: inline;
-  }
+.metaslider .right #save {
+  margin-right: 0;
 }
-@media (max-width: 900px) {
-  .metaslider .right .settings .button {
-    width: auto;
-    float: right;
-  }
+.metaslider .right input {
+  margin-right: 5px;
 }
-.metaslider .right .shortcode {
-  width: 100%;
-  margin-top: 20px;
+.metaslider .right label {
+  margin-right: 10px;
 }
-.metaslider .right .shortcode td {
-  border-bottom: 0;
-  border-top: 0;
+.metaslider .right .width,
+.metaslider .right .height {
+  padding-right: 0;
+  margin-right: 0;
+}
+.metaslider .right input[type="number"] {
+  width: 70px;
+}
+.metaslider .right input[type="text"],
+.metaslider .right select {
+  width: 110px;
+}
+
+.metaslider #poststuff .closed .inside {
+	display: none;
+}
+.metaslider #poststuff .postbox .inside {
+	padding: 0 5px;
+	margin: 0;
+}
+.metaslider .right .postbox table {
+	border: 0;
+}
+.metaslider .right .postbox h3 {
+	cursor: pointer;
+}
+.metaslider #poststuff .shortcode .inside {
+	padding: 15px 10px;
 }
 .metaslider .right .shortcode input,
-.metaslider .right .shortcode input:active {
+.metaslider .right .shortcode input:active,
+.metaslider .right .shortcode textarea,
+.metaslider .right .shortcode textarea:active {
   font-family: monospace;
+  font-size: 11px;
   width: 100%;
   background: transparent;
   border: 0;
   box-shadow: none;
 }
+.metaslider .right .shortcode textarea {
+	height: 65px;
+}
+.metaslider .right table {
+	margin: 0 0 5px 0;
+}
 .metaslider .right table td {
-  border-top: 0;
-  height: 28px;
   vertical-align: middle;
-  padding: 0 6px;
-  border-bottom: 0;
+  padding: 8px;
+  border: 0;
 }
 .metaslider table td,
 .metaslider table td input,
@@ -413,21 +443,24 @@
 .metaslider table td textarea {
 	font-size: 12px;
 }
-.metaslider .right table td,
-.metaslider .right table td input,
-.metaslider .right table td select,
-.metaslider .right table td textarea {
-	font-size: 11px;
+.metaslider select {
+	height: auto;
 }
 .metaslider .right table td input[type='checkbox'] {
   margin-left: 2px;
 }
-.metaslider .right table .slider-lib-row {
-  padding: 3px;
+.metaslider .nav-tab-wrapper {
+  padding: 0;
 }
-.metaslider .nav-tab,
-.metaslider h2.nav-tab-wrapper {
-  font-size: 13px;
+.metaslider .nav-tab {
+  background: white;
+  color: #999;
+  padding: 6px 10px;
+  font-weight: normal;
+  margin: -1px 4px -1px 0;
+}
+.metaslider .nav-tab-active {
+  color: #333;
 }
 ul.info {
   width: 100%;
@@ -493,4 +526,97 @@ textarea:-ms-input-placeholder {
 }
 .attachment-display-settings {
   display: none;
+}
+.metaslider .tabs-content,
+.metaslider .tabs-content ul,
+.metaslider .tabs-content li {
+	font-size: 12px;
+}
+.metaslider .tabs-content input,
+.metaslider .tabs-content select {
+	font-size: 11px;
+}
+.metaslider .slide.image .tabs-content {
+	overflow: hidden;
+}
+.metaslider .left .tabs-content {
+  height: 116px;
+  overflow-x: scroll;
+  padding: 5px 0px;
+  clear: both;
+}
+.metaslider .tabs-content .row {
+	float: left;
+	clear: both;
+	width: 100%;
+	vertical-align: middle;
+	margin-bottom: 10px;
+}
+.metaslider .tabs-content .row label {
+  float: left; 
+  width: 90px;
+  line-height: 25px;
+}
+.metaslider .tabs-content label input {
+	margin-right: 5px;
+	margin-bottom: 2px;
+	margin-left: 0px;
+}
+.metaslider .tabs-content ul {
+	margin: 0;
+}
+.metaslider .tabs-content li {
+	margin: 0 0 3px 0;
+}
+.metaslider .tabs-content select {
+	font-size: 11px;
+}
+.metaslider .tabs-content p {
+  font-style: italic;
+  color: #999999;
+}
+.metaslider ul.tabs {
+	float: left;
+	width: 100%;
+	margin: 0 0 7px 0;
+	border-bottom: 1px solid #ccc;
+}
+.metaslider ul.tabs li {
+	margin: 0 0 0 5px;
+	cursor: pointer;
+	padding: 3px 5px;
+	float: left;
+	line-height: 14px;
+	color: #999;
+	border-radius: 1px 1px 0 0;
+	position: relative;
+	top: 1px;
+}
+.metaslider ul.tabs li:hover {
+	color: #333;
+}
+.metaslider ul.tabs li.selected {
+	font-weight: bold;
+	color: #666;
+	border: 1px solid #ccc;
+	border-bottom: 1px solid white;
+}
+.metaslider .left table tr.slide:nth-child(odd) ul.tabs li.selected {
+  border-bottom: 1px solid #f9f9f9;
+}
+
+.metaslider .shortcode ul.tabs {
+	margin: 0;
+}
+.metaslider .shortcode ul.tabs li.selected {
+	background: #fdfdfd;
+	border-bottom: 1px solid #fdfdfd;
+}
+.metaslider .shortcode .tabs-content {
+	clear: both;
+	background: #fdfdfd;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	padding: 10px;
 }

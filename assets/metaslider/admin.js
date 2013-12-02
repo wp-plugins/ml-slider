@@ -118,7 +118,7 @@ jQuery(document).ready(function($) {
     jQuery(".metaslider .tipsy-tooltip-top").tipsy({live: true, delayIn: 500, html: true, fade: true, gravity: 'se'});
 
     // Select input field contents when clicked
-    jQuery(".metaslider .shortcode input").click(function() {
+    jQuery(".metaslider .shortcode input, .metaslider .shortcode textarea").click(function() {
         this.select();
     });
 
@@ -170,6 +170,19 @@ jQuery(document).ready(function($) {
             }
         });
     }
+
+    jQuery(".metaslider .toggle h3").click(function() {
+    	$(this).parent().toggleClass('closed');
+    });
+
+    // handle slide libary switching
+    jQuery('.metaslider ul.tabs li').click(function() {
+    	var tab = $(this);
+    	tab.parent().parent().children('.tabs-content').children('div.tab').hide();
+    	tab.parent().parent().children('.tabs-content').children('div.'+tab.attr('rel')).show();
+    	tab.siblings().removeClass('selected');
+    	tab.addClass('selected');
+    });
 
     // AJAX save & preview
     jQuery(".metaslider form").find("input[type=submit]").click(function(e) {
