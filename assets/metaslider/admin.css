@@ -164,7 +164,7 @@
   text-transform: uppercase;
 }
 .metaslider .tipsy-tooltip {
-  cursor: help;
+  cursor: default;
 }
 .metaslider .nav-tab-active input {
   padding: 0;
@@ -276,7 +276,6 @@
   border: 0;
   font-weight: bold;
 }
-
 
 /*
  Change background color for label next to checked radio button
@@ -605,7 +604,6 @@ textarea:-ms-input-placeholder {
 	float: left;
 	line-height: 14px;
 	color: #999;
-	border-radius: 1px 1px 0 0;
 	position: relative;
 	top: 1px;
 }

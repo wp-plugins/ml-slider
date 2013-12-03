@@ -523,20 +523,92 @@ class MetaSliderPlugin {
         return $sliders;
     }
 
-    /**
-     * Build a string describing the features of a slideshow
-     */
-    public function get_library_details($version, $responsive, $size, $mobile) {
-         $details  = __("Version", 'metaslider') . ": " . $version . "<br />";
-         $details .= __("Responsive", 'metaslider') . ": ";
-         $details .= $responsive ? __("Yes", 'metaslider') : __("No", 'metaslider');
-         $details .= "<br />";
-         $details .= __("Size", 'metaslider') . ": " . $size . __("kb", 'metaslider') ."<br />";
-         $details .= __("Mobile Friendly", 'metaslider') . ": ";
-         $details .= $mobile ? __("Yes", 'metaslider') : __("No", 'metaslider') . "<br />";
+    public function print_setting_row($aFields) {
 
-         return $details;
+    	$return = "";
+
+    	foreach ($aFields as $id => $row) {
+    		if ($row['type'] == 'checkbox') {
+    			$return .= "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><input class='option {$row['class']} {$id}' type='checkbox' name='settings[{$id}]' {$row['checked']} /></td></tr>";
+    		}
+
+    		if ($row['type'] == 'navigation') {
+    			$navigation_row = "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td>";
+
+    			foreach ($row['options'] as $k => $v) {
+    				$checked = $k == $row['checked'] ? 'checked' : '';
+    				$disabled = $k == 'thumbnails' ? 'disabled=disabled' : '';
+    				$navigation_row .= "<label><input type='radio' name='settings[{$id}]' value='{$k}' {$checked} {$disabled}/>{$v['label']}</option></label>";
+    			}
+
+    			$navigation_row .= "</td></tr>";
+
+    			$return .= apply_filters('metaslider_navigation_options', $navigation_row, $this->slider);
+    		}
+
+    		if ($row['type'] == 'number') {
+    			$return .= "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><input class='option {$row['class']} {$id}' type='number' min='{$row['min']}' max='{$row['max']}' step='{$row['step']}' name='settings[{$id}]' value='{$row['value']}' />{$row['after']}</td></tr>";
+    		}
+
+    		if ($row['type'] == 'select') {
+    			$return .= "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><select class='option {$row['class']} {$id}' name='settings[{$id}]' />";
+    			foreach ($row['options'] as $k => $v) {
+    				$selected = $k == $row['value'] ? 'selected' : '';
+    				$return .= "<option class='{$v['class']}' value='{$k}' {$selected}>{$v['label']}</option>";
+    			}
+    			$return .= "</select></td></tr>";
+    		}
+
+    		if ($row['type'] == 'theme') {
+    			$return .= "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><select class='option {$row['class']} {$id}' name='settings[{$id}]' />";
+    			$themes = "";
+
+    			foreach ($row['options'] as $k => $v) {
+    				$selected = $k == $row['value'] ? 'selected' : '';
+    				$themes .= "<option class='{$v['class']}' value='{$k}' {$selected}>{$v['label']}</option>";
+    			}
+
+    			$return .= apply_filters('metaslider_get_available_themes', $themes, $this->slider->get_setting('theme'));
+
+    			$return .= "</select></td></tr>";
+    		}
+
+
+
+      		if ($row['type'] == 'text') {
+    			$return .= "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><input class='option {$row['class']} {$id}' type='text' name='settings[{$id}]' value='{$row['value']}' /></td></tr>";
+    		}
+
+    	}
+
+    	return $return;
     }
+
+    /**
+     *
+     */
+    private function get_easing_options() {
+        $options = array(
+            'linear','swing','jswing','easeInQuad','easeOutQuad','easeInOutQuad',
+            'easeInCubic','easeOutCubic','easeInOutCubic','easeInQuart',
+            'easeOutQuart','easeInOutQuart','easeInQuint','easeOutQuint',
+            'easeInOutQuint','easeInSine','easeOutSine','easeInOutSine',
+            'easeInExpo','easeOutExpo','easeInOutExpo','easeInCirc','easeOutCirc',
+            'easeInOutCirc','easeInElastic','easeOutElastic','easeInOutElastic',
+            'easeInBack','easeOutBack','easeInOutBack','easeInBounce','easeOutBounce',
+            'easeInOutBounce'
+        );
+
+        foreach ($options as $option) {
+            $return[$option] = array(
+            	'label' => ucfirst(preg_replace('/(\w+)([A-Z])/U', '\\1 \\2', $option)),
+            	'class' => ''
+            );
+        }
+
+        return $return;
+    }
+
 
     /**
      * Render the admin page (tabs, slides, settings)
@@ -628,118 +700,122 @@ class MetaSliderPlugin {
 			                                    <tbody>
 			                                        <tr>
 			                                            <td colspan='2' class='slider-lib-row'>
-			                                                    <input class="select-slider" id='flex' rel='flex' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'flex') echo 'checked=checked' ?> value='flex' />
-			                                                    <label for='flex' title='<?php echo $this->get_library_details(2.2, true, 17, true); ?>' class='tipsy-tooltip-top'>Flex Slider</label>
-
-			                                                    <input class="select-slider" id='responsive' rel='responsive' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'responsive') echo 'checked=checked' ?> value='responsive' />
-			                                                    <label for='responsive' title='<?php echo $this->get_library_details(1.54, true, 3, true); ?>' class='tipsy-tooltip-top'>Responsive</label>
-
-			                                                    <input class="select-slider" id='nivo' rel='nivo' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'nivo') echo 'checked=checked' ?> value='nivo' />
-			                                                    <label for='nivo' title='<?php echo $this->get_library_details(3.2, true, 12, true); ?>' class='tipsy-tooltip-top'>Nivo Slider</label>
-
-			                                                    <input class="select-slider" id='coin' rel='coin' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'coin') echo 'checked=checked' ?> value='coin' />
-			                                                    <label for='coin' title='<?php echo $this->get_library_details(1.0, false, 8, true); ?>' class='tipsy-tooltip-top'>Coin Slider</label>
-
+		                                                    <input class="select-slider" id='flex' rel='flex' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'flex') echo 'checked=checked' ?> value='flex' />
+		                                                    <label for='flex'>Flex Slider</label>
+		                                                    <input class="select-slider" id='responsive' rel='responsive' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'responsive') echo 'checked=checked' ?> value='responsive' />
+		                                                    <label for='responsive'>Responsive</label>
+		                                                    <input class="select-slider" id='nivo' rel='nivo' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'nivo') echo 'checked=checked' ?> value='nivo' />
+		                                                    <label for='nivo'>Nivo Slider</label>
+		                                                    <input class="select-slider" id='coin' rel='coin' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'coin') echo 'checked=checked' ?> value='coin' />
+		                                                    <label for='coin'>Coin Slider</label>
 			                                            </td>
 			                                        </tr>
-			                                        <?php if ($max_tabs && count($this->all_meta_sliders()) > $max_tabs) { ?>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Slideshow title", 'metaslider') ?>">
-			                                                <?php _e("Title", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input type='text' class="title tipsytop" name="title" value='<?php echo $title ?>' />
-			                                            </td>
-			                                        </tr>
-			                                        <?php } ?>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Set the initial size for the slides (width x height)", 'metaslider') ?>">
-			                                                <?php _e("Width", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                    <input type='number' size='3' min='0' max='9999' class="width tipsy-tooltip-top" title='<?php _e("Width", 'metaslider') ?>' name="settings[width]" value='<?php echo $this->slider->get_setting('width') ?>' />
-			                                                    <?php _e("px", 'metaslider') ?>
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Set the initial size for the slides (width x height)", 'metaslider') ?>">
-			                                                <?php _e("Height", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                    <input type='number' size='3' min='0' max='9999' class="height tipsy-tooltip-top" title='<?php _e("Height", 'metaslider') ?>' name="settings[height]" value='<?php echo $this->slider->get_setting('height') ?>' />
-			                                                    <?php _e("px", 'metaslider') ?>
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Slide transition effect", 'metaslider') ?>">
-			                                                <?php _e("Effect", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <select name="settings[effect]" class='effect option coin nivo flex responsive'>
-			                                                    <option class='option coin nivo' value='random' <?php if ($this->slider->get_setting('effect') == 'random') echo 'selected=selected' ?>><?php _e("Random", 'metaslider') ?></option>
-			                                                    <option class='option coin' value='swirl' <?php if ($this->slider->get_setting('effect') == 'swirl') echo 'selected=selected' ?>><?php _e("Swirl", 'metaslider') ?></option>
-			                                                    <option class='option coin' value='rain' <?php if ($this->slider->get_setting('effect') == 'rain') echo 'selected=selected' ?>><?php _e("Rain", 'metaslider') ?></option>
-			                                                    <option class='option coin' value='straight' <?php if ($this->slider->get_setting('effect') == 'straight') echo 'selected=selected' ?>><?php _e("Straight", 'metaslider') ?></option>
-			                                                    <option class='option nivo' value='sliceDown' <?php if ($this->slider->get_setting('effect') == 'sliceDown') echo 'selected=selected' ?>><?php _e("Slide Down", 'metaslider') ?></option>
-			                                                    <option class='option nivo' value='sliceUp' <?php if ($this->slider->get_setting('effect') == 'sliceUp') echo 'selected=selected' ?>><?php _e("Slice Up", 'metaslider') ?></option>
-			                                                    <option class='option nivo' value='sliceUpLeft' <?php if ($this->slider->get_setting('effect') == 'sliceUpLeft') echo 'selected=selected' ?>><?php _e("Slide Up Left", 'metaslider') ?></option>
-			                                                    <option class='option nivo' value='sliceUpDown' <?php if ($this->slider->get_setting('effect') == 'sliceUpDown') echo 'selected=selected' ?>><?php _e("Slice Up Down", 'metaslider') ?></option>
-			                                                    <option class='option nivo' value='sliceUpDownLeft' <?php if ($this->slider->get_setting('effect') == 'sliceUpDownLeft') echo 'selected=selected' ?>><?php _e("Slide Up Down Left", 'metaslider') ?></option>
-			                                                    <option class='option nivo' value='fold' <?php if ($this->slider->get_setting('effect') == 'fold') echo 'selected=selected' ?>><?php _e("Fold", 'metaslider') ?></option>
-			                                                    <option class='option nivo flex responsive' value='fade' <?php if ($this->slider->get_setting('effect') == 'fade') echo 'selected=selected' ?>><?php _e("Fade", 'metaslider') ?></option>
-			                                                    <option class='option nivo' value='slideInRight' <?php if ($this->slider->get_setting('effect') == 'slideInRight') echo 'selected=selected' ?>><?php _e("Slide In Right", 'metaslider') ?></option>
-			                                                    <option class='option nivo' value='slideInLeft' <?php if ($this->slider->get_setting('effect') == 'slideInLeft') echo 'selected=selected' ?>><?php _e("Slide In Left", 'metaslider') ?></option>
-			                                                    <option class='option nivo' value='boxRandom' <?php if ($this->slider->get_setting('effect') == 'boxRandom') echo 'selected=selected' ?>><?php _e("Box Random", 'metaslider') ?></option>
-			                                                    <option class='option nivo' value='boxRain' <?php if ($this->slider->get_setting('effect') == 'boxRain') echo 'selected=selected' ?>><?php _e("Box Rain", 'metaslider') ?></option>
-			                                                    <option class='option nivo' value='boxRainReverse' <?php if ($this->slider->get_setting('effect') == 'boxRainReverse') echo 'selected=selected' ?>><?php _e("Box Rain Reverse", 'metaslider') ?></option>
-			                                                    <option class='option nivo' value='boxRainGrowReverse' <?php if ($this->slider->get_setting('effect') == 'boxRainGrowReverse') echo 'selected=selected' ?>><?php _e("Box Rain Grow Reverse", 'metaslider') ?></option>
-			                                                    <option class='option flex' value='slide' <?php if ($this->slider->get_setting('effect') == 'slide') echo 'selected=selected' ?>><?php _e("Slide", 'metaslider') ?></option>
-			                                                </select>
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Change the slider style", 'metaslider') ?>">
-			                                                <?php _e("Theme", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <select name="settings[theme]" class='theme option coin nivo flex responsive'>
-			                                                    <?php 
-			                                                        $defaultSelected = $this->slider->get_setting('theme') == 'default' ? 'selected=selected' : '';
-			                                                        $darkSelected = $this->slider->get_setting('theme') == 'dark' ? 'selected=selected' : '';
-			                                                        $lightSelected = $this->slider->get_setting('theme') == 'light' ? 'selected=selected' : '';
-			                                                        $barSelected = $this->slider->get_setting('theme') == 'bar' ? 'selected=selected' : '';
+			                                        <?php 
+														$aFields = array(
+															'width' => array(
+																'priority' => 10,
+																'type' => 'number',
+																'size' => 3,
+																'min' => 0,
+																'max' => 9999,
+																'step' => 1,
+																'value' => $this->slider->get_setting('width'),
+																'label' => __("Width", 'metaslider'),
+																'class' => 'coin flex responsive nivo',
+																'helptext' => __("Set the initial size for the slides (width x height)", 'metaslider'),
+																'after' => __("px", 'metaslider')
+															),
+															'height' => array(
+																'priority' => 20,
+																'type' => 'number',
+																'size' => 3,
+																'min' => 0,
+																'max' => 9999,
+																'step' => 1,
+																'value' => $this->slider->get_setting('height'),
+																'label' => __("Width", 'metaslider'),
+																'class' => 'coin flex responsive nivo',
+																'helptext' => __("Set the initial size for the slides (width x height)", 'metaslider'),
+																'after' => __("px", 'metaslider')
+															),
+															'effect' => array(
+																'priority' => 30,
+																'type' => 'select',
+																'value' => $this->slider->get_setting('effect'),
+																'label' => __("Effect", 'metaslider'),
+																'class' => 'effect coin flex responsive nivo',
+																'helptext' => __("Slide transition effect", 'metaslider'),
+																'options' => array(
+																	'random'             => array('class' => 'option coin nivo' , 'label' => __("Random", 'metaslider')),
+																	'swirl'              => array('class' => 'option coin', 'label' => __("Swirl", 'metaslider')),
+																	'rain'               => array('class' => 'option coin', 'label' => __("Rain", 'metaslider')),
+																	'straight'           => array('class' => 'option coin', 'label' => __("Straight", 'metaslider')),
+																	'sliceDown'          => array('class' => 'option nivo', 'label' => __("Slide Down", 'metaslider')),
+																	'sliceUp'            => array('class' => 'option nivo', 'label' => __("Slice Up", 'metaslider')),
+																	'sliceUpLeft'        => array('class' => 'option nivo', 'label' => __("Slide Up Left", 'metaslider')),
+																	'sliceUpDown'        => array('class' => 'option nivo', 'label' => __("Slice Up Down", 'metaslider')),
+																	'slideUpDownLeft'    => array('class' => 'option nivo', 'label' => __("Slide Up Down Left", 'metaslider')),
+																	'fold'               => array('class' => 'option nivo', 'label' => __("Fold", 'metaslider')),
+																	'fade'               => array('class' => 'option nivo flex responsive', 'label' => __("Fade", 'metaslider')),
+																	'slideInRight'       => array('class' => 'option nivo', 'label' => __("Slide In Right", 'metaslider')),
+																	'slideInLeft'        => array('class' => 'option nivo', 'label' => __("Slide In Left", 'metaslider')),
+																	'boxRandom'          => array('class' => 'option nivo', 'label' => __("Box Random", 'metaslider')),
+																	'boxRain'            => array('class' => 'option nivo', 'label' => __("Box Rain", 'metaslider')),
+																	'boxRainReverse'     => array('class' => 'option nivo', 'label' => __("Box Rain Reverse", 'metaslider')),
+																	'boxRainGrowReverse' => array('class' => 'option nivo', 'label' => __("Box Rain Grow Reverse", 'metaslider')),
+																	'slide'              => array('class' => 'option flex', 'label' => __("Slide", 'metaslider'))
+																),
+															),
+															'theme' => array(
+																'priority' => 40,
+																'type' => 'theme',
+																'value' => $this->slider->get_setting('theme'),
+																'label' => __("Theme", 'metaslider'),
+																'class' => 'effect coin flex responsive nivo',
+																'helptext' => __("Change the slider style", 'metaslider'),
+																'options' => array(
+																	'default' => array('class' => 'option nivo flex coin responsive' , 'label' => __("Default", 'metaslider')),
+																	'dark'    => array('class' => 'option nivo', 'label' => __("Dark (Nivo)", 'metaslider')),
+																	'light'   => array('class' => 'option nivo', 'label' => __("Light (Nivo)", 'metaslider')),
+																	'bar'     => array('class' => 'option nivo', 'label' => __("Bar (Nivo)", 'metaslider')),
+																),
+															),
+															'links' => array(
+																'priority' => 50,
+																'type' => 'checkbox',
+																'label' => __("Arrows", 'metaslider'),
+																'class' => 'option coin flex nivo responsive',
+																'checked' => $this->slider->get_setting('links') == 'true' ? 'checked' : '',
+																'helptext' => __("Show slide navigation row", 'metaslider')
+															),
+															'navigation' => array(
+																'priority' => 60,
+																'type' => 'navigation',
+																'label' => __("Navigation", 'metaslider'),
+																'class' => 'option coin flex nivo responsive',
+																'checked' => $this->slider->get_setting('navigation'),
+																'helptext' => __("Show slide navigation row", 'metaslider'),
+																'options' => array(
+																	'false'      => array('label' => __("Hidden", 'metaslider')),
+																	'true'       => array('label' => __("Dots", 'metaslider')),
+																	'thumbnails' => array('label' => __("Thumbnails (Pro)", 'metaslider'))
+																)
+															),
+														);
 
-			                                                        $themes =  "<option value='default' class='option nivo flex coin responsive' {$defaultSelected}>Default</option>
-			                                                                    <option value='dark' class='option nivo' {$darkSelected}>Dark (Nivo)</option>
-			                                                                    <option value='light' class='option nivo' {$lightSelected}>Light (Nivo)</option>
-			                                                                    <option value='bar' class='option nivo' {$barSelected}>Bar (Nivo)</option>";
+				                                        if ($max_tabs && count($this->all_meta_sliders()) > $max_tabs) {
+				                                        	$aFields['title'] = array(
+				                                        		'type' => 'text',
+				                                        		'priority' => 1,
+				                                        		'value' => $title,
+				                                        		'label' => __("Title", 'metaslider'),
+				                                        		'helptext' => __("Slideshow title", 'metaslider')
+				                                        	);
+				                                        }
 
-			                                                        echo apply_filters('metaslider_get_available_themes', $themes, $this->slider->get_setting('theme')); 
-			                                                    ?>
-			                                                </select>
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Show slide navigation row", 'metaslider') ?>">
-			                                                <?php _e("Arrows", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <label class='option coin responsive nivo flex' ><input type='checkbox' name="settings[links]" <?php if ($this->slider->get_setting('links') == 'true') echo 'checked=checked' ?> /></label>
-			                                            </td>
-			                                        </tr>
+														$aFields = apply_filters('metaslider_basic_settings', $aFields, $this->slider);
 
-			                                        <?php
-
-			                                            $checked = $this->slider->get_setting('navigation') == 'true' ? 'checked' : '';
-
-			                                            $navigation_row = "<tr>
-			                                                                    <td class='tipsy-tooltip' title='" . __("Show slide navigation row", 'metaslider') . "'>
-			                                                                        " . __("Navigation", 'metaslider')  . "
-			                                                                    </td>
-			                                                                    <td><label class='option coin responsive nivo flex' ><input type='checkbox' name='settings[links]' {$checked} /></label></td>
-			                                                                </tr>";
-
-			                                            echo apply_filters('metaslider_navigation_options', $navigation_row, $this->slider);
+				                                        echo $this->print_setting_row($aFields);
 			                                        ?>
 			                                    </tbody>
 			                                </table>
@@ -751,197 +827,235 @@ class MetaSliderPlugin {
 										<div class="inside">
 			                                <table>
 			                                	<tbody>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Center align the slideshow", 'metaslider') ?>">
-			                                                <?php _e("Center align", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input class='option coin responsive nivo flex' type='checkbox' name="settings[center]" <?php if ($this->slider->get_setting('center') == 'true') echo 'checked=checked' ?> />
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Start the slideshow on page load", 'metaslider') ?>">
-			                                                <?php _e("Auto play", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input class='option responsive nivo flex' type='checkbox' name="settings[autoPlay]" <?php if ($this->slider->get_setting('autoPlay') == 'true') echo 'checked=checked' ?> />
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Smart Crop ensures your responsive slides are cropped to a ratio that results in a consistent slideshow size", 'metaslider') ?>">
-			                                                <?php _e("Smart crop", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input class='option coin responsive nivo flex' type='checkbox' name="settings[smartCrop]" <?php if ($this->slider->get_setting('smartCrop') !== 'false') echo 'checked=checked' ?> />
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Display as carousel - when selected the effect and direction options will be ignored.", 'metaslider') ?>">
-			                                                <?php _e("Carousel mode", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input class='option flex' id='carouselMode' type='checkbox' id='carouselMode' name="settings[carouselMode]" <?php if ($this->slider->get_setting('carouselMode') == 'true') echo 'checked=checked' ?> />
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Randomise the order of the slides", 'metaslider') ?>">
-			                                                <?php _e("Random", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input type='checkbox' name="settings[random]" <?php if ($this->slider->get_setting('random') == 'true') echo 'checked=checked' ?> />
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Pause the slideshow when hovering over slider, then resume when no longer hovering", 'metaslider') ?>">
-			                                                <?php _e("Hover pause", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input class='option coin flex responsive nivo' type='checkbox' name="settings[hoverPause]" <?php if ($this->slider->get_setting('hoverPause') == 'true') echo 'checked=checked' ?> />
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Reverse the animation direction", 'metaslider') ?>">
-			                                                <?php _e("Reverse", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input class='option flex' type='checkbox' name="settings[reverse]" <?php if ($this->slider->get_setting('reverse') == 'true') echo 'checked=checked' ?> />
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("How long to display each slide, in milliseconds", 'metaslider') ?>">
-			                                                <?php _e("Slide delay", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input class='option coin flex responsive nivo' type='number' size='3' min='500' max='10000' step='100' name="settings[delay]" value='<?php echo $this->slider->get_setting('delay') ?>' /><?php _e("ms", 'metaslider') ?>
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Set the speed of animations, in milliseconds", 'metaslider') ?>">
-			                                                <?php _e("Animation speed", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input class='option flex responsive nivo' type='number' size='3' min='0' max='2000' step='100' name="settings[animationSpeed]" value='<?php echo $this->slider->get_setting('animationSpeed') ?>' /><?php _e("ms", 'metaslider') ?>
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Number of squares (width x height)", 'metaslider') ?>">
-			                                                <?php _e("Number of squares", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input class='option coin nivo' type='number' size='3' min='1' max='20' step='1' name="settings[spw]" value='<?php echo $this->slider->get_setting('spw') ?>' /> x 
-			                                                <input class='option coin nivo' type='number' size='3' min='1' max='20' step='1' name="settings[sph]" value='<?php echo $this->slider->get_setting('sph') ?>' />
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Number of slices", 'metaslider') ?>">
-			                                                <?php _e("Number of slices", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input class='option nivo' type='number' size='3' min='1' max='20' step='1' name="settings[slices]" value='<?php echo $this->slider->get_setting('slices') ?>' />
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Select the sliding direction", 'metaslider') ?>"><?php _e("Slide direction", 'metaslider') ?></td>
-			                                            <td>
-			                                                <select class='option flex' name="settings[direction]">
-			                                                    <option value='horizontal' <?php if ($this->slider->get_setting('direction') == 'horizontal') echo 'selected=selected' ?>><?php _e("Horizontal", 'metaslider') ?></option>
-			                                                    <option value='vertical' <?php if ($this->slider->get_setting('direction') == 'vertical') echo 'selected=selected' ?>><?php _e("Vertical", 'metaslider') ?></option>
-			                                                </select>                       
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Animation easing effect", 'metaslider') ?>">
-			                                                <?php _e("Easing", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <select name="settings[easing]" class='option flex'>
-			                                                    <?php 
-			                                                        $options = array(
-			                                                            'linear','swing','jswing','easeInQuad','easeOutQuad','easeInOutQuad',
-			                                                            'easeInCubic','easeOutCubic','easeInOutCubic','easeInQuart',
-			                                                            'easeOutQuart','easeInOutQuart','easeInQuint','easeOutQuint',
-			                                                            'easeInOutQuint','easeInSine','easeOutSine','easeInOutSine',
-			                                                            'easeInExpo','easeOutExpo','easeInOutExpo','easeInCirc','easeOutCirc',
-			                                                            'easeInOutCirc','easeInElastic','easeOutElastic','easeInOutElastic',
-			                                                            'easeInBack','easeOutBack','easeInOutBack','easeInBounce','easeOutBounce',
-			                                                            'easeInOutBounce'
-			                                                        );
+			                                		<?php
+														$aFields = array(
+															'center' => array(
+																'priority' => 10,
+																'type' => 'checkbox',
+																'label' => __("Center align", 'metaslider'),
+																'class' => 'option coin flex nivo responsive',
+																'checked' => $this->slider->get_setting('center') == 'true' ? 'checked' : '',
+																'helptext' => __("Center align the slideshow", 'metaslider')
+															),
+															'autoPlay' => array(
+																'priority' => 20,
+																'type' => 'checkbox',
+																'label' => __("Auto play", 'metaslider'),
+																'class' => 'option flex nivo responsive',
+																'checked' => $this->slider->get_setting('autoPlay') == 'true' ? 'checked' : '',
+																'helptext' => __("Start the slideshow on page load", 'metaslider')
+															),
+															'smartCrop' => array(
+																'priority' => 30,
+																'type' => 'checkbox',
+																'label' => __("Smart crop", 'metaslider'),
+																'class' => 'option coin flex nivo responsive',
+																'checked' => $this->slider->get_setting('smartCrop') == 'true' ? 'checked' : '',
+																'helptext' => __("Smart Crop ensures your responsive slides are cropped to a ratio that results in a consistent slideshow size", 'metaslider')
+															),
+															'carouselMode' => array(
+																'priority' => 40,
+																'type' => 'checkbox',
+																'label' => __("Carousel mode", 'metaslider'),
+																'class' => 'option coin flex nivo responsive',
+																'checked' => $this->slider->get_setting('carouselMode') == 'true' ? 'checked' : '',
+																'helptext' => __("Display as carousel - when selected the effect and direction options will be ignored.", 'metaslider')
+															),
+															'random' => array(
+																'priority' => 50,
+																'type' => 'checkbox',
+																'label' => __("Random", 'metaslider'),
+																'class' => 'option coin flex nivo responsive',
+																'checked' => $this->slider->get_setting('random') == 'true' ? 'checked' : '',
+																'helptext' => __("Randomise the order of the slides", 'metaslider')
+															),
+															'hoverPause' => array(
+																'priority' => 60,
+																'type' => 'checkbox',
+																'label' => __("Hover pause", 'metaslider'),
+																'class' => 'option coin flex nivo responsive',
+																'checked' => $this->slider->get_setting('hoverPause') == 'true' ? 'checked' : '',
+																'helptext' => __("Pause the slideshow when hovering over slider, then resume when no longer hovering.", 'metaslider')
+															),
+															'reverse' => array(
+																'priority' => 70,
+																'type' => 'checkbox',
+																'label' => __("Reverse", 'metaslider'),
+																'class' => 'option flex',
+																'checked' => $this->slider->get_setting('reverse') == 'true' ? 'checked' : '',
+																'helptext' => __("Reverse the animation direction", 'metaslider')
+															),
+															'delay' => array(
+																'priority' => 80,
+																'type' => 'number',
+																'size' => 3,
+																'min' => 500,
+																'max' => 10000,
+																'step' => 100,
+																'value' => $this->slider->get_setting('delay'),
+																'label' => __("Slide delay", 'metaslider'),
+																'class' => 'option coin flex responsive nivo',
+																'helptext' => __("How long to display each slide, in milliseconds", 'metaslider'),
+																'after' => __("ms", 'metaslider')
+															),
+															'animationSpeed' => array(
+																'priority' => 90,
+																'type' => 'number',
+																'size' => 3,
+																'min' => 0,
+																'max' => 2000,
+																'step' => 100,
+																'value' => $this->slider->get_setting('animationSpeed'),
+																'label' => __("Animation speed", 'metaslider'),
+																'class' => 'option flex responsive nivo',
+																'helptext' => __("Set the speed of animations, in milliseconds", 'metaslider'),
+																'after' => __("ms", 'metaslider')
+															),
+															'slices' => array(
+																'priority' => 100,
+																'type' => 'number',
+																'size' => 3,
+																'min' => 0,
+																'max' => 20,
+																'step' => 1,
+																'value' => $this->slider->get_setting('slices'),
+																'label' => __("Number of slices", 'metaslider'),
+																'class' => 'option nivo',
+																'helptext' => __("Number of slices", 'metaslider'),
+																'after' => __("ms", 'metaslider')
+															),
+															'spw' => array(
+																'priority' => 110,
+																'type' => 'number',
+																'size' => 3,
+																'min' => 0,
+																'max' => 20,
+																'step' => 1,
+																'value' => $this->slider->get_setting('spw'),
+																'label' => __("Number of squares", 'metaslider') . " (" . __("Width", 'metaslider') . ")",
+																'class' => 'option nivo',
+																'helptext' => __("Number of squares", 'metaslider'),
+																'after' => ''
+															),
+															'sph' => array(
+																'priority' => 120,
+																'type' => 'number',
+																'size' => 3,
+																'min' => 0,
+																'max' => 20,
+																'step' => 1,
+																'value' => $this->slider->get_setting('sph'),
+																'label' => __("Number of squares", 'metaslider') . " (" . __("Height", 'metaslider') . ")",
+																'class' => 'option nivo',
+																'helptext' => __("Number of squares", 'metaslider'),
+																'after' => ''
+															),
+															'direction' => array(
+																'priority' => 130,
+																'type' => 'select',
+																'label' => __("Slide direction", 'metaslider'),
+																'class' => 'option flex',
+																'helptext' => __("Select the sliding direction", 'metaslider'),
+																'value' => $this->slider->get_setting('direction'),
+																'options' => array(
+																	'horizontal' => array('label' => __("Horizontal", 'metaslider'), 'class' => ''),
+																	'vertical' => array('label' => __("Vertical", 'metaslider'), 'class' => ''),
+																)
+															),
+															'easing' => array(
+																'priority' => 140,
+																'type' => 'select',
+																'label' => __("Easing", 'metaslider'),
+																'class' => 'option flex',
+																'helptext' => __("Animation easing effect", 'metaslider'),
+																'value' => $this->slider->get_setting('easing'),
+																'options' => $this->get_easing_options()
+															),
+															'prevText' => array(
+																'priority' => 150,
+																'type' => 'text',
+																'label' => __("Previous text", 'metaslider'),
+																'class' => 'option coin flex responsive nivo',
+																'helptext' => __("Set the text for the 'previous' direction item", 'metaslider'),
+																'value' => $this->slider->get_setting('prevText') == 'false' ? '' : $this->slider->get_setting('prevText')
+															),
+															'nextText' => array(
+																'priority' => 160,
+																'type' => 'text',
+																'label' => __("Next text", 'metaslider'),
+																'class' => 'option coin flex responsive nivo',
+																'helptext' => __("Set the text for the 'next' direction item", 'metaslider'),
+																'value' => $this->slider->get_setting('nextText') == 'false' ? '' : $this->slider->get_setting('nextText')
+															),
+															'sDelay' => array(
+																'priority' => 170,
+																'type' => 'number',
+																'size' => 3,
+																'min' => 0,
+																'max' => 500,
+																'step' => 10,
+																'value' => $this->slider->get_setting('sDelay'),
+																'label' => __("Square delay", 'metaslider'),
+																'class' => 'option coin',
+																'helptext' => __("Delay beetwen squares in ms", 'metaslider'),
+																'after' => __("ms", 'metaslider')
+															),
+															'opacity' => array(
+																'priority' => 180,
+																'type' => 'number',
+																'size' => 3,
+																'min' => 0,
+																'max' => 1,
+																'step' => 0.1,
+																'value' => $this->slider->get_setting('opacity'),
+																'label' => __("Opacity", 'metaslider'),
+																'class' => 'option coin',
+																'helptext' => __("Opacity of title and navigation", 'metaslider'),
+																'after' => ''
+															),
+															'titleSpeed' => array(
+																'priority' => 190,
+																'type' => 'number',
+																'size' => 3,
+																'min' => 0,
+																'max' => 10000,
+																'step' => 100,
+																'value' => $this->slider->get_setting('titleSpeed'),
+																'label' => __("Caption speed", 'metaslider'),
+																'class' => 'option coin',
+																'helptext' => __("Set the fade in speed of the caption", 'metaslider'),
+																'after' => __("ms", 'metaslider')
+															),
+															'cssClass' => array(
+																'priority' => 200,
+																'type' => 'text',
+																'label' => __("CSS classes", 'metaslider'),
+																'class' => 'option coin flex responsive nivo',
+																'helptext' => __("Specify any custom CSS Classes you would like to be added to the slider wrapper", 'metaslider'),
+																'value' => $this->slider->get_setting('cssClass') == 'false' ? '' : $this->slider->get_setting('cssClass')
+															),
+															'printCss' => array(
+																'priority' => 210,
+																'type' => 'checkbox',
+																'label' => __("Print CSS", 'metaslider'),
+																'class' => 'option coin flex responsive nivo useWithCaution',
+																'checked' => $this->slider->get_setting('printCss') == 'true' ? 'checked' : '',
+																'helptext' => __("Uncheck this is you would like to include your own CSS", 'metaslider')
+															),
+															'printJs' => array(
+																'priority' => 220,
+																'type' => 'checkbox',
+																'label' => __("Print JS", 'metaslider'),
+																'class' => 'option coin flex responsive nivo useWithCaution',
+																'checked' => $this->slider->get_setting('printJs') == 'true' ? 'checked' : '',
+																'helptext' => __("Uncheck this is you would like to include your own Javascript", 'metaslider')
+															)
+														);
 
-			                                                        foreach ($options as $option) {
-			                                                            echo "<option value='{$option}'";
-			                                                            if ($this->slider->get_setting('easing') == $option) {
-			                                                                echo 'selected=selected';
-			                                                            }
-			                                                            echo ">" . ucfirst(preg_replace('/(\w+)([A-Z])/U', '\\1 \\2', $option)) . "</option>";
-			                                                        }
-			                                                    ?>
-			                                                </select>
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Set the text for the 'previous' direction item", 'metaslider') ?>">
-			                                                <?php _e("Previous text", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input class='option coin flex responsive nivo' type='text' name="settings[prevText]" value='<?php if ($this->slider->get_setting('prevText') != 'false') echo $this->slider->get_setting('prevText') ?>' />
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Set the text for the 'next' direction item", 'metaslider') ?>">
-			                                                <?php _e("Next text", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input class='option coin flex responsive nivo' type='text' name="settings[nextText]" value='<?php if ($this->slider->get_setting('nextText') != 'false') echo $this->slider->get_setting('nextText') ?>' />
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Delay beetwen squares in ms", 'metaslider') ?>">
-			                                                <?php _e("Square delay", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input class='option coin' type='number' size='3' min='0' max='500' step='10' name="settings[sDelay]" value='<?php echo $this->slider->get_setting('sDelay') ?>' /><?php _e("ms", 'metaslider') ?>
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Opacity of title and navigation", 'metaslider') ?>">
-			                                                <?php _e("Opacity", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input class='option coin' type='number' size='3' min='0.1' max='1.0' step='0.1' name="settings[opacity]" value='<?php echo $this->slider->get_setting('opacity') ?>' />
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Set the fade in speed of the caption", 'metaslider') ?>">
-			                                                <?php _e("Caption speed", 'metaslider') ?> (<?php _e("ms", 'metaslider') ?>)
-			                                            </td>
-			                                            <td>
-			                                                <input class='option coin' type='number' size='3' min='0' max='10000' step='100' name="settings[titleSpeed]" value='<?php echo $this->slider->get_setting('titleSpeed') ?>' />
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Specify any custom CSS Classes you would like to be added to the slider wrapper", 'metaslider') ?>">
-			                                                <?php _e("CSS classes", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input type='text' name="settings[cssClass]" value='<?php if ($this->slider->get_setting('cssClass') != 'false') echo $this->slider->get_setting('cssClass') ?>' />
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Uncheck this is you would like to include your own Javascript", 'metaslider') ?>">
-			                                                <?php _e("Print CSS", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input type='checkbox' class='useWithCaution' name="settings[printCss]" <?php if ($this->slider->get_setting('printCss') == 'true') echo 'checked=checked' ?> />
-			                                            </td>
-			                                        </tr>
-			                                        <tr>
-			                                            <td class='tipsy-tooltip' title="<?php _e("Uncheck this is you would like to include your own Javascript", 'metaslider') ?>">
-			                                                <?php _e("Print JavaScript", 'metaslider') ?>
-			                                            </td>
-			                                            <td>
-			                                                <input type='checkbox' class='useWithCaution' name="settings[printJs]" <?php if ($this->slider->get_setting('printJs') == 'true') echo 'checked=checked' ?> />
-			                                            </td>
-			                                        </tr>
+														$aFields = apply_filters('metaslider_advanced_settings', $aFields, $this->slider);
+
+														echo $this->print_setting_row($aFields);
+													?>
 			                                        <tr>
 			                                            <td colspan='2'>
 			                                                <a class='delete-slider button-secondary confirm' href='<?php echo wp_nonce_url("?page=metaslider&delete={$this->slider->id}", "metaslider_delete_slider"); ?>'><?php _e("Delete Slider", 'metaslider') ?></a>
@@ -961,10 +1075,10 @@ class MetaSliderPlugin {
 											</ul>
 											<div class='tabs-content'>
 												<div class='tab tab-1'>
-												<p>Copy & Paste the shortcode directly into any WordPress post or page.</p>
+												<p><?php _e("Copy & Paste the shortcode directly into any WordPress post or page.", "metaslider"); ?></p>
 												<input readonly='readonly' type='text' value='[metaslider id=<?php echo $this->slider->id ?>]' /></div>
 												<div class='tab tab-2' style='display: none'>
-												<p>Copy & Paste this code into a template file to include the slideshow within your theme.</p>
+												<p><?php _e("Copy & Paste this code into a template file to include the slideshow within your theme.", "metaslider"); ?></p>
 												<textarea readonly='readonly'>&lt;?php &#13;&#10;    echo do_shortcode("[metaslider id=<?php echo $this->slider->id ?>]"); &#13;&#10;?></textarea></div>
 											</div>
 			                            </div>
