@@ -21,8 +21,6 @@ class MetaSlider {
         $this->identifier = 'metaslider_' . $this->id;
         $this->save();
         $this->populate_slides();
-
-        add_filter('metaslider_css', array($this, 'get_slider_css'), 10, 3);
     }
 
     /**
@@ -357,30 +355,16 @@ class MetaSlider {
     }
 
     /**
-     * Generate the @import rules for the inline style tag.
-     */
-    public function get_slider_css($css, $settings, $slider_id) {
-        if ($slider_id != $this->id) {
-            return $css;
-        }
-
-        $imports = "";
-
-        if ($this->get_setting('printCss') == 'true') {
-            $stylesheets[] = "@import url('" . METASLIDER_ASSETS_URL . "metaslider/public.css?ver=" . METASLIDER_VERSION . "');";
-            $stylesheets[] = "@import url('" . METASLIDER_ASSETS_URL . $this->css_path . "?ver=" . METASLIDER_VERSION . "');";
-            $imports = "\n        " . implode("\n        ", $stylesheets);
-        }
-
-        return $css . $imports;
-    }
-
-    /**
      * Include slider assets, JS and CSS paths are specified by child classes.
      */
     public function enqueue_scripts() {
         if ($this->get_setting('printJs') == 'true') {
             wp_enqueue_script('metaslider-' . $this->get_setting('type') . '-slider', METASLIDER_ASSETS_URL . $this->js_path, array('jquery'), METASLIDER_VERSION);
+        }
+
+        if ($this->get_setting('printCss') == 'true') {
+        	wp_enqueue_style('metaslider-' . $this->get_setting('type') . '-slider', METASLIDER_ASSETS_URL . $this->css_path, METASLIDER_VERSION);
+        	wp_enqueue_style('metaslider-public', METASLIDER_ASSETS_URL . 'metaslider/public.css', METASLIDER_VERSION);
         }
 
         do_action('metaslider_register_public_styles');

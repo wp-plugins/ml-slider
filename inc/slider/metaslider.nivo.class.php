@@ -72,15 +72,13 @@ class MetaNivoSlider extends MetaSlider {
     /**
      * 
      */
-    public function get_slider_css($css, $settings, $slider_id) {
-        $css = parent::get_slider_css($css, $settings, $slider_id);
+    public function enqueue_scripts() {
+        parent::enqueue_scripts();
 
         if ($this->get_setting('printCss') == 'true') {
             $theme = $this->get_theme();
-            $css .= "\n        @import url('" . METASLIDER_ASSETS_URL  . "sliders/nivoslider/themes/{$theme}/{$theme}.css');";
+        	wp_enqueue_style('metaslider-' . $this->get_setting('type') . '-slider-'.$theme, METASLIDER_ASSETS_URL . "sliders/nivoslider/themes/{$theme}/{$theme}.css", METASLIDER_VERSION);
         }
-
-        return $css;
     }
 
     /**
