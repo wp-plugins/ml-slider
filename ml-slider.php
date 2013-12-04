@@ -546,6 +546,18 @@ class MetaSliderPlugin {
     			$return .= apply_filters('metaslider_navigation_options', $navigation_row, $this->slider);
     		}
 
+    		if ($row['type'] == 'slider-lib') {
+    			$return .= "<tr><td colspan='2' class='slider-lib-row'>";
+
+    			foreach ($row['options'] as $k => $v) {
+    				$checked = $k == $row['checked'] ? 'checked' : '';
+    				$return .= "<input class='select-slider' id='{$k}' rel='{$k}' type='radio' name='settings[type]' value='{$k}' {$checked} />
+    				<label for='{$k}'>{$v['label']}</label>";
+    			}
+
+			    $return .= "</td></tr>";
+    		}
+
     		if ($row['type'] == 'number') {
     			$return .= "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><input class='option {$row['class']} {$id}' type='number' min='{$row['min']}' max='{$row['max']}' step='{$row['step']}' name='settings[{$id}]' value='{$row['value']}' />{$row['after']}</td></tr>";
     		}
@@ -572,8 +584,6 @@ class MetaSliderPlugin {
 
     			$return .= "</select></td></tr>";
     		}
-
-
 
       		if ($row['type'] == 'text') {
     			$return .= "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><input class='option {$row['class']} {$id}' type='text' name='settings[{$id}]' value='{$row['value']}' /></td></tr>";
@@ -696,22 +706,21 @@ class MetaSliderPlugin {
 			                                <span class="spinner"></span>
 			                            </h3>
 			                            <div class="inside">
-			                                <table class="widefat settings postbox">
+			                                <table class="widefat settings">
 			                                    <tbody>
-			                                        <tr>
-			                                            <td colspan='2' class='slider-lib-row'>
-		                                                    <input class="select-slider" id='flex' rel='flex' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'flex') echo 'checked=checked' ?> value='flex' />
-		                                                    <label for='flex'>Flex Slider</label>
-		                                                    <input class="select-slider" id='responsive' rel='responsive' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'responsive') echo 'checked=checked' ?> value='responsive' />
-		                                                    <label for='responsive'>Responsive</label>
-		                                                    <input class="select-slider" id='nivo' rel='nivo' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'nivo') echo 'checked=checked' ?> value='nivo' />
-		                                                    <label for='nivo'>Nivo Slider</label>
-		                                                    <input class="select-slider" id='coin' rel='coin' type='radio' name="settings[type]" <?php if ($this->slider->get_setting('type') == 'coin') echo 'checked=checked' ?> value='coin' />
-		                                                    <label for='coin'>Coin Slider</label>
-			                                            </td>
-			                                        </tr>
 			                                        <?php 
 														$aFields = array(
+															'type' => array(
+																'priority' => 60,
+																'type' => 'slider-lib',
+																'checked' => $this->slider->get_setting('type'),
+																'options' => array(
+																	'flex'       => array('label' => __("Flex Slider", 'metaslider')),
+																	'responsive' => array('label' => __("Responsive", 'metaslider')),
+																	'nivo'       => array('label' => __("Nivo Slider", 'metaslider')),
+																	'coin'       => array('label' => __("Coin Slider", 'metaslider'))
+																)
+															),
 															'width' => array(
 																'priority' => 10,
 																'type' => 'number',
