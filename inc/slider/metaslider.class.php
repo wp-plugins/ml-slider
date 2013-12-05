@@ -113,6 +113,8 @@ class MetaSlider {
             'thumb_width' => 150,
             'thumb_height' => 100
         );
+
+        $params = apply_filters('metaslider_default_parameters', $params);
         
         return $params;
     }
