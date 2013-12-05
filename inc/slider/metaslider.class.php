@@ -244,11 +244,11 @@ class MetaSlider {
      * Return the ID to use for the container
      */
     private function get_container_id() {
- 		$container_id = 'metaslider_container' . $this->id;
+        $container_id = 'metaslider_container' . $this->id;
 
- 		$id = apply_filters('metaslider_container_id', $container_id, $this->id, $this->settings);
+        $id = apply_filters('metaslider_container_id', $container_id, $this->id, $this->settings);
 
- 		return $id;
+        return $id;
     }
 
     /**
@@ -306,13 +306,15 @@ class MetaSlider {
      * @return string javascript
      */
     private function get_inline_javascript() {
-        $custom_js = $this->get_custom_javascript();
-
-        $script .= "var " . $this->identifier . " = function($) {";
+        $custom_js_before = $this->get_custom_javascript_before();
+        $custom_js_after = $this->get_custom_javascript_after();
+        
+        $script = "var " . $this->identifier . " = function($) {";
+        $script .= $custom_js_before;
         $script .= "\n            $('#" . $this->identifier . "')." . $this->js_function . "({ ";
         $script .= "\n                " . $this->get_javascript_parameters();
         $script .= "\n            });";
-		$script .= $custom_js;
+        $script .= $custom_js_after;
         $script .= "\n        };";
         $script .= "\n        var timer_" . $this->identifier . " = function() {";
         $script .= "\n            var slider = !window.jQuery ? window.setTimeout(timer_{$this->identifier}, 100) : !jQuery.isReady ? window.setTimeout(timer_{$this->identifier}, 100) : {$this->identifier}(window.jQuery);";
@@ -325,7 +327,22 @@ class MetaSlider {
     /**
      *
      */
-    private function get_custom_javascript() {
+    private function get_custom_javascript_before() {
+        $type = $this->get_setting('type');
+
+        $custom_js = apply_filters("metaslider_{$type}_slider_javascript_before", "", $this->id);
+
+        if (strlen($custom_js)) {
+            return "\n            {$custom_js}";
+        }
+
+        return "";
+    }
+
+    /**
+     *
+     */
+    private function get_custom_javascript_after() {
         $type = $this->get_setting('type');
 
         $custom_js = apply_filters("metaslider_{$type}_slider_javascript", "", $this->id);
@@ -403,10 +420,10 @@ class MetaSlider {
         }
 
         if ($this->get_setting('printCss') == 'true') {
-        	// this will be added to the bottom of the page as <head> has already been processed by WordPress.
-        	// For HTML5 compatibility, use a minification plugin to move the CSS to the <head>
-        	wp_enqueue_style('metaslider-' . $this->get_setting('type') . '-slider', METASLIDER_ASSETS_URL . $this->css_path, METASLIDER_VERSION);
-        	wp_enqueue_style('metaslider-public', METASLIDER_ASSETS_URL . 'metaslider/public.css', METASLIDER_VERSION);
+            // this will be added to the bottom of the page as <head> has already been processed by WordPress.
+            // For HTML5 compatibility, use a minification plugin to move the CSS to the <head>
+            wp_enqueue_style('metaslider-' . $this->get_setting('type') . '-slider', METASLIDER_ASSETS_URL . $this->css_path, METASLIDER_VERSION);
+            wp_enqueue_style('metaslider-public', METASLIDER_ASSETS_URL . 'metaslider/public.css', METASLIDER_VERSION);
         }
 
         do_action('metaslider_register_public_styles');
