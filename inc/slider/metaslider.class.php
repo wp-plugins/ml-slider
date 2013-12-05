@@ -173,6 +173,8 @@ class MetaSlider {
             )
         );
 
+        $args = apply_filters('metaslider_populate_slides_args', $args, $this->id, $this->settings);
+
         $query = new WP_Query($args);
 
         $slides = array();
@@ -219,6 +221,40 @@ class MetaSlider {
      * @return string HTML & Javascrpt
      */
     public function render_public_slides() {
+        $html[] = '<!-- meta slider -->';
+        $html[] = '<div style="' . $this->get_container_style() . '" class="' . $this->get_container_class() .'">';
+        $html[] = '    ' . $this->get_inline_css();
+        $html[] = '    <div id="' . $this->get_container_id() . '">';
+        $html[] = '        ' . $this->get_html();
+        $html[] = '    </div>';
+        $html[] = '    <script type="text/javascript">';
+        $html[] = '        ' .  $this->get_inline_javascript();
+        $html[] = '    </script>';
+        $html[] = '</div>';
+        $html[] = '<!--// meta slider-->';
+
+        $slideshow = implode("\n", $html);
+
+        $slideshow = apply_filters('metaslider_slideshow_output', $slideshow, $this->id, $this->settings);
+
+        return $slideshow;
+    }
+
+    /**
+     * Return the ID to use for the container
+     */
+    private function get_container_id() {
+ 		$container_id = 'metaslider_container' . $this->id;
+
+ 		$id = apply_filters('metaslider_container_id', $container_id, $this->id, $this->settings);
+
+ 		return $id;
+    }
+
+    /**
+     * Return the classes to use for the slidehsow container
+     */
+    private function get_container_class() {
         $class = "metaslider metaslider-{$this->get_setting('type')} metaslider-{$this->id} ml-slider";
 
         // apply the css class setting
@@ -229,6 +265,13 @@ class MetaSlider {
         // handle any custom classes
         $class = apply_filters('metaslider_css_classes', $class, $this->id, $this->settings);
 
+        return $class;
+    }
+
+    /**
+     * Return the inline CSS style for the slideshow container.
+     */
+    private function get_container_style() {
         // default
         $style = "max-width: {$this->get_setting('width')}px;";
 
@@ -247,18 +290,10 @@ class MetaSlider {
             $style .= " margin: 0 auto;";
         }
 
-        // build the HTML
-        $html  = "\n<!-- meta slider -->";
-        $html .= "\n<div style=\"{$style}\" class=\"{$class}\">";
-        $html .= "\n    " . $this->get_inline_css();
-        $html .= "\n    <div id=\"metaslider_container_{$this->id}\">";
-        $html .= "\n        " . $this->get_html(); 
-        $html .= "\n    </div>";
-        $html .= $this->get_inline_javascript();
-        $html .= "\n</div>";
-        $html .= "\n<!--// meta slider-->";
+        // handle any custom container styles
+        $style = apply_filters('metaslider_container_style', $style, $this->id, $this->settings);
 
-        return $html;
+        return $style;
     }
 
     /**
@@ -271,27 +306,35 @@ class MetaSlider {
      * @return string javascript
      */
     private function get_inline_javascript() {
-        $identifier = $this->identifier;
+        $custom_js = $this->get_custom_javascript();
+
+        $script .= "var " . $this->identifier . " = function($) {";
+        $script .= "\n            $('#" . $this->identifier . "')." . $this->js_function . "({ ";
+        $script .= "\n                " . $this->get_javascript_parameters();
+        $script .= "\n            });";
+		$script .= $custom_js;
+        $script .= "\n        };";
+        $script .= "\n        var timer_" . $this->identifier . " = function() {";
+        $script .= "\n            var slider = !window.jQuery ? window.setTimeout(timer_{$this->identifier}, 100) : !jQuery.isReady ? window.setTimeout(timer_{$this->identifier}, 100) : {$this->identifier}(window.jQuery);";
+        $script .= "\n        };";
+        $script .= "\n        timer_" . $this->identifier . "();";
+
+        return $script;
+    }
+
+    /**
+     *
+     */
+    private function get_custom_javascript() {
         $type = $this->get_setting('type');
 
         $custom_js = apply_filters("metaslider_{$type}_slider_javascript", "", $this->id);
 
-        $script  = "\n    <script type=\"text/javascript\">";
-        $script .= "\n        var " . $identifier . " = function($) {";
-        $script .= "\n            $('#" . $identifier . "')." . $this->js_function . "({ ";
-        $script .= "\n                " . $this->get_javascript_parameters();
-        $script .= "\n            });";
-        if (strlen ($custom_js)) {
-            $script .= "\n            {$custom_js}";
+        if (strlen($custom_js)) {
+            return "\n            {$custom_js}";
         }
-        $script .= "\n        };";
-        $script .= "\n        var timer_" . $identifier . " = function() {";
-        $script .= "\n            var slider = !window.jQuery ? window.setTimeout(timer_{$identifier}, 100) : !jQuery.isReady ? window.setTimeout(timer_{$identifier}, 100) : {$identifier}(window.jQuery);";
-        $script .= "\n        };";
-        $script .= "\n        timer_" . $identifier . "();";
-        $script .= "\n    </script>";
 
-        return $script;
+        return "";
     }
 
     /**
@@ -317,10 +360,7 @@ class MetaSlider {
 
         // deal with any customised parameters
         $type = $this->get_setting('type');
-
-        if (has_filter("metaslider_{$type}_slider_parameters")) {
-            $options = apply_filters("metaslider_{$type}_slider_parameters", $options, $this->id, $this->settings);
-        }
+        $options = apply_filters("metaslider_{$type}_slider_parameters", $options, $this->id, $this->settings);
 
         // create key:value strings
         foreach ($options as $key => $value) {
@@ -342,15 +382,13 @@ class MetaSlider {
      * @return string
      */
     private function get_inline_css() {
-        if (has_filter("metaslider_css")) {
-            $css = apply_filters("metaslider_css", "", $this->settings, $this->id);
+        $css = apply_filters("metaslider_css", "", $this->settings, $this->id);
 
-            // use this to add the scoped attribute for HTML5 validation (if needed)
-            $attributes = apply_filters("metaslider_style_attributes", "", $this->settings, $this->id);
+        // use this to add the scoped attribute for HTML5 validation (if needed)
+        $attributes = apply_filters("metaslider_style_attributes", "", $this->settings, $this->id);
 
-            if (strlen($css)) {
-                return "<style type=\"text/css\"{$attributes}>{$css}\n    </style>";
-            }
+        if (strlen($css)) {
+            return "<style type=\"text/css\"{$attributes}>{$css}\n    </style>";
         }
 
         return "";
@@ -365,6 +403,8 @@ class MetaSlider {
         }
 
         if ($this->get_setting('printCss') == 'true') {
+        	// this will be added to the bottom of the page as <head> has already been processed by WordPress.
+        	// For HTML5 compatibility, use a minification plugin to move the CSS to the <head>
         	wp_enqueue_style('metaslider-' . $this->get_setting('type') . '-slider', METASLIDER_ASSETS_URL . $this->css_path, METASLIDER_VERSION);
         	wp_enqueue_style('metaslider-public', METASLIDER_ASSETS_URL . 'metaslider/public.css', METASLIDER_VERSION);
         }
