@@ -523,7 +523,18 @@ class MetaSliderPlugin {
         return $sliders;
     }
 
+    /**
+     *
+     */
+	private function compareElems($elem1, $elem2) {
+	    return $elem1['priority'] > $elem2['priority'];
+	}
+
+	/**
+	 *
+	 */
     public function print_setting_row($aFields) {
+    	uasort($aFields, array($this, "compareElems"));
 
     	$return = "";
 
@@ -536,9 +547,9 @@ class MetaSliderPlugin {
     			$navigation_row = "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td>";
 
     			foreach ($row['options'] as $k => $v) {
-    				$checked = $k == $row['checked'] ? 'checked' : '';
+    				$checked = checked($k, $row['value'], false);
     				$disabled = $k == 'thumbnails' ? 'disabled=disabled' : '';
-    				$navigation_row .= "<label><input type='radio' name='settings[{$id}]' value='{$k}' {$checked} {$disabled}/>{$v['label']}</option></label>";
+    				$navigation_row .= "<label><input type='radio' name='settings[{$id}]' value='{$k}' {$checked} {$disabled}/>{$v['label']}</option></label><br />";
     			}
 
     			$navigation_row .= "</td></tr>";
@@ -550,7 +561,7 @@ class MetaSliderPlugin {
     			$return .= "<tr><td colspan='2' class='slider-lib-row'>";
 
     			foreach ($row['options'] as $k => $v) {
-    				$checked = $k == $row['checked'] ? 'checked' : '';
+    				$checked = checked($k, $row['value'], false);
     				$return .= "<input class='select-slider' id='{$k}' rel='{$k}' type='radio' name='settings[type]' value='{$k}' {$checked} />
     				<label for='{$k}'>{$v['label']}</label>";
     			}
@@ -565,7 +576,7 @@ class MetaSliderPlugin {
     		if ($row['type'] == 'select') {
     			$return .= "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><select class='option {$row['class']} {$id}' name='settings[{$id}]' />";
     			foreach ($row['options'] as $k => $v) {
-    				$selected = $k == $row['value'] ? 'selected' : '';
+    				$selected = selected($k, $row['value'], false);
     				$return .= "<option class='{$v['class']}' value='{$k}' {$selected}>{$v['label']}</option>";
     			}
     			$return .= "</select></td></tr>";
@@ -576,7 +587,7 @@ class MetaSliderPlugin {
     			$themes = "";
 
     			foreach ($row['options'] as $k => $v) {
-    				$selected = $k == $row['value'] ? 'selected' : '';
+    				$selected = selected($k, $row['value'], false);
     				$themes .= "<option class='{$v['class']}' value='{$k}' {$selected}>{$v['label']}</option>";
     			}
 
@@ -656,7 +667,7 @@ class MetaSliderPlugin {
                             $tabs = $this->all_meta_sliders('title');
 
                             foreach ($tabs as $tab) {
-                                $selected = $tab['active'] ? " selected='selected'" : "";
+                                $selected = $tab['active'] ? " selected" : "";
 
                                 if ($tab['active']) {
                                     $title = $tab['title'];
@@ -711,9 +722,9 @@ class MetaSliderPlugin {
 			                                        <?php 
 														$aFields = array(
 															'type' => array(
-																'priority' => 60,
+																'priority' => 0,
 																'type' => 'slider-lib',
-																'checked' => $this->slider->get_setting('type'),
+																'value' => $this->slider->get_setting('type'),
 																'options' => array(
 																	'flex'       => array('label' => __("Flex Slider", 'metaslider')),
 																	'responsive' => array('label' => __("Responsive", 'metaslider')),
@@ -742,7 +753,7 @@ class MetaSliderPlugin {
 																'max' => 9999,
 																'step' => 1,
 																'value' => $this->slider->get_setting('height'),
-																'label' => __("Width", 'metaslider'),
+																'label' => __("Height", 'metaslider'),
 																'class' => 'coin flex responsive nivo',
 																'helptext' => __("Set the initial size for the slides (width x height)", 'metaslider'),
 																'after' => __("px", 'metaslider')
@@ -802,7 +813,7 @@ class MetaSliderPlugin {
 																'type' => 'navigation',
 																'label' => __("Navigation", 'metaslider'),
 																'class' => 'option coin flex nivo responsive',
-																'checked' => $this->slider->get_setting('navigation'),
+																'value' => $this->slider->get_setting('navigation'),
 																'helptext' => __("Show slide navigation row", 'metaslider'),
 																'options' => array(
 																	'false'      => array('label' => __("Hidden", 'metaslider')),
@@ -815,7 +826,8 @@ class MetaSliderPlugin {
 				                                        if ($max_tabs && count($this->all_meta_sliders()) > $max_tabs) {
 				                                        	$aFields['title'] = array(
 				                                        		'type' => 'text',
-				                                        		'priority' => 1,
+				                                        		'priority' => 5,
+				                                        		'class' => 'option flex nivo responsive coin',
 				                                        		'value' => $title,
 				                                        		'label' => __("Title", 'metaslider'),
 				                                        		'helptext' => __("Slideshow title", 'metaslider')
@@ -1093,24 +1105,29 @@ class MetaSliderPlugin {
 			                            </div>
 			                        </div>
 
-	                                <ul class='info'>
-	                                    <li>
-	                                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.metaslider.com" data-text="Check out Meta Slider, an easy to use slideshow plugin for WordPress" data-hashtags="metaslider, wordpress, slideshow">Tweet</a>
-	                                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>                </li>
-	                                    <li>
-	                                        <div class="g-plusone" data-size="medium" data-href="http://www.metaslider.com"></div>
-	                                        <script type="text/javascript">
-	                                          (function() {
-	                                            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-	                                            po.src = 'https://apis.google.com/js/plusone.js';
-	                                            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-	                                          })();
-	                                        </script>
-	                                    </li>
-	                                    <li>
-	                                        <iframe style='border:none; overflow:hidden; width:96px; height:21px;' src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.metaslider.com&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=156668027835524" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
-	                                    </li>
-	                                </ul>
+									<div class="postbox support toggle">
+										<div class="handlediv" title="Click to toggle"><br></div><h3 class="hndle"><span><?php _e("Social Stuff", 'metaslider') ?></span></h3>
+										<div class="inside">
+			                                <ul class='info'>
+			                                    <li style='width: 33%'>
+			                                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.metaslider.com" data-text="Check out Meta Slider, an easy to use slideshow plugin for WordPress" data-hashtags="metaslider, wordpress, slideshow">Tweet</a>
+			                                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>                </li>
+			                                    <li style='width: 33%'>
+			                                        <div class="g-plusone" data-size="medium" data-href="http://www.metaslider.com"></div>
+			                                        <script type="text/javascript">
+			                                          (function() {
+			                                            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+			                                            po.src = 'https://apis.google.com/js/plusone.js';
+			                                            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+			                                          })();
+			                                        </script>
+			                                    </li>
+			                                    <li style='width: 33%'>
+			                                        <iframe style='border:none; overflow:hidden; width:96px; height:21px;' src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.metaslider.com&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=156668027835524" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
+			                                    </li>
+			                                </ul>
+			                            </div>
+			                        </div>
 	                            </div>
                             </div>
                         </div>

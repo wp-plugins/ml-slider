@@ -129,8 +129,12 @@ class MetaImageSlide extends MetaSlide {
         $row .= "                </div>";
         $row .= "            </div>";
         $row .= "            <div class='tab tab-2' style='display: none;'>";
-        $row .= "                <div class='row'><label>Image Title Text</label><input type='text' size='50' name='attachment[{$this->slide->ID}][title]' placeholder='{$str_title}' value='{$title}' /></div>";
-        $row .= "                <div class='row'><label>Alt Text</label><input type='text' size='50' name='attachment[{$this->slide->ID}][alt]' placeholder='{$str_alt}' value='{$alt}' /></div>";
+        $row .= "                <div class='row'><label>" . __("Caption", "metaslider") . "</label><input type='text' size='50' name='attachment[{$this->slide->ID}][title]' placeholder='{$str_title}' value='{$title}' /></div>";
+        $row .= "                <div class='row'><label>" . __("URL", "metaslider") . "</label><input type='text' size='50' name='attachment[{$this->slide->ID}][alt]' placeholder='{$str_alt}' value='{$alt}' /></div>";
+        $row .= "            </div>";
+        $row .= "            <div class='tab tab-2' style='display: none;'>";
+        $row .= "                <div class='row'><label>" . __("Image Title Text", "metaslider") . "</label><input type='text' size='50' name='attachment[{$this->slide->ID}][title]' placeholder='{$str_title}' value='{$title}' /></div>";
+        $row .= "                <div class='row'><label>" . __("Image Alt Text", "metaslider") . "</label><input type='text' size='50' name='attachment[{$this->slide->ID}][alt]' placeholder='{$str_alt}' value='{$alt}' /></div>";
         $row .= "            </div>";
         $row .= "        </div>";
         $row .= "        <input type='hidden' name='attachment[{$this->slide->ID}][type]' value='image' />";
@@ -305,7 +309,8 @@ class MetaImageSlide extends MetaSlide {
             'alt' => $slide['alt'],
             'rel' => $slide['rel'],
             'class' => $slide['class'],
-            'title' => $slide['title']
+            'title' => $slide['title'],
+            'style' => 'display: none;'
         ), $slide, $this->slider->ID);
 
         $html = $this->build_image_tag($attributes);

@@ -325,7 +325,7 @@ class MetaSlider {
     }
 
     /**
-     *
+     * Custom JavaScript to execute immediately before the slideshow is initialized
      */
     private function get_custom_javascript_before() {
         $type = $this->get_setting('type');
@@ -340,7 +340,7 @@ class MetaSlider {
     }
 
     /**
-     *
+     * Custom Javascript to execute immediately after the slideshow is initialized
      */
     private function get_custom_javascript_after() {
         $type = $this->get_setting('type');

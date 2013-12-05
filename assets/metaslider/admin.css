@@ -5,6 +5,13 @@
 	margin-right: -320px;
 	width: 300px;
 }
+.metaslider .left input,
+.metaslider .left textarea {
+	border: 1px solid #ddd;
+	border-radius: 0;
+	resize: none;
+	box-shadow: inherit;
+}
 .resize_overlay {
 	position: absolute;
 	width: inherit;
@@ -215,6 +222,7 @@
   width: 150px;
   background-size: auto 150px;
   background-position: center;
+  border: 1px solid #ddd;
 }
 .metaslider .left table tr.slide td.col-1 .thumb .delete-slide {
   position: absolute;
@@ -308,7 +316,7 @@
     background-image: -o-linear-gradient(top,#fff,#e6e6e6);
     background-image: linear-gradient(to bottom,#fff,#e6e6e6);
     background-repeat: repeat-x;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     border-color: #e6e6e6 #e6e6e6 #bfbfbf;
     border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
     border-bottom-color: #b3b3b3;
@@ -396,7 +404,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5db1', end
 }
 .metaslider .right input[type="text"],
 .metaslider .right select {
-  width: 110px;
+  width: 130px;
 }
 .metaslider .right #poststuff .closed .inside {
 	display: none;
@@ -408,6 +416,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5db1', end
 .metaslider .shortcode .inside {
 	padding: 15px 10px;
 }
+
 .metaslider .shortcode input[type=text],
 .metaslider .shortcode input[type=text]:active,
 .metaslider .shortcode textarea,
@@ -433,9 +442,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5db1', end
 .metaslider .shortcode .tabs-content {
 	clear: both;
 	background: #fdfdfd;
-	border-left: 1px solid #ccc;
-	border-right: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
 	padding: 10px;
 }
 .metaslider .right .postbox table {
@@ -470,21 +479,28 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5db1', end
 }
 .metaslider .nav-tab-wrapper {
   padding: 0;
+  width: 100%;
+  float: left;
+  margin: 20px 0;
 }
 .metaslider .nav-tab {
   background: white;
-  color: #999;
+  color: #AAAAAA;
   padding: 6px 10px;
   font-weight: normal;
   margin: -1px 4px -1px 0;
 }
+.metaslider .nav-tab:hover {
+  color: #333;
+}
+
 .metaslider .nav-tab-active {
   color: #333;
 }
 ul.info {
   width: 100%;
-  margin-top: 20px;
-  border-radius: 5px;
+  margin: 0;
+  height: 20px;
 }
 ul.info li {
   text-align: right;
@@ -556,9 +572,8 @@ textarea:-ms-input-placeholder {
 	overflow: hidden;
 }
 .metaslider .left .tabs-content {
-  height: 116px;
+  height: 118px;
   overflow-x: scroll;
-  padding: 5px 0px;
   clear: both;
 }
 .metaslider .tabs-content .row {
@@ -570,12 +585,13 @@ textarea:-ms-input-placeholder {
 }
 .metaslider .tabs-content .row label {
   float: left; 
-  width: 90px;
+  width: 25%;
   line-height: 25px;
+  color: #999;
 }
 .metaslider .tabs-content label input {
 	margin-right: 5px;
-	margin-bottom: 2px;
+	margin-bottom: 0px;
 	margin-left: 0px;
 }
 .metaslider .tabs-content ul {
@@ -594,8 +610,8 @@ textarea:-ms-input-placeholder {
 .metaslider ul.tabs {
 	float: left;
 	width: 100%;
-	margin: 0 0 7px 0;
-	border-bottom: 1px solid #ccc;
+	margin: 0 0 10px 0;
+	border-bottom: 1px solid #ddd;
 }
 .metaslider ul.tabs li {
 	margin: 0 0 0 5px;
@@ -603,17 +619,18 @@ textarea:-ms-input-placeholder {
 	padding: 3px 5px;
 	float: left;
 	line-height: 14px;
-	color: #999;
+	color: #ccc;
 	position: relative;
 	top: 1px;
+	border: 1px solid transparent;
 }
 .metaslider ul.tabs li:hover {
 	color: #333;
 }
 .metaslider ul.tabs li.selected {
-	font-weight: bold;
+	font-weight: normal;
 	color: #666;
-	border: 1px solid #ccc;
+	border: 1px solid #ddd;
 	border-bottom: 1px solid white;
 }
 .metaslider .left table tr.slide:nth-child(odd) ul.tabs li.selected {
