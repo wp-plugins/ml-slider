@@ -61,8 +61,8 @@ class MetaSliderPlugin {
         add_action('admin_menu', array($this, 'register_admin_menu'), 9553);
 
         // register slider post type and taxonomy
-        add_action('init', array($this, 'register_post_type' ));
-        add_action('init', array($this, 'register_taxonomy' ));
+        add_action('init', array($this, 'register_post_type'));
+        add_action('init', array($this, 'register_taxonomy'));
         add_action('init', array($this, 'load_plugin_textdomain'));
 
         // register shortcodes
@@ -75,10 +75,13 @@ class MetaSliderPlugin {
         add_action('media_upload_youtube', array($this, 'metaslider_pro_tab'));
         add_action('media_upload_post_feed', array($this, 'metaslider_pro_tab'));
         add_action('media_upload_layer', array($this, 'metaslider_pro_tab'));
+
+        add_filter('media_buttons_context', array($this, 'insert_metaslider_button'));
+        add_action('admin_footer', array($this, 'admin_footer'));
         
         // add 'go pro' link to plugin options
         $plugin = plugin_basename(__FILE__);
-        add_filter("plugin_action_links_{$plugin}", array($this,'upgrade_to_pro') );
+        add_filter("plugin_action_links_{$plugin}", array($this,'upgrade_to_pro'));
 
         $this->register_slide_types();
     }
@@ -526,15 +529,17 @@ class MetaSliderPlugin {
     /**
      *
      */
-	private function compareElems($elem1, $elem2) {
+	private function compare_elems($elem1, $elem2) {
 	    return $elem1['priority'] > $elem2['priority'];
 	}
 
 	/**
 	 *
+	 * @param array $aFields - array of field to render
 	 */
-    public function print_setting_row($aFields) {
-    	uasort($aFields, array($this, "compareElems"));
+    public function build_settings_rows($aFields) {
+    	// order the fields by priority
+    	uasort($aFields, array($this, "compare_elems"));
 
     	$return = "";
 
@@ -599,7 +604,6 @@ class MetaSliderPlugin {
       		if ($row['type'] == 'text') {
     			$return .= "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><input class='option {$row['class']} {$id}' type='text' name='settings[{$id}]' value='{$row['value']}' /></td></tr>";
     		}
-
     	}
 
     	return $return;
@@ -836,7 +840,7 @@ class MetaSliderPlugin {
 
 														$aFields = apply_filters('metaslider_basic_settings', $aFields, $this->slider);
 
-				                                        echo $this->print_setting_row($aFields);
+				                                        echo $this->build_settings_rows($aFields);
 			                                        ?>
 			                                    </tbody>
 			                                </table>
@@ -1075,7 +1079,7 @@ class MetaSliderPlugin {
 
 														$aFields = apply_filters('metaslider_advanced_settings', $aFields, $this->slider);
 
-														echo $this->print_setting_row($aFields);
+														echo $this->build_settings_rows($aFields);
 													?>
 			                                        <tr>
 			                                            <td colspan='2'>
@@ -1105,14 +1109,14 @@ class MetaSliderPlugin {
 			                            </div>
 			                        </div>
 
-									<div class="postbox support toggle">
-										<div class="handlediv" title="Click to toggle"><br></div><h3 class="hndle"><span><?php _e("Social Stuff", 'metaslider') ?></span></h3>
+									<div class="postbox social">
 										<div class="inside">
 			                                <ul class='info'>
-			                                    <li style='width: 33%'>
+			                                    <li style='width: 33%;'>
 			                                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.metaslider.com" data-text="Check out Meta Slider, an easy to use slideshow plugin for WordPress" data-hashtags="metaslider, wordpress, slideshow">Tweet</a>
-			                                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>                </li>
-			                                    <li style='width: 33%'>
+			                                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+			                                    </li>
+			                                    <li style='width: 34%;'>
 			                                        <div class="g-plusone" data-size="medium" data-href="http://www.metaslider.com"></div>
 			                                        <script type="text/javascript">
 			                                          (function() {
@@ -1122,8 +1126,8 @@ class MetaSliderPlugin {
 			                                          })();
 			                                        </script>
 			                                    </li>
-			                                    <li style='width: 33%'>
-			                                        <iframe style='border:none; overflow:hidden; width:96px; height:21px;' src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.metaslider.com&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=156668027835524" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
+			                                    <li style='width: 33%;'>
+			                                        <iframe style='border:none; overflow:hidden; width:80px; height:21px;' src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.metaslider.com&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=156668027835524" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
 			                                    </li>
 			                                </ul>
 			                            </div>
@@ -1162,6 +1166,67 @@ class MetaSliderPlugin {
         </div>
         <?php
     }
+
+
+	/**
+	 * Append the 'Add Slider' button to selected admin pages
+	 */
+	public function insert_metaslider_button($context) {
+		global $pagenow;
+
+		if (in_array($pagenow, array( 'post.php', 'page.php', 'post-new.php', 'post-edit.php' ))) {
+			$context .= '<a href="#TB_inline?&inlineId=choose-meta-slider" class="thickbox button" title="' . 
+						__("Select slideshow to insert into post", "metaslider") . 
+						'"><span class="wp-media-buttons-icon" style="background: url(' . METASLIDER_ASSETS_URL . 
+						'/metaslider/matchalabs.png); background-repeat: no-repeat; background-position: left bottom;"></span> ' .
+				 		__("Add slider", "metaslider") . '</a>';
+		}
+
+		return $context;
+	}
+
+	/**
+	 * Append the 'Choose Meta Slider' thickbox content to the bottom of selected admin pages
+	 */
+	public function admin_footer() {
+		global $pagenow;
+
+		/** Only run in post/page creation and edit screens */
+		if (in_array($pagenow, array('post.php', 'page.php', 'post-new.php', 'post-edit.php'))) {
+			$sliders = $this->all_meta_sliders('title');
+			?>
+
+			<script type="text/javascript">
+				jQuery(document).ready(function() {
+				  jQuery('#insertMetaSlider').on('click', function() {
+				  	var id = jQuery('#metaslider-select option:selected').val();
+				  	window.send_to_editor('[metaslider id="' + id + '"]');
+					tb_remove();
+				  })
+				});
+			</script>
+
+			<div id="choose-meta-slider" style="display: none;">
+				<div class="wrap">
+					<?php 
+						if (count($sliders)) {
+							echo "<h3 style='margin-bottom: 20px;'>" . __("Insert Meta Slider", "metaslider") . "</h3>";
+							echo "<select id='metaslider-select'>";
+							echo "<option disabled=disabled>" . __("Choose slideshow", "metaslider") . "</option>";
+							foreach ($sliders as $slider) {
+								echo "<option value='{$slider['id']}'>{$slider['title']}</option>";
+							}
+							echo "</select>";
+							echo "<button class='button primary' id='insertMetaSlider'>Insert Slideshow</button>";
+						} else {
+							_e("No slideshows found", 'metaslider');
+						}
+					?>
+				</div>
+			</div>
+			<?php
+		}
+	}
 }
 
 $metaslider = new MetaSliderPlugin();

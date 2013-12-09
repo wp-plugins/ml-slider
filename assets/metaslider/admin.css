@@ -394,11 +394,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5db1', end
 .metaslider .right label {
   margin-right: 10px;
 }
-.metaslider .right .width,
-.metaslider .right .height {
-  padding-right: 0;
-  margin-right: 0;
-}
 .metaslider .right input[type="number"] {
   width: 70px;
 }
@@ -415,6 +410,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5db1', end
 }
 .metaslider .shortcode .inside {
 	padding: 15px 10px;
+}
+
+
+.metaslider .social .inside {
+	padding: 10px;
+}
+.metaslider .social .inside ul.info {
+  width: 100%;
+  margin: 0;
+  height: 20px;
+}
+.metaslider .social .inside ul.info li {
+  display: inline;
+  float: left;
+  text-align: right;
 }
 
 .metaslider .shortcode input[type=text],
@@ -496,17 +506,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5db1', end
 
 .metaslider .nav-tab-active {
   color: #333;
-}
-ul.info {
-  width: 100%;
-  margin: 0;
-  height: 20px;
-}
-ul.info li {
-  text-align: right;
-  display: inline;
-  width: 33%;
-  float: left;
 }
 #ms-pro-meta-link-wrap {
   float: right;

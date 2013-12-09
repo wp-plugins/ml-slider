@@ -244,7 +244,7 @@ class MetaSlider {
      * Return the ID to use for the container
      */
     private function get_container_id() {
-        $container_id = 'metaslider_container' . $this->id;
+        $container_id = 'metaslider_container_' . $this->id;
 
         $id = apply_filters('metaslider_container_id', $container_id, $this->id, $this->settings);
 
