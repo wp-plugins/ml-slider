@@ -111,7 +111,8 @@ class MetaSlider {
             'easing' => 'linear',
             'autoPlay' => true,
             'thumb_width' => 150,
-            'thumb_height' => 100
+            'thumb_height' => 100,
+            'fullWidth' => false
         );
 
         $params = apply_filters('metaslider_default_parameters', $params);
@@ -276,7 +277,7 @@ class MetaSlider {
         $style = "max-width: {$this->get_setting('width')}px;";
 
         // carousels are always 100% wide
-        if ($this->get_setting('carouselMode') == 'true') {
+        if ($this->get_setting('carouselMode') == 'true' || ($this->get_setting('fullWidth') == 'true') && $this->get_setting('type') != 'coin') {
             $style = "width: 100%;";
         }
 
@@ -436,7 +437,7 @@ class MetaSlider {
         $old_settings = $this->get_settings();
 
         // convert submitted checkbox values from 'on' or 'off' to boolean values
-        $checkboxes = array('hoverPause', 'links', 'reverse', 'random', 'printCss', 'printJs', 'smoothHeight', 'center', 'smartCrop', 'carouselMode', 'autoPlay');
+        $checkboxes = array('fullWidth', 'hoverPause', 'links', 'reverse', 'random', 'printCss', 'printJs', 'smoothHeight', 'center', 'smartCrop', 'carouselMode', 'autoPlay');
 
         foreach ($checkboxes as $checkbox) {
             if (isset($new_settings[$checkbox]) && $new_settings[$checkbox] == 'on') {

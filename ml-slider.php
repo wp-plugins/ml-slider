@@ -878,6 +878,14 @@ class MetaSliderPlugin {
 																'checked' => $this->slider->get_setting('smartCrop') == 'true' ? 'checked' : '',
 																'helptext' => __("Smart Crop ensures your responsive slides are cropped to a ratio that results in a consistent slideshow size", 'metaslider')
 															),
+															'fullWidth' => array(
+																'priority' => 35,
+																'type' => 'checkbox',
+																'label' => __("Full width", 'metaslider'),
+																'class' => 'option flex nivo responsive',
+																'checked' => $this->slider->get_setting('fullWidth') == 'true' ? 'checked' : '',
+																'helptext' => __("Output the slideshow at 100% width", 'metaslider')
+															),
 															'carouselMode' => array(
 																'priority' => 40,
 																'type' => 'checkbox',
