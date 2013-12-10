@@ -545,7 +545,13 @@ class MetaSliderPlugin {
 
     	foreach ($aFields as $id => $row) {
     		if ($row['type'] == 'checkbox') {
-    			$return .= "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><input class='option {$row['class']} {$id}' type='checkbox' name='settings[{$id}]' {$row['checked']} /></td></tr>";
+    			$return .= "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><input class='option {$row['class']} {$id}' type='checkbox' name='settings[{$id}]' {$row['checked']} />";
+
+    			if (isset($row['after'])) {
+    				$return .= $row['after'];
+    			}
+
+    			$return .= "</td></tr>";
     		}
 
     		if ($row['type'] == 'navigation') {
@@ -560,6 +566,10 @@ class MetaSliderPlugin {
     			$navigation_row .= "</td></tr>";
 
     			$return .= apply_filters('metaslider_navigation_options', $navigation_row, $this->slider);
+    		}
+
+    		if ($row['type'] == 'divider') {
+    			$return .= "<tr><td colspan='2' class='divider'><b>{$row['value']}</b></td></tr>";
     		}
 
     		if ($row['type'] == 'slider-lib') {
@@ -842,6 +852,11 @@ class MetaSliderPlugin {
 
 				                                        echo $this->build_settings_rows($aFields);
 			                                        ?>
+			                                        <tr>
+			                                            <td colspan='2'>
+			                                                <a class='delete-slider alignright button-secondary confirm' href='<?php echo wp_nonce_url("?page=metaslider&delete={$this->slider->id}", "metaslider_delete_slider"); ?>'><?php _e("Delete Slider", 'metaslider') ?></a>
+			                                            </td>
+			                                        </tr>
 			                                    </tbody>
 			                                </table>
 			                            </div>
@@ -854,6 +869,15 @@ class MetaSliderPlugin {
 			                                	<tbody>
 			                                		<?php
 														$aFields = array(
+															'fullWidth' => array(
+																'priority' => 5,
+																'type' => 'checkbox',
+																'label' => __("Stretch", 'metaslider'),
+																'class' => 'option flex nivo responsive',
+																'after' => __("100% wide output", "metaslider"),
+																'checked' => $this->slider->get_setting('fullWidth') == 'true' ? 'checked' : '',
+																'helptext' => __("Stretch the slideshow to fill the width of the container it is in", 'metaslider')
+															),
 															'center' => array(
 																'priority' => 10,
 																'type' => 'checkbox',
@@ -877,14 +901,6 @@ class MetaSliderPlugin {
 																'class' => 'option coin flex nivo responsive',
 																'checked' => $this->slider->get_setting('smartCrop') == 'true' ? 'checked' : '',
 																'helptext' => __("Smart Crop ensures your responsive slides are cropped to a ratio that results in a consistent slideshow size", 'metaslider')
-															),
-															'fullWidth' => array(
-																'priority' => 35,
-																'type' => 'checkbox',
-																'label' => __("Full width", 'metaslider'),
-																'class' => 'option flex nivo responsive',
-																'checked' => $this->slider->get_setting('fullWidth') == 'true' ? 'checked' : '',
-																'helptext' => __("Output the slideshow at 100% width", 'metaslider')
 															),
 															'carouselMode' => array(
 																'priority' => 40,
@@ -1059,6 +1075,13 @@ class MetaSliderPlugin {
 																'helptext' => __("Set the fade in speed of the caption", 'metaslider'),
 																'after' => __("ms", 'metaslider')
 															),
+															'developerOptions' => array(
+																'priority' => 195,
+																'type' => 'divider',
+																'class' => 'option coin flex responsive nivo',
+																'helptext' => __("Specify any custom CSS Classes you would like to be added to the slider wrapper", 'metaslider'),
+																'value' => __("Developer options", "metaslider")
+															),
 															'cssClass' => array(
 																'priority' => 200,
 																'type' => 'text',
@@ -1089,11 +1112,6 @@ class MetaSliderPlugin {
 
 														echo $this->build_settings_rows($aFields);
 													?>
-			                                        <tr>
-			                                            <td colspan='2'>
-			                                                <a class='delete-slider button-secondary confirm' href='<?php echo wp_nonce_url("?page=metaslider&delete={$this->slider->id}", "metaslider_delete_slider"); ?>'><?php _e("Delete Slider", 'metaslider') ?></a>
-			                                            </td>
-			                                        </tr>
 			                                    </tbody>
 			                                </table>
 										</div>
