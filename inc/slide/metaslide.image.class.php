@@ -109,13 +109,13 @@ class MetaImageSlide extends MetaSlide {
         $row .= "    <td class='col-1'>";
         $row .= "        <div class='thumb' style='background-image: url({$thumb})'>";
         $row .= "            <a class='delete-slide confirm' href='?page=metaslider&id={$this->slider->ID}&deleteSlide={$this->slide->ID}'>x</a>";
-        $row .= "            <span class='slide-details'>Image</span>";
+        $row .= "            <span class='slide-details'>" . __("Image Slide", "metaslider") . "</span>";
         $row .= "        </div>";
         $row .= "    </td>";
         $row .= "    <td class='col-2'>";
         $row .= "        <ul class='tabs'>";
-        $row .= "            <li class='selected' rel='tab-1'>General</li>";
-        $row .= "            <li rel='tab-2'>SEO</li>";
+        $row .= "            <li class='selected' rel='tab-1'>" . __("General", "metaslider") . "</li>";
+        $row .= "            <li rel='tab-2'>" . __("SEO", "metaslider") . "</li>";
         $row .= "        </ul>";
         $row .= "        <div class='tabs-content'>"; 
         $row .= "            <div class='tab tab-1'>";

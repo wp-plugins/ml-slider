@@ -240,8 +240,8 @@
   bottom: 0;
   left: 0;
   position: absolute;
-  background: #333;
-  color: white;
+  background: white;
+  color: #333;
   padding: 5px;
   font-size: 12px;
   opacity: 0.7;
@@ -452,9 +452,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5db1', end
 .metaslider .shortcode .tabs-content {
 	clear: both;
 	background: #fdfdfd;
-	border-left: 1px solid #ddd;
-	border-right: 1px solid #ddd;
-	border-bottom: 1px solid #ddd;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 	padding: 10px;
 }
 .metaslider .right .postbox table {
@@ -610,7 +610,7 @@ textarea:-ms-input-placeholder {
 	float: left;
 	width: 100%;
 	margin: 0 0 10px 0;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #ccc;
 }
 .metaslider ul.tabs li {
 	margin: 0 0 0 5px;
@@ -629,7 +629,7 @@ textarea:-ms-input-placeholder {
 .metaslider ul.tabs li.selected {
 	font-weight: normal;
 	color: #666;
-	border: 1px solid #ddd;
+	border: 1px solid #ccc;
 	border-bottom: 1px solid white;
 }
 .metaslider .left table tr.slide:nth-child(odd) ul.tabs li.selected {

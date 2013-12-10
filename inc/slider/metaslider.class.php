@@ -112,7 +112,8 @@ class MetaSlider {
             'autoPlay' => true,
             'thumb_width' => 150,
             'thumb_height' => 100,
-            'fullWidth' => false
+            'fullWidth' => false,
+            'noConflict' => false
         );
 
         $params = apply_filters('metaslider_default_parameters', $params);
@@ -437,7 +438,7 @@ class MetaSlider {
         $old_settings = $this->get_settings();
 
         // convert submitted checkbox values from 'on' or 'off' to boolean values
-        $checkboxes = array('fullWidth', 'hoverPause', 'links', 'reverse', 'random', 'printCss', 'printJs', 'smoothHeight', 'center', 'smartCrop', 'carouselMode', 'autoPlay');
+        $checkboxes = array('noConflict', 'fullWidth', 'hoverPause', 'links', 'reverse', 'random', 'printCss', 'printJs', 'smoothHeight', 'center', 'smartCrop', 'carouselMode', 'autoPlay');
 
         foreach ($checkboxes as $checkbox) {
             if (isset($new_settings[$checkbox]) && $new_settings[$checkbox] == 'on') {
