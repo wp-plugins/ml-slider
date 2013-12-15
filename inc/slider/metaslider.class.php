@@ -424,8 +424,8 @@ class MetaSlider {
         if ($this->get_setting('printCss') == 'true') {
             // this will be added to the bottom of the page as <head> has already been processed by WordPress.
             // For HTML5 compatibility, use a minification plugin to move the CSS to the <head>
-            wp_enqueue_style('metaslider-' . $this->get_setting('type') . '-slider', METASLIDER_ASSETS_URL . $this->css_path, METASLIDER_VERSION);
-            wp_enqueue_style('metaslider-public', METASLIDER_ASSETS_URL . 'metaslider/public.css', METASLIDER_VERSION);
+            wp_enqueue_style('metaslider-' . $this->get_setting('type') . '-slider', METASLIDER_ASSETS_URL . $this->css_path, false, METASLIDER_VERSION);
+            wp_enqueue_style('metaslider-public', METASLIDER_ASSETS_URL . 'metaslider/public.css', false, METASLIDER_VERSION);
         }
 
         do_action('metaslider_register_public_styles');
