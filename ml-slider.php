@@ -109,7 +109,7 @@ class MetaSliderPlugin {
      */
     public function metaslider_pro_tab() {
         if (function_exists('is_plugin_active') && !is_plugin_active('ml-slider-pro/ml-slider-pro.php')) {
-            return wp_iframe( array($this, 'iframe'));
+            return wp_iframe(array($this, 'iframe'));
         }
     }
 
@@ -274,7 +274,7 @@ class MetaSliderPlugin {
 
             $link .= '?utm_source=lite&utm_medium=nag&utm_campaign=pro';
 
-            $goPro = "<div style='display: none;' id='ms-pro-meta-link-wrap'><a target='_blank' href='{$link}'>Meta Slider Lite v" . METASLIDER_VERSION . " - " . 
+            $goPro = "<div style='display: none;' id='screen-options-link-wrap'><a target='_blank' class='show-settings' href='{$link}'>Meta Slider Lite v" . METASLIDER_VERSION . " - " . 
                 __('Upgrade to Pro $19', "metaslider") . 
                 "</a></div>";
 
@@ -514,7 +514,7 @@ class MetaSliderPlugin {
         
         while ($the_query->have_posts()) {
             $the_query->the_post();
-            $active = $this->slider->id == $the_query->post->ID ? true : false;
+            $active = $this->slider && ($this->slider->id == $the_query->post->ID) ? true : false;
             
             $sliders[] = array(
                 'active' => $active,
@@ -555,7 +555,7 @@ class MetaSliderPlugin {
     			$return .= "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><input class='option {$row['class']} {$id}' type='checkbox' name='settings[{$id}]' {$row['checked']} />";
 
     			if (isset($row['after'])) {
-    				$return .= $row['after'];
+    				$return .= "<span class='after'>{$row['after']}</span>";
     			}
 
     			$return .= "</td></tr>";
@@ -563,7 +563,7 @@ class MetaSliderPlugin {
 
     		// navigation row
     		if ($row['type'] == 'navigation') {
-    			$navigation_row = "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td>";
+    			$navigation_row = "<tr class='{$row['type']}'><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td>";
 
     			foreach ($row['options'] as $k => $v) {
     				$checked = checked($k, $row['value'], false);
@@ -578,12 +578,12 @@ class MetaSliderPlugin {
 
     		// header/divider row
     		if ($row['type'] == 'divider') {
-    			$return .= "<tr><td colspan='2' class='divider'><b>{$row['value']}</b></td></tr>";
+    			$return .= "<tr class='{$row['type']}'><td colspan='2' class='divider'><b>{$row['value']}</b></td></tr>";
     		}
 
     		// slideshow select row
     		if ($row['type'] == 'slider-lib') {
-    			$return .= "<tr><td colspan='2' class='slider-lib-row'>";
+    			$return .= "<tr class='{$row['type']}'><td colspan='2' class='slider-lib-row'>";
 
     			foreach ($row['options'] as $k => $v) {
     				$checked = checked($k, $row['value'], false);
@@ -596,12 +596,12 @@ class MetaSliderPlugin {
 
     		// number input type
     		if ($row['type'] == 'number') {
-    			$return .= "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><input class='option {$row['class']} {$id}' type='number' min='{$row['min']}' max='{$row['max']}' step='{$row['step']}' name='settings[{$id}]' value='{$row['value']}' />{$row['after']}</td></tr>";
+    			$return .= "<tr class='{$row['type']}'><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><input class='option {$row['class']} {$id}' type='number' min='{$row['min']}' max='{$row['max']}' step='{$row['step']}' name='settings[{$id}]' value='{$row['value']}' /><span class='after'>{$row['after']}</span></td></tr>";
     		}
 
     		// select drop down
     		if ($row['type'] == 'select') {
-    			$return .= "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><select class='option {$row['class']} {$id}' name='settings[{$id}]' />";
+    			$return .= "<tr class='{$row['type']}'><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><select class='option {$row['class']} {$id}' name='settings[{$id}]' />";
     			foreach ($row['options'] as $k => $v) {
     				$selected = selected($k, $row['value'], false);
     				$return .= "<option class='{$v['class']}' value='{$k}' {$selected}>{$v['label']}</option>";
@@ -611,7 +611,7 @@ class MetaSliderPlugin {
 
     		// theme drop down
     		if ($row['type'] == 'theme') {
-    			$return .= "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><select class='option {$row['class']} {$id}' name='settings[{$id}]' />";
+    			$return .= "<tr class='{$row['type']}'><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><select class='option {$row['class']} {$id}' name='settings[{$id}]' />";
     			$themes = "";
 
     			foreach ($row['options'] as $k => $v) {
@@ -626,7 +626,7 @@ class MetaSliderPlugin {
 
     		// text input type
       		if ($row['type'] == 'text') {
-    			$return .= "<tr><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><input class='option {$row['class']} {$id}' type='text' name='settings[{$id}]' value='{$row['value']}' /></td></tr>";
+    			$return .= "<tr class='{$row['type']}'><td class='tipsy-tooltip' title='{$row['helptext']}'>{$row['label']}</td><td><input class='option {$row['class']} {$id}' type='text' name='settings[{$id}]' value='{$row['value']}' /></td></tr>";
     		}
     	}
 
@@ -709,7 +709,7 @@ class MetaSliderPlugin {
                             echo "</select> " . __('or', "metaslider") . " ";
                             echo "<a href='{$add_url}'>" . __('Add New Slideshow', "metaslider") . "</a></div>";
                         } else {
-                            echo "<h3 class='nav-tab-wrapper'>";
+                            echo "<h2 class='nav-tab-wrapper'>";
                             foreach ($tabs as $tab) {
                                 if ($tab['active']) {
                                     echo "<div class='nav-tab nav-tab-active'><input type='text' name='title'  value='" . $tab['title'] . "' onkeypress='this.style.width = ((this.value.length + 1) * 9) + \"px\"' /></div>";
@@ -718,13 +718,13 @@ class MetaSliderPlugin {
                                 }
                             }
                             echo "<a href='{$add_url}' id='create_new_tab' class='nav-tab'>+</a>";
-                            echo "</h3>";
+                            echo "</h2>";
                         }
                     } else {
-                        echo "<h3 class='nav-tab-wrapper'>";
+                        echo "<h2 class='nav-tab-wrapper'>";
                         echo "<a href='{$add_url}' id='create_new_tab' class='nav-tab'>+</a>";
                         echo "<div class='bubble'>" . __("Create your first slideshow") . "</div>";
-                        echo "</h3>";
+                        echo "</h2>";
                     }
 
                 ?>
@@ -772,7 +772,7 @@ class MetaSliderPlugin {
 																'value' => $this->slider->get_setting('width'),
 																'label' => __("Width", "metaslider"),
 																'class' => 'coin flex responsive nivo',
-																'helptext' => __("Set the initial size for the slides (width x height)", "metaslider"),
+																'helptext' => __("The desired width of each slide (in pixels)", "metaslider"),
 																'after' => __("px", "metaslider")
 															),
 															'height' => array(
@@ -785,7 +785,7 @@ class MetaSliderPlugin {
 																'value' => $this->slider->get_setting('height'),
 																'label' => __("Height", "metaslider"),
 																'class' => 'coin flex responsive nivo',
-																'helptext' => __("Set the initial size for the slides (width x height)", "metaslider"),
+																'helptext' => __("Desired height of each slide (in pixels)", "metaslider"),
 																'after' => __("px", "metaslider")
 															),
 															'effect' => array(
@@ -917,7 +917,7 @@ class MetaSliderPlugin {
 																'priority' => 40,
 																'type' => 'checkbox',
 																'label' => __("Carousel mode", "metaslider"),
-																'class' => 'option coin flex nivo responsive',
+																'class' => 'option flex',
 																'checked' => $this->slider->get_setting('carouselMode') == 'true' ? 'checked' : '',
 																'helptext' => __("Display as carousel - when selected the effect and direction options will be ignored.", "metaslider")
 															),
@@ -1145,7 +1145,7 @@ class MetaSliderPlugin {
 											</ul>
 											<div class='tabs-content'>
 												<div class='tab tab-1'>
-												<p><?php _e("Copy & Paste the shortcode directly into any WordPress post or page.", "metaslider"); ?></p>
+												<p><?php _e("Copy & paste the shortcode directly into any WordPress post or page.", "metaslider"); ?></p>
 												<input readonly='readonly' type='text' value='[metaslider id=<?php echo $this->slider->id ?>]' /></div>
 												<div class='tab tab-2' style='display: none'>
 												<p><?php _e("Copy & Paste this code into a template file to include the slideshow within your theme.", "metaslider"); ?></p>
