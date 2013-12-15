@@ -3,7 +3,7 @@ Contributors: matchalabs
 Tags: widget,wordpress slider,slideshow,wordpress slideshow,image slider,flexslider,flex slider,nivoslider,nivo slider,responsiveslides,responsive,responsive slides,coinslider,coin slider,slideshow,carousel,responsive slider,vertical slides,ml slider,image rotator,metaslider,meta,ajax,metaslider pro
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CQ84KC4X8YKW8
 Requires at least: 3.5
-Tested up to: 3.7
+Tested up to: 3.8
 Stable tag: 2.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -14,7 +14,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 http://www.youtube.com/watch?v=I7IfkV6iLqo
 
-Meta Slider is a flexible, intuitive slideshow administration plugin that lets you choose between 4 jQuery sliders.
+Meta Slider is a flexible, easy to use slideshow administration plugin that lets you choose between 4 jQuery sliders. Use Meta Slider to create Responsive, SEO optimised slideshows in seconds!
 
 * **Nivo Slider** (Responsive, 16 transition effects, 4 themes)
 * **Coin Slider** (4 transition effects)
@@ -23,21 +23,17 @@ Meta Slider is a flexible, intuitive slideshow administration plugin that lets y
 
 Features:
 
-* Create unlimited fully featured image slideshows
-* Simple, easy to use interface
-* Choose from 4 slideshow types
-* Live admin preview
-* Built in Widget and Shortcode to easily embed your slideshows into Posts, Pages & Templates
-* Configure each slideshow individually *(speed, theme, hover pause, width, height, easing etc)*
-* Fully integrated with the new style WordPress Media Manager
-* Add captions (html supported) and URLs to slides
-* Drag and drop reordering
+* Simple, easy to use interface - perfect for individual users, developers & clients
+* Create Responsive, SEO optimised slideshows in seconds
+* Unrestricted image support - add captions & links for each image slide
+* SEO features included - add title & alt text for each image slide
+* Drag and drop slide reordering
 * Intelligent image cropping
+* Built in Widget and Shortcode to easily embed your slideshows into Posts, Pages & Templates
+* Configure each slideshow individually *(slider type, slide delay, auto play, speed, theme, hover pause, width, height, easing etc)*
 * Fully localised
-* Multi Site compatible
-* Lightweight - only the minimum JavaScript/CSS is outputted to your page
-* Minimal upgrade nags(!)
-* Lots more!
+* WordPress Multi Site compatible
+* FAST - only the minimum JavaScript/CSS is included on your page
 
 Want More? Get the **Meta Slider Pro** addon pack to add support for:
 
@@ -55,6 +51,7 @@ Meta Slider has been translated into the following languages:
 * German (thanks to Rewolve44)
 * Polish (thanks to gordon34)
 * Chinese (thanks to 断青丝)
+* Taiwanese (thanks to 断青丝)
 
 Read more and thanks to:
 
