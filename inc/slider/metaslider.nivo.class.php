@@ -15,7 +15,6 @@ class MetaNivoSlider extends MetaSlider {
         parent::__construct($id, $shortcode_settings);
 
         add_filter('metaslider_nivo_slider_parameters', array($this, 'set_autoplay_parameter'), 10, 3);
-
     }
 
     /**
@@ -77,7 +76,7 @@ class MetaNivoSlider extends MetaSlider {
 
         if ($this->get_setting('printCss') == 'true') {
             $theme = $this->get_theme();
-        	wp_enqueue_style('metaslider-' . $this->get_setting('type') . '-slider-'.$theme, METASLIDER_ASSETS_URL . "sliders/nivoslider/themes/{$theme}/{$theme}.css", METASLIDER_VERSION);
+        	wp_enqueue_style('metaslider-' . $this->get_setting('type') . '-slider-'.$theme, METASLIDER_ASSETS_URL . "sliders/nivoslider/themes/{$theme}/{$theme}.css", false, METASLIDER_VERSION);
         }
     }
 
