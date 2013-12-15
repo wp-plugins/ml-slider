@@ -1,0 +1,528 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: metaslider-zh_CN\n"
+"POT-Creation-Date: 2013-11-12 14:43-0000\n"
+"PO-Revision-Date: 2013-11-30 20:39+0800\n"
+"Last-Translator: 断青丝 <181138991@qq.com>\n"
+"Language-Team: 断青丝 <181138991@qq.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"Language: zh_CN\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../ml-slider.php:99
+msgid "Go Pro"
+msgstr "查看專業版"
+
+#: ../ml-slider.php:153
+msgid "Image"
+msgstr "圖像"
+
+#: ../ml-slider.php:154
+msgid "Add to slider"
+msgstr "添加到幻燈片"
+
+#: ../ml-slider.php:174
+msgid "Post Feed"
+msgstr "文章資訊"
+
+#: ../ml-slider.php:175
+msgid "Vimeo"
+msgstr ""
+
+#: ../ml-slider.php:176
+msgid "YouTube"
+msgstr ""
+
+#: ../ml-slider.php:177
+msgid "Layer Slide"
+msgstr "幻燈片"
+
+#: ../ml-slider.php:232 ../inc/slide/metaslide.image.class.php:120
+msgid "URL"
+msgstr ""
+
+#: ../ml-slider.php:233 ../inc/slide/metaslide.image.class.php:118
+msgid "Caption"
+msgstr "標題"
+
+#: ../ml-slider.php:234 ../inc/slide/metaslide.image.class.php:119
+msgid "New Window"
+msgstr "新窗口"
+
+#: ../ml-slider.php:235
+msgid "Are you sure?"
+msgstr "你確定嗎"
+
+#: ../ml-slider.php:239
+msgid ""
+"Caution: This setting is for advanced developers only. If you're unsure, "
+"leave it checked."
+msgstr "注意：此功能僅適用於高級開發。"
+
+#: ../ml-slider.php:275
+msgid "Upgrade to Pro $19"
+msgstr "升級到專業版只需$19"
+
+#: ../ml-slider.php:291
+msgid "Documentation"
+msgstr "文檔"
+
+#: ../ml-slider.php:425
+msgid "New Slider"
+msgstr "新的滑塊"
+
+#: ../ml-slider.php:526
+msgid "Version"
+msgstr "版本"
+
+#: ../ml-slider.php:527
+msgid "Responsive"
+msgstr "響應"
+
+#: ../ml-slider.php:528 ../ml-slider.php:532
+msgid "Yes"
+msgstr ""
+
+#: ../ml-slider.php:528 ../ml-slider.php:532
+msgid "No"
+msgstr ""
+
+#: ../ml-slider.php:530 ../ml-slider.php:679
+msgid "Size"
+msgstr "大小"
+
+#: ../ml-slider.php:530
+msgid "kb"
+msgstr ""
+
+#: ../ml-slider.php:531
+msgid "Mobile Friendly"
+msgstr "移動"
+
+#: ../ml-slider.php:565
+msgid "New slideshow created. Click 'Add Slide' to get started!"
+msgstr "創建新的幻燈片。點擊“添加幻燈片”以開始瀏覽網頁！"
+
+#: ../ml-slider.php:582
+msgid "or"
+msgstr "或"
+
+#: ../ml-slider.php:583
+msgid "Add New Slideshow"
+msgstr "添加新的幻燈片"
+
+#: ../ml-slider.php:599
+msgid "Create your first slideshow"
+msgstr "創建第一份幻燈片"
+
+#: ../ml-slider.php:616
+msgid "Slides"
+msgstr "幻燈片"
+
+#: ../ml-slider.php:619 ../ml-slider.php:620
+msgid "Add Slide"
+msgstr "添加幻燈片"
+
+#: ../ml-slider.php:639
+msgid "Settings"
+msgstr "設置"
+
+#: ../ml-slider.php:640
+msgid "Save"
+msgstr "保存"
+
+#: ../ml-slider.php:641
+msgid "Save & Preview"
+msgstr "保存並預覽"
+
+#: ../ml-slider.php:669
+msgid "Slideshow title"
+msgstr "幻燈片標題"
+
+#: ../ml-slider.php:670
+msgid "Title"
+msgstr "標題"
+
+#: ../ml-slider.php:678
+msgid "Set the initial size for the slides (width x height)"
+msgstr "設置幻燈片的初始大小（ 寬 x 高 ）"
+
+#: ../ml-slider.php:679
+msgid "px"
+msgstr ""
+
+#: ../ml-slider.php:682 ../ml-slider.php:683
+msgid "Width"
+msgstr "寬度"
+
+#: ../ml-slider.php:684 ../ml-slider.php:685
+msgid "Height"
+msgstr "高度"
+
+#: ../ml-slider.php:689
+msgid "Slide transition effect"
+msgstr "幻燈片過渡效果"
+
+#: ../ml-slider.php:690
+msgid "Effect"
+msgstr "效果"
+
+#: ../ml-slider.php:694 ../ml-slider.php:804
+msgid "Random"
+msgstr "隨機"
+
+#: ../ml-slider.php:695
+msgid "Swirl"
+msgstr "漩渦"
+
+#: ../ml-slider.php:696
+msgid "Rain"
+msgstr "雨點"
+
+#: ../ml-slider.php:697
+msgid "Straight"
+msgstr "直接"
+
+#: ../ml-slider.php:698
+msgid "Slide Down"
+msgstr "向下滑動"
+
+#: ../ml-slider.php:699
+msgid "Slice Up"
+msgstr "切片"
+
+#: ../ml-slider.php:700
+msgid "Slide Up Left"
+msgstr "向左滑動"
+
+#: ../ml-slider.php:701
+msgid "Slice Up Down"
+msgstr "切片向下"
+
+#: ../ml-slider.php:702
+msgid "Slide Up Down Left"
+msgstr "向上滑動"
+
+#: ../ml-slider.php:703
+msgid "Fold"
+msgstr "折疊"
+
+#: ../ml-slider.php:704
+msgid "Fade"
+msgstr "褪色"
+
+#: ../ml-slider.php:705
+msgid "Slide In Right"
+msgstr "向右滑動"
+
+#: ../ml-slider.php:706
+msgid "Slide In Left"
+msgstr "向左滑動"
+
+#: ../ml-slider.php:707
+msgid "Box Random"
+msgstr "隨機"
+
+#: ../ml-slider.php:708
+msgid "Box Rain"
+msgstr "箱式"
+
+#: ../ml-slider.php:709
+msgid "Box Rain Reverse"
+msgstr "箱式反向"
+
+#: ../ml-slider.php:710
+msgid "Box Rain Grow Reverse"
+msgstr ""
+
+#: ../ml-slider.php:711
+msgid "Slide"
+msgstr "滑動"
+
+#: ../ml-slider.php:716
+msgid "Change the slider style"
+msgstr "更改滑蓋造型"
+
+#: ../ml-slider.php:717
+msgid "Theme"
+msgstr "主題"
+
+#: ../ml-slider.php:738
+msgid "Controls"
+msgstr "控制"
+
+#: ../ml-slider.php:741 ../ml-slider.php:755
+msgid "Show slide navigation row"
+msgstr "顯示幻燈片導航"
+
+#: ../ml-slider.php:742
+msgid "Arrows"
+msgstr "箭頭"
+
+#: ../ml-slider.php:756
+msgid "Navigation"
+msgstr "導航"
+
+#: ../ml-slider.php:759
+msgid "Hidden"
+msgstr "隱藏"
+
+#: ../ml-slider.php:760
+msgid "Dots"
+msgstr "點"
+
+#: ../ml-slider.php:761
+msgid "Thumbnails (Pro)"
+msgstr "縮略圖（臨）"
+
+#: ../ml-slider.php:768
+msgid "Advanced Settings"
+msgstr "高級設置"
+
+#: ../ml-slider.php:771
+msgid "Center align the slideshow"
+msgstr "居中對齊幻燈片"
+
+#: ../ml-slider.php:772
+msgid "Center align"
+msgstr "居中對齊"
+
+#: ../ml-slider.php:779
+msgid "Start the slideshow on page load"
+msgstr "在頁面加載啟動幻燈片"
+
+#: ../ml-slider.php:780
+msgid "Auto play"
+msgstr "自動播放"
+
+#: ../ml-slider.php:787
+msgid ""
+"Smart Crop ensures your responsive slides are cropped to a ratio that "
+"results in a consistent slideshow size"
+msgstr ""
+"智能裁剪，將您的幻燈片圖片裁剪到一個相同比例，使其顯示結果在幻燈片中大小保存"
+"一致。"
+
+#: ../ml-slider.php:788
+msgid "Smart crop"
+msgstr "智能裁剪"
+
+#: ../ml-slider.php:795
+msgid ""
+"Display as carousel - when selected the effect and direction options will be "
+"ignored."
+msgstr "顯示為旋轉- 當選擇後其他效果和方向設置將被忽略。"
+
+#: ../ml-slider.php:796
+msgid "Carousel mode"
+msgstr "傳送帶模式"
+
+#: ../ml-slider.php:803
+msgid "Randomise the order of the slides"
+msgstr "幻燈片順序隨機"
+
+#: ../ml-slider.php:811
+msgid ""
+"Pause the slideshow when hovering over slider, then resume when no longer "
+"hovering"
+msgstr "當鼠標懸停在圖片上時暫停幻燈片"
+
+#: ../ml-slider.php:812
+msgid "Hover pause"
+msgstr "懸停時間"
+
+#: ../ml-slider.php:819
+msgid "Reverse the animation direction"
+msgstr "反向動畫"
+
+#: ../ml-slider.php:820
+msgid "Reverse"
+msgstr "逆轉"
+
+#: ../ml-slider.php:827
+msgid "How long to display each slide, in milliseconds"
+msgstr "幻燈片的播放間隔，單位毫秒"
+
+#: ../ml-slider.php:828
+msgid "Slide delay"
+msgstr "動畫延遲"
+
+#: ../ml-slider.php:828 ../ml-slider.php:836 ../ml-slider.php:915
+#: ../ml-slider.php:931
+msgid "ms"
+msgstr "毫秒"
+
+#: ../ml-slider.php:835
+msgid "Set the speed of animations, in milliseconds"
+msgstr "設置動畫的速度，單位毫秒"
+
+#: ../ml-slider.php:836
+msgid "Animation speed"
+msgstr "動畫速度"
+
+#: ../ml-slider.php:843
+msgid "Number of squares (width x height)"
+msgstr "寬 x 高"
+
+#: ../ml-slider.php:844
+msgid "Number of squares"
+msgstr "方格數"
+
+#: ../ml-slider.php:852 ../ml-slider.php:853
+msgid "Number of slices"
+msgstr "切片數"
+
+#: ../ml-slider.php:860
+msgid "Select the sliding direction"
+msgstr "選擇的滑動方向"
+
+#: ../ml-slider.php:860
+msgid "Slide direction"
+msgstr "滑動方向"
+
+#: ../ml-slider.php:863
+msgid "Horizontal"
+msgstr "橫向"
+
+#: ../ml-slider.php:864
+msgid "Vertical"
+msgstr "垂直"
+
+#: ../ml-slider.php:869
+msgid "Animation easing effect"
+msgstr "動畫寬鬆效果"
+
+#: ../ml-slider.php:870
+msgid "Easing"
+msgstr "緩和"
+
+#: ../ml-slider.php:898
+msgid "Set the text for the 'previous' direction item"
+msgstr "選擇圖片為“上一張”"
+
+#: ../ml-slider.php:899
+msgid "Previous text"
+msgstr "上一張圖片"
+
+#: ../ml-slider.php:906
+msgid "Set the text for the 'next' direction item"
+msgstr "選擇圖片為'下一張'"
+
+#: ../ml-slider.php:907
+msgid "Next text"
+msgstr "下一張圖片"
+
+#: ../ml-slider.php:914
+msgid "Delay beetwen squares in ms"
+msgstr "以毫秒為單位"
+
+#: ../ml-slider.php:915
+msgid "Square delay"
+msgstr "延遲"
+
+#: ../ml-slider.php:922
+msgid "Opacity of title and navigation"
+msgstr "標題和導航的透明度"
+
+#: ../ml-slider.php:923
+msgid "Opacity"
+msgstr "透明度"
+
+#: ../ml-slider.php:930
+msgid "Set the fade in speed of the caption"
+msgstr "設置速度的標題淡入"
+
+#: ../ml-slider.php:931
+msgid "Caption speed"
+msgstr "速度"
+
+#: ../ml-slider.php:938
+msgid "Developer Options"
+msgstr "開發人員選項"
+
+#: ../ml-slider.php:941
+msgid ""
+"Specify any custom CSS Classes you would like to be added to the slider "
+"wrapper"
+msgstr "指定的任何自定義CSS類"
+
+#: ../ml-slider.php:942
+msgid "CSS classes"
+msgstr "CSS 類"
+
+#: ../ml-slider.php:949 ../ml-slider.php:958
+msgid "Uncheck this is you would like to include your own Javascript"
+msgstr "取消選中，則使用主題自身的Javascript"
+
+#: ../ml-slider.php:950
+msgid "Print Scripts"
+msgstr "顯示JavaScript"
+
+#: ../ml-slider.php:954
+msgid "Uncheck this is you would like to include your own CSS"
+msgstr "取消選中，則使用主題自身的CSS"
+
+#: ../ml-slider.php:955
+msgid "CSS"
+msgstr ""
+
+#: ../ml-slider.php:959
+msgid "JavaScript"
+msgstr ""
+
+#: ../ml-slider.php:965
+msgid "Delete Slider"
+msgstr "刪除幻燈片"
+
+#: ../ml-slider.php:974
+msgid "Usage"
+msgstr "使用方法"
+
+#: ../ml-slider.php:980
+msgid "Shortcode"
+msgstr "簡碼"
+
+#: ../ml-slider.php:986
+msgid "Template Include"
+msgstr "使用在主題代碼中的代碼"
+
+#: ../inc/metaslider.widget.class.php:18
+msgid "Meta Slider"
+msgstr "多彩幻燈片"
+
+#: ../inc/metaslider.widget.class.php:111
+msgid "Title:"
+msgstr "標題："
+
+#: ../inc/metaslider.widget.class.php:114
+msgid "Select Slider:"
+msgstr "選擇幻燈片："
+
+#: ../inc/metaslider.widget.class.php:124
+msgid "No slideshows found"
+msgstr "沒有幻燈片"
+
+#: ../inc/slide/metaslide.image.class.php:23
+msgid "Security check failed. Refresh page and try again."
+msgstr "安全檢查失敗。刷新頁面，然後重試。"
+
+#: ../inc/slide/metaslide.image.class.php:36
+msgid "Failed to add slide. Slide already exists in slideshow."
+msgstr "無法添加幻燈片。"
+
+#: ../inc/slide/metaslide.image.class.php:38
+msgid "Failed to add slide. Slide is not of type 'image'."
+msgstr "未能添加幻燈片。幻燈片類型不正確'。"
+
+#: ../inc/slide/metaslide.image.class.php:133
+msgid "Warning: Image data does not exist. Please re-upload the image."
+msgstr "警告：圖像數據不存在。請重新上傳圖片。"
+
+#~ msgid "More Slide Types"
+#~ msgstr "更多幻灯片类型"
