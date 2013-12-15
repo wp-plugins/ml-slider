@@ -14,7 +14,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 http://www.youtube.com/watch?v=I7IfkV6iLqo
 
-Meta Slider is a flexible, easy to use slideshow administration plugin that lets you choose between 4 jQuery sliders. Use Meta Slider to create Responsive, SEO optimised slideshows in seconds!
+Meta Slider is a flexible, easy to use slideshow administration plugin that lets you choose between 4 jQuery sliders. Create Responsive, SEO optimised slideshows in seconds!
 
 * **Nivo Slider** (Responsive, 16 transition effects, 4 themes)
 * **Coin Slider** (4 transition effects)
@@ -25,24 +25,25 @@ Features:
 
 * Simple, easy to use interface - perfect for individual users, developers & clients
 * Create Responsive, SEO optimised slideshows in seconds
-* Unrestricted image support - add captions & links for each image slide
-* SEO features included - add title & alt text for each image slide
+* Unrestricted, fully featured image support
+* SEO features built in - add title & alt text for each image slide
 * Drag and drop slide reordering
 * Intelligent image cropping
-* Built in Widget and Shortcode to easily embed your slideshows into Posts, Pages & Templates
-* Configure each slideshow individually *(slider type, slide delay, auto play, speed, theme, hover pause, width, height, easing etc)*
+* Use the Widget or Shortcode to easily embed your slideshows into Posts, Pages & Templates
+* Configure each of your slideshows individually *(slider type, slide delay, auto play, speed, theme, hover pause, width, height, easing etc)*
 * Fully localised
 * WordPress Multi Site compatible
+* Extensive Developer API
 * FAST - only the minimum JavaScript/CSS is included on your page
 
-Want More? Get the **Meta Slider Pro** addon pack to add support for:
+Looking for a little more? Get the **Meta Slider Pro** addon pack to add support for:
 
 * YouTube & Vimeo slides
 * HTML slides
 * Layer slides with CSS3 animations
 * Dynamic Post Feed/Featured Image Slides (content slider)
 * Custom Themes
-* Thumbnail Navigation (new!)
+* Thumbnail Navigation
 
 Meta Slider has been translated into the following languages:
 
