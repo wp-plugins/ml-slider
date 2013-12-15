@@ -179,7 +179,7 @@ class MetaFlexSlider extends MetaSlider {
     protected function get_html() {
     	$class = $this->get_setting('noConflict') == 'true' ? "" : ' class="flexslider"';
 
-        $return_value = '<div id="' . $this->get_identifier() . $class . '">';
+        $return_value = '<div id="' . $this->get_identifier() . '"' . $class . '>';
         $return_value .= "\n            <ul class=\"slides\">";
 
         foreach ($this->slides as $slide) {
