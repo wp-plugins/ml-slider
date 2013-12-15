@@ -101,8 +101,6 @@ class MetaImageSlide extends MetaSlide {
         $str_caption    = __("Caption", 'metaslider');
         $str_new_window = __("New Window", 'metaslider');
         $str_url        = __("URL", 'metaslider');
-        $str_alt        = __("Image Alt", 'metaslider');
-        $str_title      = __("Image Title", 'metaslider');
 
         // slide row HTML
         $row  = "<tr class='slide image flex responsive nivo coin'>";
@@ -129,8 +127,10 @@ class MetaImageSlide extends MetaSlide {
         $row .= "                </div>";
         $row .= "            </div>";
         $row .= "            <div class='tab tab-2' style='display: none;'>";
-        $row .= "                <div class='row'><label>" . __("Image Title Text", "metaslider") . "</label><input type='text' size='50' name='attachment[{$this->slide->ID}][title]' placeholder='{$str_title}' value='{$title}' /></div>";
-        $row .= "                <div class='row'><label>" . __("Image Alt Text", "metaslider") . "</label><input type='text' size='50' name='attachment[{$this->slide->ID}][alt]' placeholder='{$str_alt}' value='{$alt}' /></div>";
+        $row .= "                <div class='row'><label>" . __("Image Title Text", "metaslider") . "</label></div>";
+        $row .= "                <div class='row'><input type='text' size='50' name='attachment[{$this->slide->ID}][title]' value='{$title}' /></div>";
+        $row .= "                <div class='row'><label>" . __("Image Alt Text", "metaslider") . "</label></div>";
+        $row .= "                <div class='row'><input type='text' size='50' name='attachment[{$this->slide->ID}][alt]' value='{$alt}' /></div>";
         $row .= "            </div>";
         $row .= "        </div>";
         $row .= "        <input type='hidden' name='attachment[{$this->slide->ID}][type]' value='image' />";
