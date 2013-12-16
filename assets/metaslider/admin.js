@@ -130,7 +130,7 @@ jQuery(document).ready(function($) {
 
     // return lightbox width
     var getLightboxWidth = function() {
-        var width = parseInt(jQuery('input.width').val(), 10) + 'px';
+        var width = parseInt(jQuery('input.width').val(), 10);
 
         if (jQuery('#carouselMode').is(':checked')) {
             width = '75%';
@@ -143,15 +143,14 @@ jQuery(document).ready(function($) {
     var getLightboxHeight = function() {
         var height = parseInt(jQuery('input.height').val(), 10);
 
-        if (!isNaN(height)) {
-            height = height + 80 + 'px'
-        } else {
+        if (isNaN(height)) {
             height = '70%';
+        } else {
+        	height = height + 50;
         }
 
         return height;
     };
-
 
 
     // IE10 treats placeholder text as the actual value of a textarea

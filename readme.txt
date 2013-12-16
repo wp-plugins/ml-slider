@@ -14,27 +14,27 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 http://www.youtube.com/watch?v=I7IfkV6iLqo
 
-Meta Slider is a flexible, easy to use slideshow administration plugin that lets you choose between 4 jQuery sliders. Create Responsive, SEO optimised slideshows in seconds!
+Meta Slider is a flexible, easy to use slideshow administration plugin that lets you choose between 4 jQuery sliders.
 
-* **Nivo Slider** (Responsive, 16 transition effects, 4 themes)
-* **Coin Slider** (4 transition effects)
 * **Flex Slider 2** (Responsive, 2 transition effects, carousel mode)
-* **Responsive Slides** (Responsive, fade effect only, incredibly light weight!)
+* **Nivo Slider** (Responsive, 16 transition effects, 4 themes)
+* **Responsive Slides** (Responsive & incredibly light weight)
+* **Coin Slider** (4 transition effects)
 
 Features:
 
 * Simple, easy to use interface - perfect for individual users, developers & clients
 * Create Responsive, SEO optimised slideshows in seconds
-* Unrestricted, fully featured image support
-* SEO features built in - add title & alt text for each image slide
+* Unrestricted support for Image slides (supports caption, URL, title text, alt text)
 * Drag and drop slide reordering
 * Intelligent image cropping
-* Use the Widget or Shortcode to easily embed your slideshows into Posts, Pages & Templates
-* Configure each of your slideshows individually *(slider type, slide delay, auto play, speed, theme, hover pause, width, height, easing etc)*
+* Built in Widget and Shortcode
+* Tonnes of slideshow configuration options (per slideshow)
 * Fully localised
 * WordPress Multi Site compatible
+* Compatible with translation plugins (WPML, PolyLang & qTranslate)
 * Extensive Developer API
-* FAST - only the minimum JavaScript/CSS is included on your page
+* Fast - only the minimum JavaScript/CSS is included on your page
 
 Looking for a little more? Get the **Meta Slider Pro** addon pack to add support for:
 
@@ -138,6 +138,17 @@ Coin Slider is not responsive. This means (unlike the other slideshows in Meta S
 6. Administration panel - selecting slides
 
 == Changelog ==
+
+= 2.6 [15/12/13] =
+
+* New feature: Interface update for WordPress 3.8 admin redesign
+* New feature: 'Stretch' setting for full width slideshows
+* New feature: No conflict mode
+* New feature: 'Add slider' button for posts and pages
+* New feature: SEO options (add title & alt text to slides)
+* Change: CSS is now enqueued using wp_enqueue_style (Use a minification plugin or caching plugin to move styles to the <head> if HTML5 validity is required - eg W3 Total Cache)
+
+More info/Comments: http://www.metaslider.com/coming-soon-meta-slider-2-6-free/
 
 = 2.5 [25/11/13] =
 * Fix: JetPack Photon conflict
