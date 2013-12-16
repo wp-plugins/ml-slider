@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: metaslider\n"
-"POT-Creation-Date: 2013-12-16 16:58-0000\n"
-"PO-Revision-Date: 2013-12-16 16:59-0000\n"
+"POT-Creation-Date: 2013-12-16 17:32-0000\n"
+"PO-Revision-Date: 2013-12-16 17:32-0000\n"
 "Last-Translator: Kamil <dinal.shirts@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -130,7 +130,7 @@ msgid "Width"
 msgstr "Szerokośc"
 
 #: ../ml-slider.php:775
-msgid "The desired width of each slide (in pixels)"
+msgid "Slideshow width"
 msgstr ""
 
 #: ../ml-slider.php:776 ../ml-slider.php:789
@@ -142,8 +142,9 @@ msgid "Height"
 msgstr "Wysokość"
 
 #: ../ml-slider.php:788
-msgid "Desired height of each slide (in pixels)"
-msgstr ""
+#, fuzzy
+msgid "Slideshow height"
+msgstr "Wjeżdżanie od prawej"
 
 #: ../ml-slider.php:795
 msgid "Effect"
@@ -230,8 +231,8 @@ msgid "Theme"
 msgstr "Szablon"
 
 #: ../ml-slider.php:825
-msgid "Change the slider style"
-msgstr "Zmień styl slajdera"
+msgid "Slideshow theme"
+msgstr ""
 
 #: ../ml-slider.php:827
 msgid "Default"
@@ -253,13 +254,18 @@ msgstr ""
 msgid "Arrows"
 msgstr ""
 
-#: ../ml-slider.php:839 ../ml-slider.php:847
-msgid "Show slide navigation row"
-msgstr "Pokaż pasek nawigacji slajdami"
+#: ../ml-slider.php:839
+msgid "Show the previous/next arrows"
+msgstr ""
 
 #: ../ml-slider.php:844
 msgid "Navigation"
 msgstr "Nawigacja"
+
+#: ../ml-slider.php:847
+#, fuzzy
+msgid "Show the slide navigation bullets"
+msgstr "Pokaż pasek nawigacji slajdami"
 
 #: ../ml-slider.php:849
 msgid "Hidden"
@@ -295,8 +301,9 @@ msgid "100% wide output"
 msgstr ""
 
 #: ../ml-slider.php:890
-msgid "Stretch the slideshow to fill the width of the container it is in"
-msgstr ""
+#, fuzzy
+msgid "Stretch the slideshow output to fill it's parent container"
+msgstr "Rozpocznij pokaz slajdów przy starcie strony"
 
 #: ../ml-slider.php:895
 msgid "Center align"
@@ -311,8 +318,8 @@ msgid "Auto play"
 msgstr "Automatyczny start"
 
 #: ../ml-slider.php:906
-msgid "Start the slideshow on page load"
-msgstr "Rozpocznij pokaz slajdów przy starcie strony"
+msgid "Transition between slides automatically"
+msgstr ""
 
 #: ../ml-slider.php:911
 msgid "Smart crop"
@@ -329,12 +336,8 @@ msgid "Carousel mode"
 msgstr "Tryb karuzeli"
 
 #: ../ml-slider.php:922
-msgid ""
-"Display as carousel - when selected the effect and direction options will be "
-"ignored."
+msgid "Display multiple slides at once. Slideshow output will be 100% wide."
 msgstr ""
-"Wyświetl jako karuzele - jeśli zaznaczono, opcje efektu i kierunku zostaną "
-"pominęte."
 
 #: ../ml-slider.php:930
 msgid "Randomise the order of the slides"
@@ -436,7 +439,7 @@ msgid "Square delay"
 msgstr ""
 
 #: ../ml-slider.php:1060
-msgid "Delay beetwen squares in ms"
+msgid "Delay between squares in ms"
 msgstr ""
 
 #: ../ml-slider.php:1071
@@ -455,7 +458,16 @@ msgstr "Prędkośc pojawiania opisu"
 msgid "Set the fade in speed of the caption"
 msgstr "Ustaw czas zanikania podpisu"
 
-#: ../ml-slider.php:1093 ../ml-slider.php:1101
+#: ../ml-slider.php:1093
+#, fuzzy
+msgid "Developer options"
+msgstr "Opcje deweloperskie"
+
+#: ../ml-slider.php:1098
+msgid "CSS classes"
+msgstr "Klasy CSS"
+
+#: ../ml-slider.php:1100
 msgid ""
 "Specify any custom CSS Classes you would like to be added to the slider "
 "wrapper"
@@ -463,92 +475,83 @@ msgstr ""
 "Wpisz własne klasy CSS, które mają zostać dołączone do kontenera głównego "
 "slajdera"
 
-#: ../ml-slider.php:1094
-#, fuzzy
-msgid "Developer options"
-msgstr "Opcje deweloperskie"
-
-#: ../ml-slider.php:1099
-msgid "CSS classes"
-msgstr "Klasy CSS"
-
-#: ../ml-slider.php:1107
+#: ../ml-slider.php:1106
 msgid "Print CSS"
 msgstr "Wyświetl CSS"
 
-#: ../ml-slider.php:1110
+#: ../ml-slider.php:1109
 msgid "Uncheck this is you would like to include your own CSS"
 msgstr "Odznacz jeśli chcesz dołączyć swój własny kod CSS"
 
-#: ../ml-slider.php:1115
+#: ../ml-slider.php:1114
 msgid "Print JS"
 msgstr "Wyświetl JS"
 
-#: ../ml-slider.php:1118
+#: ../ml-slider.php:1117
 msgid "Uncheck this is you would like to include your own Javascript"
 msgstr "Odznacz jeśli chcesz dołączyć swój własny kod Javascript"
 
-#: ../ml-slider.php:1123
+#: ../ml-slider.php:1122
 msgid "No conflict mode"
 msgstr ""
 
-#: ../ml-slider.php:1126
+#: ../ml-slider.php:1125
 msgid "Delay adding the flexslider class to the slideshow"
 msgstr ""
 
-#: ../ml-slider.php:1140
+#: ../ml-slider.php:1139
 msgid "Usage"
 msgstr "Zastosowanie"
 
-#: ../ml-slider.php:1143
+#: ../ml-slider.php:1142
 msgid "Shortcode"
 msgstr "Kod skórtu"
 
-#: ../ml-slider.php:1144
+#: ../ml-slider.php:1143
 msgid "Template Include"
 msgstr "Dołącz szablon"
 
-#: ../ml-slider.php:1148
+#: ../ml-slider.php:1147
 msgid "Copy & paste the shortcode directly into any WordPress post or page."
 msgstr ""
 
-#: ../ml-slider.php:1151
+#: ../ml-slider.php:1150
 msgid ""
 "Copy & paste this code into a template file to include the slideshow within "
 "your theme."
 msgstr ""
 
-#: ../ml-slider.php:1180
+#: ../ml-slider.php:1179
 msgid "Delete Slider"
 msgstr "Usuń slajder"
 
-#: ../ml-slider.php:1191
+#: ../ml-slider.php:1190
 msgid "Slides"
 msgstr "Slajdy"
 
-#: ../ml-slider.php:1194 ../ml-slider.php:1195
+#: ../ml-slider.php:1193 ../ml-slider.php:1194
 msgid "Add Slide"
 msgstr "Dodaj slajd"
 
-#: ../ml-slider.php:1225
+#: ../ml-slider.php:1224
 msgid "Select slideshow to insert into post"
 msgstr ""
 
-#: ../ml-slider.php:1228
+#: ../ml-slider.php:1227
 #, fuzzy
 msgid "Add slider"
 msgstr "Dodaj do slidera"
 
-#: ../ml-slider.php:1259
+#: ../ml-slider.php:1258
 msgid "Insert Meta Slider"
 msgstr ""
 
-#: ../ml-slider.php:1261
+#: ../ml-slider.php:1260
 #, fuzzy
 msgid "Choose slideshow"
 msgstr "Nie znaleziono składników pokazu"
 
-#: ../ml-slider.php:1268 ../inc/metaslider.widget.class.php:124
+#: ../ml-slider.php:1267 ../inc/metaslider.widget.class.php:124
 msgid "No slideshows found"
 msgstr "Nie znaleziono składników pokazu"
 
@@ -600,6 +603,16 @@ msgstr ""
 #: ../inc/slide/metaslide.image.class.php:132
 msgid "Image Alt Text"
 msgstr ""
+
+#~ msgid "Change the slider style"
+#~ msgstr "Zmień styl slajdera"
+
+#~ msgid ""
+#~ "Display as carousel - when selected the effect and direction options will "
+#~ "be ignored."
+#~ msgstr ""
+#~ "Wyświetl jako karuzele - jeśli zaznaczono, opcje efektu i kierunku "
+#~ "zostaną pominęte."
 
 #~ msgid "Version"
 #~ msgstr "Wersja"

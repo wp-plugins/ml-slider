@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: metaslider\n"
-"POT-Creation-Date: 2013-12-16 16:57-0000\n"
-"PO-Revision-Date: 2013-12-16 16:57-0000\n"
+"POT-Creation-Date: 2013-12-16 17:32-0000\n"
+"PO-Revision-Date: 2013-12-16 17:32-0000\n"
 "Last-Translator: Miguel <contacto@eltipografico.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -130,7 +130,7 @@ msgid "Width"
 msgstr "Ancho"
 
 #: ../ml-slider.php:775
-msgid "The desired width of each slide (in pixels)"
+msgid "Slideshow width"
 msgstr ""
 
 #: ../ml-slider.php:776 ../ml-slider.php:789
@@ -142,7 +142,7 @@ msgid "Height"
 msgstr "Alto"
 
 #: ../ml-slider.php:788
-msgid "Desired height of each slide (in pixels)"
+msgid "Slideshow height"
 msgstr ""
 
 #: ../ml-slider.php:795
@@ -235,8 +235,8 @@ msgid "Theme"
 msgstr "Tema"
 
 #: ../ml-slider.php:825
-msgid "Change the slider style"
-msgstr "Cambar el estilo del pase"
+msgid "Slideshow theme"
+msgstr ""
 
 #: ../ml-slider.php:827
 msgid "Default"
@@ -258,13 +258,18 @@ msgstr ""
 msgid "Arrows"
 msgstr ""
 
-#: ../ml-slider.php:839 ../ml-slider.php:847
-msgid "Show slide navigation row"
-msgstr "Mostrar la barra de navegación"
+#: ../ml-slider.php:839
+msgid "Show the previous/next arrows"
+msgstr ""
 
 #: ../ml-slider.php:844
 msgid "Navigation"
 msgstr ""
+
+#: ../ml-slider.php:847
+#, fuzzy
+msgid "Show the slide navigation bullets"
+msgstr "Mostrar la barra de navegación"
 
 #: ../ml-slider.php:849
 msgid "Hidden"
@@ -299,8 +304,9 @@ msgid "100% wide output"
 msgstr ""
 
 #: ../ml-slider.php:890
-msgid "Stretch the slideshow to fill the width of the container it is in"
-msgstr ""
+#, fuzzy
+msgid "Stretch the slideshow output to fill it's parent container"
+msgstr "Comenzar el pase al cargar la página"
 
 #: ../ml-slider.php:895
 msgid "Center align"
@@ -315,8 +321,8 @@ msgid "Auto play"
 msgstr "Auto arranque"
 
 #: ../ml-slider.php:906
-msgid "Start the slideshow on page load"
-msgstr "Comenzar el pase al cargar la página"
+msgid "Transition between slides automatically"
+msgstr ""
 
 #: ../ml-slider.php:911
 msgid "Smart crop"
@@ -335,12 +341,8 @@ msgid "Carousel mode"
 msgstr "Modo carrusel"
 
 #: ../ml-slider.php:922
-msgid ""
-"Display as carousel - when selected the effect and direction options will be "
-"ignored."
+msgid "Display multiple slides at once. Slideshow output will be 100% wide."
 msgstr ""
-"Mostar como carrusel - Cuando lo seleccionas, los efectos y ajusttes de "
-"dirección son ignorados"
 
 #: ../ml-slider.php:930
 msgid "Randomise the order of the slides"
@@ -442,7 +444,8 @@ msgid "Square delay"
 msgstr "Retardo entre cuadros"
 
 #: ../ml-slider.php:1060
-msgid "Delay beetwen squares in ms"
+#, fuzzy
+msgid "Delay between squares in ms"
 msgstr "Retardo entre cuadros en ms"
 
 #: ../ml-slider.php:1071
@@ -461,98 +464,98 @@ msgstr "Velocidad del subtítulo"
 msgid "Set the fade in speed of the caption"
 msgstr "Ajustar el fundido en la velocidad del subtítulo"
 
-#: ../ml-slider.php:1093 ../ml-slider.php:1101
+#: ../ml-slider.php:1093
+#, fuzzy
+msgid "Developer options"
+msgstr "Opciones de desarrollador"
+
+#: ../ml-slider.php:1098
+msgid "CSS classes"
+msgstr "Clases CSS"
+
+#: ../ml-slider.php:1100
 msgid ""
 "Specify any custom CSS Classes you would like to be added to the slider "
 "wrapper"
 msgstr "Añadir las clases CSS personalizadas en el pase de diapositivas"
 
-#: ../ml-slider.php:1094
-#, fuzzy
-msgid "Developer options"
-msgstr "Opciones de desarrollador"
-
-#: ../ml-slider.php:1099
-msgid "CSS classes"
-msgstr "Clases CSS"
-
-#: ../ml-slider.php:1107
+#: ../ml-slider.php:1106
 msgid "Print CSS"
 msgstr "Imprimir CSS"
 
-#: ../ml-slider.php:1110
+#: ../ml-slider.php:1109
 msgid "Uncheck this is you would like to include your own CSS"
 msgstr "Marca esta si quieres incluir tu propio CSS"
 
-#: ../ml-slider.php:1115
+#: ../ml-slider.php:1114
 msgid "Print JS"
 msgstr "Imprimir JS"
 
-#: ../ml-slider.php:1118
+#: ../ml-slider.php:1117
 msgid "Uncheck this is you would like to include your own Javascript"
 msgstr "Desmarca esto si quieres incluír tu propio javascript"
 
-#: ../ml-slider.php:1123
+#: ../ml-slider.php:1122
 msgid "No conflict mode"
 msgstr ""
 
-#: ../ml-slider.php:1126
+#: ../ml-slider.php:1125
 msgid "Delay adding the flexslider class to the slideshow"
 msgstr ""
 
-#: ../ml-slider.php:1140
+#: ../ml-slider.php:1139
 msgid "Usage"
 msgstr "Uso"
 
-#: ../ml-slider.php:1143
+#: ../ml-slider.php:1142
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: ../ml-slider.php:1144
+#: ../ml-slider.php:1143
 msgid "Template Include"
 msgstr "Template include"
 
-#: ../ml-slider.php:1148
+#: ../ml-slider.php:1147
 msgid "Copy & paste the shortcode directly into any WordPress post or page."
 msgstr ""
 
-#: ../ml-slider.php:1151
+#: ../ml-slider.php:1150
 msgid ""
 "Copy & paste this code into a template file to include the slideshow within "
 "your theme."
 msgstr ""
 
-#: ../ml-slider.php:1180
+#: ../ml-slider.php:1179
 msgid "Delete Slider"
 msgstr "Borrar pase"
 
-#: ../ml-slider.php:1191
+#: ../ml-slider.php:1190
 msgid "Slides"
 msgstr "Diapositivas"
 
-#: ../ml-slider.php:1194 ../ml-slider.php:1195
+#: ../ml-slider.php:1193 ../ml-slider.php:1194
 msgid "Add Slide"
 msgstr "Añadir diapositiva"
 
-#: ../ml-slider.php:1225
+#: ../ml-slider.php:1224
 msgid "Select slideshow to insert into post"
 msgstr ""
 
-#: ../ml-slider.php:1228
+#: ../ml-slider.php:1227
 #, fuzzy
 msgid "Add slider"
 msgstr "Añadir al pase"
 
-#: ../ml-slider.php:1259
+#: ../ml-slider.php:1258
 msgid "Insert Meta Slider"
 msgstr ""
 
-#: ../ml-slider.php:1261
+#: ../ml-slider.php:1260
 #, fuzzy
 msgid "Choose slideshow"
 msgstr "No se han encontrado pases de diapositiva"
 
-#: ../ml-slider.php:1268 ../inc/metaslider.widget.class.php:124
+#: ../ml-slider.php:1267 ../inc/metaslider.widget.class.php:124
 msgid "No slideshows found"
 msgstr "No se han encontrado pases de diapositiva"
 
@@ -604,6 +607,16 @@ msgstr ""
 #: ../inc/slide/metaslide.image.class.php:132
 msgid "Image Alt Text"
 msgstr ""
+
+#~ msgid "Change the slider style"
+#~ msgstr "Cambar el estilo del pase"
+
+#~ msgid ""
+#~ "Display as carousel - when selected the effect and direction options will "
+#~ "be ignored."
+#~ msgstr ""
+#~ "Mostar como carrusel - Cuando lo seleccionas, los efectos y ajusttes de "
+#~ "dirección son ignorados"
 
 #~ msgid "Version"
 #~ msgstr "Versión"

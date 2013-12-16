@@ -772,7 +772,7 @@ class MetaSliderPlugin {
 																'value' => $this->slider->get_setting('width'),
 																'label' => __("Width", "metaslider"),
 																'class' => 'coin flex responsive nivo',
-																'helptext' => __("The desired width of each slide (in pixels)", "metaslider"),
+																'helptext' => __("Slideshow width", "metaslider"),
 																'after' => __("px", "metaslider")
 															),
 															'height' => array(
@@ -785,7 +785,7 @@ class MetaSliderPlugin {
 																'value' => $this->slider->get_setting('height'),
 																'label' => __("Height", "metaslider"),
 																'class' => 'coin flex responsive nivo',
-																'helptext' => __("Desired height of each slide (in pixels)", "metaslider"),
+																'helptext' => __("Slideshow height", "metaslider"),
 																'after' => __("px", "metaslider")
 															),
 															'effect' => array(
@@ -822,7 +822,7 @@ class MetaSliderPlugin {
 																'value' => $this->slider->get_setting('theme'),
 																'label' => __("Theme", "metaslider"),
 																'class' => 'effect coin flex responsive nivo',
-																'helptext' => __("Change the slider style", "metaslider"),
+																'helptext' => __("Slideshow theme", "metaslider"),
 																'options' => array(
 																	'default' => array('class' => 'option nivo flex coin responsive' , 'label' => __("Default", "metaslider")),
 																	'dark'    => array('class' => 'option nivo', 'label' => __("Dark (Nivo)", "metaslider")),
@@ -836,7 +836,7 @@ class MetaSliderPlugin {
 																'label' => __("Arrows", "metaslider"),
 																'class' => 'option coin flex nivo responsive',
 																'checked' => $this->slider->get_setting('links') == 'true' ? 'checked' : '',
-																'helptext' => __("Show slide navigation row", "metaslider")
+																'helptext' => __("Show the previous/next arrows", "metaslider")
 															),
 															'navigation' => array(
 																'priority' => 60,
@@ -844,7 +844,7 @@ class MetaSliderPlugin {
 																'label' => __("Navigation", "metaslider"),
 																'class' => 'option coin flex nivo responsive',
 																'value' => $this->slider->get_setting('navigation'),
-																'helptext' => __("Show slide navigation row", "metaslider"),
+																'helptext' => __("Show the slide navigation bullets", "metaslider"),
 																'options' => array(
 																	'false'      => array('label' => __("Hidden", "metaslider")),
 																	'true'       => array('label' => __("Dots", "metaslider")),
@@ -887,7 +887,7 @@ class MetaSliderPlugin {
 																'class' => 'option flex nivo responsive',
 																'after' => __("100% wide output", "metaslider"),
 																'checked' => $this->slider->get_setting('fullWidth') == 'true' ? 'checked' : '',
-																'helptext' => __("Stretch the slideshow to fill the width of the container it is in", "metaslider")
+																'helptext' => __("Stretch the slideshow output to fill it's parent container", "metaslider")
 															),
 															'center' => array(
 																'priority' => 10,
@@ -903,7 +903,7 @@ class MetaSliderPlugin {
 																'label' => __("Auto play", "metaslider"),
 																'class' => 'option flex nivo responsive',
 																'checked' => $this->slider->get_setting('autoPlay') == 'true' ? 'checked' : '',
-																'helptext' => __("Start the slideshow on page load", "metaslider")
+																'helptext' => __("Transition between slides automatically", "metaslider")
 															),
 															'smartCrop' => array(
 																'priority' => 30,
@@ -919,7 +919,7 @@ class MetaSliderPlugin {
 																'label' => __("Carousel mode", "metaslider"),
 																'class' => 'option flex',
 																'checked' => $this->slider->get_setting('carouselMode') == 'true' ? 'checked' : '',
-																'helptext' => __("Display as carousel - when selected the effect and direction options will be ignored.", "metaslider")
+																'helptext' => __("Display multiple slides at once. Slideshow output will be 100% wide.", "metaslider")
 															),
 															'random' => array(
 																'priority' => 50,
@@ -1057,7 +1057,7 @@ class MetaSliderPlugin {
 																'value' => $this->slider->get_setting('sDelay'),
 																'label' => __("Square delay", "metaslider"),
 																'class' => 'option coin',
-																'helptext' => __("Delay beetwen squares in ms", "metaslider"),
+																'helptext' => __("Delay between squares in ms", "metaslider"),
 																'after' => __("ms", "metaslider")
 															),
 															'opacity' => array(
@@ -1090,7 +1090,6 @@ class MetaSliderPlugin {
 																'priority' => 195,
 																'type' => 'divider',
 																'class' => 'option coin flex responsive nivo',
-																'helptext' => __("Specify any custom CSS Classes you would like to be added to the slider wrapper", "metaslider"),
 																'value' => __("Developer options", "metaslider")
 															),
 															'cssClass' => array(
