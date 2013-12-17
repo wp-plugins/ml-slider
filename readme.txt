@@ -69,7 +69,7 @@ The easy way:
 
 1. Go to the Plugins Menu in WordPress
 1. Search for "Meta Slider"
-1. Click 'Install'
+1. Click "Install"
 
 The not so easy way:
 
@@ -83,7 +83,11 @@ http://www.metaslider.com/documentation/
 
 = How do I include a slideshow in the header of my site? =
 
+Video Guide:
+
 http://www.youtube.com/watch?v=gSsWgd66Jjk
+
+Text Guide:
 
 You will need to paste the "Template Include" code into your theme (you can find this in the 'Usage' section underneath the slideshow settings)
 
@@ -100,33 +104,19 @@ if (is_front_page() || is_home()) {
 } 
 ?>`
 
+Theme specific instructions:
+
+http://www.metaslider.com/documentation/theme-integration/
+
 = It's not working - what can I do? =
 
 Check out the troubleshooting page here: 
 
-http://www.metaslider.com/documentation/troubleshooting
-
-= Does Meta Slider work with translation plugins? =
-
-We have tested with qTranslate and Polylang. We're working with the WPML team to bring in WMPL compatibility.
-
-= Is it multi site compatible? =
-
-Yes!
+http://www.metaslider.com/documentation/troubleshooting/
 
 = Meta Slider is cropping my images in the wrong place - what can I do? =
 
-Meta Slider uses responsive slideshow libraries. This means images will always be stretched or squeezed to 100% of the *width* of the slideshow. If you're trying to mix landscape and portrait images, you'll probably find that the top and bottom of your portrait images are being cropped. This is because Meta Slider wants to keep the slideshow a consistent height for all slides, and to do this it needs to crop your portrait images down in height so they match your landscape images.
-
-The best way to fix this is to ensure your images are correctly sized before adding them into Meta Slider (or at least ensure they all have similar width:height ratios), then set the slideshow size to the same size as your images. In this case, Meta Slider will not crop your images. If you're looking for a gallery style slideshow then you might wish to 'pad' your portrait images with white bars to the left and right, to effectively turn your portrait images into landscape images.
-
-= What is Smart Crop? =
-
-Smart crop takes the largest, most central portion of an image that it can, whilst ensuring the width:height ratio of the image matches the width:height ratio of the slideshow itself. This is essential for ensuring your responsive slideshow height remains fixed when navigating between different sized images.
-
-= Why is Coin Slider tiling my images? =
-
-Coin Slider is not responsive. This means (unlike the other slideshows in Meta Slider) it will not stretch images to fill the slideshow - it will tile them instead. You need to ensure your source images are the same size (or larger) as your slideshow size.
+See www.metaslider.com/documentation/image-cropping/
 
 == Screenshots ==
 
