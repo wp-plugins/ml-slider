@@ -346,7 +346,7 @@ class MetaImageSlide extends MetaSlide {
             $html .= '<div class="caption-wrap"><div class="caption">' . $slide['caption'] . '</div></div>';
         }
 
-        $anchor_attributes = apply_filters('metaslider_nivo_slider_anchor_attributes', array(
+        $anchor_attributes = apply_filters('metaslider_responsive_slider_anchor_attributes', array(
             'href' => $slide['url'],
             'target' => $slide['target']
         ), $slide, $this->slider->ID);
