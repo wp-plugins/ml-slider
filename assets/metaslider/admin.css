@@ -294,6 +294,26 @@
     display: block
 }
 
+.branch-3-5 .metaslider .left table tr.slide .tabs-content .new_window,
+.branch-3-6 .metaslider .left table tr.slide .tabs-content .new_window,
+.branch-3-7 .metaslider .left table tr.slide .tabs-content .new_window {
+     right: 6px;
+     bottom: 20px;
+}
+
+.branch-3-5 .metaslider .left table tr.slide .tabs-content .new_window label,
+.branch-3-6 .metaslider .left table tr.slide .tabs-content .new_window label,
+.branch-3-7 .metaslider .left table tr.slide .tabs-content .new_window label {
+     line-height: 18px;
+     vertical-align: top;
+}
+
+.branch-3-5 .metaslider .left table tr.slide .tabs-content .new_window input,
+.branch-3-6 .metaslider .left table tr.slide .tabs-content .new_window input,
+.branch-3-7 .metaslider .left table tr.slide .tabs-content .new_window input {
+     margin: -2px 0 0 4px;
+}
+
 .metaslider .left table tr.slide .tabs-content .new_window {
     position: relative;
     float: right;
@@ -596,14 +616,25 @@ input[type=radio]:checked + label {
     background: white;
     padding: 9px 13px;
     font-weight: normal;
+    margin: 0 4px 0 0;
 }
 
 .metaslider .nav-tab:hover {
     background: transparent
 }
+.branch-3-5 .metaslider .nav-tab-active,
+.branch-3-6 .metaslider .nav-tab-active,
+.branch-3-7 .metaslider .nav-tab-active {
+     border-bottom: 1px solid white;
+}
 
 .metaslider .nav-tab-active {
-    background: transparent
+    background: transparent;
+	padding: 8px 13px 8px;
+	border-bottom: 1px solid #f1f1f1;
+	margin-top: auto;
+	position: relative;
+	top: 1px;
 }
 
 .metaslider .nav-tab-active input {
