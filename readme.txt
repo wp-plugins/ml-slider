@@ -129,7 +129,16 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
-= 2.6 [15/12/13] =
+= 2.6 [19/12/13] =
+
+* Fix: Typo in metaslider_responsive_slide_image_attributes filter
+* Fix: Caption not working in Nivo Slider
+* Fix: Tab styling improved
+* Fix: New window styling improved in WP3.7 and below
+
+More info/Comments: http://www.metaslider.com/coming-soon-meta-slider-2-6-free/
+
+= 2.6-beta [15/12/13] =
 
 * New feature: Interface update for WordPress 3.8 admin redesign
 * New feature: 'Stretch' setting for full width slideshows

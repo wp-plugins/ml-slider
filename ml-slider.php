@@ -3,7 +3,7 @@
  * Plugin Name: Meta Slider
  * Plugin URI: http://www.metaslider.com
  * Description: 4 sliders in 1! Choose from Nivo Slider, Flex Slider, Coin Slider or Responsive Slides.
- * Version: 2.6-beta
+ * Version: 2.6
  * Author: Matcha Labs
  * Author URI: http://www.matchalabs.com
  * License: GPLv2 or later
@@ -17,7 +17,7 @@
 // disable direct access
 if (!defined('ABSPATH')) exit;
 
-define('METASLIDER_VERSION', '2.6-beta');
+define('METASLIDER_VERSION', '2.6');
 define('METASLIDER_BASE_URL', plugins_url('ml-slider') . '/'); //plugin_dir_url(__FILE__)
 define('METASLIDER_ASSETS_URL', METASLIDER_BASE_URL . 'assets/');
 define('METASLIDER_BASE_DIR_LONG', dirname(__FILE__));
@@ -1236,7 +1236,7 @@ class MetaSliderPlugin {
 	public function admin_footer() {
 		global $pagenow;
 
-		/** Only run in post/page creation and edit screens */
+		// Only run in post/page creation and edit screens
 		if (in_array($pagenow, array('post.php', 'page.php', 'post-new.php', 'post-edit.php'))) {
 			$sliders = $this->all_meta_sliders('title');
 			?>
