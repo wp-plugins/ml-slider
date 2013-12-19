@@ -163,8 +163,8 @@ jQuery(document).ready(function($) {
         });
     }
 
-    jQuery(".metaslider .toggle h3").on('click', function() {
-    	$(this).parent().toggleClass('closed');
+    jQuery(".metaslider .toggle").on('click', function() {
+    	$(this).toggleClass('closed');
     });
 
     jQuery('.metaslider').on('click', 'ul.tabs li', function() {
