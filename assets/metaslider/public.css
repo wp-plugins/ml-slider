@@ -54,6 +54,7 @@
 #widgets .metaslider ol,
 #content .metaslider ul,
 #content .metaslider ol,
+#content .metaslider li,
 .entry .metaslider ul,
 .entry .metaslider ol,
 .entry-content .metaslider ul,
@@ -80,6 +81,7 @@
     list-style: none;
     padding: 0;
     line-height: normal;
+    background: none;
 }
 .metaslider .slides img {
 	width: 100%; 
