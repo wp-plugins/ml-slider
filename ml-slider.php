@@ -576,6 +576,21 @@ class MetaSliderPlugin {
     			$return .= apply_filters('metaslider_navigation_options', $navigation_row, $this->slider);
     		}
 
+    		// navigation row
+    		if ($row['type'] == 'radio') {
+    			$navigation_row = "<tr class='{$row['type']}'><td class='tipsy-tooltip' title=\"{$row['helptext']}\">{$row['label']}</td><td>";
+
+    			foreach ($row['options'] as $k => $v) {
+    				$checked = checked($k, $row['value'], false);
+    				$class = isset($v['class']) ? $v['class'] : "";
+    				$navigation_row .= "<label><input type='radio' name='settings[{$id}]' value='{$k}' {$checked} class='radio {$class}'/>{$v['label']}</label><br />";
+    			}
+
+    			$navigation_row .= "</td></tr>";
+
+    			$return .= apply_filters('metaslider_navigation_options', $navigation_row, $this->slider);
+    		}
+
     		// header/divider row
     		if ($row['type'] == 'divider') {
     			$return .= "<tr class='{$row['type']}'><td colspan='2' class='divider'><b>{$row['value']}</b></td></tr>";
