@@ -150,13 +150,9 @@ class MetaSlider {
     }
 
     /**
-     * Return slides for the current slider
-     *
-     * @return array collection of slides belonging to the current slider
+     * The main query for extracting the slides for the slideshow
      */
-    private function populate_slides() {
-        $slides = array();
-
+	public function get_slides() {
         $args = array(
             'force_no_custom_order' => true,
             'orderby' => 'menu_order',
@@ -179,7 +175,18 @@ class MetaSlider {
 
         $query = new WP_Query($args);
 
+        return $query;
+	}
+
+    /**
+     * Return slides for the current slider
+     *
+     * @return array collection of slides belonging to the current slider
+     */
+    private function populate_slides() {
         $slides = array();
+
+        $query = $this->get_slides();
 
         while ($query->have_posts()) {
             $query->next_post();
@@ -228,6 +235,7 @@ class MetaSlider {
         $html[] = '    ' . $this->get_inline_css();
         $html[] = '    <div id="' . $this->get_container_id() . '">';
         $html[] = '        ' . $this->get_html();
+        $html[] = '        ' . $this->get_html_after();
         $html[] = '    </div>';
         $html[] = '    <script type="text/javascript">';
         $html[] = '        ' .  $this->get_inline_javascript();
@@ -324,6 +332,21 @@ class MetaSlider {
         $script .= "\n        timer_" . $this->identifier . "();";
 
         return $script;
+    }
+
+    /**
+     * Custom HTML to add immediately below the markup
+     */
+    private function get_html_after() {
+        $type = $this->get_setting('type');
+
+        $html = apply_filters("metaslider_{$type}_slider_html_after", "", $this->id, $this->settings);
+
+        if (strlen($html)) {
+            return "\n            {$html}";
+        }
+
+        return "";
     }
 
     /**
