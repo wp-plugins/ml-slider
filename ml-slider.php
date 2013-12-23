@@ -628,6 +628,11 @@ class MetaSliderPlugin {
       		if ($row['type'] == 'text') {
     			$return .= "<tr class='{$row['type']}'><td class='tipsy-tooltip' title=\"{$row['helptext']}\">{$row['label']}</td><td><input class='option {$row['class']} {$id}' type='text' name='settings[{$id}]' value='{$row['value']}' /></td></tr>";
     		}
+
+    		// text input type
+      		if ($row['type'] == 'title') {
+    			$return .= "<tr class='{$row['type']}'><td class='tipsy-tooltip' title=\"{$row['helptext']}\">{$row['label']}</td><td><input class='option {$row['class']} {$id}' type='text' name='{$id}' value='{$row['value']}' /></td></tr>";
+    		}
     	}
 
     	return $return;
@@ -855,7 +860,7 @@ class MetaSliderPlugin {
 
 				                                        if ($max_tabs && count($this->all_meta_sliders()) > $max_tabs) {
 				                                        	$aFields['title'] = array(
-				                                        		'type' => 'text',
+				                                        		'type' => 'title',
 				                                        		'priority' => 5,
 				                                        		'class' => 'option flex nivo responsive coin',
 				                                        		'value' => $title,
