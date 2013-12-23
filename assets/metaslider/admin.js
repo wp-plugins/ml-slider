@@ -6,6 +6,8 @@ jQuery(document).ready(function($) {
     var switchType = function(slider) {
         jQuery('.metaslider .option:not(.' + slider + ')').attr('disabled', 'disabled').parents('tr').hide();
         jQuery('.metaslider .option.' + slider).removeAttr('disabled').parents('tr').show();
+        jQuery('.metaslider .radio:not(.' + slider + ')').attr('disabled', 'disabled');
+        jQuery('.metaslider .radio.' + slider).removeAttr('disabled');
 
         // make sure that the selected option is available for this slider type
         if (jQuery('.effect option:selected').attr('disabled') === 'disabled') {
@@ -132,7 +134,7 @@ jQuery(document).ready(function($) {
     var getLightboxWidth = function() {
         var width = parseInt(jQuery('input.width').val(), 10);
 
-        if (jQuery('#carouselMode').is(':checked')) {
+        if (jQuery('.carouselMode').is(':checked')) {
             width = '75%';
         }
         
@@ -142,11 +144,16 @@ jQuery(document).ready(function($) {
     // return lightbox height
     var getLightboxHeight = function() {
         var height = parseInt(jQuery('input.height').val(), 10);
+        var thumb_height = parseInt(jQuery('input.thumb_height').val(), 10);
 
         if (isNaN(height)) {
             height = '70%';
         } else {
         	height = height + 50;
+
+        	if (!isNaN(thumb_height)) {
+        		height = height + thumb_height;
+        	}
         }
 
         return height;
@@ -163,8 +170,8 @@ jQuery(document).ready(function($) {
         });
     }
 
-    jQuery(".metaslider .toggle").on('click', function() {
-    	$(this).toggleClass('closed');
+    jQuery(".metaslider .toggle .hndle, .metaslider .toggle .handlediv").on('click', function() {
+    	$(this).parent().toggleClass('closed');
     });
 
     jQuery('.metaslider').on('click', 'ul.tabs li', function() {
