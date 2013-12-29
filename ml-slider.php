@@ -168,8 +168,10 @@ class MetaSliderPlugin {
      * @var array existing media manager tabs
      */
     public function custom_media_upload_tab_name($tabs) {
+        $metaslider_tabs = array('post_feed', 'layer', 'youtube', 'vimeo');
+
         // restrict our tab changes to the meta slider plugin page
-        if ((isset($_GET['page']) && $_GET['page'] == 'metaslider') || isset($_GET['tab']) == 'metaslider_pro') {
+        if ((isset($_GET['page']) && $_GET['page'] == 'metaslider') || (isset($_GET['tab']) && in_array($_GET['tab'], $metaslider_tabs))) {
             $newtabs = array();
 
             if (function_exists('is_plugin_active') && !is_plugin_active('ml-slider-pro/ml-slider-pro.php')) {
