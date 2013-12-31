@@ -486,6 +486,8 @@ class MetaSliderPlugin {
             return $the_query->post->ID;
         }
 
+        wp_reset_query();
+
         return false;
     }
 
@@ -524,6 +526,8 @@ class MetaSliderPlugin {
                 'id' => $the_query->post->ID
             );
         }
+
+        wp_reset_query();
         
         return $sliders;
     }
