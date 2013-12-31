@@ -129,6 +129,12 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
+= 2.6.1 [31/12/13] =
+
+* Fix: Advanced settings arrow toggle
+* Fix: All in one SEO / Page builder / Meta Slider conflict
+* Fix: NextGen "Insert Gallery" conflict
+
 = 2.6 [19/12/13] =
 
 * Fix: Typo in metaslider_responsive_slide_image_attributes filter
