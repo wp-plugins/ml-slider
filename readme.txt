@@ -53,6 +53,7 @@ Meta Slider has been translated into the following languages:
 * Polish (thanks to gordon34)
 * Chinese (thanks to 断青丝)
 * Taiwanese (thanks to 断青丝)
+* Norwegian
 
 Read more and thanks to:
 
@@ -134,6 +135,7 @@ See www.metaslider.com/documentation/image-cropping/
 * Fix: Advanced settings arrow toggle
 * Fix: All in one SEO / Page builder / Meta Slider conflict
 * Fix: NextGen "Insert Gallery" conflict
+* New feature: Norwegian language pack added
 
 = 2.6 [19/12/13] =
 
