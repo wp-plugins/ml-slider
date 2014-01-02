@@ -130,6 +130,10 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
+= 2.6.2 [02/01/14] =
+
+* Fix: Vantage background image tiling
+
 = 2.6.1 [31/12/13] =
 
 * Fix: Advanced settings arrow toggle
