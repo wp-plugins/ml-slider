@@ -382,9 +382,14 @@ class MetaSliderPlugin {
     }
 
     /**
-     * Handle slide uploads/changes
+     * Handle slide uploads/changes.
      */
     public function admin_process() {
+    	// this function should only ever be called from the Meta Slider admin page.
+    	if (!is_admin()) {
+    		return;
+    	}
+
         // default to the latest slider
         $slider_id = $this->find_slider('modified', 'DESC');
 
@@ -398,8 +403,14 @@ class MetaSliderPlugin {
             $slider_id = $this->add_slider();
         }
 
+        // load a slider by ID
         if (isset($_REQUEST['id'])) {
-            $slider_id = $_REQUEST['id'];
+        	$temp_id = intval($_REQUEST['id']);
+
+        	// check valid post ID
+	        if (get_post($temp_id)) {
+	        	$slider_id = $temp_id;
+	        }
         }
 
         if ($slider_id > 0) {
