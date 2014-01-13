@@ -805,8 +805,8 @@ class MetaSliderPlugin {
 	                            	<div class="postbox">
 										<h3 class='configuration'>
 											<?php _e("Settings", "metaslider") ?>
-			                                <input class='alignright button button-primary' type='submit' name='save' id='save' value='<?php _e("Save", "metaslider") ?>' />
-			                                <input class='alignright button button-primary' type='submit' name='preview' id='preview' value='<?php _e("Save & Preview", "metaslider") ?>' data-slider_id='<?php echo $this->slider->id ?>' data-slider_width='<?php echo $this->slider->get_setting('width') ?>' data-slider_height='<?php echo $this->slider->get_setting('height') ?>' />
+			                                <input class='alignright button button-primary' type='submit' name='save' id='ms-save' value='<?php _e("Save", "metaslider") ?>' />
+			                                <input class='alignright button button-primary' type='submit' name='preview' id='ms-preview' value='<?php _e("Save & Preview", "metaslider") ?>' data-slider_id='<?php echo $this->slider->id ?>' data-slider_width='<?php echo $this->slider->get_setting('width') ?>' data-slider_height='<?php echo $this->slider->get_setting('height') ?>' />
 			                                <span class="spinner"></span>
 			                            </h3>
 			                            <div class="inside">
