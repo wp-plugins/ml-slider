@@ -29,6 +29,7 @@
     border-radius: 0;
     resize: none;
     box-shadow: inherit;
+    background: transparent;
 }
 
 .resize_overlay {
