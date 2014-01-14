@@ -355,6 +355,8 @@ class MetaSlider {
     private function get_custom_javascript_before() {
         $type = $this->get_setting('type');
 
+        $javascript = "";
+
         if ($this->get_setting('noConflict') == 'true' && $type == 'flex') {
             $javascript = "$('#metaslider_{$this->id}').addClass('flexslider'); // theme/plugin conflict avoidance";
         }
