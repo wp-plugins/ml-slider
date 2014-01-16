@@ -409,11 +409,12 @@ class MetaSlider {
         // deal with any customised parameters
         $type = $this->get_setting('type');
         $options = apply_filters("metaslider_{$type}_slider_parameters", $options, $this->id, $this->settings);
+        $arg = $type == 'flex' ? 'slider' : '';
 
         // create key:value strings
         foreach ($options as $key => $value) {
             if (is_array($value)) {
-                $pairs[] = "{$key}: function() {\n                "
+                $pairs[] = "{$key}: function($arg) {\n                "
                             . implode("\n                ", $value)
                             . "\n                }";
             } else {
