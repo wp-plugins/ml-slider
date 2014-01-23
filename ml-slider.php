@@ -272,7 +272,7 @@ class MetaSliderPlugin {
 
             $link .= '?utm_source=lite&amp;utm_medium=nag&amp;utm_campaign=pro';
 
-            $goPro = "<div style='display: none;' id='screen-options-link-wrap'><a target='_blank' class='show-settings' href='{$link}'>Meta Slider Lite v" . METASLIDER_VERSION . " - " .
+            $goPro = "<div style='display: none;' id='screen-options-link-wrap'><a target='_blank' class='show-settings' href='{$link}'>Meta Slider v" . METASLIDER_VERSION . " - " .
                 __('Upgrade to Pro $19', "metaslider") .
                 "</a></div>";
 
