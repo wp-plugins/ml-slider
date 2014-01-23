@@ -333,7 +333,7 @@
     padding: 0px;
     color: #a9a9a9;
     line-height: 20px;
-    bottom: 23px;
+    bottom: 22px;
     right: 0;
 }
 
@@ -704,7 +704,6 @@ input[type=radio]:checked + label {
     font-size: 13px;
     background: transparent url(edit.png) no-repeat center right;
     box-shadow: none;
-    font-weight: bold;
 }
 
 .metaslider .warning {
