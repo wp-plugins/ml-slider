@@ -14,9 +14,7 @@ Easy to use slideshow plugin. Create SEO optimised responsive slideshows with Ni
 
 http://www.youtube.com/watch?v=I7IfkV6iLqo
 
-With over 400,000 downloads, Meta Slider is the most popular slideshow plugin for WordPress!
-
-Creating slideshows with [Meta Slider](http://www.metaslider.com/) is fast and easy. Simply select images from your WordPress Media Library, drag and drop them into place, set slide captions, links and SEO fields all from one page. You can choose from 4 different slideshow types (Flex Slider, Nivo Slider, Responsive Slides & Coin Slider) and use the provided shortcode or template include to easily embed slideshows in your blog.
+Meta Slider is the most popular slideshow plugin for WordPress. Creating slideshows with [Meta Slider](http://www.metaslider.com/) is fast and easy. Simply select images from your WordPress Media Library, drag and drop them into place, set slide captions, links and SEO fields all from one page. You can choose from 4 different slideshow types (Flex Slider, Nivo Slider, Responsive Slides & Coin Slider) and use the provided shortcode or template include to easily embed slideshows in your blog.
 
 **Includes**
 
