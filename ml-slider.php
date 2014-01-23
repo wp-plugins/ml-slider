@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: Meta Slider
+ * Plugin Name: Meta Slider - Responsive WordPress Slideshow
  * Plugin URI: http://www.metaslider.com
  * Description: 4 sliders in 1! Choose from Nivo Slider, Flex Slider, Coin Slider or Responsive Slides.
  * Version: 2.6.2
@@ -252,10 +252,6 @@ class MetaSliderPlugin {
      */
     public function register_admin_menu() {
         $title = apply_filters('metaslider_menu_title', "Meta Slider");
-
-        if ($title == "Meta Slider") {
-            $title = "Meta Slider Lite";
-        }
 
         $page = add_menu_page($title, $title, 'edit_others_posts', 'metaslider', array(
             $this, 'render_admin_page'
@@ -936,7 +932,7 @@ class MetaSliderPlugin {
 			                            </div>
 			                        </div>
 
-									<div class="postbox toggle closed">
+									<div class="postbox ms-toggle closed">
 										<div class="handlediv" title="Click to toggle"><br></div><h3 class="hndle"><span><?php _e("Advanced Settings", "metaslider") ?></span></h3>
 										<div class="inside">
 			                                <table>
@@ -1198,7 +1194,7 @@ class MetaSliderPlugin {
 										</div>
 									</div>
 
-									<div class="postbox shortcode toggle">
+									<div class="postbox shortcode ms-toggle">
 										<div class="handlediv" title="Click to toggle"><br></div><h3 class="hndle"><span><?php _e("Usage", "metaslider") ?></span></h3>
 										<div class="inside">
 											<ul class='tabs'>

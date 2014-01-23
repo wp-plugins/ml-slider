@@ -170,7 +170,7 @@ jQuery(document).ready(function($) {
         });
     }
 
-    jQuery(".metaslider .toggle .hndle, .metaslider .toggle .handlediv").on('click', function() {
+    jQuery(".metaslider .ms-toggle .hndle, .metaslider .ms-toggle .handlediv").on('click', function() {
     	$(this).parent().toggleClass('closed');
     });
 

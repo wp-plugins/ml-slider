@@ -99,9 +99,13 @@
     margin: 0 3px
 }
 
-.metaslider #poststuff .right h3.configuration,
-.metaslider #poststuff .left h3 {
+.metaslider #poststuff .right h3.configuration {
     padding: 7px 7px 7px 12px;
+    line-height: 27px;
+}
+
+.metaslider #poststuff .left h3 {
+    padding: 7px 5px;
     line-height: 27px;
 }
 
@@ -634,7 +638,7 @@ input[type=radio]:checked + label {
     cursor: inherit
 }
 
-.metaslider .right .postbox.toggle h3 {
+.metaslider .right .postbox.ms-toggle h3 {
     cursor: pointer
 }
 
