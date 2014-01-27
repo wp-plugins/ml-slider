@@ -58,7 +58,7 @@ class MetaSliderPlugin {
      */
     public function __construct() {
         // create the admin menu/page
-        add_action('admin_menu', array($this, 'register_admin_menu'), 9553);
+        add_action('admin_menu', array($this, 'register_admin_menu'));
 
         // register slider post type and taxonomy
         add_action('init', array($this, 'register_post_type'));
@@ -212,6 +212,8 @@ class MetaSliderPlugin {
             // deregister the script that displays the login panel if the user becomes logged
             // out at some point
             // todo: implement some more intelligent request checking
+            // update: this doesn't appear to be needed in v3.8.
+            // todo: investigate if remove_action( 'admin_init', 'wp_auth_check_load' ); works in v3.6
             wp_deregister_script('wp-auth-check');
             wp_register_script('wp-auth-check', null); // fix php notice
         }
