@@ -58,7 +58,7 @@ class MetaSliderPlugin {
      */
     public function __construct() {
         // create the admin menu/page
-        add_action('admin_menu', array($this, 'register_admin_menu'));
+        add_action('admin_menu', array($this, 'register_admin_menu'), 9553);
 
         // register slider post type and taxonomy
         add_action('init', array($this, 'register_post_type'));
@@ -77,7 +77,7 @@ class MetaSliderPlugin {
         add_action('media_upload_layer', array($this, 'metaslider_pro_tab'));
 
         add_filter('media_buttons_context', array($this, 'insert_metaslider_button'));
-        add_action('admin_footer', array($this, 'admin_footer'));
+        add_action('admin_footer', array($this, 'admin_footer'), 11);
 
         // add 'go pro' link to plugin options
         $plugin = plugin_basename(__FILE__);
@@ -1281,7 +1281,7 @@ class MetaSliderPlugin {
 				jQuery(document).ready(function() {
 				  jQuery('#insertMetaSlider').on('click', function() {
 				  	var id = jQuery('#metaslider-select option:selected').val();
-				  	window.send_to_editor('[metaslider id="' + id + '"]');
+				  	window.send_to_editor('[metaslider id=' + id + ']');
 					tb_remove();
 				  })
 				});
