@@ -54,6 +54,13 @@ class MetaSliderPlugin {
     var $slider = null;
 
     /**
+     * Init
+     */
+    public static function init() {
+        $metaslider = new MetaSliderPlugin;
+    }
+
+    /**
      * Constructor
      */
     public function __construct() {
@@ -1310,6 +1317,6 @@ class MetaSliderPlugin {
 	}
 }
 
-$metaslider = new MetaSliderPlugin();
+add_action('plugins_loaded', array('MetaSliderPlugin', 'init'));
 
 ?>
