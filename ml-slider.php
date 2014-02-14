@@ -343,8 +343,10 @@ class MetaSliderPlugin {
         // we have an ID to work with
         $slider = get_post($atts['id']);
 
-        // check the slider is published
-        if ($slider->post_status != 'publish') return false;
+        // check the slider is published and the ID is correct
+        if (!$slider || $slider->post_status != 'publish' || $slider->post_type != 'ml-slider') {
+            return "<!-- meta slider {$atts['id']} not found -->";
+        }
 
         // lets go
         $this->set_slider($atts['id'], $atts);
