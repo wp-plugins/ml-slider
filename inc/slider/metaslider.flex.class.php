@@ -98,7 +98,7 @@ class MetaFlexSlider extends MetaSlider {
      */
     public function get_carousel_css($css, $settings, $slider_id) {
         if (isset($settings["carouselMode"]) && $settings['carouselMode'] == 'true') {
-            $css .= "\n        #metaslider_{$slider_id}.flexslider li {margin-right: {$this->carousel_item_margin}px;}";
+            $css .= "\n        #metaslider_{$slider_id}.flexslider li {margin-right: {$this->carousel_item_margin}px !important;}";
         }
 
         // we don't want this filter hanging around if there's more than one slideshow on the page
@@ -143,7 +143,7 @@ class MetaFlexSlider extends MetaSlider {
     public function enqueue_scripts() {
         parent::enqueue_scripts();
 
-        if ($this->get_setting('printJs') == 'true') {
+        if ($this->get_setting('printJs') == 'true' && $this->get_setting('effect') == 'slide') {
             wp_enqueue_script('metaslider-easing', METASLIDER_ASSETS_URL . 'easing/jQuery.easing.min.js', array('jquery'), METASLIDER_VERSION);
         }
     }

@@ -23,6 +23,7 @@
 .metaslider img {
     height: auto;
     padding: 0;
+    margin: 0;
 }
 
 .metaslider .theme-default .nivoSlider {
@@ -57,26 +58,19 @@
 }
 
 /** quick resets **/
-.article .metaslider ol,
-.art-article .metaslider img,
-#widgets .metaslider ul,
-#widgets .metaslider ol,
-#content .metaslider ul,
-#content .metaslider ol,
-#content .metaslider li,
-.entry .metaslider ul,
-.entry .metaslider ol,
-.entry-content .metaslider ul,
-.entry-content .metaslider ol,
-.entry-content .metaslider img
+.article .metaslider ol, .art-article .metaslider img,
+*[class*='-article'] .metaslider img,
+#widgets .metaslider ul, #widgets .metaslider ol,
+#content .metaslider ul, #content .metaslider ol, #content .metaslider li,
+.entry .metaslider ul, .entry .metaslider ol,
+.entry-content .metaslider ul, .entry-content .metaslider ol, .entry-content .metaslider img
+.entry-content .metaslider .flexslider ol.flex-control-nav
 .metaslider .flexslider ul,
 .metaslider .flexslider .slides li,
 .metaslider .flexslider .slides ul,
 .metaslider .flexslider .slides ol,
 .metaslider .flexslider .flex-direction-nav,
-.metaslider .flexslider .flex-direction-nav li,
-.entry-content .metaslider .flexslider ol.flex-control-nav
- {
+.metaslider .flexslider .flex-direction-nav li {
     border: 0;
     border-top: 0;
     border-right: 0;
