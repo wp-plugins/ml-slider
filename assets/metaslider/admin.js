@@ -178,8 +178,11 @@ jQuery(document).ready(function($) {
     });
 
     // AJAX save & preview
-    jQuery(".metaslider form").find("input[type=submit]").on('click', function(e) {
+    jQuery(".metaslider form").find("input[type=submit]").on("click", function(e) {
         e.preventDefault();
+
+        jQuery(".metaslider .spinner").show();
+        jQuery(".metaslider input[type=submit]").attr("disabled", "disabled");
 
         // update slide order
         jQuery(".metaslider .left table").trigger('updateSlideOrder');
