@@ -7,7 +7,6 @@ class MetaFlexSlider extends MetaSlider {
     protected $js_function = 'flexslider';
     protected $js_path = 'sliders/flexslider/jquery.flexslider-min.js';
     protected $css_path = 'sliders/flexslider/flexslider.css';
-    protected $carousel_item_margin = 5;
 
     /**
      * Constructor
@@ -21,8 +20,6 @@ class MetaFlexSlider extends MetaSlider {
         add_filter('metaslider_flex_slider_parameters', array($this, 'enable_easing'), 10, 2);
         add_filter('metaslider_css', array($this, 'get_carousel_css'), 11, 3);
         add_filter('metaslider_css_classes', array($this, 'remove_bottom_margin'), 11, 3);
-
-        $this->carousel_item_margin = apply_filters('metaslider_carousel_margin', $this->carousel_item_margin, $id);
     }
 
     /**
@@ -39,7 +36,7 @@ class MetaFlexSlider extends MetaSlider {
                 $options["animation"] = "'slide'";
                 $options["direction"] = "'horizontal'";
                 $options["minItems"] = 1;
-                $options["itemMargin"] = $this->carousel_item_margin;
+                $options["itemMargin"] = apply_filters('metaslider_carousel_margin', $this->get_setting('carouselMargin'), $slider_id);
             }
 
             unset($options["carouselMode"]);
@@ -98,7 +95,8 @@ class MetaFlexSlider extends MetaSlider {
      */
     public function get_carousel_css($css, $settings, $slider_id) {
         if (isset($settings["carouselMode"]) && $settings['carouselMode'] == 'true') {
-            $css .= "\n        #metaslider_{$slider_id}.flexslider li {margin-right: {$this->carousel_item_margin}px !important;}";
+            $margin = apply_filters('metaslider_carousel_margin', $this->get_setting('carouselMargin'), $slider_id);
+            $css .= "\n        #metaslider_{$slider_id}.flexslider li {margin-right: {$margin}px !important;}";
         }
 
         // we don't want this filter hanging around if there's more than one slideshow on the page

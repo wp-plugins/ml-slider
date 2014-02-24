@@ -987,10 +987,22 @@ class MetaSliderPlugin {
 																'priority' => 40,
 																'type' => 'checkbox',
 																'label' => __("Carousel mode", "metaslider"),
-																'class' => 'option flex',
+																'class' => 'option flex showNextWhenChecked',
 																'checked' => $this->slider->get_setting('carouselMode') == 'true' ? 'checked' : '',
 																'helptext' => __("Display multiple slides at once. Slideshow output will be 100% wide.", "metaslider")
 															),
+                                                            'carouselMargin' => array(
+                                                                'priority' => 45,
+                                                                'min' => 0,
+                                                                'max' => 9999,
+                                                                'step' => 1,
+                                                                'type' => 'number',
+                                                                'label' => __("Carousel margin", "metaslider"),
+                                                                'class' => 'option flex',
+                                                                'value' => $this->slider->get_setting('carouselMargin'),
+                                                                'helptext' => __("Pixel margin between slides in carousel.", "metaslider"),
+                                                                'after' => __("px", "metaslider")
+                                                            ),
 															'random' => array(
 																'priority' => 50,
 																'type' => 'checkbox',

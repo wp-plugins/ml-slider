@@ -9,6 +9,9 @@ jQuery(document).ready(function($) {
         jQuery('.metaslider .radio:not(.' + slider + ')').attr('disabled', 'disabled');
         jQuery('.metaslider .radio.' + slider).removeAttr('disabled');
 
+        jQuery('.metaslider .showNextWhenChecked:visible').parent().parent().next('tr').hide();
+        jQuery('.metaslider .showNextWhenChecked:visible:checked').parent().parent().next('tr').show();
+
         // make sure that the selected option is available for this slider type
         if (jQuery('.effect option:selected').attr('disabled') === 'disabled') {
             jQuery('.effect option:enabled:first').attr('selected', 'selected');
@@ -22,6 +25,14 @@ jQuery(document).ready(function($) {
 
     // enable the correct options on page load
     switchType(jQuery('.metaslider .select-slider:checked').attr('rel'));
+
+    jQuery('.metaslider .showNextWhenChecked').on('change', function() {
+        if(jQuery(this).is(':checked')){
+            jQuery(this).parent().parent().next('tr').show();
+        } else {
+            jQuery(this).parent().parent().next('tr').hide();
+        }
+    });
 
     // handle slide libary switching
     jQuery('.metaslider .select-slider').on('click', function() {
@@ -114,21 +125,6 @@ jQuery(document).ready(function($) {
     jQuery(".metaslider .shortcode input, .metaslider .shortcode textarea").on('click', function() {
         this.select();
     });
-
-    // show the spinner while slides are being added
-    function checkPendingRequest() {
-        if (jQuery.active > 0) {
-            jQuery(".metaslider .spinner").show();
-            jQuery(".metaslider input[type=submit]").attr('disabled', 'disabled');
-        } else {
-            jQuery(".metaslider .spinner").hide();
-            jQuery(".metaslider input[type=submit]").removeAttr('disabled');
-        }
-
-        setTimeout(checkPendingRequest, 1000);
-    }
-
-    checkPendingRequest();
 
     // return lightbox width
     var getLightboxWidth = function() {
@@ -231,6 +227,9 @@ jQuery(document).ready(function($) {
                         fastIframe: false
                     });
                 }
+
+                jQuery(".metaslider .spinner").hide();
+                jQuery(".metaslider input[type=submit]").removeAttr('disabled');
             }
         });
     });
