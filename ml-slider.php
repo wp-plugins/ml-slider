@@ -213,18 +213,6 @@ class MetaSliderPlugin {
      * Register admin JavaScript
      */
     public function register_admin_scripts() {
-        if (wp_script_is('wp-auth-check', 'queue')) {
-            // meta slider checks for active AJAX requests in order to show the spinner
-            // .. but the auth-check runs an AJAX request every 15 seconds
-            // deregister the script that displays the login panel if the user becomes logged
-            // out at some point
-            // todo: implement some more intelligent request checking
-            // update: this doesn't appear to be needed in v3.8.
-            // todo: investigate if remove_action( 'admin_init', 'wp_auth_check_load' ); works in v3.6
-            wp_deregister_script('wp-auth-check');
-            wp_register_script('wp-auth-check', null); // fix php notice
-        }
-
         // media library dependencies
         wp_enqueue_media();
 
