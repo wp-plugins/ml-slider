@@ -224,6 +224,8 @@ class MetaSliderPlugin {
         wp_enqueue_script('metaslider-admin-script', METASLIDER_ASSETS_URL . 'metaslider/admin.js', array('jquery', 'metaslider-tipsy', 'media-upload'), METASLIDER_VERSION);
         wp_enqueue_script('metaslider-admin-addslide', METASLIDER_ASSETS_URL . 'metaslider/image/image.js', array('metaslider-admin-script'), METASLIDER_VERSION);
 
+        wp_dequeue_script('link'); // WP Posts Filter Fix (Advanced Settings not toggling)
+
         // localise the JS
         wp_localize_script( 'metaslider-admin-addslide', 'metaslider_image', array(
             'addslide_nonce' => wp_create_nonce('metaslider_addslide')
