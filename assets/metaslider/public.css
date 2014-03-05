@@ -8,6 +8,7 @@
  /* general resets */
 .metaslider {
     position: relative;
+    z-index: 0;
 }
 .metaslider.nav-hidden .flexslider {
     margin-bottom: 0;
