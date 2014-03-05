@@ -351,10 +351,17 @@ class MetaSliderPlugin {
     public function set_slider($id, $shortcode_settings = array()) {
         $type = 'flex';
 
-        $settings = array_merge(get_post_meta($id, 'ml-slider_settings', true), $shortcode_settings);
+        if (isset($shortcode_settings['type'])) {
+            $type = $shortcode_settings['type'];
+        }
+        else if ($settings = get_post_meta($id, 'ml-slider_settings', true)) {
+            if (is_array($settings) && isset($settings['type'])) {
+                $type = $settings['type'];
+            }
+        }
 
-        if (isset($settings['type']) && in_array($settings['type'], array('flex', 'coin', 'nivo', 'responsive'))) {
-            $type = $settings['type'];
+        if (!in_array($type, array('flex', 'coin', 'nivo', 'responsive'))) {
+            $type = 'flex';
         }
 
         $this->slider = $this->create_slider($type, $id, $shortcode_settings);
@@ -395,11 +402,6 @@ class MetaSliderPlugin {
             $slider_id = $this->delete_slider(intval($_GET['delete']));
         }
 
-        // create a new slider
-        if (isset($_GET['add'])) {
-            $slider_id = $this->add_slider();
-        }
-
         // load a slider by ID
         if (isset($_REQUEST['id'])) {
         	$temp_id = intval($_REQUEST['id']);
@@ -408,6 +410,11 @@ class MetaSliderPlugin {
 	        if (get_post($temp_id)) {
 	        	$slider_id = $temp_id;
 	        }
+        }
+
+        // create a new slider
+        if (isset($_GET['add'])) {
+            $slider_id = $this->add_slider();
         }
 
         if ($slider_id > 0) {
@@ -429,18 +436,18 @@ class MetaSliderPlugin {
             $defaults = get_post_meta($last_modified, 'ml-slider_settings', true);
         }
 
-        // use the default settings if we can't find anything more suitable.
-        if (empty($defaults)) {
-            $slider = new MetaSlider($id, array());
-            $defaults = $slider->get_default_parameters();
-        }
-
         // insert the post
         $id = wp_insert_post(array(
             'post_title' => __("New Slider", "metaslider"),
             'post_status' => 'publish',
             'post_type' => 'ml-slider'
         ));
+
+        // use the default settings if we can't find anything more suitable.
+        if (empty($defaults)) {
+            $slider = new MetaSlider($id, array());
+            $defaults = $slider->get_default_parameters();
+        }
 
         // insert the post meta
         add_post_meta($id, 'ml-slider_settings', $defaults, true);
