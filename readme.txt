@@ -60,6 +60,7 @@ Upgrade to [Meta Slider Pro](http://www.metaslider.com/upgrade) to add support f
 * Chinese (thanks to 断青丝)
 * Taiwanese (thanks to 断青丝)
 * Norwegian (thanks to Dreamsoft)
+* Croatian
 
 Read more and thanks to:
 
@@ -135,6 +136,22 @@ See www.metaslider.com/documentation/image-cropping/
 6. Administration panel - selecting slides
 
 == Changelog ==
+
+= 2.7 [18/03/14] =
+
+* New feature: Crotatian Lang pack added
+* New feature: Carousel margin option added
+* New feature: Process shortcodes in captions
+* Improvement: Tab rename UX
+* Improvement: Admin save spinner functionality improved
+* Improvement: CSS Resets updated
+* Improvement: Use plugins_loaded action to initialise plugin
+* Fix: PHP Warnings when one slideshow exists
+* Fix: Smart Cropping sometimes not returning smart cropped image
+* Fix: Add z-index to meta slider, attempted conflict fix for themes with drop down menus.
+* Fix: Only include the easing library when transition effect is set to slide
+* Fix: White Label Branding plugin compatibility.
+* Change: "Responsive" option renamed to "R. Slides". The (old) "Responsive" option refers to the "Responsive Slides" jQuery library, but users were getting confused as the naming suggested it was the only responsive option. Flex Slider & Nivo Slider are also responsive.
 
 = 2.6.3 [23/01/14] =
 
