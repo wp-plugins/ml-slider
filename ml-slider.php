@@ -824,7 +824,7 @@ class MetaSliderPlugin {
 																'value' => $this->slider->get_setting('type'),
 																'options' => array(
 																	'flex'       => array('label' => __("Flex Slider", "metaslider")),
-																	'responsive' => array('label' => __("Responsive", "metaslider")),
+																	'responsive' => array('label' => __("R. Slides", "metaslider")),
 																	'nivo'       => array('label' => __("Nivo Slider", "metaslider")),
 																	'coin'       => array('label' => __("Coin Slider", "metaslider"))
 																)
