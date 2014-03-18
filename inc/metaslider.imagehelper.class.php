@@ -163,7 +163,7 @@ class MetaSliderImageHelper {
     function get_image_url() {
         // Get the image file path
         if (!strlen($this->path)) {
-            return apply_filters('metaslider_image_url', $this->url, $this->url);
+            return apply_filters('metaslider_resized_image_url', $this->url, $this->url);
         }
 
         // get the full image size dimensions
@@ -171,7 +171,7 @@ class MetaSliderImageHelper {
 
         // bail out if we can't find the image dimensions, return the full URL
         if ($orig_size == false) {
-            return apply_filters('metaslider_image_url', $this->url, $this->url);
+            return apply_filters('metaslider_resized_image_url', $this->url, $this->url);
         }
 
         // get our crop dimensions (this is the size we want to display)
@@ -179,7 +179,7 @@ class MetaSliderImageHelper {
 
         // if the full size is the same as the required size, return the full URL
         if ($orig_size['width'] == $dest_size['width'] && $orig_size['height'] == $dest_size['height']) {
-            return apply_filters('metaslider_image_url', $this->url, $this->url);
+            return apply_filters('metaslider_resized_image_url', $this->url, $this->url);
         }
 
         // construct the file name
