@@ -6,8 +6,8 @@ jQuery(document).ready(function($) {
     var switchType = function(slider) {
         jQuery('.metaslider .option:not(.' + slider + ')').attr('disabled', 'disabled').parents('tr').hide();
         jQuery('.metaslider .option.' + slider).removeAttr('disabled').parents('tr').show();
-        jQuery('.metaslider .radio:not(.' + slider + ')').attr('disabled', 'disabled');
-        jQuery('.metaslider .radio.' + slider).removeAttr('disabled');
+        jQuery('.metaslider input.radio:not(.' + slider + ')').attr('disabled', 'disabled');
+        jQuery('.metaslider input.radio.' + slider).removeAttr('disabled');
 
         jQuery('.metaslider .showNextWhenChecked:visible').parent().parent().next('tr').hide();
         jQuery('.metaslider .showNextWhenChecked:visible:checked').parent().parent().next('tr').show();
