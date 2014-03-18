@@ -26,12 +26,18 @@ jQuery(document).ready(function($) {
     // enable the correct options on page load
     switchType(jQuery(".metaslider .select-slider:checked").attr("rel"));
 
-    jQuery(".metaslider .showNextWhenChecked").on("change", function() {
-        if(jQuery(this).is(':checked')){
-            jQuery(this).parent().parent().next("tr").show();
+    var toggleNextRow = function(checkbox) {
+        if(checkbox.is(':checked')){
+            checkbox.parent().parent().next("tr").show();
         } else {
-            jQuery(this).parent().parent().next("tr").hide();
+            checkbox.parent().parent().next("tr").hide();
         }
+    }
+
+    toggleNextRow(jQuery(".metaslider .showNextWhenChecked"));
+
+    jQuery(".metaslider .showNextWhenChecked").on("change", function() {
+        toggleNextRow(jQuery(this));
     });
 
     // handle slide libary switching
