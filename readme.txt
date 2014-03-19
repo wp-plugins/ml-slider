@@ -141,6 +141,7 @@ See www.metaslider.com/documentation/image-cropping/
 
 * Fix: Remove easing parameter when effect is set to fade
 * Fix: Navigation options greyed out in IE
+* Fix: qTranslate captions not being processed (typo)
 
 = 2.7 [18/03/14] =
 
