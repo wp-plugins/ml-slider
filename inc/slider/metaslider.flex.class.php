@@ -17,7 +17,7 @@ class MetaFlexSlider extends MetaSlider {
         parent::__construct($id, $shortcode_settings);
 
         add_filter('metaslider_flex_slider_parameters', array($this, 'enable_carousel_mode'), 10, 2);
-        add_filter('metaslider_flex_slider_parameters', array($this, 'enable_easing'), 10, 2);
+        add_filter('metaslider_flex_slider_parameters', array($this, 'manage_easing'), 10, 2);
         add_filter('metaslider_css', array($this, 'get_carousel_css'), 11, 3);
         add_filter('metaslider_css_classes', array($this, 'remove_bottom_margin'), 11, 3);
     }
@@ -55,13 +55,17 @@ class MetaFlexSlider extends MetaSlider {
      * @param integer $slider_id
      * @return array $options
      */
-    public function enable_easing($options, $slider_id) {
+    public function manage_easing($options, $slider_id) {
         if (isset($options["easing"])) {
             $options['useCSS'] = 'false';
         }
 
+        if ($options["animation"] == '"fade"') {
+            unset($options['easing']);
+        }
+
         // we don't want this filter hanging around if there's more than one slideshow on the page
-        remove_filter('metaslider_flex_slider_parameters', array($this, 'enable_easing'), 10, 2);
+        remove_filter('metaslider_flex_slider_parameters', array($this, 'manage_easing'), 10, 2);
 
         return $options;
     }
