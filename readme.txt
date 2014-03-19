@@ -137,6 +137,11 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
+= 2.7.1 [19/03/14] =
+
+* Fix: Remove easing parameter when effect is set to fade
+* Fix: Navigation options greyed out in IE
+
 = 2.7 [18/03/14] =
 
 * New feature: Crotatian Lang pack added
