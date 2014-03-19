@@ -195,7 +195,7 @@ class MetaImageSlide extends MetaSlide {
             'width' => $this->settings['width'],
             'height' => $this->settings['height'],
             'alt' => __(get_post_meta($this->slide->ID, '_wp_attachment_image_alt', true)),
-            'caption' => _(html_entity_decode(do_shortcode($this->slide->post_excerpt), ENT_NOQUOTES, 'UTF-8')),
+            'caption' => __(html_entity_decode(do_shortcode($this->slide->post_excerpt), ENT_NOQUOTES, 'UTF-8')),
             'caption_raw' => __(do_shortcode($this->slide->post_excerpt)),
             'class' => "slider-{$this->slider->ID} slide-{$this->slide->ID}",
             'rel' => "",
