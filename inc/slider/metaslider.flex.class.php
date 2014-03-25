@@ -100,7 +100,7 @@ class MetaFlexSlider extends MetaSlider {
     public function get_carousel_css($css, $settings, $slider_id) {
         if (isset($settings["carouselMode"]) && $settings['carouselMode'] == 'true') {
             $margin = apply_filters('metaslider_carousel_margin', $this->get_setting('carouselMargin'), $slider_id);
-            $css .= "\n        #metaslider_{$slider_id}.flexslider li {margin-right: {$margin}px !important;}";
+            $css .= "\n        #metaslider_{$slider_id}.flexslider .slides li {margin-right: {$margin}px !important;}";
         }
 
         // we don't want this filter hanging around if there's more than one slideshow on the page
