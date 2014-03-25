@@ -137,6 +137,12 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
+= 2.7.2 [25/03/14] =
+
+* Fix: Only apply carousel margin to slides
+* Fix: Enqueue Easing library when carousel mode is enabled, regardless of effect selection
+* Fix: Thumbnail margin when theme has #content div
+
 = 2.7.1 [19/03/14] =
 
 * Fix: Remove easing parameter when effect is set to fade
