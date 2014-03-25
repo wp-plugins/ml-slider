@@ -75,8 +75,6 @@ html[xmlns] .slides {display: block;}
   .flex-direction-nav .flex-next {opacity: 1; right: 0;}
 }
 
-
-
 /** Custom Meta Slider CSS **/
 .flexslider {
     background: none;
@@ -93,11 +91,11 @@ html[xmlns] .slides {display: block;}
 	line-height: 11px;
 }
 
-
 /** move margin from list items to anchors */
 .flex-control-nav li {
 	margin: 0;
 }
+
 .flex-control-nav li a {
 	margin: 0 6px;
 	padding: 0;
@@ -129,15 +127,25 @@ html[xmlns] .slides {display: block;}
 .metaslider .flexslider.filmstrip {
 	margin-top: 10px;
 }
+
 .metaslider .flexslider.filmstrip .slides li {
     cursor: pointer;
     opacity: 0.5;
 }
+
 .metaslider .flexslider.filmstrip .slides li.flex-active-slide,
 .metaslider .flexslider.filmstrip .slides li:hover,
 .metaslider .flexslider.filmstrip .slides li:focus {
     opacity: 1.0 !important;
 }
+
 .metaslider .flex-control-thumbs li {
     width: auto;
+}
+
+#content .metaslider .flex-control-thumbs img {
+    margin: 10px 5px 0;
+    display: inline-block;
+    opacity: .7;
+    cursor: pointer;
 }
