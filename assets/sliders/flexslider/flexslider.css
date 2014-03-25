@@ -143,6 +143,7 @@ html[xmlns] .slides {display: block;}
     width: auto;
 }
 
+.metaslider .flex-control-thumbs img,
 #content .metaslider .flex-control-thumbs img {
     margin: 10px 5px 0;
     display: inline-block;
