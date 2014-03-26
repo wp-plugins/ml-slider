@@ -301,6 +301,9 @@ class MetaSliderPlugin {
             'query_var' => false,
             'rewrite' => false,
             'public' => true,
+            'exclude_from_search' => true,
+            'publicly_queryable' => false,
+            'show_in_nav_menus' => false,
             'show_ui' => false,
             'labels' => array(
                 'name' => 'Meta Slider'
