@@ -20,7 +20,7 @@
 }
 
 .metaslider .caption {
-    padding: 5px 10px;
+    padding: 10px;
     word-wrap: break-word;
 }
 
@@ -54,7 +54,6 @@
     left: 0;
     background: black;
     color: white;
-    line-height: 30px;
     opacity: 0.7;
     margin: 0;
     display: block;
