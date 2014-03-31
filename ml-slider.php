@@ -305,9 +305,10 @@ class MetaSliderPlugin {
         // documentation tab
         $screen->add_help_tab( array(
                 'id'    => 'documentation',
-                'title' => __( 'Documentation' ),
+                'title' => __( 'Documentation', 'metaslider' ),
                 'content'   => "<p><a href='http://www.metaslider.com/documentation/' target='blank'>Meta Slider Documentation</a></p>",
-            ) );
+            )
+        );
     }
 
     /**
@@ -788,7 +789,7 @@ class MetaSliderPlugin {
                     } else {
                         echo "<h3 class='nav-tab-wrapper'>";
                         echo "<a href='{$add_url}' id='create_new_tab' class='nav-tab'>+</a>";
-                        echo "<div class='bubble'>" . __( "Create your first slideshow" ) . "</div>";
+                        echo "<div class='bubble'>" . __( "Create your first slideshow", "metaslider" ) . "</div>";
                         echo "</h3>";
                     }
                 ?>

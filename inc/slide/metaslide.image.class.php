@@ -121,7 +121,7 @@ class MetaImageSlide extends MetaSlide {
         $row .= "        <div class='tabs-content'>";
         $row .= "            <div class='tab tab-1'>";
         if ( !$this->is_valid_image() ) {
-            $row .= "<div class='warning'>" . __( 'Warning: Image data does not exist. Please re-upload the image.' ) . "</div>";
+            $row .= "<div class='warning'>" . __( "Warning: Image data does not exist. Please re-upload the image.", "metaslider" ) . "</div>";
         }
         $row .= "                <textarea name='attachment[{$this->slide->ID}][post_excerpt]' placeholder='{$str_caption}'>{$caption}</textarea>";
         $row .= "                <input class='url' type='text' name='attachment[{$this->slide->ID}][url]' placeholder='{$str_url}' value='{$url}' />";

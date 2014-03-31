@@ -105,7 +105,7 @@ class MetaSlider_Widget extends WP_Widget {
 		<p>
 			<?php if ( $sliders ) { ?>
 				<p>
-					<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+					<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'metaslider' ); ?></label>
 					<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 				</p>
 				<label for="<?php echo $this->get_field_id( 'slider_id' ); ?>"><?php _e( 'Select Slider:', 'metaslider' ); ?></label>
