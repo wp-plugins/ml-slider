@@ -146,4 +146,5 @@ html[xmlns] .slides {display: block;}
 .metaslider ol.flex-control-thumbs img,
 #content .metaslider ol.flex-control-thumbs img {
     margin: 10px 5px 0;
+    width: auto;
 }
