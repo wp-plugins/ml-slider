@@ -60,6 +60,7 @@ Upgrade to [Meta Slider Pro](http://www.metaslider.com/upgrade) to add support f
 * Chinese (thanks to 断青丝)
 * Taiwanese (thanks to 断青丝)
 * Norwegian (thanks to Dreamsoft)
+* Romanian (thanks to Octav Madalin Stanoaia)
 * Croatian
 
 Read more and thanks to:
@@ -136,6 +137,10 @@ See www.metaslider.com/documentation/image-cropping/
 6. Administration panel - selecting slides
 
 == Changelog ==
+
+= 2.7.3 [XX / XX / XX] =
+* New feature: Romanian Language Pack added (Thanks to Octav Madalin Stanoaia)
+* Improvement: Preview now uses admin-post (Thanks to Viktor Szépe for the suggestion!)
 
 = 2.7.2 [25/03/14] =
 
