@@ -225,7 +225,7 @@ jQuery(document).ready(function($) {
                 if (button.id === "ms-preview") {
                     jQuery.colorbox({
                         iframe: true,
-                        href: metaslider.iframeurl + "?slider_id=" + jQuery(button).data("slider_id"),
+                        href: metaslider.iframeurl + "&slider_id=" + jQuery(button).data("slider_id"),
                         transition: "elastic",
                         innerHeight: getLightboxHeight(),
                         innerWidth: getLightboxWidth(),

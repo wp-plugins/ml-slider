@@ -86,11 +86,31 @@ class MetaSliderPlugin {
         add_filter( 'media_buttons_context', array( $this, 'insert_metaslider_button' ) );
         add_action( 'admin_footer', array( $this, 'admin_footer' ), 11 );
 
+        add_action( 'admin_post_metaslider_preview', array( $this, 'metaslider_admin_do_preview' ) );
+
         // add 'go pro' link to plugin options
         $plugin = plugin_basename( __FILE__ );
         add_filter( "plugin_action_links_{$plugin}", array( $this, 'upgrade_to_pro' ) );
 
         $this->register_slide_types();
+    }
+
+    /**
+     * Outputs a blank page containing a slideshow preview (for use in the 'Preview' iFrame)
+     */
+    public function metaslider_admin_do_preview() {
+        if ( isset( $_GET['slider_id'] ) && absint( $_GET['slider_id'] ) > 0 ) {
+            $id = absint( $_GET['slider_id'] );
+
+            echo "<!DOCTYPE html>";
+            echo "<html style='margin-top: 0 !important'>";
+            echo "<head><style>#wpadminbar {display: none;}</style></head>";
+            echo "<body style='overflow: hidden; margin: 0; padding: 0;'>";
+            echo do_shortcode("[metaslider id={$id}]");
+            wp_footer();
+            echo "</body>";
+            echo "</html>";
+        }
     }
 
     /**
@@ -239,7 +259,7 @@ class MetaSliderPlugin {
                 'confirm' => __( "Are you sure?", "metaslider" ),
                 'ajaxurl' => admin_url( 'admin-ajax.php' ),
                 'resize_nonce' => wp_create_nonce( 'metaslider_resize' ),
-                'iframeurl' => METASLIDER_BASE_URL . 'preview.php',
+                'iframeurl' => admin_url( 'admin-post.php?action=metaslider_preview' ),
                 'useWithCaution' => __( "Caution: This setting is for advanced developers only. If you're unsure, leave it checked.", "metaslider" )
             ) );
 
@@ -713,7 +733,7 @@ class MetaSliderPlugin {
         $this->go_pro_cta();
         $this->system_check();
         $max_tabs = apply_filters( 'metaslider_max_tabs', 0 );
-        
+
         ?>
 
         <script type='text/javascript'>
