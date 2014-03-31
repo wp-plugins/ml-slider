@@ -139,7 +139,7 @@ class MetaSlider {
             $this->update_title( $_POST['title'] );
         }
         if ( isset( $_GET['deleteSlide'] ) ) {
-            $this->delete_slide( intval( $_GET['deleteSlide'] ) );
+            $this->delete_slide( absint( $_GET['deleteSlide'] ) );
         }
 
         // make changes to slides
@@ -512,7 +512,7 @@ class MetaSlider {
 
         foreach ( $current_terms as $current_term ) {
             if ( $current_term != $term->term_id ) {
-                $new_terms[] = intval( $current_term );
+                $new_terms[] = absint( $current_term );
             }
         }
 

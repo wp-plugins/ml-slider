@@ -24,7 +24,7 @@ class MetaImageSlide extends MetaSlide {
             die();
         }
 
-        $slider_id = intval( $_POST['slider_id'] );
+        $slider_id = absint( $_POST['slider_id'] );
         $selection = $_POST['selection'];
 
         if ( is_array( $selection ) && count( $selection ) && $slider_id > 0 ) {
@@ -58,8 +58,8 @@ class MetaImageSlide extends MetaSlide {
     public function ajax_resize_slide() {
         check_admin_referer( 'metaslider_resize' );
 
-        $slider_id = intval( $_POST['slider_id'] );
-        $slide_id = intval( $_POST['slide_id'] );
+        $slider_id = absint( $_POST['slider_id'] );
+        $slide_id = absint( $_POST['slide_id'] );
 
         $this->set_slide( $slide_id );
         $this->set_slider( $slider_id );
@@ -98,9 +98,9 @@ class MetaImageSlide extends MetaSlide {
         $caption     = htmlentities( $this->slide->post_excerpt, ENT_QUOTES, 'UTF-8' );
 
         // localisation
-        $str_caption    = __( "Caption", 'metaslider' );
-        $str_new_window = __( "New Window", 'metaslider' );
-        $str_url        = __( "URL", 'metaslider' );
+        $str_caption    = __( "Caption", "metaslider" );
+        $str_new_window = __( "New Window", "metaslider" );
+        $str_url        = __( "URL", "metaslider" );
         $str_label      = __( "Image Slide", "metaslider" );
 
         $slide_label = apply_filters( "metaslider_image_slide_label", $str_label, $this->slide, $this->settings );
