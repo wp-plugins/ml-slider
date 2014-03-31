@@ -320,17 +320,19 @@ class MetaSlider {
         $custom_js_before = $this->get_custom_javascript_before();
         $custom_js_after = $this->get_custom_javascript_after();
 
-        $script = "var " . $this->identifier . " = function($) {";
+        $identifier = $this->get_identifier();
+
+        $script = "var " . $identifier . " = function($) {";
         $script .= $custom_js_before;
-        $script .= "\n            $('#" . $this->identifier . "')." . $this->js_function . "({ ";
+        $script .= "\n            $('#" . $identifier . "')." . $this->js_function . "({ ";
         $script .= "\n                " . $this->get_javascript_parameters();
         $script .= "\n            });";
         $script .= $custom_js_after;
         $script .= "\n        };";
-        $script .= "\n        var timer_" . $this->identifier . " = function() {";
-        $script .= "\n            var slider = !window.jQuery ? window.setTimeout(timer_{$this->identifier}, 100) : !jQuery.isReady ? window.setTimeout(timer_{$this->identifier}, 100) : {$this->identifier}(window.jQuery);";
+        $script .= "\n        var timer_" . $identifier . " = function() {";
+        $script .= "\n            var slider = !window.jQuery ? window.setTimeout(timer_{$identifier}, 100) : !jQuery.isReady ? window.setTimeout(timer_{$identifier}, 100) : {$identifier}(window.jQuery);";
         $script .= "\n        };";
-        $script .= "\n        timer_" . $this->identifier . "();";
+        $script .= "\n        timer_" . $identifier . "();";
 
         return $script;
     }
