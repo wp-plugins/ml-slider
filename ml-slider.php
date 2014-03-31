@@ -1,24 +1,22 @@
 <?php
 /*
- * Plugin Name: Meta Slider
- * Plugin URI: http://www.metaslider.com
- * Description: Easy to use slideshow plugin. Create SEO optimised responsive slideshows with Nivo Slider, Flex Slider, Coin Slider and Responsive Slides.
- * Version: 2.7.2
- * Author: Matcha Labs
- * Author URI: http://www.matchalabs.com
- * License: GPLv2 or later
+ * Meta Slider. Slideshow plugin for WordPress.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * Plugin Name: Meta Slider
+ * Plugin URI:  http://www.metaslider.com
+ * Description: Easy to use slideshow plugin. Create SEO optimised responsive slideshows with Nivo Slider, Flex Slider, Coin Slider and Responsive Slides.
+ * Version:     2.7.2
+ * Author:      Matcha Labs
+ * Author URI:  http://www.matchalabs.com
+ * License:     GPL-2.0+
+ * Copyright:   2014 Matcha Labs LTD
  */
 
 // disable direct access
 if ( !defined( 'ABSPATH' ) ) exit;
 
 define( 'METASLIDER_VERSION', '2.7.2' );
-define( 'METASLIDER_BASE_URL', plugins_url( 'ml-slider' ) . '/' ); //plugin_dir_url(__FILE__)
+define( 'METASLIDER_BASE_URL', plugins_url( 'ml-slider' ) . '/' );
 define( 'METASLIDER_ASSETS_URL', METASLIDER_BASE_URL . 'assets/' );
 define( 'METASLIDER_BASE_DIR_LONG', dirname( __FILE__ ) );
 define( 'METASLIDER_INC_DIR', METASLIDER_BASE_DIR_LONG . '/inc/' );
@@ -102,14 +100,13 @@ class MetaSliderPlugin {
         if ( isset( $_GET['slider_id'] ) && absint( $_GET['slider_id'] ) > 0 ) {
             $id = absint( $_GET['slider_id'] );
 
-            echo "<!DOCTYPE html>";
-            echo "<html style='margin-top: 0 !important'>";
-            echo "<head><style>#wpadminbar {display: none;}</style></head>";
-            echo "<body style='overflow: hidden; margin: 0; padding: 0;'>";
+            echo "<!DOCTYPE html><html><head><style>";
+            echo "#wpadminbar { display: none; }";
+            echo "body, html { overflow: hidden; margin: 0; padding: 0; }";
+            echo "</style></head><body>";
             echo do_shortcode("[metaslider id={$id}]");
             wp_footer();
-            echo "</body>";
-            echo "</html>";
+            echo "</body></html>";
         }
     }
 
@@ -328,7 +325,8 @@ class MetaSliderPlugin {
                 'labels' => array(
                     'name' => 'Meta Slider'
                 )
-            ) );
+            )
+        );
     }
 
     /**
@@ -340,7 +338,8 @@ class MetaSliderPlugin {
                 'public' => false,
                 'query_var' => false,
                 'rewrite' => false
-            ) );
+            )
+        );
     }
 
     /**
@@ -376,12 +375,11 @@ class MetaSliderPlugin {
 
         if ( isset( $shortcode_settings['type'] ) ) {
             $type = $shortcode_settings['type'];
-        }
-        else if ( $settings = get_post_meta( $id, 'ml-slider_settings', true ) ) {
-                if ( is_array( $settings ) && isset( $settings['type'] ) ) {
-                    $type = $settings['type'];
-                }
+        } else if ( $settings = get_post_meta( $id, 'ml-slider_settings', true ) ) {
+            if ( is_array( $settings ) && isset( $settings['type'] ) ) {
+                $type = $settings['type'];
             }
+        }
 
         if ( !in_array( $type, array( 'flex', 'coin', 'nivo', 'responsive' ) ) ) {
             $type = 'flex';
@@ -395,16 +393,16 @@ class MetaSliderPlugin {
      */
     private function create_slider( $type, $id, $shortcode_settings ) {
         switch ( $type ) {
-        case( 'coin' ):
-            return new MetaCoinSlider( $id, $shortcode_settings );
-        case( 'flex' ):
-            return new MetaFlexSlider( $id, $shortcode_settings );
-        case( 'nivo' ):
-            return new MetaNivoSlider( $id, $shortcode_settings );
-        case( 'responsive' ):
-            return new MetaResponsiveSlider( $id, $shortcode_settings );
-        default:
-            return new MetaFlexSlider( $id, $shortcode_settings );
+            case( 'coin' ):
+                return new MetaCoinSlider( $id, $shortcode_settings );
+            case( 'flex' ):
+                return new MetaFlexSlider( $id, $shortcode_settings );
+            case( 'nivo' ):
+                return new MetaNivoSlider( $id, $shortcode_settings );
+            case( 'responsive' ):
+                return new MetaResponsiveSlider( $id, $shortcode_settings );
+            default:
+                return new MetaFlexSlider( $id, $shortcode_settings );
         }
     }
 
@@ -422,12 +420,12 @@ class MetaSliderPlugin {
 
         // delete a slider
         if ( isset( $_GET['delete'] ) ) {
-            $slider_id = $this->delete_slider( intval( $_GET['delete'] ) );
+            $slider_id = $this->delete_slider( absint( $_GET['delete'] ) );
         }
 
         // load a slider by ID
         if ( isset( $_REQUEST['id'] ) ) {
-            $temp_id = intval( $_REQUEST['id'] );
+            $temp_id = absint( $_REQUEST['id'] );
 
             // check valid post ID
             if ( get_post( $temp_id ) ) {
@@ -464,7 +462,8 @@ class MetaSliderPlugin {
                 'post_title' => __( "New Slider", "metaslider" ),
                 'post_status' => 'publish',
                 'post_type' => 'ml-slider'
-            ) );
+            )
+        );
 
         // use the default settings if we can't find anything more suitable.
         if ( empty( $defaults ) ) {
@@ -494,7 +493,8 @@ class MetaSliderPlugin {
         wp_update_post( array(
                 'ID' => $id,
                 'post_status' => 'trash'
-            ) );
+            )
+        );
 
         return $this->find_slider( 'date', 'DESC' );
     }
