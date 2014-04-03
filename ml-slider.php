@@ -10,36 +10,16 @@
  * Author URI:  http://www.matchalabs.com
  * License:     GPL-2.0+
  * Copyright:   2014 Matcha Labs LTD
+ *
+ * Text Domain: metaslider
+ * Domain Path: /languages/
  */
 
-// disable direct access
-if ( !defined( 'ABSPATH' ) ) exit;
+if ( !defined( 'ABSPATH' ) ) {
+    exit; // disable direct access
+}
 
-define( 'METASLIDER_VERSION', '2.7.2' );
-define( 'METASLIDER_BASE_URL', plugins_url( 'ml-slider' ) . '/' );
-define( 'METASLIDER_ASSETS_URL', METASLIDER_BASE_URL . 'assets/' );
-define( 'METASLIDER_BASE_DIR_LONG', dirname( __FILE__ ) );
-define( 'METASLIDER_INC_DIR', METASLIDER_BASE_DIR_LONG . '/inc/' );
-
-// include slider classes
-require_once METASLIDER_INC_DIR . 'slider/metaslider.class.php';
-require_once METASLIDER_INC_DIR . 'slider/metaslider.coin.class.php';
-require_once METASLIDER_INC_DIR . 'slider/metaslider.flex.class.php';
-require_once METASLIDER_INC_DIR . 'slider/metaslider.nivo.class.php';
-require_once METASLIDER_INC_DIR . 'slider/metaslider.responsive.class.php';
-
-// include slide classes
-require_once METASLIDER_INC_DIR . 'slide/metaslide.class.php';
-require_once METASLIDER_INC_DIR . 'slide/metaslide.image.class.php';
-
-// include image helper
-require_once METASLIDER_INC_DIR . 'metaslider.imagehelper.class.php';
-
-// include widget
-require_once METASLIDER_INC_DIR . 'metaslider.widget.class.php';
-
-// include system check
-require_once METASLIDER_INC_DIR . 'metaslider.systemcheck.class.php';
+if ( ! class_exists( 'MetaSliderPlugin' ) ) :
 
 /**
  * Register the plugin.
@@ -48,49 +28,118 @@ require_once METASLIDER_INC_DIR . 'metaslider.systemcheck.class.php';
  */
 class MetaSliderPlugin {
 
-    /** Current Slider **/
-    var $slider = null;
+    /**
+     * @var string
+     */
+    public $version = '2.7.2';
+
+    /**
+     * @var MetaSlider
+     */
+    public $slider = null;
 
     /**
      * Init
      */
     public static function init() {
-        $metaslider = new MetaSliderPlugin;
+        $metaslider = new self();
     }
 
     /**
      * Constructor
      */
     public function __construct() {
-        // create the admin menu/page
-        add_action( 'admin_menu', array( $this, 'register_admin_menu' ), 9553 );
+        $this->define_constants();
+        $this->includes();
+        $this->setup_actions();
+        $this->setup_filters();
+        $this->setup_shortcode();
+        $this->register_slide_types();
+    }
 
-        // register slider post type and taxonomy
-        add_action( 'init', array( $this, 'register_post_type' ) );
-        add_action( 'init', array( $this, 'register_taxonomy' ) );
-        add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
-
+    /**
+     *
+     */
+    private function setup_shortcode() {
         // register shortcodes
         add_shortcode( 'metaslider', array( $this, 'register_shortcode' ) );
         add_shortcode( 'ml-slider', array( $this, 'register_shortcode' ) ); // backwards compatibility
+    }
 
-        add_filter( 'media_upload_tabs', array( $this, 'custom_media_upload_tab_name' ), 998 );
-        add_filter( 'media_view_strings', array( $this, 'custom_media_uploader_tabs' ), 5 );
+    /**
+     * Define Meta Slider constants
+     */
+    private function define_constants() {
+        define( 'METASLIDER_VERSION', $this->version );
+        define( 'METASLIDER_BASE_URL', plugins_url( 'ml-slider' ) . '/' );
+        define( 'METASLIDER_ASSETS_URL', METASLIDER_BASE_URL . 'assets/' );
+        define( 'METASLIDER_PATH', plugin_dir_path( __FILE__ ) );
+    }
+
+    /**
+     *
+     */
+    private function includes() {
+        spl_autoload_register( array( $this, 'autoload' ) );
+    }
+
+    /**
+     *
+     */
+    private function autoload( $class ) {
+        static $classes = null;
+
+        if ( $classes === null ) {
+            $classes = array(
+                'metaslider'            => METASLIDER_PATH . 'inc/slider/metaslider.class.php',
+                'metacoinslider'        => METASLIDER_PATH . 'inc/slider/metaslider.coin.class.php',
+                'metaflexslider'        => METASLIDER_PATH . 'inc/slider/metaslider.flex.class.php',
+                'metanivoslider'        => METASLIDER_PATH . 'inc/slider/metaslider.nivo.class.php',
+                'metaresponsiveslider'  => METASLIDER_PATH . 'inc/slider/metaslider.responsive.class.php',
+                'metaslide'             => METASLIDER_PATH . 'inc/slide/metaslide.class.php',
+                'metaimageslide'        => METASLIDER_PATH . 'inc/slide/metaslide.image.class.php',
+                'metasliderimagehelper' => METASLIDER_PATH . 'inc/metaslider.imagehelper.class.php',
+                'metaslidersystemcheck' => METASLIDER_PATH . 'inc/metaslider.systemcheck.class.php',
+                'metasliderwidget'      => METASLIDER_PATH . 'inc/metaslider.widget.class.php'
+            );
+        }
+
+        $cn = strtolower( $class );
+
+        if ( isset( $classes[$cn] ) ) {
+            require_once( $classes[$cn] );
+        }
+    }
+
+    /**
+     *
+     */
+    private function setup_filters() {
+        // create the admin menu/page
+        add_action( 'admin_menu', array( $this, 'register_admin_menu' ), 9553 );
+        add_action( 'init', array( $this, 'register_post_type' ) );
+        add_action( 'init', array( $this, 'register_taxonomy' ) );
+        add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+        add_action( 'admin_footer', array( $this, 'admin_footer' ), 11 );
         add_action( 'media_upload_vimeo', array( $this, 'metaslider_pro_tab' ) );
         add_action( 'media_upload_youtube', array( $this, 'metaslider_pro_tab' ) );
         add_action( 'media_upload_post_feed', array( $this, 'metaslider_pro_tab' ) );
         add_action( 'media_upload_layer', array( $this, 'metaslider_pro_tab' ) );
-
-        add_filter( 'media_buttons_context', array( $this, 'insert_metaslider_button' ) );
-        add_action( 'admin_footer', array( $this, 'admin_footer' ), 11 );
-
         add_action( 'admin_post_metaslider_preview', array( $this, 'metaslider_admin_do_preview' ) );
+    }
+
+    /**
+     *
+     */
+    private function setup_actions() {
+        add_filter( 'media_upload_tabs', array( $this, 'custom_media_upload_tab_name' ), 998 );
+        add_filter( 'media_view_strings', array( $this, 'custom_media_uploader_tabs' ), 5 );
+        add_filter( 'media_buttons_context', array( $this, 'insert_metaslider_button' ) );
 
         // add 'go pro' link to plugin options
         $plugin = plugin_basename( __FILE__ );
-        add_filter( "plugin_action_links_{$plugin}", array( $this, 'upgrade_to_pro' ) );
 
-        $this->register_slide_types();
+        add_filter( "plugin_action_links_{$plugin}", array( $this, 'upgrade_to_pro' ) );
     }
 
     /**
@@ -133,14 +182,14 @@ class MetaSliderPlugin {
      */
     public function metaslider_pro_tab() {
         if ( function_exists( 'is_plugin_active' ) && !is_plugin_active( 'ml-slider-pro/ml-slider-pro.php' ) ) {
-            return wp_iframe( array( $this, 'iframe' ) );
+            return wp_iframe( array( $this, 'upgrade_to_pro_iframe' ) );
         }
     }
 
     /**
      * Media Manager iframe HTML
      */
-    public function iframe() {
+    public function upgrade_to_pro_iframe() {
         wp_enqueue_style( 'metaslider-admin-styles', METASLIDER_ASSETS_URL . 'metaslider/admin.css', false, METASLIDER_VERSION );
         wp_enqueue_script( 'google-font-api', 'http://fonts.googleapis.com/css?family=PT+Sans:400,700' );
 
@@ -161,7 +210,9 @@ class MetaSliderPlugin {
      * Register our slide types
      */
     private function register_slide_types() {
-        $image = new MetaImageSlide();
+        if ( class_exists( 'MetaImageSlide') ) {
+            $image = new MetaImageSlide();
+        }
     }
 
     /**
@@ -246,7 +297,8 @@ class MetaSliderPlugin {
         // localise the JS
         wp_localize_script( 'metaslider-admin-addslide', 'metaslider_image', array(
                 'addslide_nonce' => wp_create_nonce( 'metaslider_addslide' )
-            ) );
+            ) 
+        );
 
         // localise the JS
         wp_localize_script( 'metaslider-admin-script', 'metaslider', array(
@@ -258,7 +310,8 @@ class MetaSliderPlugin {
                 'resize_nonce' => wp_create_nonce( 'metaslider_resize' ),
                 'iframeurl' => admin_url( 'admin-post.php?action=metaslider_preview' ),
                 'useWithCaution' => __( "Caution: This setting is for advanced developers only. If you're unsure, leave it checked.", "metaslider" )
-            ) );
+            ) 
+        );
 
         do_action( 'metaslider_register_admin_scripts' );
     }
@@ -1352,6 +1405,6 @@ class MetaSliderPlugin {
     }
 }
 
-add_action( 'plugins_loaded', array( 'MetaSliderPlugin', 'init' ) );
+endif;
 
-?>
+add_action( 'plugins_loaded', array( 'MetaSliderPlugin', 'init' ) );
