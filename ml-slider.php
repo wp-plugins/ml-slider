@@ -58,15 +58,6 @@ class MetaSliderPlugin {
     }
 
     /**
-     *
-     */
-    private function setup_shortcode() {
-        // register shortcodes
-        add_shortcode( 'metaslider', array( $this, 'register_shortcode' ) );
-        add_shortcode( 'ml-slider', array( $this, 'register_shortcode' ) ); // backwards compatibility
-    }
-
-    /**
      * Define Meta Slider constants
      */
     private function define_constants() {
@@ -77,44 +68,68 @@ class MetaSliderPlugin {
     }
 
     /**
-     *
+     * Register the [metaslider] shortcode.
+     */
+    private function setup_shortcode() {
+        add_shortcode( 'metaslider', array( $this, 'register_shortcode' ) );
+        add_shortcode( 'ml-slider', array( $this, 'register_shortcode' ) ); // backwards compatibility
+    }
+
+    /**
+     * All Meta Slider classes
+     */
+    private function plugin_classes() {
+        return array(
+            'metaslider'            => METASLIDER_PATH . 'inc/slider/metaslider.class.php',
+            'metacoinslider'        => METASLIDER_PATH . 'inc/slider/metaslider.coin.class.php',
+            'metaflexslider'        => METASLIDER_PATH . 'inc/slider/metaslider.flex.class.php',
+            'metanivoslider'        => METASLIDER_PATH . 'inc/slider/metaslider.nivo.class.php',
+            'metaresponsiveslider'  => METASLIDER_PATH . 'inc/slider/metaslider.responsive.class.php',
+            'metaslide'             => METASLIDER_PATH . 'inc/slide/metaslide.class.php',
+            'metaimageslide'        => METASLIDER_PATH . 'inc/slide/metaslide.image.class.php',
+            'metasliderimagehelper' => METASLIDER_PATH . 'inc/metaslider.imagehelper.class.php',
+            'metaslidersystemcheck' => METASLIDER_PATH . 'inc/metaslider.systemcheck.class.php',
+            'metasliderwidget'      => METASLIDER_PATH . 'inc/metaslider.widget.class.php'
+        );
+    }
+
+    /**
+     * Load required classes
      */
     private function includes() {
-        spl_autoload_register( array( $this, 'autoload' ) );
+        if ( function_exists( "spl_autoload_register" ) ) {
+            // >= PHP 5.2
+            if ( function_exists( "__autoload" ) ) {
+                spl_autoload_register( "__autoload" );
+            }
+
+            spl_autoload_register( array( $this, 'autoload' ) );
+
+        } else {
+            // < PHP5.2
+            foreach ($this->plugin_classes() as $id => $path) {
+                require_once($path);
+            }
+        }
     }
 
     /**
-     *
+     * Autoload Meta Slider classes to reduce memory consumption
      */
     private function autoload( $class ) {
-        static $classes = null;
+        $classes = $this->plugin_classes();
 
-        if ( $classes === null ) {
-            $classes = array(
-                'metaslider'            => METASLIDER_PATH . 'inc/slider/metaslider.class.php',
-                'metacoinslider'        => METASLIDER_PATH . 'inc/slider/metaslider.coin.class.php',
-                'metaflexslider'        => METASLIDER_PATH . 'inc/slider/metaslider.flex.class.php',
-                'metanivoslider'        => METASLIDER_PATH . 'inc/slider/metaslider.nivo.class.php',
-                'metaresponsiveslider'  => METASLIDER_PATH . 'inc/slider/metaslider.responsive.class.php',
-                'metaslide'             => METASLIDER_PATH . 'inc/slide/metaslide.class.php',
-                'metaimageslide'        => METASLIDER_PATH . 'inc/slide/metaslide.image.class.php',
-                'metasliderimagehelper' => METASLIDER_PATH . 'inc/metaslider.imagehelper.class.php',
-                'metaslidersystemcheck' => METASLIDER_PATH . 'inc/metaslider.systemcheck.class.php',
-                'metasliderwidget'      => METASLIDER_PATH . 'inc/metaslider.widget.class.php'
-            );
-        }
+        $class_name = strtolower( $class );
 
-        $cn = strtolower( $class );
-
-        if ( isset( $classes[$cn] ) ) {
-            require_once( $classes[$cn] );
+        if ( isset( $classes[$class_name] ) && is_readable( $classes[$class_name] ) ) {
+            require_once( $classes[$class_name] );
         }
     }
 
     /**
-     *
+     * Hook Meta Slider into WordPress
      */
-    private function setup_filters() {
+    private function setup_actions() {
         // create the admin menu/page
         add_action( 'admin_menu', array( $this, 'register_admin_menu' ), 9553 );
         add_action( 'init', array( $this, 'register_post_type' ) );
@@ -129,9 +144,9 @@ class MetaSliderPlugin {
     }
 
     /**
-     *
+     * Hook Meta Slider into WordPress
      */
-    private function setup_actions() {
+    private function setup_filters() {
         add_filter( 'media_upload_tabs', array( $this, 'custom_media_upload_tab_name' ), 998 );
         add_filter( 'media_view_strings', array( $this, 'custom_media_uploader_tabs' ), 5 );
         add_filter( 'media_buttons_context', array( $this, 'insert_metaslider_button' ) );
@@ -146,17 +161,21 @@ class MetaSliderPlugin {
      * Outputs a blank page containing a slideshow preview (for use in the 'Preview' iFrame)
      */
     public function metaslider_admin_do_preview() {
+        remove_action('wp_footer', 'wp_admin_bar_render', 1000);
+
         if ( isset( $_GET['slider_id'] ) && absint( $_GET['slider_id'] ) > 0 ) {
             $id = absint( $_GET['slider_id'] );
 
             echo "<!DOCTYPE html><html><head><style>";
-            echo "#wpadminbar { display: none; }";
+            //echo "#wpadminbar { display: none; }";
             echo "body, html { overflow: hidden; margin: 0; padding: 0; }";
             echo "</style></head><body>";
             echo do_shortcode("[metaslider id={$id}]");
             wp_footer();
             echo "</body></html>";
         }
+
+        die();
     }
 
     /**
@@ -196,23 +215,23 @@ class MetaSliderPlugin {
         $link = apply_filters( 'metaslider_hoplink', 'http://www.metaslider.com/upgrade/' );
         $link .= '?utm_source=lite&amp;utm_medium=more-slide-types&amp;utm_campaign=pro';
 
-        echo "<div class='metaslider'>";
-        echo "<p style='text-align: center; font-size: 1.2em; margin-top: 50px;'>Get the Pro Addon pack to add support for: <b>Post Feed</b> Slides, <b>YouTube</b> Slides, <b>HTML</b> Slides & <b>Vimeo</b> Slides</p>";
-        echo "<p style='text-align: center; font-size: 1.2em;'><b>NEW: </b> Animated HTML <b>Layer</b> Slides (with an awesome Drag & Drop editor!)</p>";
-        echo "<p style='text-align: center; font-size: 1.2em;'><b></b> Live Theme Editor!</p>";
-        echo "<p style='text-align: center; font-size: 1.2em;'><b>NEW:</b> Thumbnail Navigation for Flex & Nivo Slider!</p>";
-        echo "<a class='probutton' href='{$link}' target='_blank'>Get <span class='logo'><strong>Meta</strong>Slider</span><span class='super'>Pro</span></a>";
-        echo "<span class='subtext'>Opens in a new window</span>";
-        echo "</div>";
+        echo implode("", array(
+            "<div class='metaslider_pro'>",
+                "<p>Get the Pro Addon pack to add support for: <b>Post Feed</b> Slides, <b>YouTube</b> Slides, <b>HTML</b> Slides & <b>Vimeo</b> Slides</p>",
+                "<p><b>NEW: </b> Animated HTML <b>Layer</b> Slides (with an awesome Drag & Drop editor!)</p>",
+                "<p><b></b> Live Theme Editor!</p>",
+                "<p><b>NEW:</b> Thumbnail Navigation for Flex & Nivo Slider!</p>",
+                "<a class='probutton' href='{$link}' target='_blank'>Get <span class='logo'><strong>Meta</strong>Slider</span><span class='super'>Pro</span></a>",
+                "<span class='subtext'>Opens in a new window</span>",
+            "</div>"
+        ));
     }
 
     /**
      * Register our slide types
      */
     private function register_slide_types() {
-        if ( class_exists( 'MetaImageSlide') ) {
-            $image = new MetaImageSlide();
-        }
+        $image = new MetaImageSlide();
     }
 
     /**
@@ -297,7 +316,7 @@ class MetaSliderPlugin {
         // localise the JS
         wp_localize_script( 'metaslider-admin-addslide', 'metaslider_image', array(
                 'addslide_nonce' => wp_create_nonce( 'metaslider_addslide' )
-            ) 
+            )
         );
 
         // localise the JS
@@ -310,7 +329,7 @@ class MetaSliderPlugin {
                 'resize_nonce' => wp_create_nonce( 'metaslider_resize' ),
                 'iframeurl' => admin_url( 'admin-post.php?action=metaslider_preview' ),
                 'useWithCaution' => __( "Caution: This setting is for advanced developers only. If you're unsure, leave it checked.", "metaslider" )
-            ) 
+            )
         );
 
         do_action( 'metaslider_register_admin_scripts' );
@@ -350,7 +369,7 @@ class MetaSliderPlugin {
     }
 
     /**
-     *
+     * Add the help tab to the screen.
      */
     public function help_tab() {
         $screen = get_current_screen();
