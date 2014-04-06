@@ -343,11 +343,10 @@ class MetaSliderPlugin {
     }
 
     /**
-     *
+     * Localise admin script
      */
     public function localize_admin_scripts() {
 
-        // localise the JS
         wp_localize_script( 'metaslider-admin-script', 'metaslider', array(
                 'url' => __( "URL", "metaslider" ),
                 'caption' => __( "Caption", "metaslider" ),
