@@ -129,23 +129,37 @@ class MetaSlider {
             return;
         }
 
+        $changes_made = false;
+
         // make changes to slider
         if ( isset( $_POST['settings'] ) ) {
             check_admin_referer( 'metaslider_save_' . $this->id );
             $this->update_settings( $_POST['settings'] );
+            $changes_made = true;
         }
+
         if ( isset( $_POST['title'] ) ) {
             check_admin_referer( 'metaslider_save_' . $this->id );
             $this->update_title( $_POST['title'] );
+            $changes_made = true;
         }
+
         if ( isset( $_GET['deleteSlide'] ) ) {
             $this->delete_slide( absint( $_GET['deleteSlide'] ) );
+            $changes_made = true;
         }
 
         // make changes to slides
         if ( isset( $_POST['attachment'] ) ) {
             check_admin_referer( 'metaslider_save_' . $this->id );
             $this->update_slides( $_POST['attachment'] );
+            $changes_made = true;
+        }
+
+        // Clear current blog's WP Super Cache files when slideshow is modified
+        if ( $changes_made && function_exists( 'wp_cache_clear_cache' ) ) {
+            global $wpdb;
+            wp_cache_clear_cache( $wpdb->blogid );
         }
     }
 
@@ -237,7 +251,7 @@ class MetaSlider {
         $html[] = '        ' . $this->get_html();
         $html[] = '        ' . $this->get_html_after();
         $html[] = '    </div>';
-        $html[] = '    <script type="text/javascript">';
+        $html[] = '    <script type="text/javascript" id="metaslider-' . $this->id . '">';
         $html[] = '        ' .  $this->get_inline_javascript();
         $html[] = '    </script>';
         $html[] = '</div>';
@@ -439,7 +453,7 @@ class MetaSlider {
         $attributes = apply_filters( "metaslider_style_attributes", "", $this->settings, $this->id );
 
         if ( strlen( $css ) ) {
-            return "<style type=\"text/css\"{$attributes}>{$css}\n    </style>";
+            return "<style type=\"text/css\"{$attributes} id=\"metaslider-{$this->id}\">{$css}\n    </style>";
         }
 
         return "";
