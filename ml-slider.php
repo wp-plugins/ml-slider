@@ -42,35 +42,42 @@ class MetaSliderPlugin {
      * Init
      */
     public static function init() {
+
         $metaslider = new self();
+
     }
 
     /**
      * Constructor
      */
     public function __construct() {
+
         $this->define_constants();
         $this->includes();
         $this->setup_actions();
         $this->setup_filters();
         $this->setup_shortcode();
         $this->register_slide_types();
+
     }
 
     /**
      * Define Meta Slider constants
      */
     private function define_constants() {
-        define( 'METASLIDER_VERSION', $this->version );
-        define( 'METASLIDER_BASE_URL', trailingslashit( plugins_url( 'ml-slider' ) ) );
+
+        define( 'METASLIDER_VERSION',    $this->version );
+        define( 'METASLIDER_BASE_URL',   trailingslashit( plugins_url( 'ml-slider' ) ) );
         define( 'METASLIDER_ASSETS_URL', trailingslashit( METASLIDER_BASE_URL . 'assets' ) );
-        define( 'METASLIDER_PATH', plugin_dir_path( __FILE__ ) );
+        define( 'METASLIDER_PATH',       plugin_dir_path( __FILE__ ) );
+
     }
 
     /**
      * All Meta Slider classes
      */
     private function plugin_classes() {
+
         return array(
             'metaslider'            => METASLIDER_PATH . 'inc/slider/metaslider.class.php',
             'metacoinslider'        => METASLIDER_PATH . 'inc/slider/metaslider.coin.class.php',
@@ -83,12 +90,14 @@ class MetaSliderPlugin {
             'metaslidersystemcheck' => METASLIDER_PATH . 'inc/metaslider.systemcheck.class.php',
             'metasliderwidget'      => METASLIDER_PATH . 'inc/metaslider.widget.class.php'
         );
+
     }
 
     /**
      * Load required classes
      */
     private function includes() {
+
         if ( function_exists( "spl_autoload_register" ) ) {
             // >= PHP 5.2
             if ( function_exists( "__autoload" ) ) {
@@ -105,12 +114,14 @@ class MetaSliderPlugin {
                 }
             }
         }
+
     }
 
     /**
      * Autoload Meta Slider classes to reduce memory consumption
      */
     private function autoload( $class ) {
+
         $classes = $this->plugin_classes();
 
         $class_name = strtolower( $class );
@@ -118,20 +129,24 @@ class MetaSliderPlugin {
         if ( isset( $classes[$class_name] ) && is_readable( $classes[$class_name] ) ) {
             require_once( $classes[$class_name] );
         }
+
     }
 
     /**
      * Register the [metaslider] shortcode.
      */
     private function setup_shortcode() {
+
         add_shortcode( 'metaslider', array( $this, 'register_shortcode' ) );
         add_shortcode( 'ml-slider', array( $this, 'register_shortcode' ) ); // backwards compatibility
+
     }
 
     /**
      * Hook Meta Slider into WordPress
      */
     private function setup_actions() {
+
         // create the admin menu/page
         add_action( 'admin_menu', array( $this, 'register_admin_menu' ), 9553 );
         add_action( 'init', array( $this, 'register_post_type' ) );
@@ -144,12 +159,14 @@ class MetaSliderPlugin {
         add_action( 'media_upload_layer', array( $this, 'upgrade_to_pro_tab' ) );
         add_action( 'admin_post_metaslider_preview', array( $this, 'do_preview' ) );
         add_action( 'widgets_init', array( $this, 'register_metaslider_widget' ) );
+
     }
 
     /**
      * Hook Meta Slider into WordPress
      */
     private function setup_filters() {
+
         add_filter( 'media_upload_tabs', array( $this, 'custom_media_upload_tab_name' ), 998 );
         add_filter( 'media_view_strings', array( $this, 'custom_media_uploader_tabs' ), 5 );
         add_filter( 'media_buttons_context', array( $this, 'insert_metaslider_button' ) );
@@ -158,23 +175,27 @@ class MetaSliderPlugin {
         $plugin = plugin_basename( __FILE__ );
 
         add_filter( "plugin_action_links_{$plugin}", array( $this, 'upgrade_to_pro_link' ) );
+
     }
 
     /**
      * Register Meta Slider widget
      */
     public function register_metaslider_widget() {
+
         if ( ! class_exists( 'MetaSlider_Widget' ) ) {
             require_once( METASLIDER_PATH . 'inc/metaslider.widget.class.php' );
         }
 
         register_widget( 'MetaSlider_Widget' );
+
     }
 
     /**
      * Register ML Slider post type
      */
     public function register_post_type() {
+
         register_post_type( 'ml-slider', array(
                 'query_var' => false,
                 'rewrite' => false,
@@ -188,12 +209,14 @@ class MetaSliderPlugin {
                 )
             )
         );
+
     }
 
     /**
      * Register taxonomy to store slider => slides relationship
      */
     public function register_taxonomy() {
+
         register_taxonomy( 'ml-slider', 'attachment', array(
                 'hierarchical' => true,
                 'public' => false,
@@ -201,19 +224,23 @@ class MetaSliderPlugin {
                 'rewrite' => false
             )
         );
+
     }
 
     /**
      * Register our slide types
      */
     private function register_slide_types() {
+
         $image = new MetaImageSlide();
+
     }
 
     /**
      * Add the menu page
      */
     public function register_admin_menu() {
+
         $title = apply_filters( 'metaslider_menu_title', "Meta Slider" );
 
         $page = add_menu_page( $title, $title, 'edit_others_posts', 'metaslider', array(
@@ -224,6 +251,7 @@ class MetaSliderPlugin {
         add_action( 'admin_print_scripts-' . $page, array( $this, 'register_admin_scripts' ) );
         add_action( 'admin_print_styles-' . $page, array( $this, 'register_admin_styles' ) );
         add_action( 'load-' . $page, array( $this, 'help_tab' ) );
+
     }
 
     /**
@@ -232,6 +260,7 @@ class MetaSliderPlugin {
      * @return string HTML output of the shortcode
      */
     public function register_shortcode( $atts ) {
+
         if ( !isset( $atts['id'] ) ) {
             return false;
         }
@@ -249,19 +278,23 @@ class MetaSliderPlugin {
         $this->slider->enqueue_scripts();
 
         return $this->slider->render_public_slides();
+
     }
 
     /**
      * Initialise translations
      */
     public function load_plugin_textdomain() {
+
         load_plugin_textdomain( 'metaslider', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+
     }
 
     /**
      * Add the help tab to the screen.
      */
     public function help_tab() {
+
         $screen = get_current_screen();
 
         // documentation tab
@@ -271,22 +304,26 @@ class MetaSliderPlugin {
                 'content'   => "<p><a href='http://www.metaslider.com/documentation/' target='blank'>Meta Slider Documentation</a></p>",
             )
         );
+
     }
 
     /**
      * Rehister admin styles
      */
     public function register_admin_styles() {
+
         wp_enqueue_style( 'metaslider-admin-styles', METASLIDER_ASSETS_URL . 'metaslider/admin.css', false, METASLIDER_VERSION );
         wp_enqueue_style( 'metaslider-colorbox-styles', METASLIDER_ASSETS_URL . 'colorbox/colorbox.css', false, METASLIDER_VERSION );
         wp_enqueue_style( 'metaslider-tipsy-styles', METASLIDER_ASSETS_URL . 'tipsy/tipsy.css', false, METASLIDER_VERSION );
         do_action( 'metaslider_register_admin_styles' );
+
     }
 
     /**
      * Register admin JavaScript
      */
     public function register_admin_scripts() {
+
         // media library dependencies
         wp_enqueue_media();
 
@@ -296,24 +333,19 @@ class MetaSliderPlugin {
         wp_enqueue_script( 'metaslider-colorbox', METASLIDER_ASSETS_URL . 'colorbox/jquery.colorbox-min.js', array( 'jquery' ), METASLIDER_VERSION );
         wp_enqueue_script( 'metaslider-tipsy', METASLIDER_ASSETS_URL . 'tipsy/jquery.tipsy.js', array( 'jquery' ), METASLIDER_VERSION );
         wp_enqueue_script( 'metaslider-admin-script', METASLIDER_ASSETS_URL . 'metaslider/admin.js', array( 'jquery', 'metaslider-tipsy', 'media-upload' ), METASLIDER_VERSION );
-        wp_enqueue_script( 'metaslider-admin-addslide', METASLIDER_ASSETS_URL . 'metaslider/image/image.js', array( 'metaslider-admin-script' ), METASLIDER_VERSION );
 
         wp_dequeue_script( 'link' ); // WP Posts Filter Fix (Advanced Settings not toggling)
 
         $this->localize_admin_scripts();
 
         do_action( 'metaslider_register_admin_scripts' );
+
     }
 
     /**
      *
      */
     public function localize_admin_scripts() {
-        // localise the JS
-        wp_localize_script( 'metaslider-admin-addslide', 'metaslider_image', array(
-                'addslide_nonce' => wp_create_nonce( 'metaslider_addslide' )
-            )
-        );
 
         // localise the JS
         wp_localize_script( 'metaslider-admin-script', 'metaslider', array(
@@ -323,16 +355,19 @@ class MetaSliderPlugin {
                 'confirm' => __( "Are you sure?", "metaslider" ),
                 'ajaxurl' => admin_url( 'admin-ajax.php' ),
                 'resize_nonce' => wp_create_nonce( 'metaslider_resize' ),
+                'addslide_nonce' => wp_create_nonce( 'metaslider_addslide' ),
                 'iframeurl' => admin_url( 'admin-post.php?action=metaslider_preview' ),
                 'useWithCaution' => __( "Caution: This setting is for advanced developers only. If you're unsure, leave it checked.", "metaslider" )
             )
         );
+
     }
 
     /**
      * Outputs a blank page containing a slideshow preview (for use in the 'Preview' iFrame)
      */
     public function do_preview() {
+
         remove_action('wp_footer', 'wp_admin_bar_render', 1000);
 
         if ( isset( $_GET['slider_id'] ) && absint( $_GET['slider_id'] ) > 0 ) {
@@ -348,20 +383,24 @@ class MetaSliderPlugin {
         }
 
         die();
+
     }
 
     /**
      * Check our WordPress installation is compatible with Meta Slider
      */
     public function do_system_check() {
+
         $systemCheck = new MetaSliderSystemCheck();
         $systemCheck->check();
+
     }
 
     /**
      * Update the tab options in the media manager
      */
     public function custom_media_uploader_tabs( $strings ) {
+
         //update strings
         if ( ( isset( $_GET['page'] ) && $_GET['page'] == 'metaslider' ) ) {
             $strings['insertMediaTitle'] = __( "Image", "metaslider" );
@@ -370,7 +409,9 @@ class MetaSliderPlugin {
             if ( isset( $strings['createGalleryTitle'] ) ) unset( $strings['createGalleryTitle'] );
             if ( isset( $strings['insertFromUrlTitle'] ) ) unset( $strings['insertFromUrlTitle'] );
         }
+
         return $strings;
+
     }
 
     /**
@@ -379,6 +420,7 @@ class MetaSliderPlugin {
      * @var array existing media manager tabs
      */
     public function custom_media_upload_tab_name( $tabs ) {
+
         $metaslider_tabs = array( 'post_feed', 'layer', 'youtube', 'vimeo' );
 
         // restrict our tab changes to the meta slider plugin page
@@ -400,12 +442,14 @@ class MetaSliderPlugin {
         }
 
         return $tabs;
+
     }
 
     /**
      * Set the current slider
      */
     public function set_slider( $id, $shortcode_settings = array() ) {
+
         $type = 'flex';
 
         if ( isset( $shortcode_settings['type'] ) ) {
@@ -421,12 +465,14 @@ class MetaSliderPlugin {
         }
 
         $this->slider = $this->create_slider( $type, $id, $shortcode_settings );
+
     }
 
     /**
      * Create a new slider based on the sliders type setting
      */
     private function create_slider( $type, $id, $shortcode_settings ) {
+
         switch ( $type ) {
             case( 'coin' ):
                 return new MetaCoinSlider( $id, $shortcode_settings );
@@ -438,6 +484,7 @@ class MetaSliderPlugin {
                 return new MetaResponsiveSlider( $id, $shortcode_settings );
             default:
                 return new MetaFlexSlider( $id, $shortcode_settings );
+
         }
     }
 
@@ -445,6 +492,7 @@ class MetaSliderPlugin {
      * Handle slide uploads/changes.
      */
     public function admin_process() {
+
         // this function should only ever be called from the Meta Slider admin page.
         if ( ! is_admin() ) {
             return;
@@ -477,12 +525,14 @@ class MetaSliderPlugin {
         if ( $slider_id > 0 ) {
             $this->set_slider( $slider_id );
         }
+
     }
 
     /**
      * Create a new slider
      */
     private function add_slider() {
+
         // check nonce
         check_admin_referer( "metaslider_add_slider" );
 
@@ -514,6 +564,7 @@ class MetaSliderPlugin {
         wp_insert_term( $id, 'ml-slider' );
 
         return $id;
+
     }
 
     /**
@@ -522,6 +573,7 @@ class MetaSliderPlugin {
      * @param int $id
      */
     private function delete_slider( $id ) {
+
         // check nonce
         check_admin_referer( "metaslider_delete_slider" );
 
@@ -533,6 +585,7 @@ class MetaSliderPlugin {
         );
 
         return $this->find_slider( 'date', 'DESC' );
+
     }
 
     /**
@@ -543,6 +596,7 @@ class MetaSliderPlugin {
      * @return int slider ID.
      */
     private function find_slider( $orderby, $order ) {
+
         $args = array(
             'force_no_custom_order' => true,
             'post_type' => 'ml-slider',
@@ -563,6 +617,7 @@ class MetaSliderPlugin {
         wp_reset_query();
 
         return false;
+
     }
 
 
@@ -574,6 +629,7 @@ class MetaSliderPlugin {
      * @return array all published sliders
      */
     private function all_meta_sliders( $sort_key = 'date' ) {
+
         $sliders = false;
 
         // list the tabs
@@ -604,6 +660,7 @@ class MetaSliderPlugin {
         wp_reset_query();
 
         return $sliders;
+
     }
 
     /**
@@ -614,7 +671,9 @@ class MetaSliderPlugin {
      * @return bool
      */
     private function compare_elems( $elem1, $elem2 ) {
+
         return $elem1['priority'] > $elem2['priority'];
+
     }
 
     /**
@@ -623,6 +682,7 @@ class MetaSliderPlugin {
      * @return string
      */
     public function build_settings_rows( $aFields ) {
+
         // order the fields by priority
         uasort( $aFields, array( $this, "compare_elems" ) );
 
@@ -731,6 +791,7 @@ class MetaSliderPlugin {
         }
 
         return $return;
+
     }
 
     /**
@@ -739,6 +800,7 @@ class MetaSliderPlugin {
      * @return array
      */
     private function get_easing_options() {
+
         $options = array(
             'linear', 'swing', 'jswing', 'easeInQuad', 'easeOutQuad', 'easeInOutQuad',
             'easeInCubic', 'easeOutCubic', 'easeInOutCubic', 'easeInQuart',
@@ -758,6 +820,7 @@ class MetaSliderPlugin {
         }
 
         return $return;
+
     }
 
 
@@ -765,6 +828,7 @@ class MetaSliderPlugin {
      * Render the admin page (tabs, slides, settings)
      */
     public function render_admin_page() {
+
         $this->admin_process();
         $this->upgrade_to_pro_cta();
         $this->do_system_check();
@@ -1330,6 +1394,7 @@ class MetaSliderPlugin {
      * Append the 'Add Slider' button to selected admin pages
      */
     public function insert_metaslider_button( $context ) {
+
         global $pagenow;
 
         if ( in_array( $pagenow, array( 'post.php', 'page.php', 'post-new.php', 'post-edit.php' ) ) ) {
@@ -1341,12 +1406,14 @@ class MetaSliderPlugin {
         }
 
         return $context;
+
     }
 
     /**
      * Append the 'Choose Meta Slider' thickbox content to the bottom of selected admin pages
      */
     public function admin_footer() {
+
         global $pagenow;
 
         // Only run in post/page creation and edit screens
@@ -1382,6 +1449,7 @@ class MetaSliderPlugin {
                     ?>
                 </div>
             </div>
+
             <?php
         }
     }
@@ -1390,25 +1458,31 @@ class MetaSliderPlugin {
      * Add settings link on plugin page
      */
     public function upgrade_to_pro_link( $links ) {
+
         if ( function_exists( 'is_plugin_active' ) && ! is_plugin_active( 'ml-slider-pro/ml-slider-pro.php' ) ) {
             $links[] = '<a href="http://www.metaslider.com/upgrade" target="_blank">' . __( "Go Pro", "metaslider" ) . '</a>';
         }
+
         return $links;
+
     }
 
     /**
      * Return the meta slider pro upgrade iFrame
      */
     public function upgrade_to_pro_tab() {
+
         if ( function_exists( 'is_plugin_active' ) && ! is_plugin_active( 'ml-slider-pro/ml-slider-pro.php' ) ) {
             return wp_iframe( array( $this, 'upgrade_to_pro_iframe' ) );
         }
+
     }
 
     /**
      * Media Manager iframe HTML
      */
     public function upgrade_to_pro_iframe() {
+
         wp_enqueue_style( 'metaslider-admin-styles', METASLIDER_ASSETS_URL . 'metaslider/admin.css', false, METASLIDER_VERSION );
         wp_enqueue_script( 'google-font-api', 'http://fonts.googleapis.com/css?family=PT+Sans:400,700' );
 
@@ -1425,12 +1499,14 @@ class MetaSliderPlugin {
                 "<span class='subtext'>Opens in a new window</span>",
             "</div>"
         ));
+
     }
 
     /**
      * Upgrade CTA.
      */
     public function upgrade_to_pro_cta() {
+
         if ( function_exists( 'is_plugin_active' ) && ! is_plugin_active( 'ml-slider-pro/ml-slider-pro.php' ) ) {
             $link = apply_filters( 'metaslider_hoplink', 'http://www.metaslider.com/upgrade/' );
 
@@ -1442,6 +1518,7 @@ class MetaSliderPlugin {
 
             echo $goPro;
         }
+
     }
 }
 

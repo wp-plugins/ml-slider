@@ -138,9 +138,14 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
-= 2.7.3 [XX / XX / XX] =
+= 2.8-beta [XX / XX / XX] =
+
+* Improvement: Preview now uses admin-post
+* Improvement: Classes are now auto loaded to reduce memory footprint
+(Thanks to Viktor Szépe for the above suggestions!)
 * New feature: Romanian Language Pack added (Thanks to Octav Madalin Stanoaia)
-* Improvement: Preview now uses admin-post (Thanks to Viktor Szépe for the suggestion!)
+* New feature: Dutch Language Pack added
+* New feature: WP Super Cache compatibility - cache is cleared when saving slideshow
 
 = 2.7.2 [25/03/14] =
 
