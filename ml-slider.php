@@ -62,8 +62,8 @@ class MetaSliderPlugin {
      */
     private function define_constants() {
         define( 'METASLIDER_VERSION', $this->version );
-        define( 'METASLIDER_BASE_URL', plugins_url( 'ml-slider' ) . '/' );
-        define( 'METASLIDER_ASSETS_URL', METASLIDER_BASE_URL . 'assets/' );
+        define( 'METASLIDER_BASE_URL', trailingslashit( plugins_url( 'ml-slider' ) ) );
+        define( 'METASLIDER_ASSETS_URL', trailingslashit( METASLIDER_BASE_URL . 'assets' ) );
         define( 'METASLIDER_PATH', plugin_dir_path( __FILE__ ) );
     }
 
@@ -326,10 +326,10 @@ class MetaSliderPlugin {
         if ( isset( $_GET['slider_id'] ) && absint( $_GET['slider_id'] ) > 0 ) {
             $id = absint( $_GET['slider_id'] );
 
-            echo "<!DOCTYPE html><html><head><style>";
-            //echo "#wpadminbar { display: none; }";
-            echo "body, html { overflow: hidden; margin: 0; padding: 0; }";
-            echo "</style></head><body>";
+            echo "<!DOCTYPE html>";
+            echo "<html><head>";
+            echo "<style>body, html { overflow: hidden; margin: 0; padding: 0; }</style>";
+            echo "</head><body>";
             echo do_shortcode("[metaslider id={$id}]");
             wp_footer();
             echo "</body></html>";
