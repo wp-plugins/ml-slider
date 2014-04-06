@@ -15,7 +15,7 @@ class MetaSlider_Widget extends WP_Widget {
 		parent::__construct(
 			'metaslider_widget', // Base ID
 			'Meta Slider', // Name
-			array( 'description' => __( 'Meta Slider', 'metaslider' ), ) // Args
+			array( 'description' => __( 'Meta Slider', 'metaslider' ) ) // Args
 		);
 	}
 
@@ -123,11 +123,5 @@ class MetaSlider_Widget extends WP_Widget {
 		</p>
 		<?php
 	}
-}
-
-add_action( 'widgets_init', 'register_metaslider_widget' );
-
-function register_metaslider_widget() {
-	register_widget( 'MetaSlider_Widget' );
 }
 ?>

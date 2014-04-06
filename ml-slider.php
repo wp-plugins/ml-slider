@@ -143,6 +143,7 @@ class MetaSliderPlugin {
         add_action( 'media_upload_post_feed', array( $this, 'upgrade_to_pro_tab' ) );
         add_action( 'media_upload_layer', array( $this, 'upgrade_to_pro_tab' ) );
         add_action( 'admin_post_metaslider_preview', array( $this, 'do_preview' ) );
+        add_action( 'widgets_init', array( $this, 'register_metaslider_widget' ) );
     }
 
     /**
@@ -157,6 +158,17 @@ class MetaSliderPlugin {
         $plugin = plugin_basename( __FILE__ );
 
         add_filter( "plugin_action_links_{$plugin}", array( $this, 'upgrade_to_pro_link' ) );
+    }
+
+    /**
+     * Register Meta Slider widget
+     */
+    public function register_metaslider_widget() {
+        if ( ! class_exists( 'MetaSlider_Widget' ) ) {
+            require_once( METASLIDER_PATH . 'inc/metaslider.widget.class.php' );
+        }
+
+        register_widget( 'MetaSlider_Widget' );
     }
 
     /**
