@@ -36,7 +36,7 @@ jQuery(document).ready(function($) {
                 action: 'create_image_slide',
                 slider_id: window.parent.metaslider_slider_id,
                 selection: slide_ids,
-                _wpnonce: metaslider_image.addslide_nonce
+                _wpnonce: metaslider.addslide_nonce
             };
 
             jQuery.post(metaslider.ajaxurl, data, function(response) {
