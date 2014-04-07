@@ -251,7 +251,7 @@ class MetaSlider {
         $html[] = '        ' . $this->get_html();
         $html[] = '        ' . $this->get_html_after();
         $html[] = '    </div>';
-        $html[] = '    <script type="text/javascript" id="metaslider-' . $this->id . '">';
+        $html[] = '    <script type="text/javascript" id="metaslider-js-' . $this->id . '">';
         $html[] = '        ' .  $this->get_inline_javascript();
         $html[] = '    </script>';
         $html[] = '</div>';
@@ -453,7 +453,7 @@ class MetaSlider {
         $attributes = apply_filters( "metaslider_style_attributes", "", $this->settings, $this->id );
 
         if ( strlen( $css ) ) {
-            return "<style type=\"text/css\"{$attributes} id=\"metaslider-{$this->id}\">{$css}\n    </style>";
+            return "<style type=\"text/css\"{$attributes} id=\"metaslider-css-{$this->id}\">{$css}\n    </style>";
         }
 
         return "";

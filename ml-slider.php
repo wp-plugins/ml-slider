@@ -33,10 +33,12 @@ class MetaSliderPlugin {
      */
     public $version = '2.8-beta';
 
+
     /**
      * @var MetaSlider
      */
     public $slider = null;
+
 
     /**
      * Init
@@ -46,6 +48,7 @@ class MetaSliderPlugin {
         $metaslider = new self();
 
     }
+
 
     /**
      * Constructor
@@ -61,6 +64,7 @@ class MetaSliderPlugin {
 
     }
 
+
     /**
      * Define Meta Slider constants
      */
@@ -72,6 +76,7 @@ class MetaSliderPlugin {
         define( 'METASLIDER_PATH',       plugin_dir_path( __FILE__ ) );
 
     }
+
 
     /**
      * All Meta Slider classes
@@ -88,10 +93,12 @@ class MetaSliderPlugin {
             'metaimageslide'        => METASLIDER_PATH . 'inc/slide/metaslide.image.class.php',
             'metasliderimagehelper' => METASLIDER_PATH . 'inc/metaslider.imagehelper.class.php',
             'metaslidersystemcheck' => METASLIDER_PATH . 'inc/metaslider.systemcheck.class.php',
-            'metasliderwidget'      => METASLIDER_PATH . 'inc/metaslider.widget.class.php'
+            'metasliderwidget'      => METASLIDER_PATH . 'inc/metaslider.widget.class.php',
+            'simple_html_dom'       => METASLIDER_PATH . 'inc/simple_html_dom.php'
         );
 
     }
+
 
     /**
      * Load required classes
@@ -109,13 +116,14 @@ class MetaSliderPlugin {
         } else {
             // < PHP5.2
             foreach ( $this->plugin_classes() as $id => $path ) {
-                if ( is_readable( $path ) ) {
+                if ( is_readable( $path ) && ! class_exists( $id ) ) {
                     require_once( $path );
                 }
             }
         }
 
     }
+
 
     /**
      * Autoload Meta Slider classes to reduce memory consumption
@@ -132,6 +140,7 @@ class MetaSliderPlugin {
 
     }
 
+
     /**
      * Register the [metaslider] shortcode.
      */
@@ -142,12 +151,12 @@ class MetaSliderPlugin {
 
     }
 
+
     /**
      * Hook Meta Slider into WordPress
      */
     private function setup_actions() {
 
-        // create the admin menu/page
         add_action( 'admin_menu', array( $this, 'register_admin_menu' ), 9553 );
         add_action( 'init', array( $this, 'register_post_type' ) );
         add_action( 'init', array( $this, 'register_taxonomy' ) );
@@ -160,7 +169,14 @@ class MetaSliderPlugin {
         add_action( 'admin_post_metaslider_preview', array( $this, 'do_preview' ) );
         add_action( 'widgets_init', array( $this, 'register_metaslider_widget' ) );
 
+        if ( defined( 'METASLIDER_ENABLE_RESOURCE_MANAGER' ) && METASLIDER_ENABLE_RESOURCE_MANAGER === true ) {
+
+            add_action( 'template_redirect', array( $this, 'start_resource_manager'), 0 );
+
+        }
+
     }
+
 
     /**
      * Hook Meta Slider into WordPress
@@ -178,6 +194,7 @@ class MetaSliderPlugin {
 
     }
 
+
     /**
      * Register Meta Slider widget
      */
@@ -190,6 +207,7 @@ class MetaSliderPlugin {
         register_widget( 'MetaSlider_Widget' );
 
     }
+
 
     /**
      * Register ML Slider post type
@@ -212,6 +230,7 @@ class MetaSliderPlugin {
 
     }
 
+
     /**
      * Register taxonomy to store slider => slides relationship
      */
@@ -227,6 +246,7 @@ class MetaSliderPlugin {
 
     }
 
+
     /**
      * Register our slide types
      */
@@ -235,6 +255,7 @@ class MetaSliderPlugin {
         $image = new MetaImageSlide();
 
     }
+
 
     /**
      * Add the menu page
@@ -253,6 +274,7 @@ class MetaSliderPlugin {
         add_action( 'load-' . $page, array( $this, 'help_tab' ) );
 
     }
+
 
     /**
      * Shortcode used to display slideshow
@@ -281,6 +303,7 @@ class MetaSliderPlugin {
 
     }
 
+
     /**
      * Initialise translations
      */
@@ -289,6 +312,7 @@ class MetaSliderPlugin {
         load_plugin_textdomain( 'metaslider', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
     }
+
 
     /**
      * Add the help tab to the screen.
@@ -307,6 +331,7 @@ class MetaSliderPlugin {
 
     }
 
+
     /**
      * Rehister admin styles
      */
@@ -318,6 +343,7 @@ class MetaSliderPlugin {
         do_action( 'metaslider_register_admin_styles' );
 
     }
+
 
     /**
      * Register admin JavaScript
@@ -342,6 +368,7 @@ class MetaSliderPlugin {
 
     }
 
+
     /**
      * Localise admin script
      */
@@ -361,6 +388,7 @@ class MetaSliderPlugin {
         );
 
     }
+
 
     /**
      * Outputs a blank page containing a slideshow preview (for use in the 'Preview' iFrame)
@@ -385,6 +413,7 @@ class MetaSliderPlugin {
 
     }
 
+
     /**
      * Check our WordPress installation is compatible with Meta Slider
      */
@@ -394,6 +423,7 @@ class MetaSliderPlugin {
         $systemCheck->check();
 
     }
+
 
     /**
      * Update the tab options in the media manager
@@ -412,6 +442,7 @@ class MetaSliderPlugin {
         return $strings;
 
     }
+
 
     /**
      * Add extra tabs to the default wordpress Media Manager iframe
@@ -444,6 +475,7 @@ class MetaSliderPlugin {
 
     }
 
+
     /**
      * Set the current slider
      */
@@ -467,6 +499,7 @@ class MetaSliderPlugin {
 
     }
 
+
     /**
      * Create a new slider based on the sliders type setting
      */
@@ -486,6 +519,7 @@ class MetaSliderPlugin {
 
         }
     }
+
 
     /**
      * Handle slide uploads/changes.
@@ -527,6 +561,7 @@ class MetaSliderPlugin {
 
     }
 
+
     /**
      * Create a new slider
      */
@@ -566,6 +601,7 @@ class MetaSliderPlugin {
 
     }
 
+
     /**
      * Delete a slider (send it to trash)
      *
@@ -586,6 +622,7 @@ class MetaSliderPlugin {
         return $this->find_slider( 'date', 'DESC' );
 
     }
+
 
     /**
      * Find a single slider ID. For example, last edited, or first published.
@@ -662,6 +699,7 @@ class MetaSliderPlugin {
 
     }
 
+
     /**
      * Compare array values
      *
@@ -674,6 +712,7 @@ class MetaSliderPlugin {
         return $elem1['priority'] > $elem2['priority'];
 
     }
+
 
     /**
      *
@@ -792,6 +831,7 @@ class MetaSliderPlugin {
         return $return;
 
     }
+
 
     /**
      * Return an indexed array of all easing options
@@ -1408,6 +1448,7 @@ class MetaSliderPlugin {
 
     }
 
+
     /**
      * Append the 'Choose Meta Slider' thickbox content to the bottom of selected admin pages
      */
@@ -1453,6 +1494,7 @@ class MetaSliderPlugin {
         }
     }
 
+
     /**
      * Add settings link on plugin page
      */
@@ -1466,6 +1508,7 @@ class MetaSliderPlugin {
 
     }
 
+
     /**
      * Return the meta slider pro upgrade iFrame
      */
@@ -1476,6 +1519,7 @@ class MetaSliderPlugin {
         }
 
     }
+
 
     /**
      * Media Manager iframe HTML
@@ -1501,6 +1545,7 @@ class MetaSliderPlugin {
 
     }
 
+
     /**
      * Upgrade CTA.
      */
@@ -1519,8 +1564,64 @@ class MetaSliderPlugin {
         }
 
     }
+
+
+    /**
+     * Start output buffering.
+     *
+     * Note: wp_ob_end_flush_all is called by default 
+     *  - see shutdown action in default-filters.php
+     */
+    public function start_resource_manager() {
+
+        ob_start( array( $this, 'resource_manager' ) );
+    
+    }
+
+    /**
+     * Process the whole page output. Move any script, style or link tags with an ID starting
+     * with 'metaslider' into the <head> of the page.
+     */
+    public function resource_manager( $buffer ) {
+
+        // create dom document from buffer
+        $html = new simple_html_dom();
+
+        // Load from a string
+        $html->load( $buffer, true, false );
+
+        if ( ! $html->find( 'body link[id^="metaslider"]' ) )
+            return $buffer;
+
+        // selectors to find Meta Slider scripts, links and styles
+        $selectors = array( 
+            'body script[id^="metaslider"]',
+            'body link[id^="metaslider"]',
+            'body style[id^="metaslider"]'
+        );
+
+        $head = $html->find( 'head', 0 );
+
+        // move meta slider elemends to <head>
+        foreach ( $selectors as $selector ) {
+
+            foreach ( $html->find( $selector ) as $element ) {
+
+                $head->innertext .= $element->outertext . "\n";
+                $element->outertext = '';
+
+            }
+
+        }
+
+        return $html->save();
+
+    }
+
+    
 }
 
 endif;
+
 
 add_action( 'plugins_loaded', array( 'MetaSliderPlugin', 'init' ) );
