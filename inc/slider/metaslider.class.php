@@ -245,12 +245,10 @@ class MetaSlider {
      */
     public function render_public_slides() {
         $html[] = '<!-- meta slider -->';
-        $html[] = '<div style="' . $this->get_container_style() . '" class="' . $this->get_container_class() .'">';
+        $html[] = '<div style="' . $this->get_container_style() . '" class="' . $this->get_container_class() .'" id="' . $this->get_container_id() . '">';
         $html[] = '    ' . $this->get_inline_css();
-        $html[] = '    <div id="' . $this->get_container_id() . '">';
-        $html[] = '        ' . $this->get_html();
-        $html[] = '        ' . $this->get_html_after();
-        $html[] = '    </div>';
+        $html[] = '    ' . $this->get_html();
+        $html[] = '    ' . $this->get_html_after();
         $html[] = '    <script type="text/javascript" id="metaslider-js-' . $this->id . '">';
         $html[] = '        ' .  $this->get_inline_javascript();
         $html[] = '    </script>';
@@ -343,7 +341,7 @@ class MetaSlider {
         $script .= $custom_js_after;
         $script .= "\n        };";
         $script .= "\n        var timer_" . $identifier . " = function() {";
-        $script .= "\n            var slider = !window.jQuery ? window.setTimeout(timer_{$identifier}, 100) : !jQuery.isReady ? window.setTimeout(timer_{$identifier}, 100) : {$identifier}(window.jQuery);";
+        $script .= "\n            window.jQuery && jQuery.isReady ? {$identifier}(window.jQuery) : window.setTimeout(timer_{$identifier}, 1)";
         $script .= "\n        };";
         $script .= "\n        timer_" . $identifier . "();";
 
