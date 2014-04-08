@@ -105,8 +105,11 @@ class MetaSliderPlugin {
      */
     private function includes() {
 
-        if ( function_exists( "spl_autoload_register" ) ) {
-            // >= PHP 5.2
+        $autoload_is_disabled = defined( 'METASLIDER_AUTOLOAD_CLASSES' ) && METASLIDER_AUTOLOAD_CLASSES === false;
+
+        if ( function_exists( "spl_autoload_register" ) && ! ( $autoload_is_disabled ) ) {
+
+            // >= PHP 5.2 - Use auto loading
             if ( function_exists( "__autoload" ) ) {
                 spl_autoload_register( "__autoload" );
             }
@@ -114,12 +117,14 @@ class MetaSliderPlugin {
             spl_autoload_register( array( $this, 'autoload' ) );
 
         } else {
-            // < PHP5.2
+
+            // < PHP5.2 - Require all classes
             foreach ( $this->plugin_classes() as $id => $path ) {
                 if ( is_readable( $path ) && ! class_exists( $id ) ) {
                     require_once( $path );
                 }
             }
+
         }
 
     }
