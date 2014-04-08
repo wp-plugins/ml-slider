@@ -1608,7 +1608,7 @@ class MetaSliderPlugin {
 
             foreach ( $html->find( $selector ) as $element ) {
 
-                $head->innertext .= $element->outertext . "\n";
+                $head->innertext .= "\t" . $element->outertext . "\n";
                 $element->outertext = '';
 
             }
