@@ -340,6 +340,7 @@ class MetaSliderPlugin {
         wp_enqueue_style( 'metaslider-admin-styles', METASLIDER_ASSETS_URL . 'metaslider/admin.css', false, METASLIDER_VERSION );
         wp_enqueue_style( 'metaslider-colorbox-styles', METASLIDER_ASSETS_URL . 'colorbox/colorbox.css', false, METASLIDER_VERSION );
         wp_enqueue_style( 'metaslider-tipsy-styles', METASLIDER_ASSETS_URL . 'tipsy/tipsy.css', false, METASLIDER_VERSION );
+        
         do_action( 'metaslider_register_admin_styles' );
 
     }
@@ -1624,4 +1625,4 @@ class MetaSliderPlugin {
 endif;
 
 
-add_action( 'plugins_loaded', array( 'MetaSliderPlugin', 'init' ) );
+add_action( 'plugins_loaded', array( 'MetaSliderPlugin', 'init' ), 10 );
