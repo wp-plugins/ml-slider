@@ -341,7 +341,7 @@ class MetaSlider {
         $script .= $custom_js_after;
         $script .= "\n        };";
         $script .= "\n        var timer_" . $identifier . " = function() {";
-        $script .= "\n            window.jQuery && jQuery.isReady ? {$identifier}(window.jQuery) : window.setTimeout(timer_{$identifier}, 1)";
+        $script .= "\n            window.jQuery && jQuery.isReady ? {$identifier}(window.jQuery) : window.setTimeout(timer_{$identifier}, 1);";
         $script .= "\n        };";
         $script .= "\n        timer_" . $identifier . "();";
 
