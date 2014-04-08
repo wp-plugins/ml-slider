@@ -113,7 +113,7 @@ class MetaSlider {
             'thumb_width' => 150,
             'thumb_height' => 100,
             'fullWidth' => false,
-            'noConflict' => false
+            'noConflict' => true
         );
 
         $params = apply_filters( 'metaslider_default_parameters', $params );
