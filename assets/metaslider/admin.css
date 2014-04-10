@@ -743,13 +743,7 @@ textarea:-ms-input-placeholder {
     font-size: 11px
 }
 
-.metaslider .slide.image .tabs-content {
-    overflow: hidden
-}
-
 .metaslider .left .tabs-content {
-    height: 118px;
-    overflow-x: scroll;
     clear: both;
 }
 
@@ -758,7 +752,11 @@ textarea:-ms-input-placeholder {
     clear: both;
     width: 100%;
     vertical-align: middle;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
+}
+
+.metaslider .tabs-content .row.last {
+    margin-bottom: 0;
 }
 
 .metaslider .tabs-content .row label {
