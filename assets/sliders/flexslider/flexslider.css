@@ -148,3 +148,11 @@ html[xmlns] .slides {display: block;}
     margin: 10px 5px 0;
     width: auto;
 }
+
+.metaslider.nav-hidden .flexslider {
+    margin-bottom: 0;
+}
+
+.metaslider.nav-hidden.add-margin .flexslider {
+    margin-bottom: 40px;
+}
