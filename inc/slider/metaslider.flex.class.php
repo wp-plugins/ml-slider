@@ -56,13 +56,15 @@ class MetaFlexSlider extends MetaSlider {
      * @return array $options
      */
     public function manage_easing( $options, $slider_id ) {
-        if ( isset( $options["easing"] ) ) {
-            $options['useCSS'] = 'false';
-        }
 
         if ( $options["animation"] == '"fade"' ) {
             unset( $options['easing'] );
         }
+
+        if ( isset( $options["easing"] ) && $options["easing"] != '"linear"' ) {
+            $options['useCSS'] = 'false';
+        }
+
 
         // we don't want this filter hanging around if there's more than one slideshow on the page
         remove_filter( 'metaslider_flex_slider_parameters', array( $this, 'manage_easing' ), 10, 2 );
@@ -174,6 +176,9 @@ class MetaFlexSlider extends MetaSlider {
 
         $return_value .= "\n            </ul>";
         $return_value .= "\n        </div>";
+
+        // show the first slide
+        $return_value =  preg_replace('/none/', 'block', $return_value, 1);
 
         return apply_filters( 'metaslider_flex_slider_get_html', $return_value, $this->id, $this->settings );
     }
