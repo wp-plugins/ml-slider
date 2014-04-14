@@ -93,7 +93,7 @@ class MetaSliderPlugin {
             'metaimageslide'        => METASLIDER_PATH . 'inc/slide/metaslide.image.class.php',
             'metasliderimagehelper' => METASLIDER_PATH . 'inc/metaslider.imagehelper.class.php',
             'metaslidersystemcheck' => METASLIDER_PATH . 'inc/metaslider.systemcheck.class.php',
-            'metasliderwidget'      => METASLIDER_PATH . 'inc/metaslider.widget.class.php',
+            'metaslider_widget'     => METASLIDER_PATH . 'inc/metaslider.widget.class.php',
             'simple_html_dom'       => METASLIDER_PATH . 'inc/simple_html_dom.php'
         );
 
@@ -204,10 +204,6 @@ class MetaSliderPlugin {
      * Register Meta Slider widget
      */
     public function register_metaslider_widget() {
-
-        if ( ! class_exists( 'MetaSlider_Widget' ) ) {
-            require_once( METASLIDER_PATH . 'inc/metaslider.widget.class.php' );
-        }
 
         register_widget( 'MetaSlider_Widget' );
 
@@ -826,6 +822,11 @@ class MetaSliderPlugin {
             // text input type
             if ( $row['type'] == 'text' ) {
                 $return .= "<tr class='{$row['type']}'><td class='tipsy-tooltip' title=\"{$row['helptext']}\">{$row['label']}</td><td><input class='option {$row['class']} {$id}' type='text' name='settings[{$id}]' value='{$row['value']}' /></td></tr>";
+            }
+
+            // text input type
+            if ( $row['type'] == 'textarea' ) {
+                $return .= "<tr class='{$row['type']}'><td class='tipsy-tooltip' title=\"{$row['helptext']}\" colspan='2'>{$row['label']}</td></tr><tr><td colspan='2'><textarea class='option {$row['class']} {$id}' name='settings[{$id}]' />{$row['value']}</textarea></td></tr>";
             }
 
             // text input type
