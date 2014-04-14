@@ -8,13 +8,13 @@ Stable tag: 2.7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Easy to use slideshow plugin. Create SEO optimised responsive slideshows with Nivo Slider, Flex Slider, Coin Slider and Responsive Slides.
+Easy to use WordPress slider plugin. Create SEO optimised responsive slideshows with Nivo Slider, Flex Slider, Coin Slider and Responsive Slides.
 
 == Description ==
 
 http://www.youtube.com/watch?v=I7IfkV6iLqo
 
-Meta Slider is the most popular slideshow plugin for WordPress. Creating slideshows with [Meta Slider](http://www.metaslider.com/) is fast and easy. Simply select images from your WordPress Media Library, drag and drop them into place, set slide captions, links and SEO fields all from one page. You can choose from 4 different slideshow types (Flex Slider, Nivo Slider, Responsive Slides & Coin Slider) and use the provided shortcode or template include to easily embed slideshows in your blog.
+The most popular WordPress slider plugin. Creating slideshows with [Meta Slider](http://www.metaslider.com/) is fast and easy. Simply select images from your WordPress Media Library, drag and drop them into place, set slide captions, links and SEO fields all from one page. You can choose from 4 different slideshow types (Flex Slider, Nivo Slider, Responsive Slides & Coin Slider) and use the provided shortcode or template include to easily embed slideshows in your blog.
 
 **Includes**
 
@@ -144,6 +144,8 @@ See www.metaslider.com/documentation/image-cropping/
 * Improvement: Classes are now auto loaded to reduce memory footprint
 (Thanks to Viktor Szépe for the above suggestions!)
 * Improvement: Slideshow initilisation time reduced
+* Update: Flex Slider updated to v2.2.2
+* Improvement: Flex Slider slideshows should now 'reserve' a space for themselves while they fully load
 * Change: Redundant '#metaslider_container_X' wrapper removed - the ID has been moved to the main slideshow wrapper.
 * New feature: Romanian Language Pack added (Thanks to Octav Madalin Stanoaia)
 * New feature: Dutch Language Pack added
