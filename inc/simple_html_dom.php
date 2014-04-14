@@ -39,6 +39,7 @@
  * @subpackage simple_html_dom
  */
 
+if ( ! class_exists('simple_html_dom_node') ) :
 /**
  * All of the Defines for the classes below.
  * @author S.C. Chen <me578022@gmail.com>
@@ -1699,4 +1700,4 @@ class simple_html_dom
 	function loadFile() {$args = func_get_args();$this->load_file($args);}
 }
 
-?>
+endif;
