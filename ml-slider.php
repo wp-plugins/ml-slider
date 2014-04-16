@@ -1605,6 +1605,8 @@ class MetaSliderPlugin {
             'body link[id^="metaslider"]',
         );
 
+        $selectors = apply_filters( "metaslider_resource_manager_selectors", $selectors );
+
         if ( $head = $html->find( 'head', 0 ) ) {
 
             // move meta slider elemends to <head>
