@@ -1627,10 +1627,8 @@ class MetaSliderPlugin {
 
     }
 
-    
 }
 
 endif;
-
 
 add_action( 'plugins_loaded', array( 'MetaSliderPlugin', 'init' ), 10 );
