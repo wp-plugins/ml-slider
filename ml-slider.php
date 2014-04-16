@@ -1586,7 +1586,7 @@ class MetaSliderPlugin {
     }
 
     /**
-     * Process the whole page output. Move any script, style or link tags with an ID starting
+     * Process the whole page output. Move link tags with an ID starting
      * with 'metaslider' into the <head> of the page.
      */
     public function resource_manager( $buffer ) {
@@ -1600,22 +1600,22 @@ class MetaSliderPlugin {
         if ( ! $html->find( 'body link[id^="metaslider"]' ) )
             return $buffer;
 
-        // selectors to find Meta Slider scripts, links and styles
+        // selectors to find Meta Slider links
         $selectors = array( 
-            'body script[id^="metaslider"]',
             'body link[id^="metaslider"]',
-            'body style[id^="metaslider"]'
         );
 
-        $head = $html->find( 'head', 0 );
+        if ( $head = $html->find( 'head', 0 ) ) {
 
-        // move meta slider elemends to <head>
-        foreach ( $selectors as $selector ) {
+            // move meta slider elemends to <head>
+            foreach ( $selectors as $selector ) {
 
-            foreach ( $html->find( $selector ) as $element ) {
+                foreach ( $html->find( $selector ) as $element ) {
 
-                $head->innertext .= "\t" . $element->outertext . "\n";
-                $element->outertext = '';
+                    $head->innertext .= "\t" . $element->outertext . "\n";
+                    $element->outertext = '';
+
+                }
 
             }
 
