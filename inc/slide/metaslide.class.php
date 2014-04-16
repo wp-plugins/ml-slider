@@ -89,6 +89,8 @@ class MetaSlide {
         foreach ( $attributes as $att => $val ) {
             if ( strlen( $val ) ) {
                 $html .= " " . $att . '="' . $val . '"';
+            } else if ( $att == 'alt' ) {
+                $html .= " " . $att . '=""'; // always include alt tag for HTML5 validation
             }
         }
 
