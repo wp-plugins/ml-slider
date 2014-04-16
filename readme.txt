@@ -138,19 +138,19 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
-= 2.8-beta [XX / XX / XX] =
+= 2.8-beta [16 / 04 / 14] =
 
 * Improvement: Preview now uses admin-post action
 * Improvement: Classes are now auto loaded to reduce memory footprint
 (Thanks to Viktor Szépe for the above suggestions!)
 * Improvement: Slideshow initilisation time reduced
-* Update: Flex Slider updated to v2.2.2
+* Improvement: HTML5 Compatibility: Alt tags always present on image tag - even if empty.
 * Improvement: Flex Slider slideshows should now 'reserve' a space for themselves while they fully load
-* Change: Redundant '#metaslider_container_X' wrapper removed - the ID has been moved to the main slideshow wrapper.
+* Update: Flex Slider updated to v2.2.2
 * New feature: Romanian Language Pack added (Thanks to Octav Madalin Stanoaia)
 * New feature: Dutch Language Pack added
 * New feature: WP Super Cache compatibility - cache is cleared when saving slideshow
-* New feature: HTML5 Compatibility (Experimental). Set `define('METASLIDER_ENABLE_RESOURCE_MANAGER', true);` in wp-config.php to move all relevant Meta Slider scripts, links and style blocks to the head of the page.
+* New feature: HTML5 Compatibility (Experimental). Set `define('METASLIDER_ENABLE_RESOURCE_MANAGER', true);` in wp-config.php to move Meta Slider link tags head of the page.
 
 = 2.7.2 [25/03/14] =
 
