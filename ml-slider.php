@@ -879,16 +879,17 @@ class MetaSliderPlugin {
         $this->upgrade_to_pro_cta();
         $this->do_system_check();
         $max_tabs = apply_filters( 'metaslider_max_tabs', 0 );
-
+        $slider_id = $this->slider ? $this->slider->id : 0;
+        
         ?>
 
         <script type='text/javascript'>
-            var metaslider_slider_id = <?php echo $this->slider->id; ?>;
+            var metaslider_slider_id = <?php echo $slider_id; ?>;
             var metaslider_pro_active = <?php echo function_exists( 'is_plugin_active' ) && is_plugin_active( 'ml-slider-pro/ml-slider-pro.php' ) ? 'true' : 'false' ?>;
         </script>
 
         <div class="wrap metaslider">
-            <form accept-charset="UTF-8" action="?page=metaslider&amp;id=<?php echo $this->slider->id ?>" method="post">
+            <form accept-charset="UTF-8" action="?page=metaslider&amp;id=<?php echo $slider_id ?>" method="post">
                 <?php
                     if ( $this->slider ) {
                         wp_nonce_field( 'metaslider_save_' . $this->slider->id );
