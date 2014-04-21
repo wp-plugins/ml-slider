@@ -290,7 +290,7 @@ class MetaImageSlide extends MetaSlide {
 
         $thumb = isset( $slide['data-thumb'] ) && strlen( $slide['data-thumb'] ) ? " data-thumb=\"{$slide['data-thumb']}\"" : "";
 
-        $html = '<li style="display: none; float: left;"' . $thumb . '>' . $html . '</li>';
+        $html = '<li style="display: none; float: left; width: 100%;"' . $thumb . '>' . $html . '</li>';
 
         return apply_filters( 'metaslider_image_flex_slider_markup', $html, $slide, $this->settings );
     }
