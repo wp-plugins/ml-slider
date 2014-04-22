@@ -117,6 +117,7 @@ jQuery(document).ready(function($) {
         handle: "td.col-1",
         stop: function() {
             jQuery(".metaslider .left table").trigger("updateSlideOrder");
+            jQuery(".metaslider form #ms-save").click();
         }
     });
 
