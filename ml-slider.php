@@ -288,6 +288,11 @@ class MetaSliderPlugin {
             return false;
         }
 
+        // handle [metaslider id=123 restrict_to=home]
+        if ( isset( $atts['restrict_to'] ) && $atts['restrict_to'] == 'home' && ! is_front_page() ) {
+            return;
+        }
+
         // we have an ID to work with
         $slider = get_post( $atts['id'] );
 
