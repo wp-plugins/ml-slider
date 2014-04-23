@@ -473,9 +473,16 @@ class MetaSliderPlugin {
                 );
             }
 
-            if ( isset( $tabs['nextgen'] ) ) unset( $tabs['nextgen'] );
+            if ( isset( $tabs['nextgen'] ) ) 
+                unset( $tabs['nextgen'] );
 
-            return array_merge( $tabs, $newtabs );
+
+            if ( is_array( $tabs ) ) {
+                return array_merge( $tabs, $newtabs );
+            } else {
+                return $newtabs;
+            }
+            
         }
 
         return $tabs;
