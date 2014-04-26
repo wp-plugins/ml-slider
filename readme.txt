@@ -105,13 +105,11 @@ You will need to paste the "Template Include" code into your theme (you can find
 * Find the correct place to add it (for example above or below the logo)
 * Paste in the code and save.
 
-If you want to include the slideshow on your homepage only, use this code:
+= I only want to show the slideshow on my homepage, how can I do that? =
 
-`<?php
-if (is_front_page() || is_home()) {
-    echo do_shortcode("[metaslider id=123]"); //replace 123 with slider ID
-}
-?>`
+Add the 'restrict_to' parameter to the shortcode, eg:
+
+`[metaslider id=XXX restrict_to=home]");`
 
 Theme specific instructions:
 
