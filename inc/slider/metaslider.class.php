@@ -343,7 +343,9 @@ class MetaSlider {
         $script .= $custom_js_after;
         $script .= "\n        };";
         $script .= "\n        var timer_" . $identifier . " = function() {";
-        $script .= "\n            window.jQuery && jQuery.isReady ? {$identifier}(window.jQuery) : window.setTimeout(timer_{$identifier}, 1);";
+        // this would be the sensible way to do it, but WordPress sometimes converts && to &#038;&
+        // window.jQuery && jQuery.isReady ? {$identifier}(window.jQuery) : window.setTimeout(timer_{$identifier}, 1);";
+        $script .= "\n            var slider = !window.jQuery ? window.setTimeout(timer_{$this->identifier}, 100) : !jQuery.isReady ? window.setTimeout(timer_{$this->identifier}, 1) : {$this->identifier}(window.jQuery);";       
         $script .= "\n        };";
         $script .= "\n        timer_" . $identifier . "();";
 
@@ -395,7 +397,7 @@ class MetaSlider {
         $custom_js = apply_filters( "metaslider_{$type}_slider_javascript", "", $this->id );
 
         if ( strlen( $custom_js ) ) {
-            return "\n            {$custom_js}";
+            return "            {$custom_js}";
         }
 
         return "";
