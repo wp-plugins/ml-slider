@@ -178,7 +178,9 @@ class MetaFlexSlider extends MetaSlider {
         $return_value .= "\n        </div>";
 
         // show the first slide
-        $return_value =  preg_replace('/none/', 'inline-block', $return_value, 1);
+        if ($this->get_setting('carouselMode') != 'true') {
+            $return_value =  preg_replace('/none/', 'inline-block', $return_value, 1);
+        }
 
         return apply_filters( 'metaslider_flex_slider_get_html', $return_value, $this->id, $this->settings );
     }
