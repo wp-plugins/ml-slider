@@ -136,7 +136,16 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
-= 2.8-beta [16 / 04 / 14] =
+= 2.8 [28/04/14] =
+
+* New feature: Russian Language Pack added
+* Fix: Carousel image scaling in FireFox
+* Fix: wpautop issue with double ampersand
+* New feature: Shortcode parameter added to restrict slideshow to displaying on homepage only (see FAQ)
+* Improvement: Save slideshow after reordering slides
+* Fix: PHP Warning when no slideshows have been created
+
+= 2.8-beta [16/04/14] =
 
 * Improvement: Preview now uses admin-post action
 * Improvement: Classes are now auto loaded to reduce memory footprint
