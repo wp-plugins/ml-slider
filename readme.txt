@@ -4,7 +4,7 @@ Tags: wordpress slideshow,seo,slideshow,slider,widget,wordpress slider,image sli
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CQ84KC4X8YKW8
 Requires at least: 3.5
 Tested up to: 3.8
-Stable tag: 2.8-beta
+Stable tag: 2.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
