@@ -3,6 +3,7 @@
  * Copyright 2012 WooThemes
  * Contributing Author: Tyler Smith
  * Modifications applied: https://github.com/woothemes/FlexSlider/pull/1044
+ * Line 921: https://github.com/woothemes/FlexSlider/issues/1043
  */
 ;
 (function ($) {
@@ -918,6 +919,7 @@
             slider.slides.css({ "opacity": 0, "display": "block", "zIndex": 1 }).eq(slider.currentSlide).css({"zIndex": 2}).animate({"opacity": 1},slider.vars.animationSpeed,slider.vars.easing);
           } else {
             slider.slides.css({ "opacity": 0, "display": "block", "webkitTransition": "opacity " + slider.vars.animationSpeed / 1000 + "s ease", "zIndex": 1 }).eq(slider.currentSlide).css({ "opacity": 1, "zIndex": 2});
+            slider.slides.css("transition", "opacity " + slider.vars.animationSpeed / 1000 + "s ease");
           }
         }
         // SMOOTH HEIGHT:
