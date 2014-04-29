@@ -49,7 +49,7 @@
 
 		open: false,
 		returnFocus: true,
-		trapFocus: true,
+		trapFocus: false,
 		reposition: true,
 		loop: true,
 		slideshow: false,
