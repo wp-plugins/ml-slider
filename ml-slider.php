@@ -133,7 +133,7 @@ class MetaSliderPlugin {
     /**
      * Autoload Meta Slider classes to reduce memory consumption
      */
-    private function autoload( $class ) {
+    public function autoload( $class ) {
 
         $classes = $this->plugin_classes();
 
