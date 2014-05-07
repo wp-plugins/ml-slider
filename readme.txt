@@ -136,6 +136,13 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
+= 2.8.1 [28/04/14] =
+
+* Fix: All in One Events Calendar conflict fix (Advanced Settings not toggling)
+* Fix: CSS resets to avoid theme conflicts
+* Fix: Autoload visibility conflict (http://wordpress.org/support/topic/autoload-visibillity-conflict)
+* Fix: Layer Editor in IE11 - text fields not accessible in modal windows
+
 = 2.8 [28/04/14] =
 
 * New feature: Russian Language Pack added
