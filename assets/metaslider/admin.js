@@ -34,7 +34,7 @@ jQuery(document).ready(function($) {
 
             var data = {
                 action: 'create_image_slide',
-                slider_id: window.parent.metaslider_slider_id,
+                slider_id: metaslider_slider_id,
                 selection: slide_ids,
                 _wpnonce: metaslider.addslide_nonce
             };
@@ -50,7 +50,7 @@ jQuery(document).ready(function($) {
         // Remove the Media Library tab (media_upload_tabs filter is broken in 3.6)
         jQuery(".media-menu a:contains('Media Library')").remove();
 
-        if (!window.parent.metaslider_pro_active) {
+        if (!metaslider_pro_active) {
             jQuery(".media-menu a:contains('YouTube')").addClass('disabled');
             jQuery(".media-menu a:contains('Vimeo')").addClass('disabled');
             jQuery(".media-menu a:contains('Post Feed')").addClass('disabled');
