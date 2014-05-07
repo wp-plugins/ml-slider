@@ -95,6 +95,8 @@
     list-style: none;
     padding: 0;
     line-height: normal;
+    max-width: none;
+    max-height: none;
 }
 
 .metaslider .slides img {

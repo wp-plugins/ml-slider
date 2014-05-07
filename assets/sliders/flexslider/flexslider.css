@@ -76,7 +76,7 @@ html[xmlns] .slides {display: block;}
 }
 
 /** Custom Meta Slider CSS **/
-.flexslider {
+.metaslider .flexslider {
     background: none;
     box-shadow: none;
     -webkit-box-shadow: none;
@@ -84,6 +84,8 @@ html[xmlns] .slides {display: block;}
     -o-box-shadow: none;
     border: 0;
     margin: 0 0 40px 0;
+    max-width: none;
+    max-height: none;
 }
 
 .flex-control-nav {
@@ -103,6 +105,7 @@ html[xmlns] .slides {display: block;}
 
 .flexslider .slides li {
     position: relative;
+    height: auto;
 }
 
 /** fix for users with RTL languages */
