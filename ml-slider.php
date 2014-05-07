@@ -368,6 +368,7 @@ class MetaSliderPlugin {
         wp_enqueue_script( 'metaslider-admin-script', METASLIDER_ASSETS_URL . 'metaslider/admin.js', array( 'jquery', 'metaslider-tipsy', 'media-upload' ), METASLIDER_VERSION );
 
         wp_dequeue_script( 'link' ); // WP Posts Filter Fix (Advanced Settings not toggling)
+        wp_dequeue_script( 'ai1ec_requirejs' ); // All In One Events Calendar Fix (Advanced Settings not toggling)
 
         $this->localize_admin_scripts();
 
