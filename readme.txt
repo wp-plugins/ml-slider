@@ -142,6 +142,7 @@ See www.metaslider.com/documentation/image-cropping/
 * Fix: CSS resets to avoid theme conflicts
 * Fix: Autoload visibility conflict (http://wordpress.org/support/topic/autoload-visibillity-conflict)
 * Fix: Layer Editor in IE11 - text fields not accessible in modal windows
+* Fix: FlexSlider IE11 Fade transition
 
 = 2.8 [28/04/14] =
 
