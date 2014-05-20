@@ -834,3 +834,36 @@ textarea:-ms-input-placeholder {
 .metaslider .left table tr.slide:nth-child(odd) ul.tabs li.selected {
     border-bottom: 1px solid #f9f9f9
 }
+
+.metaslider .dropdown_container {
+    margin: 40px 0 10px 0;
+}
+#screen-meta-links #screen-options-switch-view-wrap {
+    float: right;
+    height: 28px;
+    margin: 0 0 0 6px;
+    border: 1px solid #ddd;
+    border-top: 0;
+    background: #fff;
+    -webkit-box-shadow: 0 1px 1px -1px rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px -1px rgba(0,0,0,.1);
+}
+
+#screen-meta-links #screen-options-switch-view-wrap a {
+    padding: 3px 6px 3px 8px;
+    display: block;
+    font-size: 13px;
+    height: 22px;
+    line-height: 22px;
+    text-decoration: none;
+    z-index: 1;
+    color: #777;
+}
+
+#screen-meta-links #screen-options-switch-view-wrap a:after {
+    content: '';
+}
+
+#screen-meta-links #screen-options-switch-view-wrap a:before {
+    padding: 0px 8px 0 0;
+}
