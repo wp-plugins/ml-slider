@@ -1057,7 +1057,7 @@ class MetaSliderPlugin {
                         <div id="postbox-container-1" class="postbox-container">
                             <div id="side-sortables" class="meta-box-sortables">
                                 <div class='right'>
-                                    <div class="postbox" id="metaslider_configuration">
+                                    <div class="ms-postbox" id="metaslider_configuration">
                                         <h3 class='configuration'>
                                             <?php _e( "Settings", "metaslider" ) ?>
                                             <input class='alignright button button-primary' type='submit' name='save' id='ms-save' value='<?php _e( "Save", "metaslider" ) ?>' />
@@ -1191,7 +1191,7 @@ class MetaSliderPlugin {
                                         </div>
                                     </div>
 
-                                    <div class="postbox ms-toggle closed" id="metaslider_advanced_settings">
+                                    <div class="ms-postbox ms-toggle closed" id="metaslider_advanced_settings">
                                         <div class="handlediv" title="Click to toggle"><br></div><h3 class="hndle"><span><?php _e( "Advanced Settings", "metaslider" ) ?></span></h3>
                                         <div class="inside">
                                             <table>
@@ -1465,7 +1465,7 @@ class MetaSliderPlugin {
                                         </div>
                                     </div>
 
-                                    <div class="postbox shortcode ms-toggle" id="metaslider_usage">
+                                    <div class="ms-postbox shortcode ms-toggle" id="metaslider_usage">
                                         <div class="handlediv" title="Click to toggle"><br></div><h3 class="hndle"><span><?php _e( "Usage", "metaslider" ) ?></span></h3>
                                         <div class="inside">
                                             <ul class='tabs'>
@@ -1483,7 +1483,7 @@ class MetaSliderPlugin {
                                         </div>
                                     </div>
 
-                                    <div class="postbox social" id="metaslider_social">
+                                    <div class="ms-postbox social" id="metaslider_social">
                                         <div class="inside">
                                             <ul class='info'>
                                                 <li style='width: 33%;'>
