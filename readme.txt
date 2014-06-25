@@ -140,9 +140,13 @@ See www.metaslider.com/documentation/image-cropping/
 
 = 2.9 [25/06/14] =
 
-* Improvement: Flex Slider updated to 2.3.0-bleeding (fix initial image fade)
 * New feature: Japanese Language Pack added
+* New feature: Persian Language Pack added
 * New feature: Switch between tab and list view
+* New feature: Added ms-left and ms-right css classes to align slideshow to left or right
+* Improvement: Flex Slider updated to 2.3.0-bleeding (fix initial image fade)
+* Fix: reference to window.parent in media library
+* Fix: Thumbnail outline in firefox
 
 = 2.8.1 [28/04/14] =
 
