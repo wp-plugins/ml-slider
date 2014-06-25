@@ -137,6 +137,12 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
+= 2.9 [25/06/14] =
+
+* Improvement: Flex Slider updated to 2.3.0-bleeding (fix initial image fade)
+* New feature: Japanese Language Pack added
+* New feature: Switch between tab and list view
+
 = 2.8.1 [28/04/14] =
 
 * Fix: All in One Events Calendar conflict fix (Advanced Settings not toggling)
