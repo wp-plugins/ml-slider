@@ -62,6 +62,7 @@ Upgrade to [Meta Slider Pro](http://www.metaslider.com/upgrade) to add support f
 * Norwegian (thanks to Dreamsoft)
 * Romanian (thanks to Octav Madalin Stanoaia)
 * Japanese (thanks to Dorrie)
+* Persian (thanks to aliamini)
 * Croatian
 
 Read more and thanks to:
