@@ -63,6 +63,7 @@ Upgrade to [Meta Slider Pro](http://www.metaslider.com/upgrade) to add support f
 * Romanian (thanks to Octav Madalin Stanoaia)
 * Japanese (thanks to Dorrie)
 * Persian (thanks to aliamini)
+* Hungarian (thanks to szripio)
 * Croatian
 
 Read more and thanks to:
@@ -137,6 +138,10 @@ See www.metaslider.com/documentation/image-cropping/
 6. Administration panel - selecting slides
 
 == Changelog ==
+
+= 2.X [XX/XX/14] =
+
+* New feature: Hungarian Language Pack added
 
 = 2.9 [25/06/14] =
 
