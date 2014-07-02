@@ -245,7 +245,7 @@ class MetaSlider {
      */
     public function render_public_slides() {
         $html[] = '<!-- meta slider -->';
-        $html[] = '<div style="' . $this->get_container_style() . '" class="' . $this->get_container_class() .'">';
+        $html[] = '<div style="' . $this->get_container_style() . '" class="' . esc_attr($this->get_container_class()) .'">';
         $html[] = '    ' . $this->get_inline_css();
         $html[] = '    <div id="' . $this->get_container_id() . '">';
         $html[] = '        ' . $this->get_html();
@@ -419,7 +419,7 @@ class MetaSlider {
                 if ( gettype( $default ) == 'integer' || $val == 'true' || $val == 'false' ) {
                     $options[$param] = $val;
                 } else {
-                    $options[$param] = '"' . $val . '"';
+                    $options[$param] = '"' . esc_js($val) . '"';
                 }
             }
         }
@@ -546,4 +546,3 @@ class MetaSlider {
         }
     }
 }
-?>
