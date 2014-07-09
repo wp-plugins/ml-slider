@@ -65,6 +65,7 @@ Upgrade to [Meta Slider Pro](http://www.metaslider.com/upgrade) to add support f
 * Persian (thanks to aliamini)
 * Hungarian (thanks to szripio)
 * Croatian
+* Hebrew (thanks to Ahrale)
 
 Read more and thanks to:
 
