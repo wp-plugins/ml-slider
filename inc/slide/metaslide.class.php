@@ -9,12 +9,14 @@ class MetaSlide {
     public $slider = 0;
     public $settings = array(); // slideshow settings
 
+
     /**
      * Set the slide
      */
     public function set_slide( $id ) {
         $this->slide = get_post( $id );
     }
+
 
     /**
      * Set the slide (that this slide belongs to)
@@ -23,6 +25,7 @@ class MetaSlide {
         $this->slider = get_post( $id );
         $this->settings = get_post_meta( $id, 'ml-slider_settings', true );
     }
+
 
     /**
      * Return the HTML for the slide
@@ -35,6 +38,7 @@ class MetaSlide {
         return $this->get_slide_html();
     }
 
+
     /**
      * Save the slide
      */
@@ -44,6 +48,7 @@ class MetaSlide {
         $this->save( $fields );
     }
 
+
     /**
      * Return the correct slide HTML based on whether we're viewing the slides in the
      * admin panel or on the front end.
@@ -51,31 +56,41 @@ class MetaSlide {
      * @return string slide html
      */
     public function get_slide_html() {
+
         if ( is_admin() && isset( $_GET['page'] ) && $_GET['page'] == 'metaslider-theme-editor' ) {
             return $this->get_public_slide();
         }
 
-        if ( is_admin() && !isset( $_GET['slider_id'] ) ) {
+        if ( is_admin() && ! isset( $_GET['slider_id'] ) ) {
             return $this->get_admin_slide();
         }
 
         return $this->get_public_slide();
+
     }
+
 
     /**
      * Check if a slide already exists in a slideshow
      */
     public function slide_exists_in_slideshow( $slider_id, $slide_id ) {
+
         return has_term( "{$slider_id}", 'ml-slider', $slide_id );
+
     }
+
 
     /**
      * Check if a slide has already been assigned to a slideshow
      */
     public function slide_is_unassigned_or_image_slide( $slider_id, $slide_id ) {
+
         $type = get_post_meta( $slide_id, 'ml-slider_type', true );
-        return !strlen( $type ) || $type == 'image';
+
+        return ! strlen( $type ) || $type == 'image';
+
     }
+
 
     /**
      * Build image HTML
@@ -84,11 +99,12 @@ class MetaSlide {
      * @return string image HTML
      */
     public function build_image_tag( $attributes ) {
+
         $html = "<img";
 
         foreach ( $attributes as $att => $val ) {
             if ( strlen( $val ) ) {
-                $html .= " " . $att . '="' . esc_attr($val) . '"';
+                $html .= " " . $att . '="' . esc_attr( $val ) . '"';
             } else if ( $att == 'alt' ) {
                 $html .= " " . $att . '=""'; // always include alt tag for HTML5 validation
             }
@@ -97,7 +113,9 @@ class MetaSlide {
         $html .= " />";
 
         return $html;
+
     }
+
 
     /**
      * Build image HTML
@@ -106,23 +124,28 @@ class MetaSlide {
      * @return string image HTML
      */
     public function build_anchor_tag( $attributes, $content ) {
+
         $html = "<a";
 
         foreach ( $attributes as $att => $val ) {
             if ( strlen( $val ) ) {
-                $html .= " " . $att . '="' . esc_attr($val) . '"';
+                $html .= " " . $att . '="' . esc_attr( $val ) . '"';
             }
         }
 
         $html .= ">" . $content . "</a>";
 
         return $html;
+
     }
+
+
     /**
      * Tag the slide attachment to the slider tax category
      */
     public function tag_slide_to_slider() {
-        if ( !term_exists( $this->slider->ID, 'ml-slider' ) ) {
+
+        if ( ! term_exists( $this->slider->ID, 'ml-slider' ) ) {
             // create the taxonomy term, the term is the ID of the slider itself
             wp_insert_term( $this->slider->ID, 'ml-slider' );
         }
@@ -133,7 +156,78 @@ class MetaSlide {
         wp_set_post_terms( $this->slide->ID, $term->term_id, 'ml-slider', true );
 
         $this->update_menu_order();
+
     }
+
+
+    /**
+     * Ouput the slide tabs
+     */
+    public function get_admin_slide_tabs_html() {
+
+        return $this->get_admin_slide_tab_titles_html() . $this->get_admin_slide_tab_contents_html();
+
+    }
+
+
+    /**
+     * Generate the HTML for the tabs
+     */
+    public function get_admin_slide_tab_titles_html() {
+
+        $tabs = $this->get_admin_tabs();
+
+        $return = "<ul class='tabs'>";
+
+        foreach ( $tabs as $id => $tab ) {
+
+            $pos = array_search( $id, array_keys( $tabs ) );
+
+            $selected = $pos == 0 ? "class='selected'" : "";
+
+            $return .= "<li {$selected} rel='tab-{$pos}'>{$tab['title']}</li>";
+
+        }
+
+        $return .= "</ul>";
+
+        return $return;
+
+    }
+
+    /**
+     * Generate the HTML for the delete button
+     */
+    public function get_delete_button_html() {
+
+        return "<a class='delete-slide confirm' href='?page=metaslider&amp;id={$this->slider->ID}&amp;deleteSlide={$this->slide->ID}'>x</a>";
+    
+    }
+
+    /**
+     * Generate the HTML for the tab content
+     */
+    public function get_admin_slide_tab_contents_html() {
+
+        $tabs = $this->get_admin_tabs();
+
+        $return = "<div class='tabs-content'>";
+
+        foreach ( $tabs as $id => $tab ) {
+
+            $pos = array_search( $id, array_keys( $tabs ) );
+
+            $hidden = $pos != 0 ? "style='display: none;'" : "";
+
+            $return .= "<div class='tab tab-{$pos}' {$hidden}>{$tab['content']}</div>";
+
+        }
+
+        $return .= "</div>";
+
+        return $return;
+    }
+
 
     /**
      * Ensure slides are added to the slideshow in the correct order.
@@ -142,6 +236,7 @@ class MetaSlide {
      * update the new slides menu_order.
      */
     public function update_menu_order() {
+
         $menu_order = 0;
 
         // get the slide with the highest menu_order so far
@@ -181,7 +276,9 @@ class MetaSlide {
                 'menu_order' => $menu_order
             ) 
         );
+
     }
+
 
     /**
      * If the meta doesn't exist, add it
@@ -189,9 +286,10 @@ class MetaSlide {
      * If the meta exists, update it
      */
     public function add_or_update_or_delete_meta( $post_id, $name, $value ) {
+
         $key = "ml-slider_" . $name;
 
-        if ( $value == 'false' || $value == "" || !$value ) {
+        if ( $value == 'false' || $value == "" || ! $value ) {
             if ( get_post_meta( $post_id, $key ) ) {
                 delete_post_meta( $post_id, $key );
             }
@@ -202,14 +300,17 @@ class MetaSlide {
                 add_post_meta( $post_id, $key, $value, true );
             }
         }
+
     }
 
     /**
      * Get the thumbnail for the slide
      */
     public function get_thumb() {
+
         $imageHelper = new MetaSliderImageHelper( $this->slide->ID, 150, 150, 'false' );
         return $imageHelper->get_image_url();
+
     }
 }
 ?>

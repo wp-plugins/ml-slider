@@ -143,7 +143,7 @@ See www.metaslider.com/documentation/image-cropping/
 = 2.9.1 [02/07/14] =
 
 * New feature: Hungarian Language Pack added
-* Fix: Escape attributes and JS in slideshow output
+* Fix: Escape attributes and JS in slideshow output (credit to jwenerd!)
 
 = 2.9 [25/06/14] =
 
