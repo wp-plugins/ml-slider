@@ -65,6 +65,7 @@ Upgrade to [Meta Slider Pro](http://www.metaslider.com/upgrade) to add support f
 * Persian (thanks to aliamini)
 * Hungarian (thanks to szripio)
 * Croatian
+* Hebrew (thanks to Ahrale)
 
 Read more and thanks to:
 
@@ -139,10 +140,12 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
-= 2.9.1 [02/07/14] =
+= 2.9.1 [15/07/14] =
 
 * New feature: Hungarian Language Pack added
-* Fix: Escape attributes and JS in slideshow output
+* Fix: Escape attributes and JS in slideshow output (credit to jwenerd!)
+* Fix: Escape attributes and text fields in admin
+* New feature: Admin slide tabs can be modified with filters
 
 = 2.9 [25/06/14] =
 

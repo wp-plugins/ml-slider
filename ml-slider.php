@@ -785,7 +785,15 @@ class MetaSliderPlugin {
                 $navigation_row = "<tr class='{$row['type']}'><td class='tipsy-tooltip' title=\"{$row['helptext']}\">{$row['label']}</td><td><ul>";
 
                 foreach ( $row['options'] as $k => $v ) {
-                    $checked = checked( $k, $row['value'], false );
+
+                    if ( $row['value'] === true && $k === 'true' ) {
+                        $checked = checked( true, true, false );
+                    } else if ( $row['value'] === false && $k === 'false' ) {
+                        $checked = checked( true, true, false );
+                    } else {
+                        $checked = checked( $k, $row['value'], false );
+                    }
+
                     $disabled = $k == 'thumbnails' ? 'disabled' : '';
                     $navigation_row .= "<li><label><input type='radio' name='settings[{$id}]' value='{$k}' {$checked} {$disabled}/>{$v['label']}</label></li>";
                 }
@@ -1166,7 +1174,6 @@ class MetaSliderPlugin {
                                                                 'options' => array(
                                                                     'false'      => array( 'label' => __( "Hidden", "metaslider" ) ),
                                                                     'true'       => array( 'label' => __( "Dots", "metaslider" ) ),
-                                                                    'thumbnails' => array( 'label' => __( "Thumbnails (Pro)", "metaslider" ) )
                                                                 )
                                                             ),
                                                         );
