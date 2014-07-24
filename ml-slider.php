@@ -263,9 +263,11 @@ class MetaSliderPlugin {
      */
     public function register_admin_menu() {
 
-        $title = apply_filters( 'metaslider_menu_title', "Meta Slider" );
+        $title = apply_filters( 'metaslider_menu_title', 'Meta Slider' );
 
-        $page = add_menu_page( $title, $title, 'edit_others_posts', 'metaslider', array(
+        $capability = apply_filters( 'metaslider_capability', 'edit_others_posts' );
+
+        $page = add_menu_page( $title, $title, $capability, 'metaslider', array(
                 $this, 'render_admin_page'
             ), METASLIDER_ASSETS_URL . 'metaslider/matchalabs.png', 9501 );
 
