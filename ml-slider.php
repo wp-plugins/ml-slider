@@ -723,20 +723,21 @@ class MetaSliderPlugin {
 
         $args = apply_filters( 'metaslider_all_meta_sliders_args', $args );
 
-        $the_query = new WP_Query( $args );
+        // WP_Query causes issues with other plugins using admin_footer to insert scripts
+        // use get_posts instead
+        $all_sliders = get_posts( $args );
 
-        while ( $the_query->have_posts() ) {
-            $the_query->the_post();
-            $active = $this->slider && ( $this->slider->id == $the_query->post->ID ) ? true : false;
+        foreach( $all_sliders as $slideshow ) {
+
+            $active = $this->slider && ( $this->slider->id == $slideshow->ID ) ? true : false;
 
             $sliders[] = array(
                 'active' => $active,
-                'title' => get_the_title(),
-                'id' => $the_query->post->ID
+                'title' => $slideshow->post_title,
+                'id' => $slideshow->ID
             );
-        }
 
-        wp_reset_query();
+        } 
 
         return $sliders;
 
