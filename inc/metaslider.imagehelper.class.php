@@ -256,13 +256,15 @@ class MetaSliderImageHelper {
      * @param array   $dest_size
      * @return string
      */
-    private function resize_image( $orig_size, $dest_size, $dest_file_name ) {
+    private function resize_image( $orig_size, $dest_size, $dest_file_name, $crop_position = array('center', 'center') ) {
         // load image
         $image = wp_get_image_editor( $this->path );
 
+        $capability = apply_filters( 'metaslider_capability', 'edit_others_posts' );
+
         // editor will return an error if the path is invalid
         if ( is_wp_error( $image ) ) {
-            if ( is_admin() ) {
+            if ( is_admin() && current_user_can( $capability ) ) {
                 echo '<div id="message" class="error">';
                 echo "<p><strong>ERROR</strong> Slide ID: {$this->id} - <i>" . $image->get_error_message() . "</i></p>";
                 echo "</div>";
@@ -271,7 +273,7 @@ class MetaSliderImageHelper {
             return $this->url;
         }
 
-        $dims = image_resize_dimensions( $orig_size['width'], $orig_size['height'], $dest_size['width'], $dest_size['height'], true );
+        $dims = image_resize_dimensions( $orig_size['width'], $orig_size['height'], $dest_size['width'], $dest_size['height'], $crop_position );
 
         if ( $dims ) {
             list( $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h ) = $dims;
