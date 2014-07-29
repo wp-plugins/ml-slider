@@ -1241,10 +1241,15 @@ class MetaSliderPlugin {
                                                             ),
                                                             'smartCrop' => array(
                                                                 'priority' => 30,
-                                                                'type' => 'checkbox',
-                                                                'label' => __( "Smart crop", "metaslider" ),
+                                                                'type' => 'select',
+                                                                'label' => __( "Image Crop", "metaslider" ),
                                                                 'class' => 'option coin flex nivo responsive',
-                                                                'checked' => $this->slider->get_setting( 'smartCrop' ) == 'true' ? 'checked' : '',
+                                                                'value' => $this->slider->get_setting( 'smartCrop' ),
+                                                                'options' => array(
+                                                                    'true' => array( 'label' => __( "Smart", "metaslider" ), 'class' => '' ),
+                                                                    'false' => array( 'label' => __( "Standard", "metaslider" ), 'class' => '' ),
+                                                                    'disabled' => array( 'label' => __( "Disabled", "metaslider" ), 'class' => '' ),
+                                                                ),
                                                                 'helptext' => __( "Smart Crop ensures your responsive slides are cropped to a ratio that results in a consistent slideshow size", "metaslider" )
                                                             ),
                                                             'carouselMode' => array(

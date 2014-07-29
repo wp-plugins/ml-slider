@@ -4,7 +4,7 @@
  */
 class MetaSliderImageHelper {
 
-    private $smart_crop = 'false';
+    private $crop_type = 'smart';
     private $container_width; // slideshow width
     private $container_height; // slideshow height
     private $id; // slide/attachment ID
@@ -20,7 +20,8 @@ class MetaSliderImageHelper {
      * @param integer $height     - required height of image
      * @param string  $smart_crop
      */
-    public function __construct( $slide_id, $width, $height, $smart_crop, $use_image_editor = true ) {
+    public function __construct( $slide_id, $width, $height, $crop_type, $use_image_editor = true ) {
+
         $upload_dir = wp_upload_dir();
 
         $this->id = $slide_id;
@@ -28,9 +29,32 @@ class MetaSliderImageHelper {
         $this->path = get_attached_file( $slide_id );
         $this->container_width = $width;
         $this->container_height = $height;
-        $this->smart_crop = $smart_crop;
         $this->use_image_editor = $use_image_editor;
+        $this->set_crop_type($crop_type);
     }
+
+
+    /**
+     * Add in backwards compatibility for old versions of MS Pro
+     * 'true' = smart, 'false' = standard, 'disabled' = disabled
+     *
+     * @param string $crop_type
+     */
+    private function set_crop_type( $crop_type ) {
+ 
+        switch ( $crop_type ) {
+            case "false":
+                $this->crop_type = 'standard'; // smart crop enabled
+                break;
+            case "disabled":
+                $this->crop_type = 'disabled'; // smart crop enabled
+                break;
+            default:
+                $this->crop_type = 'smart';
+        }
+
+    }
+
 
     /**
      * Return the crop dimensions.
@@ -44,8 +68,12 @@ class MetaSliderImageHelper {
      * @return array image dimensions
      */
     private function get_crop_dimensions( $image_width, $image_height ) {
-        if ( $this->smart_crop == 'false' ) {
-            return array( 'width' => (int)$this->container_width, 'height' => (int)$this->container_height );
+        if ( $this->crop_type == 'standard' ) {
+            return array( 'width' => absint( $this->container_width ), 'height' => absint( $this->container_height ) );
+        }
+
+        if ( $this->crop_type == 'disabled' ) {
+            return array( 'width' => absint( $image_width ), 'height' => absint( $image_height ) );
         }
 
         $container_width = $this->container_width;
@@ -259,10 +287,11 @@ class MetaSliderImageHelper {
         // load image
         $image = wp_get_image_editor( $this->path );
 
-        $capability = apply_filters( 'metaslider_capability', 'edit_others_posts' );
-
         // editor will return an error if the path is invalid
         if ( is_wp_error( $image ) ) {
+
+            $capability = apply_filters( 'metaslider_capability', 'edit_others_posts' );
+
             if ( is_admin() && current_user_can( $capability ) ) {
                 echo '<div id="message" class="error">';
                 echo "<p><strong>ERROR</strong> Slide ID: {$this->id} - <i>" . $image->get_error_message() . "</i></p>";
