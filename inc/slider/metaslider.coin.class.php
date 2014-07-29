@@ -56,4 +56,3 @@ class MetaCoinSlider extends MetaSlider {
         return apply_filters( 'metaslider_coin_slider_get_html', $return_value, $this->id, $this->settings ); $retVal;
     }
 }
-?>

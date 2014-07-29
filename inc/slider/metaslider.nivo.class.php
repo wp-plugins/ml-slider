@@ -112,4 +112,3 @@ class MetaNivoSlider extends MetaSlider {
         return apply_filters( 'metaslider_nivo_slider_get_html', $return_value, $this->id, $this->settings );;
     }
 }
-?>

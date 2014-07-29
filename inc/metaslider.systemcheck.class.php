@@ -149,4 +149,3 @@ class MetaSliderSystemCheck {
         echo "<div id='message' class='updated'><p><b>Warning:</b> {$message}<br /><br /><a class='button' href='?page=metaslider&dismissMessage={$key}&_wpnonce={$nonce}'>Hide</a></p></div>";
     }
 }
-?>

@@ -454,4 +454,3 @@ class MetaImageSlide extends MetaSlide {
 
     }
 }
-?>
