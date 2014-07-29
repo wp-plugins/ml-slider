@@ -100,6 +100,11 @@ jQuery(document).ready(function($) {
         toggleNextRow(jQuery(this));
     });
 
+    // mark the slide for resizing when the crop position has changed
+    jQuery(".metaslider").on('change', '.left tr.slide .crop_position', function() {
+        jQuery(this).closest('tr').data('resize', true);
+    });
+
     // handle slide libary switching
     jQuery(".metaslider .select-slider").on("click", function() {
         switchType(jQuery(this).attr("rel"));
@@ -141,7 +146,7 @@ jQuery(document).ready(function($) {
             var thumb_width = $this.attr("data-width");
             var thumb_height = $this.attr("data-height");
 
-            if ((thumb_width != slideshow_width || thumb_height != slideshow_height)) {
+            if (thumb_width != slideshow_width || thumb_height != slideshow_height || jQuery(this).closest('tr').data('resize') === true ) {
                 $this.attr("data-width", slideshow_width);
                 $this.attr("data-height", slideshow_height);
 
@@ -155,6 +160,7 @@ jQuery(document).ready(function($) {
                 jQuery.ajax({
                     type: "POST",
                     data : data,
+                    async: false,
                     cache: false,
                     url: metaslider.ajaxurl,
                     success: function(data) {
@@ -270,30 +276,32 @@ jQuery(document).ready(function($) {
             success: function(data) {
                 var response = jQuery(data);
 
-                jQuery(".metaslider .left table").trigger("resizeSlides");
+                jQuery.when(jQuery(".metaslider .left table").trigger("resizeSlides")).done(function() {
 
-                jQuery("button[data-thumb]", response).each(function() {
-                    var $this = jQuery(this);
-                    var editor_id = $this.attr("data-editor_id");
-                    jQuery("button[data-editor_id=" + editor_id + "]")
-                        .attr("data-thumb", $this.attr("data-thumb"))
-                        .attr("data-width", $this.attr("data-width"))
-                        .attr("data-height", $this.attr("data-height"));
-                });
-
-                fixIE10PlaceholderText();
-
-                if (button.id === "ms-preview") {
-                    jQuery.colorbox({
-                        iframe: true,
-                        href: metaslider.iframeurl + "&slider_id=" + jQuery(button).data("slider_id"),
-                        transition: "elastic",
-                        innerHeight: getLightboxHeight(),
-                        innerWidth: getLightboxWidth(),
-                        scrolling: false,
-                        fastIframe: false
+                    jQuery("button[data-thumb]", response).each(function() {
+                        var $this = jQuery(this);
+                        var editor_id = $this.attr("data-editor_id");
+                        jQuery("button[data-editor_id=" + editor_id + "]")
+                            .attr("data-thumb", $this.attr("data-thumb"))
+                            .attr("data-width", $this.attr("data-width"))
+                            .attr("data-height", $this.attr("data-height"));
                     });
-                }
+
+                    fixIE10PlaceholderText();
+
+                    if (button.id === "ms-preview") {
+                        jQuery.colorbox({
+                            iframe: true,
+                            href: metaslider.iframeurl + "&slider_id=" + jQuery(button).data("slider_id"),
+                            transition: "elastic",
+                            innerHeight: getLightboxHeight(),
+                            innerWidth: getLightboxWidth(),
+                            scrolling: false,
+                            fastIframe: false
+                        });
+                    }
+
+                });
             }
         });
     });

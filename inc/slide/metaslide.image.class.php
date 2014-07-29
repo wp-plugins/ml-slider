@@ -84,7 +84,7 @@ class MetaImageSlide extends MetaSlide {
             $this->use_wp_image_editor()
         );
 
-        $url = $imageHelper->get_image_url();
+        $url = $imageHelper->get_image_url(true);
 
         echo $url . " (" . $settings['width'] . 'x' . $settings['height'] . ")";
 
@@ -135,6 +135,11 @@ class MetaImageSlide extends MetaSlide {
         $title = esc_attr( get_post_meta( $slide_id, 'ml-slider_title', true ) );
         $target = get_post_meta( $slide_id, 'ml-slider_new_window', true ) ? 'checked=checked' : '';
         $caption = esc_textarea( $this->slide->post_excerpt );
+        $crop_position = get_post_meta( $slide_id, 'ml-slider_crop_position', true);
+
+        if ( ! $crop_position ) {
+            $crop_position = 'center-center';
+        }
 
         $general_tab = "<textarea name='attachment[{$slide_id}][post_excerpt]' placeholder='" . __( "Caption", "metaslider" ) . "'>{$caption}</textarea>
                         <input class='url' type='text' name='attachment[{$slide_id}][url]' placeholder='" . __( "URL", "metaslider" ) . "' value='{$url}' />
@@ -153,6 +158,21 @@ class MetaImageSlide extends MetaSlide {
                     <div class='row'><label>" . __( "Image Alt Text", "metaslider" ) . "</label></div>
                     <div class='row'><input type='text' size='50' name='attachment[{$slide_id}][alt]' value='{$alt}' /></div>";
 
+        $crop_tab = "<div class='row'><label>" . __( "Crop Position", "metaslider" ) . "</label></div>
+                    <div class='row'>
+                        <select class='crop_position' name='attachment[{$slide_id}][crop_position]'>
+                            <option value='left-top' " . selected( $crop_position, 'left-top', false ) . ">" . __( "Top Left", "metaslider" ) . "</option>
+                            <option value='center-top' " . selected( $crop_position, 'center-top', false ) . ">" . __( "Top Center", "metaslider" ) . "</option>
+                            <option value='right-top' " . selected( $crop_position, 'right-top', false ) . ">" . __( "Top Right", "metaslider" ) . "</option>
+                            <option value='left-center' " . selected( $crop_position, 'left-center', false ) . ">" . __( "Center Left", "metaslider" ) . "</option>
+                            <option value='center-center' " . selected( $crop_position, 'center-center', false ) . ">" . __( "Center Center", "metaslider" ) . "</option>
+                            <option value='right-center' " . selected( $crop_position, 'right-center', false ) . ">" . __( "Center Right", "metaslider" ) . "</option>
+                            <option value='left-bottom' " . selected( $crop_position, 'left-bottom', false ) . ">" . __( "Bottom Left", "metaslider" ) . "</option>
+                            <option value='center-bottom' " . selected( $crop_position, 'center-bottom', false ) . ">" . __( "Bottom Center", "metaslider" ) . "</option>
+                            <option value='right-bottom' " . selected( $crop_position, 'right-bottom', false ) . ">" . __( "Bottom Right", "metaslider" ) . "</option>
+                        </select>
+                    </div>";
+
         $tabs = array(
             'general' => array(
                 'title' => __( "General", "metaslider" ),
@@ -161,6 +181,10 @@ class MetaImageSlide extends MetaSlide {
             'seo' => array(
                 'title' => __( "SEO", "metaslider" ),
                 'content' => $seo_tab
+            ),
+            'crop' => array(
+                'title' => __( "Crop", "metaslider" ),
+                'content' => $crop_tab
             )
         );
 
@@ -416,6 +440,8 @@ class MetaImageSlide extends MetaSlide {
         $this->add_or_update_or_delete_meta( $this->slide->ID, 'url', $fields['url'] );
 
         $this->add_or_update_or_delete_meta( $this->slide->ID, 'title', $fields['title'] );
+
+        $this->add_or_update_or_delete_meta( $this->slide->ID, 'crop_position', $fields['crop_position'] );
 
         if ( isset( $fields['alt'] ) ) {
             update_post_meta( $this->slide->ID, '_wp_attachment_image_alt', $fields['alt'] );
