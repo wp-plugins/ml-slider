@@ -61,7 +61,9 @@ class MetaSlide {
             return $this->get_public_slide();
         }
 
-        if ( is_admin() && ! isset( $_GET['slider_id'] ) ) {
+        $capability = apply_filters( 'metaslider_capability', 'edit_others_posts' );
+
+        if ( is_admin() && current_user_can( $capability ) && ! isset( $_GET['slider_id'] ) ) {
             return $this->get_admin_slide();
         }
 
