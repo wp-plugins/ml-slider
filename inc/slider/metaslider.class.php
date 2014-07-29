@@ -125,7 +125,14 @@ class MetaSlider {
      * Save the slider details and initiate the update of all slides associated with slider.
      */
     private function save() {
-        if ( !is_admin() ) {
+
+        if ( ! is_admin() ) {
+            return;
+        }
+
+        $capability = apply_filters( 'metaslider_capability', 'edit_others_posts' );
+
+        if ( ! current_user_can( $capability ) ) {
             return;
         }
 
