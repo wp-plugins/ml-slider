@@ -548,6 +548,12 @@ class MetaSliderPlugin {
             return;
         }
 
+        $capability = apply_filters( 'metaslider_capability', 'edit_others_posts' );
+
+        if ( ! current_user_can( $capability ) ) {
+            return;
+        }
+
         // handle switching view
         if ( isset( $_GET['view'] ) ) {
             $this->switch_view();
