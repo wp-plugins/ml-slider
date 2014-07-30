@@ -47,7 +47,7 @@ class MetaSliderImageHelper {
                 $this->crop_type = 'standard'; // smart crop enabled
                 break;
             case "disabled":
-                $this->crop_type = 'disabled'; // smart crop enabled
+                $this->crop_type = 'disabled'; // cropping disabled
                 break;
             default:
                 $this->crop_type = 'smart';
@@ -185,6 +185,7 @@ class MetaSliderImageHelper {
     /**
      * Return the image URL, crop the image to the correct dimensions if required
      *
+     * @param bool $force_resize
      * @return string resized image URL
      */
     function get_image_url( $force_resize = false ) {
@@ -230,6 +231,7 @@ class MetaSliderImageHelper {
         return $dest_url;
     }
 
+
     /**
      * Get the image dimensions for the original image.
      *
@@ -260,11 +262,12 @@ class MetaSliderImageHelper {
         return false;
     }
 
+
     /**
      * Return the file name for the required image size
      *
-     * @param array   $dest_size image dimensions (width/height) in pixels
-     * @return string
+     * @param array $dest_size image dimensions (width/height) in pixels
+     * @return string path and file name
      */
     private function get_destination_file_name( $dest_size ) {
         $info = pathinfo( $this->path );

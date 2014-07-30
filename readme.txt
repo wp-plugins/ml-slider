@@ -140,6 +140,13 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
+= 2.10 [30/07/14] =
+
+* New feature: Set crop position for slides (requires WP 3.9+)
+* New feature: Disable cropping setting
+* Fix: Use get_posts instead of WP_Query to extract slideshows (fix conflicts with plugins using get_post_type in admin_footer hooks)
+* Change: Add filter for capability required to use meta slider
+
 = 2.9.1 [15/07/14] =
 
 * New feature: Hungarian Language Pack added
