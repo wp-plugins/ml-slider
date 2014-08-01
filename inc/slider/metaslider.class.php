@@ -493,7 +493,7 @@ class MetaSlider {
         $old_settings = $this->get_settings();
 
         // convert submitted checkbox values from 'on' or 'off' to boolean values
-        $checkboxes = array( 'noConflict', 'fullWidth', 'hoverPause', 'links', 'reverse', 'random', 'printCss', 'printJs', 'smoothHeight', 'center', 'carouselMode', 'autoPlay' );
+        $checkboxes = apply_filters( "metaslider_checkbox_settings", array( 'noConflict', 'fullWidth', 'hoverPause', 'links', 'reverse', 'random', 'printCss', 'printJs', 'smoothHeight', 'center', 'carouselMode', 'autoPlay' ) );
 
         foreach ( $checkboxes as $checkbox ) {
             if ( isset( $new_settings[$checkbox] ) && $new_settings[$checkbox] == 'on' ) {
