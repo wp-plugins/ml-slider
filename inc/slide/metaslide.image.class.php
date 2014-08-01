@@ -84,9 +84,11 @@ class MetaImageSlide extends MetaSlide {
             $this->use_wp_image_editor()
         );
 
-        $url = $imageHelper->get_image_url(true);
+        $url = $imageHelper->get_image_url( true );
 
         echo $url . " (" . $settings['width'] . 'x' . $settings['height'] . ")";
+
+        do_action( "metaslider_ajax_resize_image_slide", $slide_id, $slider_id, $settings );
 
         wp_die();
     }

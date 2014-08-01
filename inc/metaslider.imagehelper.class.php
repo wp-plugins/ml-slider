@@ -44,11 +44,14 @@ class MetaSliderImageHelper {
  
         switch ( $crop_type ) {
             case "false":
+            case "standard":
                 $this->crop_type = 'standard'; // smart crop enabled
                 break;
             case "disabled":
                 $this->crop_type = 'disabled'; // cropping disabled
                 break;
+            case "true":
+            case "smart":
             default:
                 $this->crop_type = 'smart';
         }

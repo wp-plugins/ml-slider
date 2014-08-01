@@ -102,7 +102,7 @@ jQuery(document).ready(function($) {
 
     // mark the slide for resizing when the crop position has changed
     jQuery(".metaslider").on('change', '.left tr.slide .crop_position', function() {
-        jQuery(this).closest('tr').data('resize', true);
+        jQuery(this).closest('tr').data('crop_changed', true);
     });
 
     // handle slide libary switching
@@ -145,8 +145,10 @@ jQuery(document).ready(function($) {
 
             var thumb_width = $this.attr("data-width");
             var thumb_height = $this.attr("data-height");
+            var slide_row = jQuery(this).closest('tr');
+            var crop_changed = slide_row.data('crop_changed');
 
-            if (thumb_width != slideshow_width || thumb_height != slideshow_height || jQuery(this).closest('tr').data('resize') === true ) {
+            if (thumb_width != slideshow_width || thumb_height != slideshow_height || crop_changed === true ) {
                 $this.attr("data-width", slideshow_width);
                 $this.attr("data-height", slideshow_height);
 
@@ -164,6 +166,10 @@ jQuery(document).ready(function($) {
                     cache: false,
                     url: metaslider.ajaxurl,
                     success: function(data) {
+                        if (crop_changed === true) {
+                            slide_row.data('crop_changed', false);
+                        }
+
                         if (console && console.log) {
                             console.log(data);
                         }
