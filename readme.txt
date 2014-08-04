@@ -140,7 +140,9 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
-= 2.10 [30/07/14] =
+= 3.0 [30/07/14] =
+
+**This is not a major update. We're just following the WordPress versioning conventions (3.0 comes after 2.9)**
 
 * New feature: Set crop position for slides (requires WP 3.9+)
 * New feature: Disable cropping setting
