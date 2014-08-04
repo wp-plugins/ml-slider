@@ -1082,7 +1082,7 @@ class MetaSliderPlugin {
                                             <span class="spinner"></span>
                                         </h3>
                                         <div class="inside">
-                                            <table class="widefat settings">
+                                            <table class="settings">
                                                 <tbody>
                                                     <?php
                                                         $aFields = array(
