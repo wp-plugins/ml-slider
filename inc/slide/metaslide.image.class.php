@@ -183,12 +183,17 @@ class MetaImageSlide extends MetaSlide {
             'seo' => array(
                 'title' => __( "SEO", "metaslider" ),
                 'content' => $seo_tab
-            ),
-            'crop' => array(
-                'title' => __( "Crop", "metaslider" ),
-                'content' => $crop_tab
             )
         );
+
+        if ( version_compare( get_bloginfo('version'), 3.9, '>=' ) ) {
+
+            $tabs['crop'] = array(
+                'title' => __( "Crop", "metaslider" ),
+                'content' => $crop_tab
+            );
+            
+        }
 
         return apply_filters("metaslider_image_slide_tabs", $tabs, $this->slide, $this->slider, $this->settings);
 
