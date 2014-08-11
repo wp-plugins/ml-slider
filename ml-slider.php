@@ -409,14 +409,28 @@ class MetaSliderPlugin {
 
         if ( isset( $_GET['slider_id'] ) && absint( $_GET['slider_id'] ) > 0 ) {
             $id = absint( $_GET['slider_id'] );
-
-            echo "<!DOCTYPE html>";
-            echo "<html><head>";
-            echo "<style>body, html { overflow: hidden; margin: 0; padding: 0; }</style>";
-            echo "</head><body>";
-            echo do_shortcode("[metaslider id={$id}]");
-            wp_footer();
-            echo "</body></html>";
+            
+            ?>
+            <!DOCTYPE html>
+            <html>
+                <head>
+                    <style type='text/css'>
+                        body, html { 
+                            overflow: hidden; 
+                            margin: 0; 
+                            padding: 0; 
+                        }
+                    </style>
+                    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+                    <meta http-equiv="Pragma" content="no-cache" />
+                    <meta http-equiv="Expires" content="0" />
+                </head>
+                <body>
+                    <?php echo do_shortcode("[metaslider id={$id}]"); ?>
+                    <?php wp_footer(); ?>
+                </body>
+            </html>
+            <?php
         }
 
         die();
