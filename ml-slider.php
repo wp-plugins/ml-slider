@@ -7,7 +7,7 @@
  * Description: Easy to use slideshow plugin. Create SEO optimised responsive slideshows with Nivo Slider, Flex Slider, Coin Slider and Responsive Slides.
  * Version:     3.0
  * Author:      Matcha Labs
- * Author URI:  http://www.matchalabs.com
+ * Author URI:  http://www.metaslider.com
  * License:     GPL-2.0+
  * Copyright:   2014 Matcha Labs LTD
  *
@@ -286,17 +286,23 @@ class MetaSliderPlugin {
      */
     public function register_shortcode( $atts ) {
 
-        if ( !isset( $atts['id'] ) ) {
+        extract( shortcode_atts( array(
+            'id' => false,
+            'restrict_to' => false
+        ), $atts, 'metaslider' ) );
+
+
+        if ( ! $id ) {
             return false;
         }
 
         // handle [metaslider id=123 restrict_to=home]
-        if ( isset( $atts['restrict_to'] ) && $atts['restrict_to'] == 'home' && ! is_front_page() ) {
+        if ( $restrict_to == 'home' && ! is_front_page() ) {
             return;
         }
 
         // we have an ID to work with
-        $slider = get_post( $atts['id'] );
+        $slider = get_post( $id );
 
         // check the slider is published and the ID is correct
         if ( ! $slider || $slider->post_status != 'publish' || $slider->post_type != 'ml-slider' ) {
@@ -304,7 +310,7 @@ class MetaSliderPlugin {
         }
 
         // lets go
-        $this->set_slider( $atts['id'], $atts );
+        $this->set_slider( $id, $atts );
         $this->slider->enqueue_scripts();
 
         return $this->slider->render_public_slides();
