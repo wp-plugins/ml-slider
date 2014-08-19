@@ -12,7 +12,7 @@ Easy to use WordPress slider plugin. Create SEO optimised responsive slideshows 
 
 == Description ==
 
-http://www.youtube.com/watch?v=I7IfkV6iLqo
+http://www.youtube.com/watch?v=o0f3uAvL6Ic
 
 The most popular WordPress slider plugin. Creating slideshows with [Meta Slider](http://www.metaslider.com/) is fast and easy. Simply select images from your WordPress Media Library, drag and drop them into place, set slide captions, links and SEO fields all from one page. You can choose from 4 different slideshow types (Flex Slider, Nivo Slider, Responsive Slides & Coin Slider) and use the provided shortcode or template include to easily embed slideshows in your blog.
 
@@ -32,6 +32,7 @@ The most popular WordPress slider plugin. Creating slideshows with [Meta Slider]
 * Drag and drop slide reordering
 * Admin preview
 * Intelligent image cropping
+* Set image crop position
 * Built in Widget and Shortcode
 * Loads of slideshow configuration options - transition effect, speed etc (per slideshow)
 * Fully localised
@@ -39,7 +40,8 @@ The most popular WordPress slider plugin. Creating slideshows with [Meta Slider]
 * Compatible with translation plugins (WPML, PolyLang & qTranslate)
 * Extensive Developer API (hooks & filters)
 * Fast - only the minimum JavaScript/CSS is included on your page
-* Free, active, basic support (covering installation issues and theme/plugin conflicts)
+* Free basic support (covering installation issues and theme/plugin conflicts)
+* Lightbox support with the [Meta Slider Lightbox](http://wordpress.org/plugins/ml-slider-lightbox/) addon
 
 Upgrade to [Meta Slider Pro](http://www.metaslider.com/upgrade) to add support for:
 
@@ -69,12 +71,14 @@ Upgrade to [Meta Slider Pro](http://www.metaslider.com/upgrade) to add support f
 
 Read more and thanks to:
 
-* [http://flexslider.woothemes.com/](http://flexslider.woothemes.com/)
-* [http://responsive-slides.viljamis.com/](http://responsive-slides.viljamis.com/)
-* [http://workshop.rs/projects/coin-slider/](http://workshop.rs/projects/coin-slider/)
-* [http://dev7studios.com/nivo-slider/](http://dev7studios.com/nivo-slider/)
+* [Flex Slider](http://flexslider.woothemes.com/)
+* [Responsive Slides](http://responsive-slides.viljamis.com/)
+* [Coin Slider](http://workshop.rs/projects/coin-slider/)
+* [Nivo Slider](http://dev7studios.com/nivo-slider/)
 
 Find out more at http://www.metaslider.com
+
+Follow us on Twitter: [@wpmetaslider](https://twitter.com/wpmetaslider)
 
 == Installation ==
 
