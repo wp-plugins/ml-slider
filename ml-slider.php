@@ -966,9 +966,9 @@ class MetaSliderPlugin {
                 foreach ( $tabs as $tab ) {
 
                     if ( $tab['active'] ) {
-                        echo "<div class='nav-tab nav-tab-active'><input type='text' name='title'  value='" . $tab['title'] . "' onfocus='this.style.width = ((this.value.length + 1) * 9) + \"px\"' /></div>";
+                        echo "<div class='nav-tab nav-tab-active'><input type='text' name='title'  value='" . esc_attr( $tab['title'] ) . "' onfocus='this.style.width = ((this.value.length + 1) * 9) + \"px\"' /></div>";
                     } else {
-                        echo "<a href='?page=metaslider&amp;id={$tab['id']}' class='nav-tab'>" . $tab['title'] . "</a>";
+                        echo "<a href='?page=metaslider&amp;id={$tab['id']}' class='nav-tab'>" . esc_html( $tab['title'] ) . "</a>";
                     }
 
                 }
