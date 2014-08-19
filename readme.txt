@@ -140,6 +140,12 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
+= 3.0.1 [19/08/14] =
+
+* Fix: Escape admin setting text fields
+* Fix: Escape admin tab names (thanks to Dylan Irzi for spotting and reporting this!)
+* Change: Allow shortcode parameters to be filtered
+
 = 3.0 [30/07/14] =
 
 **This is not a major update. We're just following the WordPress versioning conventions (3.0 comes after 2.9)**
