@@ -746,7 +746,7 @@ class MetaSliderPlugin {
             'order' => 'ASC',
             'posts_per_page' => -1
         );
-
+$args = apply_filters( 'metaslider_all_meta_sliders_args', $args );
         $args = apply_filters( 'metaslider_all_meta_sliders_args', $args );
 
         // WP_Query causes issues with other plugins using admin_footer to insert scripts
@@ -1068,16 +1068,21 @@ class MetaSliderPlugin {
 
                         <div id='post-body-content'>
                             <div class="left">
+
+                                <?php do_action( "metaslider_admin_table_before", $this->slider->id ); ?>
+
                                 <table class="widefat sortable">
                                     <thead>
                                         <tr>
                                             <th style="width: 100px;">
                                                 <h3><?php _e( "Slides", "metaslider" ) ?></h3>
+                                                <?php do_action( "metaslider_admin_table_header_left", $this->slider->id ); ?>
                                             </th>
                                             <th>
                                                 <a href='#' class='button alignright add-slide' data-editor='content' title='<?php _e( "Add Slide", "metaslider" ) ?>'>
                                                     <span class='wp-media-buttons-icon'></span> <?php _e( "Add Slide", "metaslider" ) ?>
                                                 </a>
+                                                <?php do_action( "metaslider_admin_table_header_right", $this->slider->id ); ?>
                                             </th>
                                         </tr>
                                     </thead>
@@ -1088,6 +1093,9 @@ class MetaSliderPlugin {
                                         ?>
                                     </tbody>
                                 </table>
+
+                                <?php do_action( "metaslider_admin_table_after", $this->slider->id ); ?>
+
                             </div>
                         </div>
 
