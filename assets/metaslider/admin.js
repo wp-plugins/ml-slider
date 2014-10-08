@@ -178,10 +178,6 @@ jQuery(document).ready(function($) {
         jQuery(".metaslider input[type=submit]").removeAttr("disabled");
     });
 
-    // show the confirm dialogue
-    jQuery(".confirm").on("click", function() {
-        return confirm(metaslider.confirm);
-    });
 
     jQuery(".useWithCaution").on("change", function(){
         if(!this.checked) {
@@ -248,6 +244,27 @@ jQuery(document).ready(function($) {
     	tab.parent().parent().children('.tabs-content').children('div.'+tab.attr('rel')).show();
     	tab.siblings().removeClass("selected");
     	tab.addClass("selected");
+    });
+
+
+    // show the confirm dialogue
+    jQuery(".metaslider").on('click', '.delete-slider', function() {
+        return confirm(metaslider.confirm);
+    });
+
+    // delete a slide using ajax (avoid losing changes)
+    jQuery(".metaslider").on('click', '.delete-slide', function(e) {
+        e.preventDefault();
+
+        var link = jQuery(this);
+
+        if (confirm(metaslider.confirm)) {
+            jQuery.get( link.attr('href') , function( data ) {
+                link.closest('tr').fadeOut(400, function() {
+                    jQuery(this).remove();
+                });
+            });
+        }
     });
 
     // AJAX save & preview

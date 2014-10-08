@@ -202,7 +202,7 @@ class MetaSlide {
      */
     public function get_delete_button_html() {
 
-        return "<a class='delete-slide confirm' href='?page=metaslider&amp;id={$this->slider->ID}&amp;deleteSlide={$this->slide->ID}'>x</a>";
+        return "<a class='delete-slide' href='?page=metaslider&amp;id={$this->slider->ID}&amp;deleteSlide={$this->slide->ID}'>x</a>";
     
     }
 

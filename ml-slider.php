@@ -1577,7 +1577,7 @@ class MetaSliderPlugin {
 
                                     <?php endif; ?>
 
-                                    <a class='delete-slider alignright button-secondary confirm' href='<?php echo wp_nonce_url( "?page=metaslider&amp;delete={$this->slider->id}", "metaslider_delete_slider" ); ?>'><?php _e( "Delete Slider", "metaslider" ) ?></a>
+                                    <a class='delete-slider alignright button-secondary' href='<?php echo wp_nonce_url( "?page=metaslider&amp;delete={$this->slider->id}", "metaslider_delete_slider" ); ?>'><?php _e( "Delete Slider", "metaslider" ) ?></a>
                                 </div>
                             </div>
                         </div>
