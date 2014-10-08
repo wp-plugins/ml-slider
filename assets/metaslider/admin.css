@@ -31,18 +31,6 @@
     box-shadow: inherit;
 }
 
-.media-frame-menu .media-menu > a.disabled {
-    display: block;
-    position: relative;
-    padding: 4px 20px;
-    margin: 0;
-    line-height: 18px;
-    font-size: 14px;
-    color: #cccccc;
-    text-shadow: 0 1px 0 #fff;
-    text-decoration: none;
-}
-
 .attachment-filters {
     display: none
 }
@@ -158,62 +146,6 @@
 
 .metaslider .hidden {
     display: none
-}
-
-.metaslider_pro {
-    margin-top: 50px;
-}
-.metaslider_pro p {
-    text-align: center;
-    font-size: 1.2em;
-}
-
-.metaslider_pro .probutton,
-.metaslider_pro .probutton:hover {
-    width: 36%;
-    margin: 20px 32% 10px 32%;
-    float: left;
-    font-size: 1.4em;
-    padding: 15px 0;
-    border-color: #3793B7;
-    background-color: #41add7;
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #41add7), color-stop(100%, #218cb7));
-    background-image: -webkit-linear-gradient(top, #41add7, #218cb7);
-    background-image: -moz-linear-gradient(top, #41add7, #218cb7);
-    background-image: -o-linear-gradient(top, #41add7, #218cb7);
-    background-image: linear-gradient(top, #41add7, #218cb7);
-    -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px 3px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px 3px rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px 3px rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 0 2px 0 rgba(57, 140, 255, 0.8);
-    box-shadow: inset 0 0 2px 0 rgba(57, 140, 255, 0.8);
-    color: #fff;
-    font-family: 'PT Sans', helvetica, arial, sans-serif;
-    text-shadow: 0 -1px 1px #1a5ad9;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-    line-height: 2em;
-}
-
-.metaslider_pro .super {
-    text-transform: uppercase;
-    font-size: 0.7em;
-    vertical-align: top;
-    line-height: 2em;
-}
-
-.metaslider_pro .subtext {
-    float: left;
-    width: 100%;
-    text-align: center;
-    font-style: italic;
-}
-
-.metaslider_pro .logo {
-    text-transform: uppercase
 }
 
 .metaslider .tipsy-tooltip {
@@ -894,10 +826,15 @@ textarea:-ms-input-placeholder {
     color: #777;
 }
 
+#screen-meta-links #screen-options-link-wrap a {
+    padding: 3px 6px;
+}
+
+#screen-meta-links #screen-options-link-wrap a:after,
 #screen-meta-links #screen-options-switch-view-wrap a:after {
     content: '';
 }
-
+#screen-meta-links #screen-options-link-wrap a:before,
 #screen-meta-links #screen-options-switch-view-wrap a:before {
     padding: 0px 8px 0 0;
 }

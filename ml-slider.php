@@ -5,7 +5,7 @@
  * Plugin Name: Meta Slider
  * Plugin URI:  http://www.metaslider.com
  * Description: Easy to use slideshow plugin. Create SEO optimised responsive slideshows with Nivo Slider, Flex Slider, Coin Slider and Responsive Slides.
- * Version:     3.0.1
+ * Version:     3.0.2
  * Author:      Matcha Labs
  * Author URI:  http://www.metaslider.com
  * License:     GPL-2.0+
@@ -31,7 +31,7 @@ class MetaSliderPlugin {
     /**
      * @var string
      */
-    public $version = '3.0.1';
+    public $version = '3.0.2';
 
 
     /**
@@ -167,12 +167,11 @@ class MetaSliderPlugin {
         add_action( 'init', array( $this, 'register_taxonomy' ) );
         add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
         add_action( 'admin_footer', array( $this, 'admin_footer' ), 11 );
-        add_action( 'media_upload_vimeo', array( $this, 'upgrade_to_pro_tab' ) );
-        add_action( 'media_upload_youtube', array( $this, 'upgrade_to_pro_tab' ) );
-        add_action( 'media_upload_post_feed', array( $this, 'upgrade_to_pro_tab' ) );
-        add_action( 'media_upload_layer', array( $this, 'upgrade_to_pro_tab' ) );
-        add_action( 'admin_post_metaslider_preview', array( $this, 'do_preview' ) );
         add_action( 'widgets_init', array( $this, 'register_metaslider_widget' ) );
+
+        add_action( 'admin_post_metaslider_preview', array( $this, 'do_preview' ) );
+        add_action( 'admin_post_metaslider_hide_go_pro_page', array( $this, 'hide_go_pro_page' ) );
+        add_action( 'admin_post_metaslider_switch_view', array( $this, 'switch_view' ) );
 
         if ( defined( 'METASLIDER_ENABLE_RESOURCE_MANAGER' ) && METASLIDER_ENABLE_RESOURCE_MANAGER === true ) {
 
@@ -262,6 +261,7 @@ class MetaSliderPlugin {
      * Add the menu page
      */
     public function register_admin_menu() {
+        global $user_ID;
 
         $title = apply_filters( 'metaslider_menu_title', 'Meta Slider' );
 
@@ -275,6 +275,44 @@ class MetaSliderPlugin {
         add_action( 'admin_print_scripts-' . $page, array( $this, 'register_admin_scripts' ) );
         add_action( 'admin_print_styles-' . $page, array( $this, 'register_admin_styles' ) );
         add_action( 'load-' . $page, array( $this, 'help_tab' ) );
+
+        if ( ! is_plugin_active( 'ml-slider-pro/ml-slider-pro.php' ) && get_user_meta( $user_ID, "metaslider_go_pro", true ) !== 'hidden' ) {
+
+            $page = add_submenu_page( 
+                'metaslider', 
+                __( 'Go Pro!', 'metaslider' ), 
+                __( 'Go Pro!', 'metaslider' ), 
+                $capability, 
+                'metaslider-go-pro', 
+                array( $this, 'go_pro_page' ) 
+            );
+
+        }
+
+
+    }
+
+    /**
+     *
+     */
+    public function go_pro_page() {
+        echo "GO PRO";
+
+        echo '<a href="' . admin_url( "admin-post.php?action=metaslider_hide_go_pro_page" ) . '">Hide this page</a>';
+
+    }
+
+    /**
+     * 
+     */
+    public function hide_go_pro_page() {
+        global $user_ID;
+
+        if ( ! get_user_meta( $user_ID, "metaslider_go_pro" ) ) {
+            add_user_meta( $user_ID, "metaslider_go_pro", "hidden" );
+        }
+
+        wp_redirect( admin_url( "admin.php?page=metaslider" ) );
 
     }
 
@@ -481,31 +519,13 @@ class MetaSliderPlugin {
      */
     public function custom_media_upload_tab_name( $tabs ) {
 
-        $metaslider_tabs = array( 'post_feed', 'layer', 'youtube', 'vimeo' );
-
         // restrict our tab changes to the meta slider plugin page
-        if ( ( isset( $_GET['page'] ) && $_GET['page'] == 'metaslider' ) || ( isset( $_GET['tab'] ) && in_array( $_GET['tab'], $metaslider_tabs ) ) ) {
-            $newtabs = array();
-
-            if ( function_exists( 'is_plugin_active' ) && ! is_plugin_active( 'ml-slider-pro/ml-slider-pro.php' ) ) {
-                $newtabs = array(
-                    'post_feed' => __( "Post Feed", "metaslider" ),
-                    'vimeo' => __( "Vimeo", "metaslider" ),
-                    'youtube' => __( "YouTube", "metaslider" ),
-                    'layer' => __( "Layer Slide", "metaslider" )
-                );
-            }
-
-            if ( isset( $tabs['nextgen'] ) ) 
+        if ( isset( $_GET['page'] ) && $_GET['page'] == 'metaslider' ) {
+          
+            if ( isset( $tabs['nextgen'] ) ) {
                 unset( $tabs['nextgen'] );
-
-
-            if ( is_array( $tabs ) ) {
-                return array_merge( $tabs, $newtabs );
-            } else {
-                return $newtabs;
             }
-            
+
         }
 
         return $tabs;
@@ -574,11 +594,6 @@ class MetaSliderPlugin {
             return;
         }
 
-        // handle switching view
-        if ( isset( $_GET['view'] ) ) {
-            $this->switch_view();
-        }
-
         // default to the latest slider
         $slider_id = $this->find_slider( 'modified', 'DESC' );
 
@@ -612,7 +627,7 @@ class MetaSliderPlugin {
     /**
      *
      */
-    private function switch_view() {
+    public function switch_view() {
         global $user_ID;
 
         $view = $_GET['view'];
@@ -628,6 +643,8 @@ class MetaSliderPlugin {
         if ( $view == 'dropdown' ) {
             add_user_meta( $user_ID, "metaslider_view", "dropdown");
         }
+
+        wp_redirect( admin_url( "admin.php?page=metaslider" ) );
 
     }
 
@@ -746,7 +763,7 @@ class MetaSliderPlugin {
             'order' => 'ASC',
             'posts_per_page' => -1
         );
-$args = apply_filters( 'metaslider_all_meta_sliders_args', $args );
+
         $args = apply_filters( 'metaslider_all_meta_sliders_args', $args );
 
         // WP_Query causes issues with other plugins using admin_footer to insert scripts
@@ -959,7 +976,8 @@ $args = apply_filters( 'metaslider_all_meta_sliders_args', $args );
 
             if ( $this->get_view() == 'tabs' ) {
 
-                echo "<div style='display: none;' id='screen-options-switch-view-wrap'><a class='switchview dashicons-before dashicons-welcome-view-site' href='?page=metaslider&amp;view=dropdown'>" . __("Switch to Dropdown view", "metaslider") . "</a></div>";
+                echo "<div style='display: none;' id='screen-options-switch-view-wrap'>
+                <a class='switchview dashicons-before dashicons-welcome-view-site tipsy-tooltip' title='" . __("Switch to Dropdown view", "metaslider") . "' href='" . admin_url( "admin-post.php?action=metaslider_switch_view&view=dropdown") . "'>" . __("Dropdown", "metaslider") . "</a></div>";
 
                 echo "<h3 class='nav-tab-wrapper'>";
 
@@ -984,7 +1002,7 @@ $args = apply_filters( 'metaslider_all_meta_sliders_args', $args );
                 
                 }
                 
-                echo "<div style='display: none;' id='screen-options-switch-view-wrap'><a class='switchview dashicons-before dashicons-welcome-view-site' href='?page=metaslider&amp;view=tabs'>" . __("Switch to Tab view", "metaslider") . "</a></div>";
+                echo "<div style='display: none;' id='screen-options-switch-view-wrap'><a class='switchview dashicons-before dashicons-welcome-view-site tipsy-tooltip' title='" . __("Switch to Tab view", "metaslider") . "' href='" . admin_url( "admin-post.php?action=metaslider_switch_view&view=tabs") . "'>" . __("Tabs", "metaslider") . "</a></div>";
 
                 echo "<div class='dropdown_container'><label for='select-slider'>" . __("Select Slider", "metaslider") . ": </label>";
                 echo "<select name='select-slider' onchange='if (this.value) window.location.href=this.value'>";
@@ -1047,7 +1065,6 @@ $args = apply_filters( 'metaslider_all_meta_sliders_args', $args );
 
         <script type='text/javascript'>
             var metaslider_slider_id = <?php echo $slider_id; ?>;
-            var metaslider_pro_active = <?php echo function_exists( 'is_plugin_active' ) && is_plugin_active( 'ml-slider-pro/ml-slider-pro.php' ) ? 'true' : 'false' ?>;
         </script>
 
         <div class="wrap metaslider">
@@ -1532,6 +1549,8 @@ $args = apply_filters( 'metaslider_all_meta_sliders_args', $args );
                                         </div>
                                     </div>
 
+                                    <?php if ( ! is_plugin_active('ml-slider-pro/ml-slider-pro.php') ) : ?>
+
                                     <div class="ms-postbox social" id="metaslider_social">
                                         <div class="inside">
                                             <ul class='info'>
@@ -1555,6 +1574,9 @@ $args = apply_filters( 'metaslider_all_meta_sliders_args', $args );
                                             </ul>
                                         </div>
                                     </div>
+
+                                    <?php endif; ?>
+
                                     <a class='delete-slider alignright button-secondary confirm' href='<?php echo wp_nonce_url( "?page=metaslider&amp;delete={$this->slider->id}", "metaslider_delete_slider" ); ?>'><?php _e( "Delete Slider", "metaslider" ) ?></a>
                                 </div>
                             </div>
@@ -1648,57 +1670,24 @@ $args = apply_filters( 'metaslider_all_meta_sliders_args', $args );
 
 
     /**
-     * Return the meta slider pro upgrade iFrame
-     */
-    public function upgrade_to_pro_tab() {
-
-        if ( function_exists( 'is_plugin_active' ) && ! is_plugin_active( 'ml-slider-pro/ml-slider-pro.php' ) ) {
-            return wp_iframe( array( $this, 'upgrade_to_pro_iframe' ) );
-        }
-
-    }
-
-
-    /**
-     * Media Manager iframe HTML
-     */
-    public function upgrade_to_pro_iframe() {
-
-        wp_enqueue_style( 'metaslider-admin-styles', METASLIDER_ASSETS_URL . 'metaslider/admin.css', false, METASLIDER_VERSION );
-        wp_enqueue_script( 'google-font-api', 'http://fonts.googleapis.com/css?family=PT+Sans:400,700' );
-
-        $link = apply_filters( 'metaslider_hoplink', 'http://www.metaslider.com/upgrade/' );
-        $link .= '?utm_source=lite&amp;utm_medium=more-slide-types&amp;utm_campaign=pro';
-
-        echo implode("", array(
-            "<div class='metaslider_pro'>",
-                "<p>Get the Pro Addon pack to add support for: <b>Post Feed</b> Slides, <b>YouTube</b> Slides, <b>HTML</b> Slides & <b>Vimeo</b> Slides</p>",
-                "<p><b>NEW: </b> Animated HTML <b>Layer</b> Slides (with an awesome Drag & Drop editor!)</p>",
-                "<p><b></b> Live Theme Editor!</p>",
-                "<p><b>NEW:</b> Thumbnail Navigation for Flex & Nivo Slider!</p>",
-                "<a class='probutton' href='{$link}' target='_blank'>Get <span class='logo'><strong>Meta</strong>Slider</span><span class='super'>Pro</span></a>",
-                "<span class='subtext'>Opens in a new window</span>",
-            "</div>"
-        ));
-
-    }
-
-
-    /**
      * Upgrade CTA.
      */
     public function upgrade_to_pro_cta() {
+        global $user_ID;
 
         if ( function_exists( 'is_plugin_active' ) && ! is_plugin_active( 'ml-slider-pro/ml-slider-pro.php' ) ) {
             $link = apply_filters( 'metaslider_hoplink', 'http://www.metaslider.com/upgrade/' );
 
             $link .= '?utm_source=lite&amp;utm_medium=nag&amp;utm_campaign=pro';
 
-            $goPro = "<div style='display: none;' id='screen-options-link-wrap'><a target='_blank' class='show-settings' href='{$link}'>Meta Slider v" . METASLIDER_VERSION . " - " .
-                __( 'Upgrade to Pro $19', "metaslider" ) .
-                "</a></div>";
+            $text = "Meta Slider v" . METASLIDER_VERSION;
 
-            echo $goPro;
+            if ( get_user_meta( $user_ID, "metaslider_go_pro", true ) === "hidden" ) {
+                $text .= " - " . __( 'Go Pro $19', "metaslider" );
+            }
+
+            echo "<div style='display: none;' id='screen-options-link-wrap'><a target='_blank' class='show-settings dashicons-before dashicons-megaphone' href='{$link}'>{$text}</a></div>";
+
         }
 
     }

@@ -50,12 +50,6 @@ jQuery(document).ready(function($) {
         // Remove the Media Library tab (media_upload_tabs filter is broken in 3.6)
         jQuery(".media-menu a:contains('Media Library')").remove();
 
-        if (!metaslider_pro_active) {
-            jQuery(".media-menu a:contains('YouTube')").addClass('disabled');
-            jQuery(".media-menu a:contains('Vimeo')").addClass('disabled');
-            jQuery(".media-menu a:contains('Post Feed')").addClass('disabled');
-            jQuery(".media-menu a:contains('Layer Slide')").addClass('disabled');
-        }
     });
 
     jQuery("#screen-options-link-wrap").appendTo("#screen-meta-links").show();
@@ -196,8 +190,8 @@ jQuery(document).ready(function($) {
     });
 
     // helptext tooltips
-    jQuery(".metaslider .tipsy-tooltip").tipsy({className: 'msTipsy', live: true, delayIn: 500, html: true, gravity: 'e'});
-    jQuery(".metaslider .tipsy-tooltip-top").tipsy({live: true, delayIn: 500, html: true, gravity: 'se'});
+    jQuery(".tipsy-tooltip").tipsy({className: 'msTipsy', live: true, delayIn: 500, html: true, gravity: 'e'});
+    jQuery(".tipsy-tooltip-top").tipsy({live: true, delayIn: 500, html: true, gravity: 'se'});
 
     // Select input field contents when clicked
     jQuery(".metaslider .shortcode input, .metaslider .shortcode textarea").on('click', function() {
