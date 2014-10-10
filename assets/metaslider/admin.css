@@ -838,3 +838,20 @@ textarea:-ms-input-placeholder {
 #screen-meta-links #screen-options-switch-view-wrap a:before {
     padding: 0px 8px 0 0;
 }
+
+.metaslider_gopro li:before {
+    top: 4px;
+    font: 400 20px/1 dashicons;
+    speak: none;
+    display: inline-block;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none!important;
+    content: '\f147';
+    color: #03b0d8;
+}
+
+#adminmenu .toplevel_page_metaslider .wp-menu-image img {
+    opacity: 1;
+}

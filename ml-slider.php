@@ -276,7 +276,7 @@ class MetaSliderPlugin {
         add_action( 'admin_print_styles-' . $page, array( $this, 'register_admin_styles' ) );
         add_action( 'load-' . $page, array( $this, 'help_tab' ) );
 
-        if ( ! is_plugin_active( 'ml-slider-pro/ml-slider-pro.php' ) && get_user_meta( $user_ID, "metaslider_go_pro", true ) !== 'hidden' ) {
+        if ( ! is_plugin_active( 'ml-slider-pro/ml-slider-pro.php' ) && get_user_meta( $user_ID, "metaslider_hide_go_pro", true ) !== 'true' ) {
 
             $page = add_submenu_page( 
                 'metaslider', 
@@ -287,29 +287,58 @@ class MetaSliderPlugin {
                 array( $this, 'go_pro_page' ) 
             );
 
+            add_action( 'admin_print_styles-' . $page, array( $this, 'register_admin_styles' ) );
+
         }
 
-
     }
 
     /**
-     *
+     * Go Pro page content
      */
     public function go_pro_page() {
-        echo "GO PRO";
+        $hide_link = '<a href="' . admin_url( "admin-post.php?action=metaslider_hide_go_pro_page" ) . '">Hide this page</a>';
 
-        echo '<a href="' . admin_url( "admin-post.php?action=metaslider_hide_go_pro_page" ) . '">Hide this page</a>';
+        $link = apply_filters( 'metaslider_hoplink', 'http://www.metaslider.com/upgrade/' );
+
+        $link .= '?utm_source=lite&amp;utm_medium=nag&amp;utm_campaign=pro';
+
+        $gopro_link = "<a class='button button-primary' href='{$link}'>Find out more</a>";
+        $support_link = '<a href="https://wordpress.org/support/plugin/ml-slider">Support</a>';
+        $documentation_link = '<a href="http://www.metaslider.com/documentation/">Documentation</a>';
+
+        ?>
+            <h2>Supercharge Your Sliders with Meta Slider Pro!</h2>
+
+            <ul class='metaslider_gopro'>
+                <li>Create <b>animated HTML slides</b> using the drag &amp; drop layer editor (WYSIWYG)</li>
+                <li>Insert <b>YouTube</b> and <b>Vimeo</b> videos into your slideshows</li>
+                <li>Automatically populate your slideshows with your <b>latest blog posts</b> or custom post types</li>
+                <li>Customize the look of your slideshows with the <b>Theme Editor</b> (25+ settings including custom arrow images, dot colors and caption styling)</li>
+                <li>Give your slideshows a gallery feel with <b>thumbnail navigation</b></li>
+                <li>Feature <b>WooCommerce</b> products in your slideshows</li>
+                <li>Show your latest events from <b>The Events Calendar</b> plugin</li>
+                <li><b>Easy to install</B> - Meta Slider Pro installs as a seperate plugin alongside Meta Slider and seamlessly adds in the new functionality</li>
+                <li><b>Easy to update</b> - new updates will be displayed on your plugins page (just like your other plugins!)</li>
+                <li>Upgrade with confidence with our <b>30 day no questions money back guarantee</b></li>
+                <li>Meta Slider Pro users receive <b>priority support</b> from our dedicated team, we’re on hand to help you get the most of Meta Slider</li>
+            </ul>
+
+            <p><?php echo $gopro_link; ?></p>
+            <p><?php echo $support_link; ?> <?php echo $documentation_link; ?></p>
+            <p><em>Don't want to see this? <?php echo $hide_link; ?></em></p>
+        <?php
 
     }
 
     /**
-     * 
+     *  Store the users preference to hide the go pro page.
      */
     public function hide_go_pro_page() {
         global $user_ID;
 
-        if ( ! get_user_meta( $user_ID, "metaslider_go_pro" ) ) {
-            add_user_meta( $user_ID, "metaslider_go_pro", "hidden" );
+        if ( ! get_user_meta( $user_ID, "metaslider_hide_go_pro" ) ) {
+            add_user_meta( $user_ID, "metaslider_hide_go_pro", "true" );
         }
 
         wp_redirect( admin_url( "admin.php?page=metaslider" ) );
@@ -977,7 +1006,7 @@ class MetaSliderPlugin {
             if ( $this->get_view() == 'tabs' ) {
 
                 echo "<div style='display: none;' id='screen-options-switch-view-wrap'>
-                <a class='switchview dashicons-before dashicons-welcome-view-site tipsy-tooltip' title='" . __("Switch to Dropdown view", "metaslider") . "' href='" . admin_url( "admin-post.php?action=metaslider_switch_view&view=dropdown") . "'>" . __("Dropdown", "metaslider") . "</a></div>";
+                <a class='switchview dashicons-before dashicons-randomize tipsy-tooltip' title='" . __("Switch to Dropdown view", "metaslider") . "' href='" . admin_url( "admin-post.php?action=metaslider_switch_view&view=dropdown") . "'>" . __("Dropdown", "metaslider") . "</a></div>";
 
                 echo "<h3 class='nav-tab-wrapper'>";
 
@@ -1002,7 +1031,7 @@ class MetaSliderPlugin {
                 
                 }
                 
-                echo "<div style='display: none;' id='screen-options-switch-view-wrap'><a class='switchview dashicons-before dashicons-welcome-view-site tipsy-tooltip' title='" . __("Switch to Tab view", "metaslider") . "' href='" . admin_url( "admin-post.php?action=metaslider_switch_view&view=tabs") . "'>" . __("Tabs", "metaslider") . "</a></div>";
+                echo "<div style='display: none;' id='screen-options-switch-view-wrap'><a class='switchview dashicons-before dashicons-randomize tipsy-tooltip' title='" . __("Switch to Tab view", "metaslider") . "' href='" . admin_url( "admin-post.php?action=metaslider_switch_view&view=tabs") . "'>" . __("Tabs", "metaslider") . "</a></div>";
 
                 echo "<div class='dropdown_container'><label for='select-slider'>" . __("Select Slider", "metaslider") . ": </label>";
                 echo "<select name='select-slider' onchange='if (this.value) window.location.href=this.value'>";
@@ -1682,11 +1711,11 @@ class MetaSliderPlugin {
 
             $text = "Meta Slider v" . METASLIDER_VERSION;
 
-            if ( get_user_meta( $user_ID, "metaslider_go_pro", true ) === "hidden" ) {
-                $text .= " - " . __( 'Go Pro $19', "metaslider" );
+            if ( get_user_meta( $user_ID, "metaslider_hide_go_pro", true ) === "true" ) {
+                $text .= " - " . __( 'Upgrade to Pro $19', "metaslider" );
             }
 
-            echo "<div style='display: none;' id='screen-options-link-wrap'><a target='_blank' class='show-settings dashicons-before dashicons-megaphone' href='{$link}'>{$text}</a></div>";
+            echo "<div style='display: none;' id='screen-options-link-wrap'><a target='_blank' class='show-settings dashicons-before dashicons-performance' href='{$link}'>{$text}</a></div>";
 
         }
 
