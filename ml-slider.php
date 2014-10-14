@@ -368,6 +368,11 @@ class MetaSliderPlugin {
             return;
         }
 
+        // handle [metaslider id=123 restrict_to=page_id]
+        if ( $restrict_to && ! is_page( $restrict_to ) ) {
+            return;
+        }
+
         // we have an ID to work with
         $slider = get_post( $id );
 
