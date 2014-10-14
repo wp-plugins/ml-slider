@@ -144,6 +144,15 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
+= 3.1 [14/10/14] =
+
+* New feature: Ajax delete slide (to stop users from losing changes when deleting a slide)
+* New feature: restrict_to shortcode parameter now accepts page IDs
+* Update: Change icon
+* Fix: Minor admin styling fix
+* Fix: Hide share buttons for pro users
+* Change: Remove upgrade nags from media library, add Go Pro page (with an option to hide the page)
+
 = 3.0.1 [19/08/14] =
 
 * Fix: Escape admin setting text fields
