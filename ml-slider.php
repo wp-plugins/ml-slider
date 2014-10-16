@@ -364,12 +364,11 @@ class MetaSliderPlugin {
         }
 
         // handle [metaslider id=123 restrict_to=home]
-        if ( $restrict_to == 'home' && ! is_front_page() ) {
+        if ($restrict_to && $restrict_to == 'home' && ! is_front_page()) {
             return;
         }
 
-        // handle [metaslider id=123 restrict_to=page_id]
-        if ( $restrict_to && ! is_page( $restrict_to ) ) {
+        if ($restrict_to && $restrict_to != 'home' && ! is_page( $restrict_to ) ) {
             return;
         }
 
