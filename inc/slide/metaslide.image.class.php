@@ -354,9 +354,23 @@ class MetaImageSlide extends MetaSlide {
             $html .= '<div class="caption-wrap"><div class="caption">' . $slide['caption'] . '</div></div>';
         }
 
-        $thumb = isset( $slide['data-thumb'] ) && strlen( $slide['data-thumb'] ) ? " data-thumb=\"{$slide['data-thumb']}\"" : "";
+        $attributes = apply_filters( 'metaslider_flex_slider_list_item_attributes', array(
+                'data-thumb' => isset($slide['data-thumb']) ? $slide['data-thumb'] : "",
+                'style' => "display: none; width: 100%;"
+            ), $slide, $this->slider->ID );
 
-        $html = '<li style="display: none; width: 100%;"' . $thumb . '>' . $html . '</li>';
+        $li = "<li";
+
+        foreach ( $attributes as $att => $val ) {
+            if ( strlen( $val ) ) {
+                $li .= " " . $att . '="' . esc_attr( $val ) . '"';
+            }
+        }
+
+        $li .= ">" . $html . "</li>";
+
+        $html = $li;
+
 
         return apply_filters( 'metaslider_image_flex_slider_markup', $html, $slide, $this->settings );
 
