@@ -144,6 +144,11 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
+= 3.1.1 [21/10/14] =
+
+* Fix: restrict_to shortcode parameter
+* Change: Add metaslider_flex_slider_list_item_attributes filter
+
 = 3.1 [14/10/14] =
 
 * New feature: Ajax delete slide (to stop users from losing changes when deleting a slide)
