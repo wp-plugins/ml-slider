@@ -356,7 +356,8 @@ class MetaImageSlide extends MetaSlide {
 
         $attributes = apply_filters( 'metaslider_flex_slider_list_item_attributes', array(
                 'data-thumb' => isset($slide['data-thumb']) ? $slide['data-thumb'] : "",
-                'style' => "display: none; width: 100%;"
+                'style' => "display: none; width: 100%;",
+                'class' => "slide-{$this->slide->ID} ms-image"
             ), $slide, $this->slider->ID );
 
         $li = "<li";
