@@ -469,6 +469,7 @@ class MetaSliderPlugin {
                 'ajaxurl' => admin_url( 'admin-ajax.php' ),
                 'resize_nonce' => wp_create_nonce( 'metaslider_resize' ),
                 'addslide_nonce' => wp_create_nonce( 'metaslider_addslide' ),
+                'changeslide_nonce' => wp_create_nonce( 'metaslider_changeslide' ),
                 'iframeurl' => admin_url( 'admin-post.php?action=metaslider_preview' ),
                 'useWithCaution' => __( "Caution: This setting is for advanced developers only. If you're unsure, leave it checked.", "metaslider" )
             )
@@ -1673,7 +1674,7 @@ class MetaSliderPlugin {
                                 echo "<option value='{$slider['id']}'>{$slider['title']}</option>";
                             }
                             echo "</select>";
-                            echo "<button class='button primary' id='insertMetaSlider'>Insert Slideshow</button>";
+                            echo "<button class='button primary' id='insertMetaSlider'>" . __( "Insert slideshow", "metaslider" ) . "</button>";
                         } else {
                             _e( "No slideshows found", "metaslider" );
                         }
