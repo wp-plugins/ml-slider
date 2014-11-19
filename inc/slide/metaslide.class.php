@@ -11,6 +11,15 @@ class MetaSlide {
 
 
     /**
+     * Constructor
+     */
+    public function __construct() {
+
+        add_action( 'wp_ajax_change_slide_image', array( $this, 'ajax_change_slide_image' ) );
+
+    }
+
+    /**
      * Set the slide
      */
     public function set_slide( $id ) {
@@ -46,6 +55,55 @@ class MetaSlide {
         $this->set_slider( $slider_id );
         $this->set_slide( $slide_id );
         $this->save( $fields );
+    }
+
+
+    /**
+     * Change the slide image.
+     *
+     * This creates a copy of the selected (new) image and assigns the copy to our existing media file/slide.
+     */
+    public function ajax_change_slide_image() {
+
+        if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'metaslider_changeslide' ) ) {
+            echo "<tr><td colspan='2'>" . __( "Security check failed. Refresh page and try again.", 'metaslider' ) . "</td></tr>";
+            wp_die();
+        }
+
+        $slide_from = absint( $_POST['slide_from'] );
+        $slide_to = absint( $_POST['slide_to'] );
+
+        // find the paths for the image we want to change to
+
+        // Absolute path
+        $abs_path = get_attached_file( $slide_to );
+        $abs_path_parts = pathinfo( $abs_path );
+        $abs_file_directory = $abs_path_parts['dirname'];
+
+        // Relative path
+        $rel_path = get_post_meta( $slide_to, '_wp_attached_file', true );
+        $rel_path_parts = pathinfo( $rel_path );
+        $rel_file_directory = $rel_path_parts['dirname'];
+
+        // old file name
+        $file_name = $abs_path_parts['basename'];
+
+        // new file name
+        $dest_file_name = wp_unique_filename( $abs_file_directory, $file_name );
+
+        // generate absolute and relative paths for the new file name
+        $dest_abs_path = trailingslashit($abs_file_directory) . $dest_file_name;
+        $dest_rel_path = trailingslashit($rel_file_directory) . $dest_file_name;
+
+        // make a copy of the image
+        if ( @ copy( $abs_path, $dest_abs_path ) ) {
+            // update the path on our slide
+            update_post_meta( $slide_from, '_wp_attached_file', $dest_rel_path );
+            wp_update_attachment_metadata( $slide_from, wp_generate_attachment_metadata( $slide_from, $dest_abs_path ) );
+            update_attached_file( $slide_from, $dest_rel_path );
+        }
+
+        wp_die();
     }
 
 
@@ -202,7 +260,16 @@ class MetaSlide {
      */
     public function get_delete_button_html() {
 
-        return "<a class='delete-slide' href='?page=metaslider&amp;id={$this->slider->ID}&amp;deleteSlide={$this->slide->ID}'>x</a>";
+        return "<a title='" . __("Delete slide", "metaslider") . "' class='tipsy-tooltip-top delete-slide dashicons dashicons-trash' href='?page=metaslider&amp;id={$this->slider->ID}&amp;deleteSlide={$this->slide->ID}'>" . __("Delete slide", "metaslider") . "</a>";
+    
+    }
+
+    /**
+     * Generate the HTML for the change slide image button
+     */
+    public function get_change_image_button_html() {
+
+        return "<a title='" . __("Change slide image", "metaslider") . "' class='tipsy-tooltip-top change-image dashicons dashicons-edit' data-button-text='" . __("Change slide image", "metaslider") . "' data-slide-id='{$this->slide->ID}'>" . __("Change slide image", "metaslider") . "</a>";
     
     }
 

@@ -1,30 +1,31 @@
 jQuery(document).ready(function($) {
 
-    var file_frame;
+    var add_slide_frame;
+    var change_slide_frame;
 
     jQuery('.metaslider .add-slide').on('click', function(event){
         event.preventDefault();
 
         // If the media frame already exists, reopen it.
-        if ( file_frame ) {
-            file_frame.open();
+        if ( add_slide_frame ) {
+            add_slide_frame.open();
             return;
         }
 
         // Create the media frame.
-        file_frame = wp.media.frames.file_frame = wp.media({
+        add_slide_frame = wp.media.frames.file_frame = wp.media({
             multiple: 'add',
             frame: 'post',
             library: {type: 'image'}
         });
 
         // When an image is selected, run a callback.
-        file_frame.on('insert', function() {
+        add_slide_frame.on('insert', function() {
 
             jQuery(".metaslider .spinner").show();
             jQuery(".metaslider input[type=submit]").attr('disabled', 'disabled');
 
-            var selection = file_frame.state().get('selection');
+            var selection = add_slide_frame.state().get('selection');
             var slide_ids = [];
 
             selection.map(function(attachment) {
@@ -45,10 +46,64 @@ jQuery(document).ready(function($) {
             });
         });
 
-        file_frame.open();
+        add_slide_frame.open();
 
         // Remove the Media Library tab (media_upload_tabs filter is broken in 3.6)
         jQuery(".media-menu a:contains('Media Library')").remove();
+
+    });
+
+
+    jQuery('.metaslider .change-image').on('click', function(event){
+
+        event.preventDefault();
+
+        var $this = jQuery(this);
+        var slide_from = $this.attr('data-slide-id');
+
+        // Create the media frame.
+        change_slide_frame = wp.media.frames.file_frame = wp.media({
+            title: metaslider.change_image,
+            library: {type: 'image'},
+            button: {
+                text: $this.attr('data-button-text') // button text
+            }
+        });
+
+        // When an image is selected, run a callback.
+        change_slide_frame.on('close', function() {
+
+            jQuery(".metaslider .spinner").show();
+            jQuery(".metaslider input[type=submit]").attr('disabled', 'disabled');
+
+            var selection = change_slide_frame.state().get('selection');
+            var slide_ids = [];
+
+            selection.map(function(attachment) {
+                attachment = attachment.toJSON();
+                slide_to = attachment.id;
+                slide_thumb = attachment.sizes.thumbnail.url;
+            });
+
+            var data = {
+                action: 'change_slide_image',
+                _wpnonce: metaslider.changeslide_nonce,
+                slide_from: slide_from,
+                slide_to: slide_to
+            };
+
+            if (data.slide_from !== data.slide_to) {
+
+                jQuery.post(metaslider.ajaxurl, data, function(response) {
+                    jQuery(".metaslider .left table").trigger('resizeSlides');
+                    $this.closest('div.thumb').css('background-image', 'url(' + slide_thumb + ')');
+                });
+            
+            }
+
+        });
+
+        change_slide_frame.open();
 
     });
 
@@ -187,7 +242,7 @@ jQuery(document).ready(function($) {
 
     // helptext tooltips
     jQuery(".tipsy-tooltip").tipsy({className: 'msTipsy', live: true, delayIn: 500, html: true, gravity: 'e'});
-    jQuery(".tipsy-tooltip-top").tipsy({live: true, delayIn: 500, html: true, gravity: 'se'});
+    jQuery(".tipsy-tooltip-top").tipsy({live: true, delayIn: 500, html: true, gravity: 's'});
 
     // Select input field contents when clicked
     jQuery(".metaslider .shortcode input, .metaslider .shortcode textarea").on('click', function() {

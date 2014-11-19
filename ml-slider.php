@@ -5,7 +5,7 @@
  * Plugin Name: Meta Slider
  * Plugin URI:  http://www.metaslider.com
  * Description: Easy to use slideshow plugin. Create SEO optimised responsive slideshows with Nivo Slider, Flex Slider, Coin Slider and Responsive Slides.
- * Version:     3.1.1
+ * Version:     3.2
  * Author:      Matcha Labs
  * Author URI:  http://www.metaslider.com
  * License:     GPL-2.0+
@@ -31,7 +31,7 @@ class MetaSliderPlugin {
     /**
      * @var string
      */
-    public $version = '3.1.1';
+    public $version = '3.2';
 
 
     /**
@@ -303,7 +303,7 @@ class MetaSliderPlugin {
 
         $link .= '?utm_source=lite&amp;utm_medium=nag&amp;utm_campaign=pro';
 
-        $gopro_link = "<a class='button button-primary' href='{$link}'>Find out more</a>";
+        $gopro_link = "<a class='button button-primary' href='{$link}' target='_blank'>Find out more</a>";
         $support_link = '<a href="https://wordpress.org/support/plugin/ml-slider">Support</a>';
         $documentation_link = '<a href="http://www.metaslider.com/documentation/">Documentation</a>';
 
@@ -467,6 +467,7 @@ class MetaSliderPlugin {
                 'new_window' => __( "New Window", "metaslider" ),
                 'confirm' => __( "Are you sure?", "metaslider" ),
                 'ajaxurl' => admin_url( 'admin-ajax.php' ),
+                'change_image' => __( "Select replacement image", "metaslider"),
                 'resize_nonce' => wp_create_nonce( 'metaslider_resize' ),
                 'addslide_nonce' => wp_create_nonce( 'metaslider_addslide' ),
                 'changeslide_nonce' => wp_create_nonce( 'metaslider_changeslide' ),
@@ -1602,7 +1603,7 @@ class MetaSliderPlugin {
                                                 </script>
                                             </li>
                                             <li style='width: 33%;'>
-                                                <iframe style='border:none; overflow:hidden; width:80px; height:21px;' src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.metaslider.com&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=156668027835524" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                                                <iframe style='border:none; overflow:hidden; width:80px; height:21px;' src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fwpmetaslider&amp;width=120&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=false&amp;height=21&amp;appId=156668027835524" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
                                             </li>
                                         </ul>
                                     </div>
@@ -1712,11 +1713,7 @@ class MetaSliderPlugin {
 
             $link .= '?utm_source=lite&amp;utm_medium=nag&amp;utm_campaign=pro';
 
-            $text = "Meta Slider v" . METASLIDER_VERSION;
-
-            if ( get_user_meta( $user_ID, "metaslider_hide_go_pro", true ) === "true" ) {
-                $text .= " - " . __( 'Upgrade to Pro $19', "metaslider" );
-            }
+            $text = "Meta Slider v" . METASLIDER_VERSION . " - " . __( 'Upgrade to Pro $19', "metaslider" );
 
             echo "<div style='display: none;' id='screen-options-link-wrap'><a target='_blank' class='show-settings dashicons-before dashicons-performance' href='{$link}'>{$text}</a></div>";
 

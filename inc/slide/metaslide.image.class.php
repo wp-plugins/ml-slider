@@ -8,10 +8,14 @@ class MetaImageSlide extends MetaSlide {
      * Register slide type
      */
     public function __construct() {
+
+        parent::__construct();
+        
         add_filter( 'metaslider_get_image_slide', array( $this, 'get_slide' ), 10, 2 );
         add_action( 'metaslider_save_image_slide', array( $this, 'save_slide' ), 5, 3 );
         add_action( 'wp_ajax_create_image_slide', array( $this, 'ajax_create_slide' ) );
         add_action( 'wp_ajax_resize_image_slide', array( $this, 'ajax_resize_slide' ) );
+
     }
 
     /**
@@ -111,6 +115,7 @@ class MetaImageSlide extends MetaSlide {
                     <td class='col-1'>
                         <div class='thumb' style='background-image: url({$thumb})'>
                             " . $this->get_delete_button_html() . "
+                            " . $this->get_change_image_button_html() . "
                             <span class='slide-details'>{$slide_label}</span>
                         </div>
                     </td>

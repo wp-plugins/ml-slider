@@ -209,14 +209,45 @@
     position: absolute;
     top: 0px;
     left: 0px;
-    background: #EE2C2C;
-    color: white;
-    width: 16px;
-    height: 16px;
+    background: transparent;
+    color: red;
+    width: 18px;
+    height: 18px;
     float: left;
     text-align: center;
-    display: none;
+    opacity: 0;
+    overflow:hidden;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
 }
+
+.metaslider .left table tr.slide td.col-1:hover .delete-slide {
+    opacity: 1;
+}
+
+.metaslider .left table tr.slide td.col-1 .thumb .change-image {
+    position: absolute;
+    top: 0px;
+    right: 2px;
+    background: transparent;
+    color: #2ea2cc;
+    width: 18px;
+    height: 18px;
+    float: left;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+    overflow:hidden;
+    cursor: pointer;
+}
+
+.metaslider .left table tr.slide td.col-1:hover .change-image {
+    opacity: 1;
+}
+
 
 .metaslider .left table tr.slide td.col-1 .thumb .slide-details {
     bottom: 0;
@@ -232,9 +263,6 @@
     padding: 3px 5px;
 }
 
-.metaslider .left table tr.slide td.col-1:hover .delete-slide {
-    display: block
-}
 
 .branch-3-5 .metaslider .left table tr.slide .tabs-content .new_window,
 .branch-3-6 .metaslider .left table tr.slide .tabs-content .new_window,

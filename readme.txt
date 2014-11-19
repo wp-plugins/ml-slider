@@ -144,6 +144,11 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
+= 3.2 [XX/11/14] =
+
+* Update German language files (thanks to Ov3rfly!)
+* Change slide
+
 = 3.1.1 [21/10/14] =
 
 * Fix: restrict_to shortcode parameter
