@@ -787,7 +787,7 @@ class MetaSliderPlugin {
      */
     private function all_meta_sliders( $sort_key = 'date' ) {
 
-        $sliders = false;
+        $sliders = array();
 
         // list the tabs
         $args = array(
