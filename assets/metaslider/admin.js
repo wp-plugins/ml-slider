@@ -71,7 +71,7 @@ jQuery(document).ready(function($) {
         });
 
         // When an image is selected, run a callback.
-        change_slide_frame.on('close', function() {
+        change_slide_frame.on('select', function() {
 
             jQuery(".metaslider .spinner").show();
             jQuery(".metaslider input[type=submit]").attr('disabled', 'disabled');
@@ -95,8 +95,16 @@ jQuery(document).ready(function($) {
             if (data.slide_from !== data.slide_to) {
 
                 jQuery.post(metaslider.ajaxurl, data, function(response) {
-                    jQuery(".metaslider .left table").trigger('resizeSlides');
-                    $this.closest('div.thumb').css('background-image', 'url(' + slide_thumb + ')');
+
+                    response = JSON.parse(response);
+
+                    if (response.status == 'success') {
+                        $this.closest('div.thumb').css('background-image', 'url(' + slide_thumb + ')');
+                        jQuery(".metaslider .left table").trigger('resizeSlides');
+                    } else {
+                        alert(response.msg);
+                    }
+
                 });
             
             }

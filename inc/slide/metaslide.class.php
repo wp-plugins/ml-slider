@@ -66,8 +66,11 @@ class MetaSlide {
     public function ajax_change_slide_image() {
 
         if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'metaslider_changeslide' ) ) {
-            echo "<tr><td colspan='2'>" . __( "Security check failed. Refresh page and try again.", 'metaslider' ) . "</td></tr>";
-            wp_die();
+            wp_die( json_encode( array(
+                    'status' => 'fail',
+                    'msg' => __( "Security check failed. Refresh page and try again.", "metaslider" )
+                )
+            ));
         }
 
         $slide_from = absint( $_POST['slide_from'] );
@@ -101,9 +104,18 @@ class MetaSlide {
             update_post_meta( $slide_from, '_wp_attached_file', $dest_rel_path );
             wp_update_attachment_metadata( $slide_from, wp_generate_attachment_metadata( $slide_from, $dest_abs_path ) );
             update_attached_file( $slide_from, $dest_rel_path );
+
+            wp_die( json_encode( array(
+                    'status' => 'success'
+                )
+            ));
         }
 
-        wp_die();
+        wp_die( json_encode( array(
+                'status' => 'fail',
+                'msg' => __( "File copy failed. Please check upload directory permissions.", "metaslider" )
+            )
+        ));
     }
 
 

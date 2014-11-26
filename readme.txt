@@ -144,10 +144,10 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
-= 3.2 [XX/11/14] =
+= 3.2 [26/11/14] =
 
-* Update German language files (thanks to Ov3rfly!)
-* Change slide
+* New feature: Change slide image (click top right of slide thumbnail)
+* Update: German language files (thanks to Ov3rfly!)
 
 = 3.1.1 [21/10/14] =
 
