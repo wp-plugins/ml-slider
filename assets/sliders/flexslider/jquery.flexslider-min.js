@@ -6,6 +6,7 @@
  * 905: https://github.com/woothemes/FlexSlider/pull/1044
  * 928: https://github.com/woothemes/FlexSlider/issues/1043
  * 1082: fadeFirstslide set to false by default.
+ * 398: https://github.com/woothemes/FlexSlider/issues/1110
  */
 ;
 (function ($) {
@@ -399,7 +400,6 @@
           accDx = 0;
 
         if(!msGesture){
-            el.addEventListener('touchstart', onTouchStart, false);
 
             function onTouchStart(e) {
               if (slider.animating) {
@@ -427,6 +427,8 @@
                 el.addEventListener('touchend', onTouchEnd, false);
               }
             }
+
+            el.addEventListener('touchstart', onTouchStart, false);
 
             function onTouchMove(e) {
               // Local vars for X and Y points.
