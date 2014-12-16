@@ -144,6 +144,10 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
+= 3.2.1 [16/12/14] =
+
+* Change: Change slide image functionality backed out
+
 = 3.2 [26/11/14] =
 
 * New feature: Change slide image (click top right of slide thumbnail)

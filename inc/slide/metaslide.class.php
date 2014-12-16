@@ -281,8 +281,9 @@ class MetaSlide {
      */
     public function get_change_image_button_html() {
 
-        return "<a title='" . __("Change slide image", "metaslider") . "' class='tipsy-tooltip-top change-image dashicons dashicons-edit' data-button-text='" . __("Change slide image", "metaslider") . "' data-slide-id='{$this->slide->ID}'>" . __("Change slide image", "metaslider") . "</a>";
-    
+        return apply_filters("metaslider_change_image_button_html", "", $this->slide);
+
+        //return "<a title='" . __("Change slide image", "metaslider") . "' class='tipsy-tooltip-top change-image dashicons dashicons-edit' data-button-text='" . __("Change slide image", "metaslider") . "' data-slide-id='{$this->slide->ID}'>" . __("Change slide image", "metaslider") . "</a>";
     }
 
     /**
