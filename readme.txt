@@ -147,6 +147,7 @@ See www.metaslider.com/documentation/image-cropping/
 = 3.2.1 [16/12/14] =
 
 * Change: Change slide image functionality backed out
+* Fix: Apply FireFox mobile fix to Flex Slider (github #1110)
 
 = 3.2 [26/11/14] =
 
