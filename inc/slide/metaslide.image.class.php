@@ -216,8 +216,10 @@ class MetaImageSlide extends MetaSlide {
     public function is_valid_image() {
 
         $meta = wp_get_attachment_metadata( $this->slide->ID );
-        return isset( $meta['width'], $meta['height'] );
 
+        $is_valid = isset( $meta['width'], $meta['height'] );
+
+        return apply_filters( 'metaslider_is_valid_image', $is_valid, $this->slide );
     }
 
 
@@ -228,7 +230,7 @@ class MetaImageSlide extends MetaSlide {
      */
     public function use_wp_image_editor() {
 
-        return apply_filters( 'metaslider_use_image_editor', $this->is_valid_image() );
+        return apply_filters( 'metaslider_use_image_editor', $this->is_valid_image(), $this->slide );
 
     }
 
