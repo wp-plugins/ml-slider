@@ -1325,9 +1325,10 @@ class MetaSliderPlugin {
                                                             'class' => 'option coin flex nivo responsive',
                                                             'value' => $this->slider->get_setting( 'smartCrop' ),
                                                             'options' => array(
-                                                                'true' => array( 'label' => __( "Smart", "metaslider" ), 'class' => '' ),
+                                                                'true' => array( 'label' => __( "Smart Crop", "metaslider" ), 'class' => '' ),
                                                                 'false' => array( 'label' => __( "Standard", "metaslider" ), 'class' => '' ),
                                                                 'disabled' => array( 'label' => __( "Disabled", "metaslider" ), 'class' => '' ),
+                                                                'disabled_pad' => array( 'label' => __( "Disabled (Smart Pad)", "metaslider" ), 'class' => 'option flex' ),
                                                             ),
                                                             'helptext' => __( "Smart Crop ensures your responsive slides are cropped to a ratio that results in a consistent slideshow size", "metaslider" )
                                                         ),

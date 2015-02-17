@@ -230,7 +230,7 @@ class MetaSlider {
         if ( $this->get_setting( 'random' ) == 'true' && !is_admin() ) {
             shuffle( $slides );
         }
-
+        
         $this->slides = $slides;
 
         return $this->slides;

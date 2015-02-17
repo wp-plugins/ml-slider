@@ -50,6 +50,9 @@ class MetaSliderImageHelper {
             case "disabled":
                 $this->crop_type = 'disabled'; // cropping disabled
                 break;
+            case "disabled_pad":
+                $this->crop_type = 'disabled'; // cropping disabled
+                break;
             case "true":
             case "smart":
             default:

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: metaslider\n"
-"POT-Creation-Date: 2014-08-11 14:52-0000\n"
-"PO-Revision-Date: 2014-08-11 14:52-0000\n"
+"POT-Creation-Date: 2015-02-17 14:47-0000\n"
+"PO-Revision-Date: 2015-02-17 14:47-0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,555 +14,563 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-#: ../ml-slider.php:335
+#: ../ml-slider.php:283 ../ml-slider.php:284
+msgid "Go Pro!"
+msgstr ""
+
+#: ../ml-slider.php:412
 msgid "Documentation"
 msgstr ""
 
-#: ../ml-slider.php:388 ../inc/slide/metaslide.image.class.php:147
+#: ../ml-slider.php:465 ../inc/slide/metaslide.image.class.php:147
 msgid "URL"
 msgstr ""
 
-#: ../ml-slider.php:389 ../inc/slide/metaslide.image.class.php:146
+#: ../ml-slider.php:466 ../inc/slide/metaslide.image.class.php:146
 msgid "Caption"
 msgstr ""
 
-#: ../ml-slider.php:390 ../inc/slide/metaslide.image.class.php:149
+#: ../ml-slider.php:467 ../inc/slide/metaslide.image.class.php:149
 msgid "New Window"
 msgstr ""
 
-#: ../ml-slider.php:391
+#: ../ml-slider.php:468
 msgid "Are you sure?"
 msgstr ""
 
-#: ../ml-slider.php:396
+#: ../ml-slider.php:470
+msgid "Select replacement image"
+msgstr ""
+
+#: ../ml-slider.php:475
 msgid ""
 "Caution: This setting is for advanced developers only. If you're unsure, "
 "leave it checked."
 msgstr ""
 
-#: ../ml-slider.php:459
+#: ../ml-slider.php:538
 msgid "Image"
 msgstr ""
 
-#: ../ml-slider.php:460
+#: ../ml-slider.php:539
 msgid "Add to slider"
 msgstr ""
 
-#: ../ml-slider.php:486
-msgid "Post Feed"
-msgstr ""
-
-#: ../ml-slider.php:487
-msgid "Vimeo"
-msgstr ""
-
-#: ../ml-slider.php:488
-msgid "YouTube"
-msgstr ""
-
-#: ../ml-slider.php:489
-msgid "Layer Slide"
-msgstr ""
-
-#: ../ml-slider.php:645
+#: ../ml-slider.php:703
 msgid "New Slider"
 msgstr ""
 
-#: ../ml-slider.php:956
+#: ../ml-slider.php:1015
 msgid "Switch to Dropdown view"
 msgstr ""
 
-#: ../ml-slider.php:977
+#: ../ml-slider.php:1015
+msgid "Dropdown"
+msgstr ""
+
+#: ../ml-slider.php:1036
 msgid "New slideshow created. Click 'Add Slide' to get started!"
 msgstr ""
 
-#: ../ml-slider.php:981
+#: ../ml-slider.php:1040
 msgid "Switch to Tab view"
 msgstr ""
 
-#: ../ml-slider.php:983
+#: ../ml-slider.php:1040
+msgid "Tabs"
+msgstr ""
+
+#: ../ml-slider.php:1042
 msgid "Select Slider"
 msgstr ""
 
-#: ../ml-slider.php:1002
+#: ../ml-slider.php:1061
 msgid "or"
 msgstr ""
 
-#: ../ml-slider.php:1003
+#: ../ml-slider.php:1062
 msgid "Add New Slideshow"
 msgstr ""
 
-#: ../ml-slider.php:1009
+#: ../ml-slider.php:1068
 msgid "Create your first slideshow"
 msgstr ""
 
-#: ../ml-slider.php:1069
+#: ../ml-slider.php:1130
 msgid "Slides"
 msgstr ""
 
-#: ../ml-slider.php:1072 ../ml-slider.php:1073
+#: ../ml-slider.php:1134 ../ml-slider.php:1135
 msgid "Add Slide"
 msgstr ""
 
-#: ../ml-slider.php:1093
+#: ../ml-slider.php:1158
 msgid "Settings"
 msgstr ""
 
-#: ../ml-slider.php:1094
+#: ../ml-slider.php:1159
 msgid "Save"
 msgstr ""
 
-#: ../ml-slider.php:1095
+#: ../ml-slider.php:1160
 msgid "Save & Preview"
 msgstr ""
 
-#: ../ml-slider.php:1108
+#: ../ml-slider.php:1173
 msgid "Flex Slider"
 msgstr ""
 
-#: ../ml-slider.php:1109
+#: ../ml-slider.php:1174
 msgid "R. Slides"
 msgstr ""
 
-#: ../ml-slider.php:1110
+#: ../ml-slider.php:1175
 msgid "Nivo Slider"
 msgstr ""
 
-#: ../ml-slider.php:1111
+#: ../ml-slider.php:1176
 msgid "Coin Slider"
 msgstr ""
 
-#: ../ml-slider.php:1122 ../ml-slider.php:1360
+#: ../ml-slider.php:1187 ../ml-slider.php:1426
 msgid "Width"
 msgstr ""
 
-#: ../ml-slider.php:1124
+#: ../ml-slider.php:1189
 msgid "Slideshow width"
 msgstr ""
 
-#: ../ml-slider.php:1125 ../ml-slider.php:1138 ../ml-slider.php:1287
+#: ../ml-slider.php:1190 ../ml-slider.php:1203 ../ml-slider.php:1353
 msgid "px"
 msgstr ""
 
-#: ../ml-slider.php:1135 ../ml-slider.php:1373
+#: ../ml-slider.php:1200 ../ml-slider.php:1439
 msgid "Height"
 msgstr ""
 
-#: ../ml-slider.php:1137
+#: ../ml-slider.php:1202
 msgid "Slideshow height"
 msgstr ""
 
-#: ../ml-slider.php:1144
+#: ../ml-slider.php:1209
 msgid "Effect"
 msgstr ""
 
-#: ../ml-slider.php:1146
+#: ../ml-slider.php:1211
 msgid "Slide transition effect"
 msgstr ""
 
-#: ../ml-slider.php:1148 ../ml-slider.php:1292
+#: ../ml-slider.php:1213 ../ml-slider.php:1358
 msgid "Random"
 msgstr ""
 
-#: ../ml-slider.php:1149
+#: ../ml-slider.php:1214
 msgid "Swirl"
 msgstr ""
 
-#: ../ml-slider.php:1150
+#: ../ml-slider.php:1215
 msgid "Rain"
 msgstr ""
 
-#: ../ml-slider.php:1151
+#: ../ml-slider.php:1216
 msgid "Straight"
 msgstr ""
 
-#: ../ml-slider.php:1152
+#: ../ml-slider.php:1217
 msgid "Slide Down"
 msgstr ""
 
-#: ../ml-slider.php:1153
+#: ../ml-slider.php:1218
 msgid "Slice Up"
 msgstr ""
 
-#: ../ml-slider.php:1154
+#: ../ml-slider.php:1219
 msgid "Slide Up Left"
 msgstr ""
 
-#: ../ml-slider.php:1155
+#: ../ml-slider.php:1220
 msgid "Slice Up Down"
 msgstr ""
 
-#: ../ml-slider.php:1156
+#: ../ml-slider.php:1221
 msgid "Slide Up Down Left"
 msgstr ""
 
-#: ../ml-slider.php:1157
+#: ../ml-slider.php:1222
 msgid "Fold"
 msgstr ""
 
-#: ../ml-slider.php:1158
+#: ../ml-slider.php:1223
 msgid "Fade"
 msgstr ""
 
-#: ../ml-slider.php:1159
+#: ../ml-slider.php:1224
 msgid "Slide In Right"
 msgstr ""
 
-#: ../ml-slider.php:1160
+#: ../ml-slider.php:1225
 msgid "Slide In Left"
 msgstr ""
 
-#: ../ml-slider.php:1161
+#: ../ml-slider.php:1226
 msgid "Box Random"
 msgstr ""
 
-#: ../ml-slider.php:1162
+#: ../ml-slider.php:1227
 msgid "Box Rain"
 msgstr ""
 
-#: ../ml-slider.php:1163
+#: ../ml-slider.php:1228
 msgid "Box Rain Reverse"
 msgstr ""
 
-#: ../ml-slider.php:1164
+#: ../ml-slider.php:1229
 msgid "Box Rain Grow Reverse"
 msgstr ""
 
-#: ../ml-slider.php:1165
+#: ../ml-slider.php:1230
 msgid "Slide"
 msgstr ""
 
-#: ../ml-slider.php:1172
+#: ../ml-slider.php:1237
 msgid "Theme"
 msgstr ""
 
-#: ../ml-slider.php:1174
+#: ../ml-slider.php:1239
 msgid "Slideshow theme"
 msgstr ""
 
-#: ../ml-slider.php:1176
+#: ../ml-slider.php:1241
 msgid "Default"
 msgstr ""
 
-#: ../ml-slider.php:1177
+#: ../ml-slider.php:1242
 msgid "Dark (Nivo)"
 msgstr ""
 
-#: ../ml-slider.php:1178
+#: ../ml-slider.php:1243
 msgid "Light (Nivo)"
 msgstr ""
 
-#: ../ml-slider.php:1179
+#: ../ml-slider.php:1244
 msgid "Bar (Nivo)"
 msgstr ""
 
-#: ../ml-slider.php:1185
+#: ../ml-slider.php:1250
 msgid "Arrows"
 msgstr ""
 
-#: ../ml-slider.php:1188
+#: ../ml-slider.php:1253
 msgid "Show the previous/next arrows"
 msgstr ""
 
-#: ../ml-slider.php:1193
+#: ../ml-slider.php:1258
 msgid "Navigation"
 msgstr ""
 
-#: ../ml-slider.php:1196
+#: ../ml-slider.php:1261
 msgid "Show the slide navigation bullets"
 msgstr ""
 
-#: ../ml-slider.php:1198
+#: ../ml-slider.php:1263
 msgid "Hidden"
 msgstr ""
 
-#: ../ml-slider.php:1199
+#: ../ml-slider.php:1264
 msgid "Dots"
 msgstr ""
 
-#: ../ml-slider.php:1210
+#: ../ml-slider.php:1275
 msgid "Title"
 msgstr ""
 
-#: ../ml-slider.php:1211
+#: ../ml-slider.php:1276
 msgid "Slideshow title"
 msgstr ""
 
-#: ../ml-slider.php:1225
+#: ../ml-slider.php:1290
 msgid "Advanced Settings"
 msgstr ""
 
-#: ../ml-slider.php:1234
+#: ../ml-slider.php:1299
 msgid "Stretch"
 msgstr ""
 
-#: ../ml-slider.php:1236
+#: ../ml-slider.php:1301
 msgid "100% wide output"
 msgstr ""
 
-#: ../ml-slider.php:1238
+#: ../ml-slider.php:1303
 msgid "Stretch the slideshow output to fill it's parent container"
 msgstr ""
 
-#: ../ml-slider.php:1243
+#: ../ml-slider.php:1308
 msgid "Center align"
 msgstr ""
 
-#: ../ml-slider.php:1246
+#: ../ml-slider.php:1311
 msgid "Center align the slideshow"
 msgstr ""
 
-#: ../ml-slider.php:1251
+#: ../ml-slider.php:1316
 msgid "Auto play"
 msgstr ""
 
-#: ../ml-slider.php:1254
+#: ../ml-slider.php:1319
 msgid "Transition between slides automatically"
 msgstr ""
 
-#: ../ml-slider.php:1259
+#: ../ml-slider.php:1324
 msgid "Image Crop"
 msgstr ""
 
-#: ../ml-slider.php:1263
-msgid "Smart"
+#: ../ml-slider.php:1328
+msgid "Smart Crop"
 msgstr ""
 
-#: ../ml-slider.php:1264
+#: ../ml-slider.php:1329
 msgid "Standard"
 msgstr ""
 
-#: ../ml-slider.php:1265
+#: ../ml-slider.php:1330
 msgid "Disabled"
 msgstr ""
 
-#: ../ml-slider.php:1267
+#: ../ml-slider.php:1331
+msgid "Disabled (Smart Pad)"
+msgstr ""
+
+#: ../ml-slider.php:1333
 msgid ""
 "Smart Crop ensures your responsive slides are cropped to a ratio that "
 "results in a consistent slideshow size"
 msgstr ""
 
-#: ../ml-slider.php:1272
+#: ../ml-slider.php:1338
 msgid "Carousel mode"
 msgstr ""
 
-#: ../ml-slider.php:1275
+#: ../ml-slider.php:1341
 msgid "Display multiple slides at once. Slideshow output will be 100% wide."
 msgstr ""
 
-#: ../ml-slider.php:1283
+#: ../ml-slider.php:1349
 msgid "Carousel margin"
 msgstr ""
 
-#: ../ml-slider.php:1286
+#: ../ml-slider.php:1352
 msgid "Pixel margin between slides in carousel."
 msgstr ""
 
-#: ../ml-slider.php:1295
+#: ../ml-slider.php:1361
 msgid "Randomise the order of the slides"
 msgstr ""
 
-#: ../ml-slider.php:1300
+#: ../ml-slider.php:1366
 msgid "Hover pause"
 msgstr ""
 
-#: ../ml-slider.php:1303
+#: ../ml-slider.php:1369
 msgid ""
 "Pause the slideshow when hovering over slider, then resume when no longer "
 "hovering."
 msgstr ""
 
-#: ../ml-slider.php:1308
+#: ../ml-slider.php:1374
 msgid "Reverse"
 msgstr ""
 
-#: ../ml-slider.php:1311
+#: ../ml-slider.php:1377
 msgid "Reverse the animation direction"
 msgstr ""
 
-#: ../ml-slider.php:1321
+#: ../ml-slider.php:1387
 msgid "Slide delay"
 msgstr ""
 
-#: ../ml-slider.php:1323
+#: ../ml-slider.php:1389
 msgid "How long to display each slide, in milliseconds"
 msgstr ""
 
-#: ../ml-slider.php:1324 ../ml-slider.php:1337 ../ml-slider.php:1350
-#: ../ml-slider.php:1426 ../ml-slider.php:1452
+#: ../ml-slider.php:1390 ../ml-slider.php:1403 ../ml-slider.php:1416
+#: ../ml-slider.php:1492 ../ml-slider.php:1518
 msgid "ms"
 msgstr ""
 
-#: ../ml-slider.php:1334
+#: ../ml-slider.php:1400
 msgid "Animation speed"
 msgstr ""
 
-#: ../ml-slider.php:1336
+#: ../ml-slider.php:1402
 msgid "Set the speed of animations, in milliseconds"
 msgstr ""
 
-#: ../ml-slider.php:1347 ../ml-slider.php:1349
+#: ../ml-slider.php:1413 ../ml-slider.php:1415
 msgid "Number of slices"
 msgstr ""
 
-#: ../ml-slider.php:1360 ../ml-slider.php:1362 ../ml-slider.php:1373
-#: ../ml-slider.php:1375
+#: ../ml-slider.php:1426 ../ml-slider.php:1428 ../ml-slider.php:1439
+#: ../ml-slider.php:1441
 msgid "Number of squares"
 msgstr ""
 
-#: ../ml-slider.php:1381
+#: ../ml-slider.php:1447
 msgid "Slide direction"
 msgstr ""
 
-#: ../ml-slider.php:1383
+#: ../ml-slider.php:1449
 msgid "Select the sliding direction"
 msgstr ""
 
-#: ../ml-slider.php:1386
+#: ../ml-slider.php:1452
 msgid "Horizontal"
 msgstr ""
 
-#: ../ml-slider.php:1387
+#: ../ml-slider.php:1453
 msgid "Vertical"
 msgstr ""
 
-#: ../ml-slider.php:1393
+#: ../ml-slider.php:1459
 msgid "Easing"
 msgstr ""
 
-#: ../ml-slider.php:1395
+#: ../ml-slider.php:1461
 msgid "Animation easing effect"
 msgstr ""
 
-#: ../ml-slider.php:1402
+#: ../ml-slider.php:1468
 msgid "Previous text"
 msgstr ""
 
-#: ../ml-slider.php:1404
+#: ../ml-slider.php:1470
 msgid "Set the text for the 'previous' direction item"
 msgstr ""
 
-#: ../ml-slider.php:1410
+#: ../ml-slider.php:1476
 msgid "Next text"
 msgstr ""
 
-#: ../ml-slider.php:1412
+#: ../ml-slider.php:1478
 msgid "Set the text for the 'next' direction item"
 msgstr ""
 
-#: ../ml-slider.php:1423
+#: ../ml-slider.php:1489
 msgid "Square delay"
 msgstr ""
 
-#: ../ml-slider.php:1425
+#: ../ml-slider.php:1491
 msgid "Delay between squares in ms"
 msgstr ""
 
-#: ../ml-slider.php:1436
+#: ../ml-slider.php:1502
 msgid "Opacity"
 msgstr ""
 
-#: ../ml-slider.php:1438
+#: ../ml-slider.php:1504
 msgid "Opacity of title and navigation"
 msgstr ""
 
-#: ../ml-slider.php:1449
+#: ../ml-slider.php:1515
 msgid "Caption speed"
 msgstr ""
 
-#: ../ml-slider.php:1451
+#: ../ml-slider.php:1517
 msgid "Set the fade in speed of the caption"
 msgstr ""
 
-#: ../ml-slider.php:1458
+#: ../ml-slider.php:1524
 msgid "Developer options"
 msgstr ""
 
-#: ../ml-slider.php:1463
+#: ../ml-slider.php:1529
 msgid "CSS classes"
 msgstr ""
 
-#: ../ml-slider.php:1465
+#: ../ml-slider.php:1531
 msgid ""
 "Specify any custom CSS Classes you would like to be added to the slider "
 "wrapper"
 msgstr ""
 
-#: ../ml-slider.php:1471
+#: ../ml-slider.php:1537
 msgid "Print CSS"
 msgstr ""
 
-#: ../ml-slider.php:1474
+#: ../ml-slider.php:1540
 msgid "Uncheck this is you would like to include your own CSS"
 msgstr ""
 
-#: ../ml-slider.php:1479
+#: ../ml-slider.php:1545
 msgid "Print JS"
 msgstr ""
 
-#: ../ml-slider.php:1482
+#: ../ml-slider.php:1548
 msgid "Uncheck this is you would like to include your own Javascript"
 msgstr ""
 
-#: ../ml-slider.php:1487
+#: ../ml-slider.php:1553
 msgid "No conflict mode"
 msgstr ""
 
-#: ../ml-slider.php:1490
+#: ../ml-slider.php:1556
 msgid "Delay adding the flexslider class to the slideshow"
 msgstr ""
 
-#: ../ml-slider.php:1504
+#: ../ml-slider.php:1570
 msgid "Usage"
 msgstr ""
 
-#: ../ml-slider.php:1507
+#: ../ml-slider.php:1573
 msgid "Shortcode"
 msgstr ""
 
-#: ../ml-slider.php:1508
+#: ../ml-slider.php:1574
 msgid "Template Include"
 msgstr ""
 
-#: ../ml-slider.php:1512
+#: ../ml-slider.php:1578
 msgid "Copy & paste the shortcode directly into any WordPress post or page."
 msgstr ""
 
-#: ../ml-slider.php:1515
+#: ../ml-slider.php:1581
 msgid ""
 "Copy & paste this code into a template file to include the slideshow within "
 "your theme."
 msgstr ""
 
-#: ../ml-slider.php:1544
+#: ../ml-slider.php:1615
 msgid "Delete Slider"
 msgstr ""
 
-#: ../ml-slider.php:1565
+#: ../ml-slider.php:1635
 msgid "Select slideshow to insert into post"
 msgstr ""
 
-#: ../ml-slider.php:1568
+#: ../ml-slider.php:1638
 msgid "Add slider"
 msgstr ""
 
-#: ../ml-slider.php:1602
+#: ../ml-slider.php:1672
 msgid "Insert Meta Slider"
 msgstr ""
 
-#: ../ml-slider.php:1604
+#: ../ml-slider.php:1674
 msgid "Choose slideshow"
 msgstr ""
 
-#: ../ml-slider.php:1611 ../inc/metaslider.widget.class.php:121
+#: ../ml-slider.php:1679
+msgid "Insert slideshow"
+msgstr ""
+
+#: ../ml-slider.php:1681 ../inc/metaslider.widget.class.php:121
 msgid "No slideshows found"
 msgstr ""
 
-#: ../ml-slider.php:1628
+#: ../ml-slider.php:1698
 msgid "Go Pro"
 msgstr ""
 
-#: ../ml-slider.php:1684
+#: ../ml-slider.php:1717
 msgid "Upgrade to Pro $19"
 msgstr ""
 
@@ -578,19 +586,28 @@ msgstr ""
 msgid "Select Slider:"
 msgstr ""
 
-#: ../inc/slide/metaslide.image.class.php:23
+#: ../inc/slide/metaslide.class.php:71
+#: ../inc/slide/metaslide.image.class.php:27
 msgid "Security check failed. Refresh page and try again."
 msgstr ""
 
-#: ../inc/slide/metaslide.image.class.php:39
-msgid "Failed to add slide. Slide already exists in slideshow."
+#: ../inc/slide/metaslide.class.php:116
+msgid "File copy failed. Please check upload directory permissions."
+msgstr ""
+
+#: ../inc/slide/metaslide.class.php:275
+msgid "Delete slide"
 msgstr ""
 
 #: ../inc/slide/metaslide.image.class.php:43
+msgid "Failed to add slide. Slide already exists in slideshow."
+msgstr ""
+
+#: ../inc/slide/metaslide.image.class.php:47
 msgid "Failed to add slide. Slide is not of type 'image'."
 msgstr ""
 
-#: ../inc/slide/metaslide.image.class.php:107
+#: ../inc/slide/metaslide.image.class.php:111
 msgid "Image Slide"
 msgstr ""
 
@@ -606,54 +623,54 @@ msgstr ""
 msgid "Image Alt Text"
 msgstr ""
 
-#: ../inc/slide/metaslide.image.class.php:163
-msgid "Crop Position"
-msgstr ""
-
-#: ../inc/slide/metaslide.image.class.php:166
-msgid "Top Left"
-msgstr ""
-
-#: ../inc/slide/metaslide.image.class.php:167
-msgid "Top Center"
-msgstr ""
-
-#: ../inc/slide/metaslide.image.class.php:168
-msgid "Top Right"
-msgstr ""
-
-#: ../inc/slide/metaslide.image.class.php:169
-msgid "Center Left"
-msgstr ""
-
-#: ../inc/slide/metaslide.image.class.php:170
-msgid "Center Center"
-msgstr ""
-
-#: ../inc/slide/metaslide.image.class.php:171
-msgid "Center Right"
-msgstr ""
-
-#: ../inc/slide/metaslide.image.class.php:172
-msgid "Bottom Left"
-msgstr ""
-
-#: ../inc/slide/metaslide.image.class.php:173
-msgid "Bottom Center"
-msgstr ""
-
-#: ../inc/slide/metaslide.image.class.php:174
-msgid "Bottom Right"
-msgstr ""
-
-#: ../inc/slide/metaslide.image.class.php:180
+#: ../inc/slide/metaslide.image.class.php:165
 msgid "General"
 msgstr ""
 
-#: ../inc/slide/metaslide.image.class.php:184
+#: ../inc/slide/metaslide.image.class.php:169
 msgid "SEO"
 msgstr ""
 
+#: ../inc/slide/metaslide.image.class.php:182
+msgid "Crop Position"
+msgstr ""
+
+#: ../inc/slide/metaslide.image.class.php:185
+msgid "Top Left"
+msgstr ""
+
+#: ../inc/slide/metaslide.image.class.php:186
+msgid "Top Center"
+msgstr ""
+
+#: ../inc/slide/metaslide.image.class.php:187
+msgid "Top Right"
+msgstr ""
+
+#: ../inc/slide/metaslide.image.class.php:188
+msgid "Center Left"
+msgstr ""
+
+#: ../inc/slide/metaslide.image.class.php:189
+msgid "Center Center"
+msgstr ""
+
+#: ../inc/slide/metaslide.image.class.php:190
+msgid "Center Right"
+msgstr ""
+
+#: ../inc/slide/metaslide.image.class.php:191
+msgid "Bottom Left"
+msgstr ""
+
 #: ../inc/slide/metaslide.image.class.php:192
+msgid "Bottom Center"
+msgstr ""
+
+#: ../inc/slide/metaslide.image.class.php:193
+msgid "Bottom Right"
+msgstr ""
+
+#: ../inc/slide/metaslide.image.class.php:198
 msgid "Crop"
 msgstr ""
