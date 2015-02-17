@@ -146,8 +146,9 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
-= 3.2.2 [XX/01/14] =
+= 3.3 [17/02/14] =
 
+* New feature: Smart pad option (for Image Slides & Flex Slider only)
 * Portuguese language files added (thanks to mauro.mascarenhas)
 * Russian language files updated (thanks to asidoryak)
 
