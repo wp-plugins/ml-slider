@@ -19,7 +19,6 @@ class MetaSlider {
         $this->id = $id;
         $this->settings = array_merge( $shortcode_settings, $this->get_settings() );
         $this->identifier = 'metaslider_' . $this->id;
-        $this->save();
         $this->populate_slides();
     }
 
@@ -121,54 +120,6 @@ class MetaSlider {
         return $params;
     }
 
-    /**
-     * Save the slider details and initiate the update of all slides associated with slider.
-     */
-    private function save() {
-
-        if ( ! is_admin() ) {
-            return;
-        }
-
-        $capability = apply_filters( 'metaslider_capability', 'edit_others_posts' );
-
-        if ( ! current_user_can( $capability ) ) {
-            return;
-        }
-
-        $changes_made = false;
-
-        // make changes to slider
-        if ( isset( $_POST['settings'] ) ) {
-            check_admin_referer( 'metaslider_save_' . $this->id );
-            $this->update_settings( $_POST['settings'] );
-            $changes_made = true;
-        }
-
-        if ( isset( $_POST['title'] ) ) {
-            check_admin_referer( 'metaslider_save_' . $this->id );
-            $this->update_title( $_POST['title'] );
-            $changes_made = true;
-        }
-
-        if ( isset( $_GET['deleteSlide'] ) ) {
-            $this->delete_slide( absint( $_GET['deleteSlide'] ) );
-            $changes_made = true;
-        }
-
-        // make changes to slides
-        if ( isset( $_POST['attachment'] ) ) {
-            check_admin_referer( 'metaslider_save_' . $this->id );
-            $this->update_slides( $_POST['attachment'] );
-            $changes_made = true;
-        }
-
-        // Clear current blog's WP Super Cache files when slideshow is modified
-        if ( $changes_made && function_exists( 'wp_cache_clear_cache' ) ) {
-            global $wpdb;
-            wp_cache_clear_cache( $wpdb->blogid );
-        }
-    }
 
     /**
      * The main query for extracting the slides for the slideshow
@@ -486,70 +437,5 @@ class MetaSlider {
         do_action( 'metaslider_register_public_styles' );
     }
 
-    /**
-     * Update the slider settings, converting checkbox values (on/off) to true or false.
-     */
-    public function update_settings( $new_settings ) {
-        $old_settings = $this->get_settings();
 
-        // convert submitted checkbox values from 'on' or 'off' to boolean values
-        $checkboxes = apply_filters( "metaslider_checkbox_settings", array( 'noConflict', 'fullWidth', 'hoverPause', 'links', 'reverse', 'random', 'printCss', 'printJs', 'smoothHeight', 'center', 'carouselMode', 'autoPlay' ) );
-
-        foreach ( $checkboxes as $checkbox ) {
-            if ( isset( $new_settings[$checkbox] ) && $new_settings[$checkbox] == 'on' ) {
-                $new_settings[$checkbox] = "true";
-            } else {
-                $new_settings[$checkbox] = "false";
-            }
-        }
-
-        // update the slider settings
-        update_post_meta( $this->id, 'ml-slider_settings', array_merge( (array)$old_settings, $new_settings ) );
-
-        $this->settings = $this->get_settings();
-    }
-
-    /**
-     * Update the title of the slider
-     */
-    private function update_title( $title ) {
-        $slide = array(
-            'ID' => $this->id,
-            'post_title' => $title
-        );
-
-        wp_update_post( $slide );
-    }
-
-    /**
-     * Delete a slide. This doesn't actually remove the slide from WordPress, simply untags
-     * it from the slide taxonomy.
-     *
-     * @param int     $slide_id
-     */
-    private function delete_slide( $slide_id ) {
-        // Get the existing terms and only keep the ones we don't want removed
-        $new_terms = array();
-        $current_terms = wp_get_object_terms( $slide_id, 'ml-slider', array( 'fields' => 'ids' ) );
-        $term = get_term_by( 'name', $this->id, 'ml-slider' );
-
-        foreach ( $current_terms as $current_term ) {
-            if ( $current_term != $term->term_id ) {
-                $new_terms[] = absint( $current_term );
-            }
-        }
-
-        return wp_set_object_terms( $slide_id, $new_terms, 'ml-slider' );
-    }
-
-    /**
-     * Loop over each slide and call the save action on each
-     *
-     * @param array   $data - posted form data.
-     */
-    private function update_slides( $data ) {
-        foreach ( $data as $slide_id => $fields ) {
-            do_action( "metaslider_save_{$fields['type']}_slide", $slide_id, $this->id, $fields );
-        }
-    }
 }

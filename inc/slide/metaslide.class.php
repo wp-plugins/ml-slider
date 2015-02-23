@@ -272,7 +272,9 @@ class MetaSlide {
      */
     public function get_delete_button_html() {
 
-        return "<a title='" . __("Delete slide", "metaslider") . "' class='tipsy-tooltip-top delete-slide dashicons dashicons-trash' href='?page=metaslider&amp;id={$this->slider->ID}&amp;deleteSlide={$this->slide->ID}'>" . __("Delete slide", "metaslider") . "</a>";
+        $url = wp_nonce_url( admin_url( "admin-post.php?action=metaslider_delete_slide&slider_id={$this->slider->ID}&slide_id={$this->slide->ID}" ), "metaslider_delete_slide" );
+
+        return "<a title='" . __("Delete slide", "metaslider") . "' class='tipsy-tooltip-top delete-slide dashicons dashicons-trash' href='{$url}'>" . __("Delete slide", "metaslider") . "</a>";
     
     }
 
