@@ -47,6 +47,8 @@ class MetaSliderPlugin {
 
         $metaslider = new self();
 
+        $imexport = new MetaSliderImportExport();
+
     }
 
 
@@ -84,17 +86,18 @@ class MetaSliderPlugin {
     private function plugin_classes() {
 
         return array(
-            'metaslider'            => METASLIDER_PATH . 'inc/slider/metaslider.class.php',
-            'metacoinslider'        => METASLIDER_PATH . 'inc/slider/metaslider.coin.class.php',
-            'metaflexslider'        => METASLIDER_PATH . 'inc/slider/metaslider.flex.class.php',
-            'metanivoslider'        => METASLIDER_PATH . 'inc/slider/metaslider.nivo.class.php',
-            'metaresponsiveslider'  => METASLIDER_PATH . 'inc/slider/metaslider.responsive.class.php',
-            'metaslide'             => METASLIDER_PATH . 'inc/slide/metaslide.class.php',
-            'metaimageslide'        => METASLIDER_PATH . 'inc/slide/metaslide.image.class.php',
-            'metasliderimagehelper' => METASLIDER_PATH . 'inc/metaslider.imagehelper.class.php',
-            'metaslidersystemcheck' => METASLIDER_PATH . 'inc/metaslider.systemcheck.class.php',
-            'metaslider_widget'     => METASLIDER_PATH . 'inc/metaslider.widget.class.php',
-            'simple_html_dom'       => METASLIDER_PATH . 'inc/simple_html_dom.php'
+            'metaslider'             => METASLIDER_PATH . 'inc/slider/metaslider.class.php',
+            'metacoinslider'         => METASLIDER_PATH . 'inc/slider/metaslider.coin.class.php',
+            'metaflexslider'         => METASLIDER_PATH . 'inc/slider/metaslider.flex.class.php',
+            'metanivoslider'         => METASLIDER_PATH . 'inc/slider/metaslider.nivo.class.php',
+            'metaresponsiveslider'   => METASLIDER_PATH . 'inc/slider/metaslider.responsive.class.php',
+            'metaslide'              => METASLIDER_PATH . 'inc/slide/metaslide.class.php',
+            'metaimageslide'         => METASLIDER_PATH . 'inc/slide/metaslide.image.class.php',
+            'metasliderimagehelper'  => METASLIDER_PATH . 'inc/metaslider.imagehelper.class.php',
+            'metaslidersystemcheck'  => METASLIDER_PATH . 'inc/metaslider.systemcheck.class.php',
+            'metasliderimportexport' => METASLIDER_PATH . 'inc/metaslider.imexport.class.php',
+            'metaslider_widget'      => METASLIDER_PATH . 'inc/metaslider.widget.class.php',
+            'simple_html_dom'        => METASLIDER_PATH . 'inc/simple_html_dom.php'
         );
 
     }
@@ -856,7 +859,7 @@ class MetaSliderPlugin {
      * @param string $sort_key
      * @return array all published sliders
      */
-    private function all_meta_sliders( $sort_key = 'date' ) {
+    public function all_meta_sliders( $sort_key = 'date' ) {
 
         $sliders = array();
 
