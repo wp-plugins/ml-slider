@@ -636,8 +636,14 @@ class MetaSliderPlugin {
 
         $slider_id = absint( $_POST['slider_id'] );
 
+        if ( ! $slider_id ) {
+            return;
+        }
+
         // update settings
         if ( isset( $_POST['settings'] ) ) {
+
+            $new_settings = $_POST['settings'];
 
             $old_settings = get_post_meta( $slider_id, 'ml-slider_settings', true );
 
@@ -652,8 +658,10 @@ class MetaSliderPlugin {
                 }
             }
 
+            $settings = array_merge( (array)$old_settings, $new_settings );
+
             // update the slider settings
-            update_post_meta( $slider_id, 'ml-slider_settings', array_merge( (array)$old_settings, $new_settings ) );
+            update_post_meta( $slider_id, 'ml-slider_settings', $settings );
 
         }
 
