@@ -127,13 +127,17 @@ class MetaSlide {
      */
     public function get_slide_html() {
 
-        if ( is_admin() && isset( $_GET['page'] ) && $_GET['page'] == 'metaslider-theme-editor' ) {
+        $viewing_theme_editor = is_admin() && isset( $_GET['page'] ) && $_GET['page'] == 'metaslider-theme-editor';
+        $viewing_preview = did_action('admin_post_metaslider_preview');
+        $doing_ajax = defined( 'DOING_AJAX' ) && DOING_AJAX;
+
+        if ( $doing_ajax || $viewing_preview || $viewing_theme_editor ) {
             return $this->get_public_slide();
         }
 
         $capability = apply_filters( 'metaslider_capability', 'edit_others_posts' );
 
-        if ( is_admin() && current_user_can( $capability ) && ! isset( $_GET['slider_id'] ) ) {
+        if ( is_admin() && current_user_can( $capability ) ) {
             return $this->get_admin_slide();
         }
 
