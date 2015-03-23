@@ -47,8 +47,6 @@ class MetaSliderPlugin {
 
         $metaslider = new self();
 
-        $imexport = new MetaSliderImportExport();
-
     }
 
 
@@ -95,7 +93,6 @@ class MetaSliderPlugin {
             'metaimageslide'         => METASLIDER_PATH . 'inc/slide/metaslide.image.class.php',
             'metasliderimagehelper'  => METASLIDER_PATH . 'inc/metaslider.imagehelper.class.php',
             'metaslidersystemcheck'  => METASLIDER_PATH . 'inc/metaslider.systemcheck.class.php',
-            'metasliderimportexport' => METASLIDER_PATH . 'inc/metaslider.imexport.class.php',
             'metaslider_widget'      => METASLIDER_PATH . 'inc/metaslider.widget.class.php',
             'simple_html_dom'        => METASLIDER_PATH . 'inc/simple_html_dom.php'
         );
