@@ -146,6 +146,13 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
+= 3.3.1 [23/03/14] =
+
+* Fix: Remove 'create video playlist' option from Media Library (on Meta Slider page only)
+* Fix: Support for Enhanced Media Library plugin
+* Fix: Return public slide when DOING_AJAX
+* Improvement: Use admin actions to save slideshow settings
+
 = 3.3 [17/02/14] =
 
 * New feature: Smart pad option (for Image Slides & Flex Slider only)
