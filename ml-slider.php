@@ -543,8 +543,19 @@ class MetaSliderPlugin {
             $strings['insertMediaTitle'] = __( "Image", "metaslider" );
             $strings['insertIntoPost'] = __( "Add to slider", "metaslider" );
             // remove options
-            if ( isset( $strings['createGalleryTitle'] ) ) unset( $strings['createGalleryTitle'] );
-            if ( isset( $strings['insertFromUrlTitle'] ) ) unset( $strings['insertFromUrlTitle'] );
+
+            $strings_to_remove = array(
+                'createVideoPlaylistTitle', 
+                'createGalleryTitle', 
+                'insertFromUrlTitle', 
+                'createPlaylistTitle'
+            );
+
+            foreach ($strings_to_remove as $string) {
+                if (isset($strings[$string])) {
+                    unset($strings[$string]);
+                }
+            }
         }
 
         return $strings;
