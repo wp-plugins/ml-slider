@@ -42,9 +42,13 @@ class MetaImageSlide extends MetaSlide {
                     
                     echo "<tr><td colspan='2'>ID: {$slide_id} \"" . get_the_title( $slide_id ) . "\" - " . __( "Failed to add slide. Slide already exists in slideshow.", 'metaslider' ) . "</td></tr>";
                 
-                } else if ( !$this->slide_is_unassigned_or_image_slide( $slider_id, $slide_id ) ) {
+                } else if ( ! $this->slide_is_unassigned_or_image_slide( $slider_id, $slide_id ) ) {
                     
                     echo "<tr><td colspan='2'>ID: {$slide_id} \"" . get_the_title( $slide_id ) . "\" - " . __( "Failed to add slide. Slide is not of type 'image'.", 'metaslider' ) . "</td></tr>";
+                
+                } else if ( ! wp_attachment_is_image( $slide_id ) ) {
+                    
+                    echo "<tr><td colspan='2'>ID: {$slide_id} \"" . get_the_title( $slide_id ) . "\" - " . __( "Failed to add slide. Slide is not an image.", 'metaslider' ) . "</td></tr>";
                 
                 } else {
 
