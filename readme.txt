@@ -3,7 +3,7 @@ Contributors: matchalabs
 Tags: wordpress slideshow,seo,slideshow,slider,widget,wordpress slider,image slider,flexslider,flex slider,nivoslider,nivo slider,responsive,responsive slides,coinslider,coin slider,slideshow,carousel,responsive slider,vertical slides
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CQ84KC4X8YKW8
 Requires at least: 3.5
-Tested up to: 4.0
+Tested up to: 4.1.1
 Stable tag: 3.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -146,14 +146,14 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
-= 3.3.1 [23/03/14] =
+= 3.3.1 [23/03/15] =
 
 * Fix: Remove 'create video playlist' option from Media Library (on Meta Slider page only)
 * Fix: Support for Enhanced Media Library plugin
 * Fix: Return public slide when DOING_AJAX
 * Improvement: Use admin actions to save slideshow settings
 
-= 3.3 [17/02/14] =
+= 3.3 [17/02/15] =
 
 * New feature: Smart pad option (for Image Slides & Flex Slider only)
 * Portuguese language files added (thanks to mauro.mascarenhas)
