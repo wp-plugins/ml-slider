@@ -22,10 +22,8 @@ class MetaSliderImageHelper {
      */
     public function __construct( $slide_id, $width, $height, $crop_type, $use_image_editor = true ) {
 
-        $upload_dir = wp_upload_dir();
-
         $this->id = $slide_id;
-        $this->url = $upload_dir['baseurl'] . "/" . get_post_meta( $slide_id, '_wp_attached_file', true );
+        $this->url = wp_get_attachment_url( $slide_id );
         $this->path = get_attached_file( $slide_id );
         $this->container_width = $width;
         $this->container_height = $height;
