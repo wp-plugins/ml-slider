@@ -39,6 +39,10 @@
  * @subpackage simple_html_dom
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // disable direct access
+}
+
 if ( ! class_exists('simple_html_dom_node') ) :
 /**
  * All of the Defines for the classes below.

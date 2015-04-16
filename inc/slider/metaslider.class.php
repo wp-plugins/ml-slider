@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // disable direct access
+}
+
 /**
  * Generic Slider super class. Extended by library specific classes.
  *

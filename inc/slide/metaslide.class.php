@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // disable direct access
+}
+
 /**
  * Slide class represting a single slide. This is extended by type specific
  * slides (eg, MetaImageSlide, MetaYoutubeSlide (pro only), etc)

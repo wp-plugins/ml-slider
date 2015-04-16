@@ -3,8 +3,9 @@
  * Adds Meta Slider widget.
  */
 
-// disable direct access
-if ( !defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // disable direct access
+}
 
 class MetaSlider_Widget extends WP_Widget {
 

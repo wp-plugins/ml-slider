@@ -146,6 +146,16 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
+= 3.3.2 [16/04/15] =
+
+* Fix: FPD Security issue. Thanks to Ole Aass (@oleaass) for finding and disclosing this issue.
+
+More information:
+
+The fix will prevent some servers (configured with 'display_errors' set to 'on') from disclosing the full path to certain files within Meta Slider.
+
+http://codex.wordpress.org/Security_FAQ#Why_are_there_path_disclosures_when_directly_loading_certain_files.3F
+
 = 3.3.1 [23/03/15] =
 
 * Fix: Remove 'create video playlist' option from Media Library (on Meta Slider page only)

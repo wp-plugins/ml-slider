@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // disable direct access
+}
+
 /**
  * Nivo Slider specific markup, javascript, css and settings.
  */

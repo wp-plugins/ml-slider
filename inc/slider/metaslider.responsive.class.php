@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // disable direct access
+}
+
 /**
  * Responsive Slider specific markup, javascript, css and settings.
  */
