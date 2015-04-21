@@ -70,6 +70,7 @@ Upgrade to [Meta Slider Pro](http://www.metaslider.com/upgrade) to add support f
 * Hebrew (thanks to Ahrale)
 * Portuguese (thanks to mauro.mascarenhas)
 * Russian (thanks to asidoryak)
+* Ukrainian (thanks to mister_r)
 
 Read more and thanks to:
 
@@ -145,6 +146,10 @@ See www.metaslider.com/documentation/image-cropping/
 6. Administration panel - selecting slides
 
 == Changelog ==
+
+= 3.3.3 [N/A] =
+
+* Ukrainian language pack added (thanks to mister_r!)
 
 = 3.3.2 [16/04/15] =
 
