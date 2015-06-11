@@ -147,9 +147,11 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
-= 3.3.3 [N/A] =
+= 3.3.3 [11/06/15] =
 
 * Ukrainian language pack added (thanks to mister_r!)
+* Fix: Meta Slider hoplink incorrectly adding parameters to filtered url
+* Add "metaslider_attachment_url" filter
 
 = 3.3.2 [16/04/15] =
 
