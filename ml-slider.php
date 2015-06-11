@@ -283,13 +283,13 @@ class MetaSliderPlugin {
 
         if ( ! is_plugin_active( 'ml-slider-pro/ml-slider-pro.php' ) && get_user_meta( $user_ID, "metaslider_hide_go_pro", true ) !== 'true' ) {
 
-            $page = add_submenu_page( 
-                'metaslider', 
-                __( 'Go Pro!', 'metaslider' ), 
-                __( 'Go Pro!', 'metaslider' ), 
-                $capability, 
-                'metaslider-go-pro', 
-                array( $this, 'go_pro_page' ) 
+            $page = add_submenu_page(
+                'metaslider',
+                __( 'Go Pro!', 'metaslider' ),
+                __( 'Go Pro!', 'metaslider' ),
+                $capability,
+                'metaslider-go-pro',
+                array( $this, 'go_pro_page' )
             );
 
             add_action( 'admin_print_styles-' . $page, array( $this, 'register_admin_styles' ) );
@@ -302,12 +302,17 @@ class MetaSliderPlugin {
      * Go Pro page content
      */
     public function go_pro_page() {
+
+        $upgrade_link = esc_url( add_query_arg(
+            array(
+                'utm_source' => 'lite',
+                'utm_medium' => 'nag',
+                'utm_campaign' => 'pro'
+            ), 'http://www.metaslider.com/upgrade/' ) );
+
+        $link = apply_filters( 'metaslider_hoplink', $upgrade_link );
+
         $hide_link = '<a href="' . admin_url( "admin-post.php?action=metaslider_hide_go_pro_page" ) . '">Hide this page</a>';
-
-        $link = apply_filters( 'metaslider_hoplink', 'http://www.metaslider.com/upgrade/' );
-
-        $link .= '?utm_source=lite&amp;utm_medium=nag&amp;utm_campaign=pro';
-
         $gopro_link = "<a class='button button-primary' href='{$link}' target='_blank'>Find out more</a>";
         $support_link = '<a href="https://wordpress.org/support/plugin/ml-slider">Support</a>';
         $documentation_link = '<a href="http://www.metaslider.com/documentation/">Documentation</a>';
@@ -430,7 +435,7 @@ class MetaSliderPlugin {
         wp_enqueue_style( 'metaslider-admin-styles', METASLIDER_ASSETS_URL . 'metaslider/admin.css', false, METASLIDER_VERSION );
         wp_enqueue_style( 'metaslider-colorbox-styles', METASLIDER_ASSETS_URL . 'colorbox/colorbox.css', false, METASLIDER_VERSION );
         wp_enqueue_style( 'metaslider-tipsy-styles', METASLIDER_ASSETS_URL . 'tipsy/tipsy.css', false, METASLIDER_VERSION );
-        
+
         do_action( 'metaslider_register_admin_styles' );
 
     }
@@ -493,16 +498,16 @@ class MetaSliderPlugin {
 
         if ( isset( $_GET['slider_id'] ) && absint( $_GET['slider_id'] ) > 0 ) {
             $id = absint( $_GET['slider_id'] );
-            
+
             ?>
             <!DOCTYPE html>
             <html>
                 <head>
                     <style type='text/css'>
-                        body, html { 
-                            overflow: hidden; 
-                            margin: 0; 
-                            padding: 0; 
+                        body, html {
+                            overflow: hidden;
+                            margin: 0;
+                            padding: 0;
                         }
                     </style>
                     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -545,9 +550,9 @@ class MetaSliderPlugin {
             // remove options
 
             $strings_to_remove = array(
-                'createVideoPlaylistTitle', 
-                'createGalleryTitle', 
-                'insertFromUrlTitle', 
+                'createVideoPlaylistTitle',
+                'createGalleryTitle',
+                'insertFromUrlTitle',
                 'createPlaylistTitle'
             );
 
@@ -572,7 +577,7 @@ class MetaSliderPlugin {
 
         // restrict our tab changes to the meta slider plugin page
         if ( isset( $_GET['page'] ) && $_GET['page'] == 'metaslider' ) {
-          
+
             if ( isset( $tabs['nextgen'] ) ) {
                 unset( $tabs['nextgen'] );
             }
@@ -905,7 +910,7 @@ class MetaSliderPlugin {
                 'id' => $slideshow->ID
             );
 
-        } 
+        }
 
         return $sliders;
 
@@ -1124,9 +1129,9 @@ class MetaSliderPlugin {
                 if ( isset( $_GET['add'] ) && $_GET['add'] == 'true' ) {
 
                     echo "<div id='message' class='updated'><p>" . __( "New slideshow created. Click 'Add Slide' to get started!", "metaslider" ) . "</p></div>";
-                
+
                 }
-                
+
                 echo "<div style='display: none;' id='screen-options-switch-view-wrap'><a class='switchview dashicons-before dashicons-randomize tipsy-tooltip' title='" . __("Switch to Tab view", "metaslider") . "' href='" . admin_url( "admin-post.php?action=metaslider_switch_view&view=tabs") . "'>" . __("Tabs", "metaslider") . "</a></div>";
 
                 echo "<div class='dropdown_container'><label for='select-slider'>" . __("Select Slider", "metaslider") . ": </label>";
@@ -1179,7 +1184,7 @@ class MetaSliderPlugin {
      * Render the admin page (tabs, slides, settings)
      */
     public function render_admin_page() {
-        
+
         // default to the latest slider
         $slider_id = $this->find_slider( 'modified', 'DESC' );
 
@@ -1819,12 +1824,17 @@ class MetaSliderPlugin {
      * Upgrade CTA.
      */
     public function upgrade_to_pro_cta() {
-        global $user_ID;
 
         if ( function_exists( 'is_plugin_active' ) && ! is_plugin_active( 'ml-slider-pro/ml-slider-pro.php' ) ) {
-            $link = apply_filters( 'metaslider_hoplink', 'http://www.metaslider.com/upgrade/' );
 
-            $link .= '?utm_source=lite&amp;utm_medium=nag&amp;utm_campaign=pro';
+            $upgrade_link = esc_url( add_query_arg(
+                array(
+                    'utm_source' => 'lite',
+                    'utm_medium' => 'nag',
+                    'utm_campaign' => 'pro'
+                ), 'http://www.metaslider.com/upgrade/' ) );
+
+            $link = apply_filters( 'metaslider_hoplink', $upgrade_link );
 
             $text = "Meta Slider v" . METASLIDER_VERSION . " - " . __( 'Upgrade to Pro $19', "metaslider" );
 
@@ -1838,13 +1848,13 @@ class MetaSliderPlugin {
     /**
      * Start output buffering.
      *
-     * Note: wp_ob_end_flush_all is called by default 
+     * Note: wp_ob_end_flush_all is called by default
      *  - see shutdown action in default-filters.php
      */
     public function start_resource_manager() {
 
         ob_start( array( $this, 'resource_manager' ) );
-    
+
     }
 
     /**
@@ -1863,7 +1873,7 @@ class MetaSliderPlugin {
             return $buffer;
 
         // selectors to find Meta Slider links
-        $selectors = array( 
+        $selectors = array(
             'body link[id^="metaslider"]',
         );
 

@@ -46,7 +46,7 @@ class MetaSliderImageHelper {
      * @param string $crop_type
      */
     private function set_crop_type( $crop_type ) {
- 
+
         switch ( $crop_type ) {
             case "false":
             case "standard":
@@ -356,7 +356,7 @@ class MetaSliderImageHelper {
         $crop_position = get_post_meta( $this->id, 'ml-slider_crop_position', true );
 
         if ( $crop_position ) {
-            
+
             $parts = explode( "-", $crop_position );
 
             if ( isset( $parts[0], $parts[1] ) ) {
