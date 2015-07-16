@@ -59,7 +59,7 @@ Upgrade to [Meta Slider Pro](http://www.metaslider.com/upgrade) to add support f
 * Spanish (thanks to eltipografico)
 * German (thanks to Rewolve44)
 * Polish (thanks to gordon34)
-* Chinese (thanks to 断青丝)
+* Chinese (thanks to 断青丝 and mamsds)
 * Taiwanese (thanks to 断青丝)
 * Norwegian (thanks to Dreamsoft)
 * Romanian (thanks to Octav Madalin Stanoaia)
@@ -151,6 +151,7 @@ See www.metaslider.com/documentation/image-cropping/
 
 * Add HTML5 validation by applying a property="stylesheet" attribute to meta slider <link> CSS tags
 * Remove unused "Resource Manager" code
+* Chinese language pack updated (thanks to mamsds!)
 
 = 3.3.3 [11/06/15] =
 
