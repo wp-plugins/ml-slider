@@ -147,6 +147,11 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
+= 3.3.4 [16/07/15] =
+
+* Add HTML5 validation by applying a property="stylesheet" attribute to meta slider <link> CSS tags
+* Remove unused "Resource Manager" code
+
 = 3.3.3 [11/06/15] =
 
 * Ukrainian language pack added (thanks to mister_r!)
