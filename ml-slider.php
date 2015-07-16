@@ -177,13 +177,6 @@ class MetaSliderPlugin {
         add_action( 'admin_post_metaslider_create_slider', array( $this, 'create_slider' ) );
         add_action( 'admin_post_metaslider_update_slider', array( $this, 'update_slider' ) );
 
-
-        if ( defined( 'METASLIDER_ENABLE_RESOURCE_MANAGER' ) && METASLIDER_ENABLE_RESOURCE_MANAGER === true ) {
-
-            add_action( 'template_redirect', array( $this, 'start_resource_manager'), 0 );
-
-        }
-
     }
 
 
@@ -200,6 +193,9 @@ class MetaSliderPlugin {
         $plugin = plugin_basename( __FILE__ );
 
         add_filter( "plugin_action_links_{$plugin}", array( $this, 'upgrade_to_pro_link' ) );
+
+        // html5 compatibility for stylesheets enqueued within <body>
+        add_filter( 'style_loader_tag', array( $this, 'add_property_attribute_to_stylesheet_links' ), 10, 2 );
 
     }
 
@@ -1846,56 +1842,20 @@ class MetaSliderPlugin {
 
 
     /**
-     * Start output buffering.
+     * Add a 'property=stylesheet' attribute to the Meta Slider CSS links for HTML5 validation
      *
-     * Note: wp_ob_end_flush_all is called by default
-     *  - see shutdown action in default-filters.php
+     * @since 3.3.4
+     * @param string $tag
+     * @param string $handle
      */
-    public function start_resource_manager() {
+    public function add_property_attribute_to_stylesheet_links( $tag, $handle ) {
 
-        ob_start( array( $this, 'resource_manager' ) );
-
-    }
-
-    /**
-     * Process the whole page output. Move link tags with an ID starting
-     * with 'metaslider' into the <head> of the page.
-     */
-    public function resource_manager( $buffer ) {
-
-        // create dom document from buffer
-        $html = new simple_html_dom();
-
-        // Load from a string
-        $html->load( $buffer, true, false );
-
-        if ( ! $html->find( 'body link[id^="metaslider"]' ) )
-            return $buffer;
-
-        // selectors to find Meta Slider links
-        $selectors = array(
-            'body link[id^="metaslider"]',
-        );
-
-        $selectors = apply_filters( "metaslider_resource_manager_selectors", $selectors );
-
-        if ( $head = $html->find( 'head', 0 ) ) {
-
-            // move meta slider elemends to <head>
-            foreach ( $selectors as $selector ) {
-
-                foreach ( $html->find( $selector ) as $element ) {
-
-                    $head->innertext .= "\t" . $element->outertext . "\n";
-                    $element->outertext = '';
-
-                }
-
-            }
-
+        if ( strpos( $handle, 'metaslider' ) !== FALSE && strpos( $tag, "property='" ) === FALSE ) {
+            // we're only filtering tags with metaslider in the handle, and links which don't already have a property attribute
+            $tag = str_replace( "/>", "property='stylesheet' />", $tag );
         }
 
-        return $html->save();
+        return $tag;
 
     }
 
