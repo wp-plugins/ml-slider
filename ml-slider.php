@@ -195,7 +195,7 @@ class MetaSliderPlugin {
         add_filter( "plugin_action_links_{$plugin}", array( $this, 'upgrade_to_pro_link' ) );
 
         // html5 compatibility for stylesheets enqueued within <body>
-        add_filter( 'style_loader_tag', array( $this, 'add_property_attribute_to_stylesheet_links' ), 10, 2 );
+        add_filter( 'style_loader_tag', array( $this, 'add_property_attribute_to_stylesheet_links' ), 11, 2 );
 
     }
 
