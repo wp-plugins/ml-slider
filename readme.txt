@@ -147,6 +147,10 @@ See www.metaslider.com/documentation/image-cropping/
 
 == Changelog ==
 
+= 3.3.4.1 [29/07/15] =
+
+* Fix Roots theme CSS conflict
+
 = 3.3.4 [16/07/15] =
 
 * Add HTML5 validation by applying a property="stylesheet" attribute to meta slider <link> CSS tags
